@@ -8,102 +8,148 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, ButtonDelegate {
+    private var startButton = Button()
     
-    var entities = [GKEntity]()
-    var graphs = [String : GKGraph]()
+    var jillBill: SKSpriteNode!
+    var backgroundSound = SKAudioNode(fileNamed: "bg-audio.mp3")
     
-    private var lastUpdateTime : TimeInterval = 0
-    private var label : SKLabelNode?
-    private var spinnyNode : SKShapeNode?
+    private var jillBillAtlas: SKTextureAtlas {
+        return SKTextureAtlas(named: "JillBill")
+    }
+    
+    private var jillBillTexture: SKTexture {
+        return jillBillAtlas.textureNamed("jillBill")
+    }
+    
+    private var jillBillIdleTextures: [SKTexture] {
+        return [
+            jillBillAtlas.textureNamed("idle1"),
+            jillBillAtlas.textureNamed("idle2"),
+            jillBillAtlas.textureNamed("idle3"),
+            jillBillAtlas.textureNamed("idle4")
+        ]
+    }
+    
+    private func setupPlayer() {
+        jillBill = SKSpriteNode(texture: jillBillTexture)
+        jillBill.position = CGPoint(x: frame.midX, y: -frame.height/4+100)
+        
+        addChild(jillBill)
+    }
     
     override func sceneDidLoad() {
-
-        self.lastUpdateTime = 0
-        
-        // Get label node from scene and store it for use later
-        self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
-        if let label = self.label {
-            label.alpha = 0.0
-            label.run(SKAction.fadeIn(withDuration: 2.0))
-        }
-        
-        // Create shape node to use during mouse interaction
-        let w = (self.size.width + self.size.height) * 0.05
-        self.spinnyNode = SKShapeNode.init(rectOf: CGSize.init(width: w, height: w), cornerRadius: w * 0.3)
-        
-        if let spinnyNode = self.spinnyNode {
-            spinnyNode.lineWidth = 2.5
-            
-            spinnyNode.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(Double.pi), duration: 1)))
-            spinnyNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.5),
-                                              SKAction.fadeOut(withDuration: 0.5),
-                                              SKAction.removeFromParent()]))
+        addChild(self.backgroundSound)
+        self.backgroundSound.run(SKAction.changeVolume(to: 0.2, duration: 0))
+    }
+    
+    override func didMove(to view: SKView) {
+        if let startButton = self.childNode(withName: "startButton") as? Button {
+            self.startButton = startButton
+            startButton.delegate = self
         }
     }
     
-    
-    func touchDown(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.green
-            self.addChild(n)
+    func buttonClicked(sender: Button) {
+        if sender == startButton {
+            startButton.run(SKAction.fadeOut(withDuration: 0.5)){
+                self.setupPlayer()
+                self.startIdleAnimation()
+                self.moveJillBill()
+            }
         }
     }
     
-    func touchMoved(toPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.blue
-            self.addChild(n)
-        }
+    func startIdleAnimation() {
+        let idleAnimation = SKAction.animate(with: jillBillIdleTextures, timePerFrame: 0.3)
+        jillBill.run(SKAction.repeatForever(idleAnimation), withKey: "jillBillIdleAnimation")
     }
     
-    func touchUp(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.red
-            self.addChild(n)
-        }
+    func jillBillMoveEnded() {
+        jillBill.removeAllActions()
+        backgroundSound.run(SKAction.sequence([SKAction.changeVolume(to: 0, duration: 0.3), SKAction.stop()]))
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let label = self.label {
-            label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
+    func moveJillBill() {
+        let location = CGPoint(x: frame.midX, y: frame.maxY-270)
+        var multiplierForDirection: CGFloat
+        let jillBillSpeed = frame.size.width / 5.0
+        
+        let moveDifference = CGPoint(x: location.x - jillBill.position.x, y: location.y - jillBill.position.y)
+        let distanceToMove = sqrt(moveDifference.x * moveDifference.x + moveDifference.y * moveDifference.y)
+        
+        let moveDuration = distanceToMove / jillBillSpeed
+        
+        if moveDifference.x < 0 {
+            multiplierForDirection = 1.0
+        } else {
+            multiplierForDirection = -1.0
         }
         
-        for t in touches { self.touchDown(atPoint: t.location(in: self)) }
-    }
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-    }
-    
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-    }
-    
-    
-    override func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
+        jillBill.xScale = abs(jillBill.xScale) * multiplierForDirection
         
-        // Initialize _lastUpdateTime if it has not already been
-        if (self.lastUpdateTime == 0) {
-            self.lastUpdateTime = currentTime
+        if jillBill.action(forKey: "jillBillIdleAnimation") == nil {
+            // if legs are not moving, start them
+            self.startIdleAnimation()
         }
         
-        // Calculate time since last update
-        let dt = currentTime - self.lastUpdateTime
+        let moveAction = SKAction.move(to: location, duration:(TimeInterval(moveDuration)))
+        let scaleAction = SKAction.scale(by: 0.18, duration: (TimeInterval(moveDuration)))
+        let doneAction = SKAction.run({ [weak self] in
+            self?.jillBillMoveEnded()
+        })
         
-        // Update entities
-        for entity in self.entities {
-            entity.update(deltaTime: dt)
-        }
-        
-        self.lastUpdateTime = currentTime
+        let moveActionWithDone = SKAction.sequence([SKAction.wait(forDuration: 1), SKAction.group([moveAction, scaleAction]), doneAction])
+        jillBill.run(moveActionWithDone, withKey:"jillBillMoving")
     }
+    
+    //    var entities = [GKEntity]()
+    //    var graphs = [String : GKGraph]()
+    //
+    //    private var lastUpdateTime : TimeInterval = 0
+    //
+    //    override func sceneDidLoad() {
+    //
+    //        self.lastUpdateTime = 0
+    //
+    //        // Get label node from scene and store it for use later
+    //        self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
+    //        if let label = self.label {
+    //            label.alpha = 0.0
+    //            label.run(SKAction.fadeIn(withDuration: 2.0))
+    //        }
+    //
+    //        // Create shape node to use during mouse interaction
+    //        let w = (self.size.width + self.size.height) * 0.05
+    //        self.spinnyNode = SKShapeNode.init(rectOf: CGSize.init(width: w, height: w), cornerRadius: w * 0.3)
+    //
+    //        if let spinnyNode = self.spinnyNode {
+    //            spinnyNode.lineWidth = 2.5
+    //
+    //            spinnyNode.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(Double.pi), duration: 1)))
+    //            spinnyNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.5),
+    //                                              SKAction.fadeOut(withDuration: 0.5),
+    //                                              SKAction.removeFromParent()]))
+    //        }
+    //    }
+    //
+    //
+    //    override func update(_ currentTime: TimeInterval) {
+    //        // Called before each frame is rendered
+    //
+    //        // Initialize _lastUpdateTime if it has not already been
+    //        if (self.lastUpdateTime == 0) {
+    //            self.lastUpdateTime = currentTime
+    //        }
+    //
+    //        // Calculate time since last update
+    //        let dt = currentTime - self.lastUpdateTime
+    //
+    //        // Update entities
+    //        for entity in self.entities {
+    //            entity.update(deltaTime: dt)
+    //        }
+    //
+    //        self.lastUpdateTime = currentTime
+    //    }
 }
