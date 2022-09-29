@@ -1,5 +1,5 @@
 //
-//  GameScene.swift
+//  FirstScene.swift
 //  Storybook
 //
 //  Created by zy on 27/09/22.
@@ -8,7 +8,7 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene, ButtonDelegate {
+class FirstScene: SKScene, ButtonDelegate {
     private var startButton = Button()
     
     var jillBill: SKSpriteNode!
@@ -34,6 +34,7 @@ class GameScene: SKScene, ButtonDelegate {
     private func setupPlayer() {
         jillBill = SKSpriteNode(texture: jillBillTexture)
         jillBill.position = CGPoint(x: frame.midX, y: -frame.height/4+100)
+        jillBill.zPosition = 2.0
         
         addChild(jillBill)
     }
@@ -41,9 +42,6 @@ class GameScene: SKScene, ButtonDelegate {
     override func sceneDidLoad() {
         addChild(self.backgroundSound)
         self.backgroundSound.run(SKAction.changeVolume(to: 0.2, duration: 0))
-    }
-    
-    override func didMove(to view: SKView) {
         if let startButton = self.childNode(withName: "startButton") as? Button {
             self.startButton = startButton
             startButton.delegate = self
@@ -61,13 +59,32 @@ class GameScene: SKScene, ButtonDelegate {
     }
     
     func startIdleAnimation() {
-        let idleAnimation = SKAction.animate(with: jillBillIdleTextures, timePerFrame: 0.3)
+        let idleAnimation = SKAction.animate(with: jillBillIdleTextures, timePerFrame: 0.2)
         jillBill.run(SKAction.repeatForever(idleAnimation), withKey: "jillBillIdleAnimation")
     }
     
     func jillBillMoveEnded() {
         jillBill.removeAllActions()
         backgroundSound.run(SKAction.sequence([SKAction.changeVolume(to: 0, duration: 0.3), SKAction.stop()]))
+        
+        // Load 'SecondScene.sks' as a GKScene. This provides gameplay related content
+        // including entities and graphs.
+        if let scene = GKScene(fileNamed: "SecondScene") {
+            
+            // Get the SKScene from the loaded GKScene
+            if let sceneNode = scene.rootNode as! SecondScene? {
+                // Set the scale mode to scale to fit the window
+                sceneNode.scaleMode = .aspectFill
+                
+                // Present the scene
+                if let view = self.view {
+                    view.presentScene(sceneNode, transition: SKTransition.fade(withDuration: 1.0))
+                    view.ignoresSiblingOrder = true
+                    view.showsFPS = true
+                    view.showsNodeCount = true
+                }
+            }
+        }
     }
     
     func moveJillBill() {
@@ -89,7 +106,7 @@ class GameScene: SKScene, ButtonDelegate {
         jillBill.xScale = abs(jillBill.xScale) * multiplierForDirection
         
         if jillBill.action(forKey: "jillBillIdleAnimation") == nil {
-            // if legs are not moving, start them
+            // if Jill & Bill no animated, lets start it again
             self.startIdleAnimation()
         }
         
@@ -102,54 +119,4 @@ class GameScene: SKScene, ButtonDelegate {
         let moveActionWithDone = SKAction.sequence([SKAction.wait(forDuration: 1), SKAction.group([moveAction, scaleAction]), doneAction])
         jillBill.run(moveActionWithDone, withKey:"jillBillMoving")
     }
-    
-    //    var entities = [GKEntity]()
-    //    var graphs = [String : GKGraph]()
-    //
-    //    private var lastUpdateTime : TimeInterval = 0
-    //
-    //    override func sceneDidLoad() {
-    //
-    //        self.lastUpdateTime = 0
-    //
-    //        // Get label node from scene and store it for use later
-    //        self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
-    //        if let label = self.label {
-    //            label.alpha = 0.0
-    //            label.run(SKAction.fadeIn(withDuration: 2.0))
-    //        }
-    //
-    //        // Create shape node to use during mouse interaction
-    //        let w = (self.size.width + self.size.height) * 0.05
-    //        self.spinnyNode = SKShapeNode.init(rectOf: CGSize.init(width: w, height: w), cornerRadius: w * 0.3)
-    //
-    //        if let spinnyNode = self.spinnyNode {
-    //            spinnyNode.lineWidth = 2.5
-    //
-    //            spinnyNode.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(Double.pi), duration: 1)))
-    //            spinnyNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.5),
-    //                                              SKAction.fadeOut(withDuration: 0.5),
-    //                                              SKAction.removeFromParent()]))
-    //        }
-    //    }
-    //
-    //
-    //    override func update(_ currentTime: TimeInterval) {
-    //        // Called before each frame is rendered
-    //
-    //        // Initialize _lastUpdateTime if it has not already been
-    //        if (self.lastUpdateTime == 0) {
-    //            self.lastUpdateTime = currentTime
-    //        }
-    //
-    //        // Calculate time since last update
-    //        let dt = currentTime - self.lastUpdateTime
-    //
-    //        // Update entities
-    //        for entity in self.entities {
-    //            entity.update(deltaTime: dt)
-    //        }
-    //
-    //        self.lastUpdateTime = currentTime
-    //    }
 }
