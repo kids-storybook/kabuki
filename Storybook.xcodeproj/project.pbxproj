@@ -18,6 +18,10 @@
 		E63DEA8228E2EB34000AC43C /* StorybookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63DEA8128E2EB34000AC43C /* StorybookTests.swift */; };
 		E63DEA8C28E2EB34000AC43C /* StorybookUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63DEA8B28E2EB34000AC43C /* StorybookUITests.swift */; };
 		E63DEA8E28E2EB34000AC43C /* StorybookUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63DEA8D28E2EB34000AC43C /* StorybookUITestsLaunchTests.swift */; };
+		E68484E928E682E9003C9CF3 /* ThirdScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68484E828E682E9003C9CF3 /* ThirdScene.swift */; };
+		E68484EB28E68300003C9CF3 /* ThirdScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = E68484EA28E68300003C9CF3 /* ThirdScene.sks */; };
+		E68484EE28E6A2DB003C9CF3 /* FourthScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68484ED28E6A2DB003C9CF3 /* FourthScene.swift */; };
+		E68484F028E6A2E8003C9CF3 /* FourthScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = E68484EF28E6A2E8003C9CF3 /* FourthScene.sks */; };
 		E6D4168728E591720030681F /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D4168628E591720030681F /* Button.swift */; };
 		E6D4168C28E59FE60030681F /* bg-audio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E6D4168B28E59FE60030681F /* bg-audio.mp3 */; };
 		E6D4168E28E5A3620030681F /* button-click.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E6D4168D28E5A3620030681F /* button-click.mp3 */; };
@@ -57,6 +61,10 @@
 		E63DEA8728E2EB34000AC43C /* StorybookUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StorybookUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E63DEA8B28E2EB34000AC43C /* StorybookUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorybookUITests.swift; sourceTree = "<group>"; };
 		E63DEA8D28E2EB34000AC43C /* StorybookUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorybookUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		E68484E828E682E9003C9CF3 /* ThirdScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdScene.swift; sourceTree = "<group>"; };
+		E68484EA28E68300003C9CF3 /* ThirdScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ThirdScene.sks; sourceTree = "<group>"; };
+		E68484ED28E6A2DB003C9CF3 /* FourthScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourthScene.swift; sourceTree = "<group>"; };
+		E68484EF28E6A2E8003C9CF3 /* FourthScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FourthScene.sks; sourceTree = "<group>"; };
 		E6D4168628E591720030681F /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		E6D4168B28E59FE60030681F /* bg-audio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "bg-audio.mp3"; sourceTree = "<group>"; };
 		E6D4168D28E5A3620030681F /* button-click.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "button-click.mp3"; sourceTree = "<group>"; };
@@ -112,18 +120,18 @@
 		E63DEA6628E2EB32000AC43C /* Storybook */ = {
 			isa = PBXGroup;
 			children = (
+				E68484EC28E6A2CD003C9CF3 /* FourthScene */,
+				E68484E728E682D6003C9CF3 /* ThirdScene */,
+				E68484E628E682C6003C9CF3 /* Helpers */,
+				E68484E528E6829C003C9CF3 /* SecondScene */,
+				E68484E428E6828E003C9CF3 /* FirstScene */,
 				E6D4168A28E59FCE0030681F /* MediaAssets */,
 				E63DEA6728E2EB32000AC43C /* AppDelegate.swift */,
-				E63DEA6928E2EB32000AC43C /* FirstScene.sks */,
 				E63DEA6B28E2EB33000AC43C /* Actions.sks */,
-				E63DEA6D28E2EB33000AC43C /* FirstScene.swift */,
 				E63DEA6F28E2EB33000AC43C /* GameViewController.swift */,
 				E63DEA7128E2EB33000AC43C /* Main.storyboard */,
 				E63DEA7428E2EB34000AC43C /* Assets.xcassets */,
 				E63DEA7628E2EB34000AC43C /* LaunchScreen.storyboard */,
-				E6D4168628E591720030681F /* Button.swift */,
-				E6D4168F28E5AF430030681F /* SecondScene.sks */,
-				E6D4169328E5B0AE0030681F /* SecondScene.swift */,
 			);
 			path = Storybook;
 			sourceTree = "<group>";
@@ -143,6 +151,50 @@
 				E63DEA8D28E2EB34000AC43C /* StorybookUITestsLaunchTests.swift */,
 			);
 			path = StorybookUITests;
+			sourceTree = "<group>";
+		};
+		E68484E428E6828E003C9CF3 /* FirstScene */ = {
+			isa = PBXGroup;
+			children = (
+				E63DEA6928E2EB32000AC43C /* FirstScene.sks */,
+				E63DEA6D28E2EB33000AC43C /* FirstScene.swift */,
+			);
+			path = FirstScene;
+			sourceTree = "<group>";
+		};
+		E68484E528E6829C003C9CF3 /* SecondScene */ = {
+			isa = PBXGroup;
+			children = (
+				E6D4168F28E5AF430030681F /* SecondScene.sks */,
+				E6D4169328E5B0AE0030681F /* SecondScene.swift */,
+			);
+			path = SecondScene;
+			sourceTree = "<group>";
+		};
+		E68484E628E682C6003C9CF3 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				E6D4168628E591720030681F /* Button.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		E68484E728E682D6003C9CF3 /* ThirdScene */ = {
+			isa = PBXGroup;
+			children = (
+				E68484E828E682E9003C9CF3 /* ThirdScene.swift */,
+				E68484EA28E68300003C9CF3 /* ThirdScene.sks */,
+			);
+			path = ThirdScene;
+			sourceTree = "<group>";
+		};
+		E68484EC28E6A2CD003C9CF3 /* FourthScene */ = {
+			isa = PBXGroup;
+			children = (
+				E68484ED28E6A2DB003C9CF3 /* FourthScene.swift */,
+				E68484EF28E6A2E8003C9CF3 /* FourthScene.sks */,
+			);
+			path = FourthScene;
 			sourceTree = "<group>";
 		};
 		E6D4168A28E59FCE0030681F /* MediaAssets */ = {
@@ -262,8 +314,10 @@
 				E63DEA7328E2EB33000AC43C /* Main.storyboard in Resources */,
 				E63DEA6A28E2EB33000AC43C /* FirstScene.sks in Resources */,
 				E63DEA7528E2EB34000AC43C /* Assets.xcassets in Resources */,
+				E68484F028E6A2E8003C9CF3 /* FourthScene.sks in Resources */,
 				E63DEA7828E2EB34000AC43C /* LaunchScreen.storyboard in Resources */,
 				E6D4168E28E5A3620030681F /* button-click.mp3 in Resources */,
+				E68484EB28E68300003C9CF3 /* ThirdScene.sks in Resources */,
 				E6D4168C28E59FE60030681F /* bg-audio.mp3 in Resources */,
 				E63DEA6C28E2EB33000AC43C /* Actions.sks in Resources */,
 			);
@@ -290,8 +344,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E68484E928E682E9003C9CF3 /* ThirdScene.swift in Sources */,
 				E63DEA6E28E2EB33000AC43C /* FirstScene.swift in Sources */,
 				E6D4169428E5B0AE0030681F /* SecondScene.swift in Sources */,
+				E68484EE28E6A2DB003C9CF3 /* FourthScene.swift in Sources */,
 				E63DEA7028E2EB33000AC43C /* GameViewController.swift in Sources */,
 				E63DEA6828E2EB32000AC43C /* AppDelegate.swift in Sources */,
 				E6D4168728E591720030681F /* Button.swift in Sources */,
