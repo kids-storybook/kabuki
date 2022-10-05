@@ -17,21 +17,6 @@ class HomepageScene: SKScene {
     var scrollView: SwiftySKScrollView?
     let moveableNode = SKNode()
     
-    private(set) lazy var clickLabel: SKLabelNode = {
-        let label = SKLabelNode(fontNamed: "HelveticaNeue")
-        label.horizontalAlignmentMode = .center
-        label.verticalAlignmentMode = .center
-        label.text = "Tap"
-        label.fontSize = 32
-        label.position = CGPoint(x: 0, y: 0)
-        return label
-    }()
-    
-    // Constants
-    let margin = CGFloat(30)
-    
-    var startButton: ButtonNode!
-    
     // Update time
     var lastUpdateTimeInterval: TimeInterval = 0
     
@@ -51,11 +36,6 @@ class HomepageScene: SKScene {
         background.zPosition = -1
         addChild(background)
         
-        // Add start button
-//        startButton = ButtonNode(iconName: "quirk1", text: "10", onButtonPress: startPressed)
-//        startButton.position = CGPoint(x: frame.midX, y: frame.height/4)
-//        addChild(startButton)
-        
         addChild(moveableNode)
         prepareHorizontalScrolling()
     }
@@ -72,13 +52,16 @@ class HomepageScene: SKScene {
     // MARK: - Touches
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        super.touchesBegan(touches, with: event)
+        super.touchesBegan(touches, with: event)
         /* Called when a touch begins */
         for touch in touches {
             let location = touch.location(in: self)
             let node = atPoint(location)
-            if let name = node.name, scrollView?.isDisabled == false { // or check for spriteName  ->  if node.name == "SpriteName"
-                print(name)
+            if let name = node.name, Theme.allValues.contains(where: {
+                $0.range(of: name, options: .caseInsensitive) != nil
+            }) {
+                let scale = SKAction.scale(to: 0.9, duration: 0)
+                node.run(scale)
             }
         }
     }
@@ -89,6 +72,16 @@ class HomepageScene: SKScene {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
+        for touch in touches {
+            let location = touch.location(in: self)
+            let node = atPoint(location)
+            if let name = node.name, Theme.allValues.contains(where: {
+                $0.range(of: name, options: .caseInsensitive) != nil
+            }) {
+                let scale = SKAction.scale(to: 1.0, duration: 0.2)
+                node.run(scale)
+            }
+        }
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {

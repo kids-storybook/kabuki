@@ -1,11 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "mini zoo.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "mini zoo.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
