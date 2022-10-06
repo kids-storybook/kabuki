@@ -16,6 +16,7 @@ class HomepageScene: SKScene {
     
     var scrollView: SwiftySKScrollView?
     let moveableNode = SKNode()
+    let backgroundSound = SKAudioNode(fileNamed: "bg-audio.mp3")
     
     // Update time
     var lastUpdateTimeInterval: TimeInterval = 0
@@ -28,6 +29,11 @@ class HomepageScene: SKScene {
         
         // Create entity manager
         entityManager = EntityManager(scene: self)
+        
+        // Add background sound
+        backgroundSound.run(SKAction.changeVolume(to: 0.3, duration: 0))
+        backgroundSound.autoplayLooped = true
+        addChild(backgroundSound)
         
         // Add background
         let background = SKSpriteNode(imageNamed: "background")
@@ -43,6 +49,7 @@ class HomepageScene: SKScene {
     override func willMove(from view: SKView) {
         scrollView?.removeFromSuperview()
         scrollView = nil
+        backgroundSound.removeAllActions()
     }
     
     func startPressed() {
@@ -60,8 +67,7 @@ class HomepageScene: SKScene {
             if let name = node.name, Theme.allValues.contains(where: {
                 $0.range(of: name, options: .caseInsensitive) != nil
             }) {
-                let scale = SKAction.scale(to: 0.9, duration: 0)
-                node.run(scale)
+                print("aw, touches began!")
             }
         }
     }
@@ -78,8 +84,12 @@ class HomepageScene: SKScene {
             if let name = node.name, Theme.allValues.contains(where: {
                 $0.range(of: name, options: .caseInsensitive) != nil
             }) {
-                let scale = SKAction.scale(to: 1.0, duration: 0.2)
+                node.run(SoundManager.sharedInstance.soundClickedButton)
+                var scale = SKAction.scale(to: 0.9, duration: 0)
                 node.run(scale)
+                scale = SKAction.scale(to: 1.0, duration: 0.2)
+                node.run(scale)
+                print("Let's move to \(name)~")
             }
         }
     }
