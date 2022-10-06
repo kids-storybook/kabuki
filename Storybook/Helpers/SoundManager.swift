@@ -19,7 +19,6 @@ class SoundManager {
     let soundBigHit = SKAction.playSoundFileNamed("bigHit.wav", waitForCompletion: false)
     let soundSmallHit = SKAction.playSoundFileNamed("smallHit.wav", waitForCompletion: false)
     let soundClickedButton = SKAction.playSoundFileNamed("button-click.mp3", waitForCompletion: false)
-    let soundBackground = SKAction.playSoundFileNamed("bg-audio.mp3", waitForCompletion: false)
     
     static let sharedInstance = SoundManager()
     

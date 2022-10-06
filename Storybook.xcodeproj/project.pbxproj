@@ -28,7 +28,6 @@
 		E6E3365828EC2AA200FE2BEE /* SpriteComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E3365728EC2AA200FE2BEE /* SpriteComponent.swift */; };
 		E6E3365A28EC3E1700FE2BEE /* Maps.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E3365928EC3E1700FE2BEE /* Maps.swift */; };
 		E6E3365C28EC3E5000FE2BEE /* ThemeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E3365B28EC3E5000FE2BEE /* ThemeComponent.swift */; };
-		E6E3365E28EC42CD00FE2BEE /* SwipeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E3365D28EC42CD00FE2BEE /* SwipeComponent.swift */; };
 		E6E3366028EC494900FE2BEE /* SwiftySKScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E3365F28EC494900FE2BEE /* SwiftySKScrollView.swift */; };
 		E6E3366228EC49D700FE2BEE /* HomepageScene+Scrolling.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E3366128EC49D700FE2BEE /* HomepageScene+Scrolling.swift */; };
 		E6E3367C28ECA2C600FE2BEE /* attack.wav in Resources */ = {isa = PBXBuildFile; fileRef = E6E3367B28ECA2C600FE2BEE /* attack.wav */; };
@@ -87,7 +86,6 @@
 		E6E3365728EC2AA200FE2BEE /* SpriteComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteComponent.swift; sourceTree = "<group>"; };
 		E6E3365928EC3E1700FE2BEE /* Maps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Maps.swift; sourceTree = "<group>"; };
 		E6E3365B28EC3E5000FE2BEE /* ThemeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeComponent.swift; sourceTree = "<group>"; };
-		E6E3365D28EC42CD00FE2BEE /* SwipeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeComponent.swift; sourceTree = "<group>"; };
 		E6E3365F28EC494900FE2BEE /* SwiftySKScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftySKScrollView.swift; sourceTree = "<group>"; };
 		E6E3366128EC49D700FE2BEE /* HomepageScene+Scrolling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomepageScene+Scrolling.swift"; sourceTree = "<group>"; };
 		E6E3367B28ECA2C600FE2BEE /* attack.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = attack.wav; sourceTree = "<group>"; };
@@ -231,7 +229,6 @@
 			children = (
 				E6E3365728EC2AA200FE2BEE /* SpriteComponent.swift */,
 				E6E3365B28EC3E5000FE2BEE /* ThemeComponent.swift */,
-				E6E3365D28EC42CD00FE2BEE /* SwipeComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -404,7 +401,6 @@
 				E6E3365C28EC3E5000FE2BEE /* ThemeComponent.swift in Sources */,
 				E6E3365A28EC3E1700FE2BEE /* Maps.swift in Sources */,
 				E6E3366028EC494900FE2BEE /* SwiftySKScrollView.swift in Sources */,
-				E6E3365E28EC42CD00FE2BEE /* SwipeComponent.swift in Sources */,
 				E6E3363228EC276500FE2BEE /* Constants.swift in Sources */,
 				E6E3365428EC297200FE2BEE /* HomepageScene.swift in Sources */,
 				E63DEA7028E2EB33000AC43C /* GameViewController.swift in Sources */,
