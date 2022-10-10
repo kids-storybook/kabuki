@@ -55,6 +55,12 @@ class HomepageScene: SKScene {
     func startPressed() {
         print("Start pressed!")
     }
+    
+    func goToScene(scene: SKScene) {
+        let sceneTransition = SKTransition.fade(with: UIColor.darkGray, duration: 1)
+        scene.scaleMode = .aspectFill
+        self.view?.presentScene(scene, transition: sceneTransition)
+    }
 
     // MARK: - Touches
     
@@ -68,6 +74,7 @@ class HomepageScene: SKScene {
                 $0.range(of: name, options: .caseInsensitive) != nil
             }) {
                 print("aw, touches began!")
+                goToScene(scene: SKScene(fileNamed: "GameView") as! GameView)
             }
         }
     }
