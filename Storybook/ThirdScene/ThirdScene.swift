@@ -44,24 +44,21 @@ class ThirdScene: SKScene, ButtonDelegate {
         addChild(jillBill)
     }
     
-    override func sceneDidLoad() {
+    override func didMove(to view: SKView) {
         addChild(self.backgroundSound)
         self.backgroundSound.run(SKAction.changeVolume(to: 0.2, duration: 0))
         if let introButton = self.childNode(withName: "introButton") as? Button {
             self.introButton = introButton
             introButton.delegate = self
         }
-        self.setupPlayer()
-        self.startIdleAnimation()
-    }
-    
-    override func didMove(to view: SKView) {
         if let box = self.childNode(withName: "box") as? SKSpriteNode {
             self.box = box
         }
         if let draghere = self.childNode(withName: "draghere") as? SKSpriteNode {
             self.draghere = draghere
         }
+        self.setupPlayer()
+        self.startIdleAnimation()
     }
     
     

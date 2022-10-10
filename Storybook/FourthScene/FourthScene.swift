@@ -44,7 +44,8 @@ class FourthScene: SKScene, ButtonDelegate {
         jillBill.run(SKAction.repeatForever(idleAnimation), withKey: "jillBillIdleAnimation")
     }
     
-    override func sceneDidLoad() {
+    
+    override func didMove(to view: SKView) {
         addChild(self.backgroundSound)
         self.backgroundSound.run(SKAction.changeVolume(to: 0.2, duration: 0))
         if let finishButton = self.childNode(withName: "back-button") as? Button {

@@ -39,7 +39,7 @@ class FirstScene: SKScene, ButtonDelegate {
         addChild(jillBill)
     }
     
-    override func sceneDidLoad() {
+    override func didMove(to view: SKView) {
         addChild(self.backgroundSound)
         self.backgroundSound.run(SKAction.changeVolume(to: 0.2, duration: 0))
         if let startButton = self.childNode(withName: "startButton") as? Button {
