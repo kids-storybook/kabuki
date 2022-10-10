@@ -127,4 +127,3 @@ extension SIMD2<Float> {
         self.init(x: Float(point.x), y: Float(point.y))
     }
 }
-

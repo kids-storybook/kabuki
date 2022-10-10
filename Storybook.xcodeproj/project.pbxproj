@@ -16,6 +16,8 @@
 		E63DEA8228E2EB34000AC43C /* StorybookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63DEA8128E2EB34000AC43C /* StorybookTests.swift */; };
 		E63DEA8C28E2EB34000AC43C /* StorybookUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63DEA8B28E2EB34000AC43C /* StorybookUITests.swift */; };
 		E63DEA8E28E2EB34000AC43C /* StorybookUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63DEA8D28E2EB34000AC43C /* StorybookUITestsLaunchTests.swift */; };
+		E6BBB41F28F4527D00D003F0 /* MapViewPageScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BBB41E28F4527D00D003F0 /* MapViewPageScene.swift */; };
+		E6BBB42128F4529200D003F0 /* MapViewPageScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = E6BBB42028F4529200D003F0 /* MapViewPageScene.sks */; };
 		E6D4168728E591720030681F /* ButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D4168628E591720030681F /* ButtonNode.swift */; };
 		E6D4168C28E59FE60030681F /* bg-audio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E6D4168B28E59FE60030681F /* bg-audio.mp3 */; };
 		E6D4168E28E5A3620030681F /* button-click.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E6D4168D28E5A3620030681F /* button-click.mp3 */; };
@@ -74,6 +76,8 @@
 		E63DEA8728E2EB34000AC43C /* StorybookUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StorybookUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E63DEA8B28E2EB34000AC43C /* StorybookUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorybookUITests.swift; sourceTree = "<group>"; };
 		E63DEA8D28E2EB34000AC43C /* StorybookUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorybookUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		E6BBB41E28F4527D00D003F0 /* MapViewPageScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewPageScene.swift; sourceTree = "<group>"; };
+		E6BBB42028F4529200D003F0 /* MapViewPageScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MapViewPageScene.sks; sourceTree = "<group>"; };
 		E6D4168628E591720030681F /* ButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonNode.swift; sourceTree = "<group>"; };
 		E6D4168B28E59FE60030681F /* bg-audio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "bg-audio.mp3"; sourceTree = "<group>"; };
 		E6D4168D28E5A3620030681F /* button-click.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "button-click.mp3"; sourceTree = "<group>"; };
@@ -194,6 +198,15 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		E6BBB41D28F4525B00D003F0 /* MapViewPage */ = {
+			isa = PBXGroup;
+			children = (
+				E6BBB41E28F4527D00D003F0 /* MapViewPageScene.swift */,
+				E6BBB42028F4529200D003F0 /* MapViewPageScene.sks */,
+			);
+			path = MapViewPage;
+			sourceTree = "<group>";
+		};
 		E6D4168A28E59FCE0030681F /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
@@ -236,6 +249,7 @@
 		E6E3364F28EC28F500FE2BEE /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				E6BBB41D28F4525B00D003F0 /* MapViewPage */,
 				E6E3365028EC28FE00FE2BEE /* Homepage */,
 			);
 			path = Pages;
@@ -366,6 +380,7 @@
 				E6E3368928ECA2FF00FE2BEE /* pew.wav in Resources */,
 				E6E3365228EC295700FE2BEE /* HomepageScene.sks in Resources */,
 				E6E3368B28ECA2FF00FE2BEE /* defend.wav in Resources */,
+				E6BBB42128F4529200D003F0 /* MapViewPageScene.sks in Resources */,
 				E6E3368D28ECA2FF00FE2BEE /* boom.wav in Resources */,
 				E6E3367C28ECA2C600FE2BEE /* attack.wav in Resources */,
 				E6E3368828ECA2FF00FE2BEE /* smallHit.wav in Resources */,
@@ -401,6 +416,7 @@
 				E6E3365C28EC3E5000FE2BEE /* ThemeComponent.swift in Sources */,
 				E6E3365A28EC3E1700FE2BEE /* Maps.swift in Sources */,
 				E6E3366028EC494900FE2BEE /* SwiftySKScrollView.swift in Sources */,
+				E6BBB41F28F4527D00D003F0 /* MapViewPageScene.swift in Sources */,
 				E6E3363228EC276500FE2BEE /* Constants.swift in Sources */,
 				E6E3365428EC297200FE2BEE /* HomepageScene.swift in Sources */,
 				E63DEA7028E2EB33000AC43C /* GameViewController.swift in Sources */,
