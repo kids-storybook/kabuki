@@ -74,7 +74,6 @@ class HomepageScene: SKScene {
                 $0.range(of: name, options: .caseInsensitive) != nil
             }) {
                 print("aw, touches began!")
-                goToScene(scene: SKScene(fileNamed: "GameView") as! GameView)
             }
         }
     }
@@ -97,6 +96,7 @@ class HomepageScene: SKScene {
                 scale = SKAction.scale(to: 1.0, duration: 0.2)
                 node.run(scale)
                 print("Let's move to \(name)~")
+                goToScene(scene: SKScene(fileNamed: "GameView") as! GameView)
             }
         }
     }
