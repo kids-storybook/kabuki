@@ -73,7 +73,6 @@ class HomepageScene: SKScene {
                 $0.range(of: name, options: .caseInsensitive) != nil
             }) {
                 print("aw, touches began!")
-                goToScene(scene: SKScene(fileNamed: "GameView") as! GameView)
             }
         }
     }

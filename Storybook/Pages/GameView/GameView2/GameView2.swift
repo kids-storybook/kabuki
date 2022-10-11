@@ -8,6 +8,7 @@
 import Foundation
 import SpriteKit
 
-class GameView: SKScene {
+class GameView2: GameScene {
     
+ 
 }
