@@ -42,7 +42,6 @@ class GameScene: SKScene {
     override func sceneDidLoad() {
         super.sceneDidLoad()
         footer = childNode(withName: "footer")
-        
         nxtBtn = childNode(withName: "//nextButton") as? SKSpriteNode
     }
     

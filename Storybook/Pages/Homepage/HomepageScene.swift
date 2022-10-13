@@ -33,7 +33,7 @@ class HomepageScene: SKScene {
         backgroundSound.run(SKAction.fadeIn(withDuration: 3))
         backgroundSound.run(SKAction.changeVolume(to: 0.2, duration: 0))
         backgroundSound.autoplayLooped = true
-        addChild(backgroundSound)
+//        addChild(backgroundSound)
         
         // Add background
         background.position = CGPoint(x: 0, y: 0)
