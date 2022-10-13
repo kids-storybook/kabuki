@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		360A8EF128F4598C00949260 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360A8EF028F4598C00949260 /* GameView.swift */; };
 		360A8EF428F459CB00949260 /* GameView.sks in Resources */ = {isa = PBXBuildFile; fileRef = 360A8EF328F459CB00949260 /* GameView.sks */; };
+		3655A58B28F80EF600C97C09 /* Reference+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3655A58A28F80EF600C97C09 /* Reference+Extension.swift */; };
 		365E203B28F5BB74008439B2 /* GameView2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 365E203928F5BB74008439B2 /* GameView2.sks */; };
 		365E203C28F5BB74008439B2 /* GameView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365E203A28F5BB74008439B2 /* GameView2.swift */; };
 		36FD197428F46499002C25BF /* Footer.sks in Resources */ = {isa = PBXBuildFile; fileRef = 36FD197328F46499002C25BF /* Footer.sks */; };
@@ -69,6 +70,7 @@
 /* Begin PBXFileReference section */
 		360A8EF028F4598C00949260 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		360A8EF328F459CB00949260 /* GameView.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameView.sks; sourceTree = "<group>"; };
+		3655A58A28F80EF600C97C09 /* Reference+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reference+Extension.swift"; sourceTree = "<group>"; };
 		365E203928F5BB74008439B2 /* GameView2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameView2.sks; sourceTree = "<group>"; };
 		365E203A28F5BB74008439B2 /* GameView2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameView2.swift; sourceTree = "<group>"; };
 		36FD197328F46499002C25BF /* Footer.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Footer.sks; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				E6D4168628E591720030681F /* ButtonNode.swift */,
+				3655A58A28F80EF600C97C09 /* Reference+Extension.swift */,
 				E6E3362F28EC273D00FE2BEE /* Utils.swift */,
 				E6E3363128EC276500FE2BEE /* Constants.swift */,
 				E6E3363328EC27C800FE2BEE /* SoundManager.swift */,
@@ -470,6 +473,7 @@
 				E6E3366228EC49D700FE2BEE /* HomepageScene+Scrolling.swift in Sources */,
 				E6E3365628EC2A7600FE2BEE /* EntityManager.swift in Sources */,
 				E6E3365828EC2AA200FE2BEE /* SpriteComponent.swift in Sources */,
+				3655A58B28F80EF600C97C09 /* Reference+Extension.swift in Sources */,
 				E6E3363428EC27C800FE2BEE /* SoundManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

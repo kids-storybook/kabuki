@@ -53,14 +53,25 @@ class GameScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first else { return }
         
-//        let touch = touches.first
-//        if let location = touch?.location(in: self) {
-//            if nxtBtn.contains(location) {
-//                goToScene(scene: getNextScene()!)
-//            }
-//        }
+        // 1
+        let touchLocation = touch.location(in: self)
         
+        // 2
+        if footer.contains(touchLocation) {
+            let location = touch.location(in: footer)
+            
+            // 3
+            if nxtBtn.contains(location) {
+                goToScene(scene: getNextScene()!)
+            }
+            
+        } else {
+            
+            // 4
+            touchDown(at: touchLocation)
+        }
     }
     
 }
