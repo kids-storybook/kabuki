@@ -14,9 +14,9 @@ class GameView: GameScene {
     let lionMom = SKSpriteNode(imageNamed: "ibuSinga")
     let lionDad = SKSpriteNode(imageNamed: "bapakSinga")
     let backgroundScene = SKSpriteNode(imageNamed: "GameBgImg")
-    let referenceFooter = SKReferenceNode(fileNamed: "Footer")
+    //    var footer = SKReferenceNode(fileNamed: "Footer")
     
-
+    
     private func setupPlayer(){
         backgroundScene.position = CGPoint(x: frame.midX, y: frame.midY)
         backgroundScene.zPosition = -10
@@ -30,19 +30,21 @@ class GameView: GameScene {
         lionDad.position = CGPoint(x: -frame.midX/2-100, y: -frame.midY/2-100)
         lionDad.size = CGSize(width: 585, height: 453)
         
-        referenceFooter?.position = CGPoint(x: frame.midX, y: frame.midY)
-
-//        nextBtn.position = CGPoint(x: frame.maxX-100, y: -frame.maxY/2-100)
-//        nextBtn.size = CGSize(width: 50, height: 68)
+        //        footer.position = CGPoint(x: frame.midX, y: frame.minY+100)
+        
+        //        nextBtn.position = CGPoint(x: frame.maxX-100, y: -frame.maxY/2-100)
+        //        nextBtn.size = CGSize(width: 50, height: 68)
         
         addChild(backgroundScene)
         addChild(lionCub)
         addChild(lionMom)
         addChild(lionDad)
-        addChild(referenceFooter!)
         
-        
-//        addChild(nextBtn)
+//        let footer = SKReferenceNode(fileNamed: "Footer")
+//        footer?.position = CGPoint(x: frame.midX, y: frame.minY+100)
+//        footer?.name = "footer"
+//        addChild(footer ?? SKReferenceNode())
+            
         
     }
     
@@ -51,24 +53,24 @@ class GameView: GameScene {
         
     }
     
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//
-////        for node in footerReference!.children {
-//
-//            let touch = touches.first
-//            if let location = touch?.location(in: self) {
-//                if nextBtn.contains(location) {
-//                    goToScene(scene: getNextScene()!)
-//
-//                }
-//            }
-//
-////        }
-//
-//    }
+    //    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    //
+    ////        for node in footerReference!.children {
+    //
+    //            let touch = touches.first
+    //            if let location = touch?.location(in: self) {
+    //                if nextBtn.contains(location) {
+    //                    goToScene(scene: getNextScene()!)
+    //
+    //                }
+    //            }
+    //
+    ////        }
+    //
+    //    }
     
     override func getNextScene() -> SKScene? {
-      return SKScene(fileNamed: "GameView2") as! GameView2
+        return SKScene(fileNamed: "GameView2") as! GameView2
     }
     
     

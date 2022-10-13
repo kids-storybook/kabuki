@@ -33,7 +33,7 @@ class HomepageScene: SKScene {
         // Add background sound
         backgroundSound.run(SKAction.changeVolume(to: 0.3, duration: 0))
         backgroundSound.autoplayLooped = true
-        addChild(backgroundSound)
+//        addChild(backgroundSound)
         
         // Add background
         let background = SKSpriteNode(imageNamed: "background")
@@ -52,9 +52,6 @@ class HomepageScene: SKScene {
         backgroundSound.removeAllActions()
     }
     
-    func startPressed() {
-        print("Start pressed!")
-    }
     
     func goToScene(scene: SKScene) {
         let sceneTransition = SKTransition.fade(with: UIColor.darkGray, duration: 1)
