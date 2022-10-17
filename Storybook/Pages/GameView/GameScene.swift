@@ -12,6 +12,7 @@ class GameScene: SKScene {
     
     var footer: SKNode!
     var nxtBtn: SKSpriteNode!
+    var prevBtn: SKSpriteNode!
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }

@@ -9,14 +9,13 @@ import Foundation
 import SpriteKit
 
 class GameView2: GameScene {
-    let referenceFooter = SKReferenceNode(fileNamed: "Footer")!
     
-    override func didMove(to view: SKView) {
-        referenceFooter.name = "footer"
-        referenceFooter.position = CGPoint(x: frame.midX, y: frame.minY+100)
-        print("CEK COBA")
-        print(referenceFooter)
-        addChild(referenceFooter)
+    override func getNextScene() -> SKScene? {
+        return SKScene(fileNamed: "GameView2") as! GameView2
+    }
+    
+    override func getPreviousScene() -> SKScene? {
+        return SKScene(fileNamed: "GameView") as! GameView
     }
  
 }
