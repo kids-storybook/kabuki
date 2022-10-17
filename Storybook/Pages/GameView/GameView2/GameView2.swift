@@ -17,5 +17,4 @@ class GameView2: GameScene {
     override func getPreviousScene() -> SKScene? {
         return SKScene(fileNamed: "GameView") as! GameView
     }
- 
 }

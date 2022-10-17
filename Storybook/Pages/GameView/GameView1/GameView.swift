@@ -30,22 +30,10 @@ class GameView: GameScene {
         lionDad.position = CGPoint(x: -frame.midX/2-100, y: -frame.midY/2-100)
         lionDad.size = CGSize(width: 585, height: 453)
         
-        //        footer.position = CGPoint(x: frame.midX, y: frame.minY+100)
-        
-        //        nextBtn.position = CGPoint(x: frame.maxX-100, y: -frame.maxY/2-100)
-        //        nextBtn.size = CGSize(width: 50, height: 68)
-        
         addChild(backgroundScene)
         addChild(lionCub)
         addChild(lionMom)
         addChild(lionDad)
-        
-//        let footer = SKReferenceNode(fileNamed: "Footer")
-//        footer?.position = CGPoint(x: frame.midX, y: frame.minY+100)
-//        footer?.name = "footer"
-//        addChild(footer ?? SKReferenceNode())
-            
-        
     }
     
     override func didMove(to view: SKView) {
@@ -53,26 +41,7 @@ class GameView: GameScene {
         
     }
     
-    //    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    //
-    ////        for node in footerReference!.children {
-    //
-    //            let touch = touches.first
-    //            if let location = touch?.location(in: self) {
-    //                if nextBtn.contains(location) {
-    //                    goToScene(scene: getNextScene()!)
-    //
-    //                }
-    //            }
-    //
-    ////        }
-    //
-    //    }
-    
     override func getNextScene() -> SKScene? {
         return SKScene(fileNamed: "GameView2") as! GameView2
     }
-    
-    
-    
 }
