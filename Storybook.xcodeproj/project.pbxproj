@@ -12,6 +12,9 @@
 		3655A58B28F80EF600C97C09 /* Reference+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3655A58A28F80EF600C97C09 /* Reference+Extension.swift */; };
 		365E203B28F5BB74008439B2 /* GameView2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 365E203928F5BB74008439B2 /* GameView2.sks */; };
 		365E203C28F5BB74008439B2 /* GameView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365E203A28F5BB74008439B2 /* GameView2.swift */; };
+		36A42D9E28FE7568001E3C7D /* Lion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A42D9D28FE7568001E3C7D /* Lion.swift */; };
+		36A42DA028FE77BD001E3C7D /* GameViewECS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A42D9F28FE77BD001E3C7D /* GameViewECS.swift */; };
+		36A42DA228FE7A57001E3C7D /* GameViewECS.sks in Resources */ = {isa = PBXBuildFile; fileRef = 36A42DA128FE7A57001E3C7D /* GameViewECS.sks */; };
 		36FD197428F46499002C25BF /* Footer.sks in Resources */ = {isa = PBXBuildFile; fileRef = 36FD197328F46499002C25BF /* Footer.sks */; };
 		36FD197728F464C1002C25BF /* Header.sks in Resources */ = {isa = PBXBuildFile; fileRef = 36FD197628F464C1002C25BF /* Header.sks */; };
 		36FD197928F468D6002C25BF /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FD197828F468D6002C25BF /* GameScene.swift */; };
@@ -73,6 +76,9 @@
 		3655A58A28F80EF600C97C09 /* Reference+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reference+Extension.swift"; sourceTree = "<group>"; };
 		365E203928F5BB74008439B2 /* GameView2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameView2.sks; sourceTree = "<group>"; };
 		365E203A28F5BB74008439B2 /* GameView2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameView2.swift; sourceTree = "<group>"; };
+		36A42D9D28FE7568001E3C7D /* Lion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lion.swift; sourceTree = "<group>"; };
+		36A42D9F28FE77BD001E3C7D /* GameViewECS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewECS.swift; sourceTree = "<group>"; };
+		36A42DA128FE7A57001E3C7D /* GameViewECS.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameViewECS.sks; sourceTree = "<group>"; };
 		36FD197328F46499002C25BF /* Footer.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Footer.sks; sourceTree = "<group>"; };
 		36FD197628F464C1002C25BF /* Header.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Header.sks; sourceTree = "<group>"; };
 		36FD197828F468D6002C25BF /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -143,6 +149,8 @@
 			isa = PBXGroup;
 			children = (
 				36FD197828F468D6002C25BF /* GameScene.swift */,
+				36A42D9F28FE77BD001E3C7D /* GameViewECS.swift */,
+				36A42DA128FE7A57001E3C7D /* GameViewECS.sks */,
 				36FD198228F46C92002C25BF /* GameScene.sks */,
 				36FD197528F464A3002C25BF /* HeaderFooter */,
 				36FD197A28F46958002C25BF /* GameView1 */,
@@ -276,6 +284,7 @@
 				E6E3365528EC2A7600FE2BEE /* EntityManager.swift */,
 				E6E3365928EC3E1700FE2BEE /* Map.swift */,
 				E69FDAE028FEDF030059FD30 /* Challenge.swift */,
+				36A42D9D28FE7568001E3C7D /* Lion.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -431,6 +440,7 @@
 				E69FDAEC28FFBEAD0059FD30 /* Story Music.mp3 in Resources */,
 				E69FDAEA28FFBEAD0059FD30 /* Maps Music.mp3 in Resources */,
 				365E203B28F5BB74008439B2 /* GameView2.sks in Resources */,
+				36A42DA228FE7A57001E3C7D /* GameViewECS.sks in Resources */,
 				E63DEA6C28E2EB33000AC43C /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -466,6 +476,7 @@
 				E6E3363228EC276500FE2BEE /* Constants.swift in Sources */,
 				E6E3365428EC297200FE2BEE /* HomepageScene.swift in Sources */,
 				E63DEA7028E2EB33000AC43C /* GameViewController.swift in Sources */,
+				36A42DA028FE77BD001E3C7D /* GameViewECS.swift in Sources */,
 				360A8EF128F4598C00949260 /* GameView.swift in Sources */,
 				E63DEA6828E2EB32000AC43C /* AppDelegate.swift in Sources */,
 				E6D4168728E591720030681F /* ButtonNode.swift in Sources */,
@@ -473,6 +484,7 @@
 				E6E3366228EC49D700FE2BEE /* HomepageScene+Scrolling.swift in Sources */,
 				E6E3365628EC2A7600FE2BEE /* EntityManager.swift in Sources */,
 				E6E3365828EC2AA200FE2BEE /* SpriteComponent.swift in Sources */,
+				36A42D9E28FE7568001E3C7D /* Lion.swift in Sources */,
 				3655A58B28F80EF600C97C09 /* Reference+Extension.swift in Sources */,
 				E6E3363428EC27C800FE2BEE /* SoundManager.swift in Sources */,
 			);

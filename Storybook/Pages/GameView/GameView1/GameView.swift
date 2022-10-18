@@ -1,73 +1,46 @@
-//
-//  GameView.swift
-//  Storybook
-//
-//  Created by Adam Ibnu fiadi on 10/10/22.
-//
-
 import Foundation
 import SpriteKit
 
 class GameView: GameScene {
-    
-    let lionCub = SKSpriteNode(imageNamed: "anakSinga")
-    let lionMom = SKSpriteNode(imageNamed: "ibuSinga")
-    let lionDad = SKSpriteNode(imageNamed: "bapakSinga")
-    let backgroundScene = SKSpriteNode(imageNamed: "GameBgImg")
-    //    var footer = SKReferenceNode(fileNamed: "Footer")
-    
+
+    let backgroundScene = SKSpriteNode(imageNamed: "kandangSinga")
     
     private func setupPlayer(){
+        
+        entityManager = EntityManager(scene: self)
+        
+        let lionCub = Lion(imageName: "anakSinga")
+        if let spriteComponent = lionCub.component(ofType: SpriteComponent.self) {
+            spriteComponent.node.position = CGPoint(x: spriteComponent.node.frame.midX, y: spriteComponent.node.frame.midY/2-200)
+            spriteComponent.node.size = CGSize(width: 580, height: 405)
+        }
+        
+        let lionMom = Lion(imageName: "ibuSinga")
+        if let spriteComponent = lionMom.component(ofType: SpriteComponent.self) {
+            spriteComponent.node.position = CGPoint(x: spriteComponent.node.frame.midX/2+200, y: -spriteComponent.node.frame.midY/2-125)
+            spriteComponent.node.size = CGSize(width: 380, height: 452)
+        }
+
+        let lionDad = Lion(imageName: "bapakSinga")
+        if let spriteComponent = lionDad.component(ofType: SpriteComponent.self) {
+            spriteComponent.node.position = CGPoint(x: -spriteComponent.node.frame.midX/2-100, y: -spriteComponent.node.frame.midY/2-100)
+            spriteComponent.node.size = CGSize(width: 585, height: 453)
+        }
+        
+        entityManager.add(lionCub)
+        entityManager.add(lionMom)
+        entityManager.add(lionDad)
+        
         backgroundScene.position = CGPoint(x: frame.midX, y: frame.midY)
         backgroundScene.zPosition = -10
         
-        lionCub.position = CGPoint(x: frame.midX, y: -frame.midY/2-200)
-        lionCub.size = CGSize(width: 580, height: 405)
-        
-        lionMom.position = CGPoint(x: frame.midX/2+200, y: -frame.midY/2-125)
-        lionMom.size = CGSize(width: 380, height: 452)
-        
-        lionDad.position = CGPoint(x: -frame.midX/2-100, y: -frame.midY/2-100)
-        lionDad.size = CGSize(width: 585, height: 453)
-        
-        //        footer.position = CGPoint(x: frame.midX, y: frame.minY+100)
-        
-        //        nextBtn.position = CGPoint(x: frame.maxX-100, y: -frame.maxY/2-100)
-        //        nextBtn.size = CGSize(width: 50, height: 68)
-        
         addChild(backgroundScene)
-        addChild(lionCub)
-        addChild(lionMom)
-        addChild(lionDad)
-        
-//        let footer = SKReferenceNode(fileNamed: "Footer")
-//        footer?.position = CGPoint(x: frame.midX, y: frame.minY+100)
-//        footer?.name = "footer"
-//        addChild(footer ?? SKReferenceNode())
-            
-        
+
     }
     
     override func didMove(to view: SKView) {
         self.setupPlayer()
-        
     }
-    
-    //    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    //
-    ////        for node in footerReference!.children {
-    //
-    //            let touch = touches.first
-    //            if let location = touch?.location(in: self) {
-    //                if nextBtn.contains(location) {
-    //                    goToScene(scene: getNextScene()!)
-    //
-    //                }
-    //            }
-    //
-    ////        }
-    //
-    //    }
     
     override func getNextScene() -> SKScene? {
         return SKScene(fileNamed: "GameView2") as! GameView2
