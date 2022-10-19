@@ -98,14 +98,14 @@ class MapViewPageScene: SKScene {
             if let name = node.name, name.contains("challenge_") {
                 node.run(SoundManager.sharedInstance.soundClickedButton)
                 node.run(SKAction.sequence(
-                    [SKAction.scale(to: 0.9, duration: 0),
+                    [SKAction.scale(to: 1.5, duration: 0),
                      SKAction.scale(to: 1.0, duration: 0.1)
                     ])
                 )
                 
-                if let scene = GKScene(fileNamed: "HomepageScene") {
+                if let scene = GKScene(fileNamed: "GameViewStart") {
                     // Get the SKScene from the loaded GKScene
-                    if let sceneNode = scene.rootNode as! HomepageScene? {
+                    if let sceneNode = scene.rootNode as! GameViewStart? {
                         // Set the scale mode to scale to fit the window
                         sceneNode.scaleMode = .aspectFill
                         // Present the scene
