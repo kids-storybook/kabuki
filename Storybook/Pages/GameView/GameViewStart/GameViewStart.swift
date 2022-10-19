@@ -1,8 +1,10 @@
 import Foundation
 import SpriteKit
 
-class GameView: GameScene {
-
+class GameViewStart: GameScene {
+    
+    var start: SKNode!
+    var startBtn: SKSpriteNode!
     let backgroundScene = SKSpriteNode(imageNamed: "kandangSinga")
     
     private func setupPlayer(){
@@ -22,7 +24,7 @@ class GameView: GameScene {
             spriteComponent.node.size = CGSize(width: 550, height: 550)
             spriteComponent.node.zPosition = 5
         }
-
+        
         let lionDad = Lion(imageName: "#1 Lion")
         if let spriteComponent = lionDad.component(ofType: SpriteComponent.self) {
             spriteComponent.node.position = CGPoint(x: -spriteComponent.node.frame.midX/2-195, y: -spriteComponent.node.frame.midY/2-35)
@@ -36,29 +38,40 @@ class GameView: GameScene {
         
         backgroundScene.position = CGPoint(x: frame.midX, y: frame.midY)
         backgroundScene.zPosition = -10
-    
-        textScene.text = "Lihatlah keluarga singa ini"
-        textScene.fontSize = 40
-        textScene.fontColor = SKColor.white
-        textScene.position = CGPoint(x: 0, y: 0)
-        textScene.zPosition = 100
         
         addChild(backgroundScene)
-        addChild(textScene)
-
+    }
+    
+    override func sceneDidLoad() {
+        super.sceneDidLoad()
+        start = childNode(withName: "start")
+        startBtn = childNode(withName: "//startButton") as? SKSpriteNode
     }
     
     override func didMove(to view: SKView) {
         self.setupPlayer()
     }
     
-    override func getNextScene() -> SKScene? {
-        return SKScene(fileNamed: "GameView2") as! GameView2
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first else { return }
+        let touchLocation = touch.location(in: self)
+        
+        if start.contains(touchLocation) {
+            let location = touch.location(in: start)
+            
+            if startBtn.contains(location) {
+                goToScene(scene: getNextScene()!)
+            }
+            
+        } else {
+            touchDown(at: touchLocation)
+        }
     }
     
-    override func getPreviousScene() -> SKScene? {
-        return SKScene(fileNamed: "GameViewStart") as! GameViewStart
+    override func getNextScene() -> SKScene? {
+        return SKScene(fileNamed: "GameView") as! GameView
     }
+    
     
     
 }
