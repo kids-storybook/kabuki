@@ -35,7 +35,7 @@ extension HomepageScene {
                 let container = SKNode()
                 
                 // Add map using entity-component logic
-                let spriteMap = Maps(
+                let spriteMap = Map(
                     themeAssets: themeAssets,
                     mapName: item,
                     mapPosition: spriteMapPosition,

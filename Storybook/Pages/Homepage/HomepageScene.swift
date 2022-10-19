@@ -12,7 +12,7 @@ import GameplayKit
 class HomepageScene: SKScene {
     var scrollView: SwiftySKScrollView?
     let moveableNode = SKNode()
-    let backgroundSound = SKAudioNode(fileNamed: "bg-audio.mp3")
+    let backgroundSound = SKAudioNode(fileNamed: "Opening Music.mp3")
     let background = SKSpriteNode(imageNamed: "background")
     
     // Entity-component system
@@ -30,7 +30,8 @@ class HomepageScene: SKScene {
         entityManager = EntityManager(scene: self)
         
         // Add background sound
-        backgroundSound.run(SKAction.sequence([SKAction.changeVolume(to: 0.3, duration: 0), SKAction.fadeIn(withDuration: 3)]))
+        backgroundSound.run(SKAction.fadeIn(withDuration: 3))
+        backgroundSound.run(SKAction.changeVolume(to: 0.3, duration: 0))
         backgroundSound.autoplayLooped = true
         addChild(backgroundSound)
         
@@ -58,12 +59,6 @@ class HomepageScene: SKScene {
         
         background.removeFromParent()
         background.removeAllChildren()
-        
-        print("BYEBYE")
-    }
-    
-    func startPressed() {
-        print("Start pressed!")
     }
     
     // MARK: - Touches
@@ -106,12 +101,12 @@ class HomepageScene: SKScene {
                             // Get the SKScene from the loaded GKScene
                             if let sceneNode = scene.rootNode as! MapViewPageScene? {
                                 // Set the scale mode to scale to fit the window
-                                sceneNode.scaleMode = .aspectFill
-                                sceneNode.data = mapData
+                                sceneNode.scaleMode = .aspectFit
+                                sceneNode.data = Theme.allMapAssets[name]
                                 
                                 // Present the scene
                                 if let view = self.view {
-                                    view.presentScene(sceneNode, transition: SKTransition.fade(withDuration: 1.0))
+                                    view.presentScene(sceneNode, transition: SKTransition.push(with: SKTransitionDirection.left, duration: 1.5))
                                     view.ignoresSiblingOrder = true
                                     view.showsFPS = true
                                     view.showsNodeCount = true
