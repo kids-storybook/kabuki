@@ -31,7 +31,7 @@ class HomepageScene: SKScene {
         
         // Add background sound
         backgroundSound.run(SKAction.fadeIn(withDuration: 3))
-        backgroundSound.run(SKAction.changeVolume(to: 0.3, duration: 0))
+        backgroundSound.run(SKAction.changeVolume(to: 0.2, duration: 0))
         backgroundSound.autoplayLooped = true
         addChild(backgroundSound)
         
@@ -90,10 +90,11 @@ class HomepageScene: SKScene {
                 $0.range(of: name, options: .caseInsensitive) != nil
             }) {
                 node.run(SoundManager.sharedInstance.soundClickedButton)
-                var scale = SKAction.scale(to: 0.9, duration: 0)
-                node.run(scale)
-                scale = SKAction.scale(to: 1.0, duration: 0.2)
-                node.run(scale)
+                node.run(SKAction.sequence(
+                    [SKAction.scale(to: 0.9, duration: 0),
+                     SKAction.scale(to: 1.0, duration: 0.1)
+                    ])
+                )
                 
                 if let mapData = Theme.allAssets[name] {
                     if mapData["isActive"] as? Bool ?? false {

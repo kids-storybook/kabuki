@@ -8,15 +8,14 @@
 import SpriteKit
 import GameplayKit
 
-
 class MapViewPageScene: SKScene {
+    var data: [String: Any]?
     let backgroundSound = SKAudioNode(fileNamed: "Maps Music.mp3")
+    var background: SKSpriteNode!
+    var activeChallenges: [Challenge] = []
     
     // Entity-component system
     var entityManager: EntityManager!
-    
-    var data: [String: Any]?
-    
     
     override func didMove(to view: SKView) {
         print("scene size: \(size)")
@@ -25,12 +24,12 @@ class MapViewPageScene: SKScene {
         
         // Add background sound
         backgroundSound.run(SKAction.fadeIn(withDuration: 3))
-        backgroundSound.run(SKAction.changeVolume(to: 0.3, duration: 3))
+        backgroundSound.run(SKAction.changeVolume(to: 0.2, duration: 0))
         backgroundSound.autoplayLooped = true
         addChild(backgroundSound)
         
         // Add background
-        let background = SKSpriteNode(imageNamed: data?["background"] as? String ?? "")
+        background = SKSpriteNode(imageNamed: self.data?["background"] as? String ?? "")
         background.position = CGPoint(x: 0, y: 0)
         background.xScale = 1.237
         background.yScale = 1.237
@@ -46,7 +45,7 @@ class MapViewPageScene: SKScene {
             if !(challengeData?["isActive"] as? Bool ?? false) {
                 continue
             }
-            let challenge = Challenge(imageName: challengeData?["background"] as? String ?? "", challengeName: "challange_\(idx)")
+            let challenge = Challenge(imageName: challengeData?["background"] as? String ?? "", challengeName: "challenge_\(idx)")
             let location = challengeData?["location"] as? Array<Double>
             if let spriteComponent = challenge.component(ofType: SpriteComponent.self) {
                 spriteComponent.node.position = CGPoint(x: location?[0] ?? 0.0, y: location?[1] ?? 0.0)
@@ -54,12 +53,23 @@ class MapViewPageScene: SKScene {
                 spriteComponent.node.yScale = 1.237
                 spriteComponent.node.zPosition = challengeData?["zPosition"] as? Double ?? 0.0
             }
+            activeChallenges.append(challenge)
             entityManager.add(challenge)
         }
     }
     
     override func willMove(from view: SKView) {
         backgroundSound.removeAllActions()
+        backgroundSound.removeFromParent()
+        backgroundSound.removeAllChildren()
+        
+        background.removeFromParent()
+        background.removeAllChildren()
+        
+        for challenge in activeChallenges {
+            print("BYE GUYS")
+            entityManager.remove(challenge)
+        }
     }
     
     // MARK: - Touches
@@ -71,8 +81,7 @@ class MapViewPageScene: SKScene {
             let location = touch.location(in: self)
             let node = atPoint(location)
             if let name = node.name, name.contains("challenge_") {
-                print(name)
-                print("aw, touches began!")
+                print("aw, touches began for \(name)!")
             }
         }
     }
@@ -86,6 +95,30 @@ class MapViewPageScene: SKScene {
         for touch in touches {
             let location = touch.location(in: self)
             let node = atPoint(location)
+            if let name = node.name, name.contains("challenge_") {
+                node.run(SoundManager.sharedInstance.soundClickedButton)
+                node.run(SKAction.sequence(
+                    [SKAction.scale(to: 0.9, duration: 0),
+                     SKAction.scale(to: 1.0, duration: 0.1)
+                    ])
+                )
+                
+                if let scene = GKScene(fileNamed: "HomepageScene") {
+                    // Get the SKScene from the loaded GKScene
+                    if let sceneNode = scene.rootNode as! HomepageScene? {
+                        // Set the scale mode to scale to fit the window
+                        sceneNode.scaleMode = .aspectFill
+                        // Present the scene
+                        if let view = self.view {
+                            view.ignoresSiblingOrder = true
+                            view.showsFPS = true
+                            view.showsNodeCount = true
+                            view.showsDrawCount = true
+                            view.presentScene(sceneNode, transition: SKTransition.push(with: SKTransitionDirection.left, duration: 1.5))
+                        }
+                    }
+                }
+            }
         }
     }
     
