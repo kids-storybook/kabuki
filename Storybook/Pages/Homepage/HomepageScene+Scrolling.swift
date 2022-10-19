@@ -31,29 +31,30 @@ extension HomepageScene {
         
         // ScrollView Sprites for each content in scrollView
         for (_, item) in Theme.allValues.enumerated() {
-            let themeAssets = Theme.allAssets[item]!
-            let container = SKNode()
-            
-            // Add map using entity-component logic
-            let spriteMap = Maps(
-                themeAssets: themeAssets,
-                mapName: item,
-                mapPosition: spriteMapPosition,
-                frame: frame
-            )
-            
-            let tempPosition = spriteMapPosition
-            
-            if let spriteComponent = spriteMap.component(ofType: SpriteComponent.self) {
-                spriteMapPosition = CGPoint(x: spriteMapPosition.x + (spriteComponent.node.size.width*1.2), y: spriteMapPosition.y)
-                container.addChild(spriteComponent.node)
-            }
-            
-            if let texture = view?.texture(from: container) {
-                let sprite = SKSpriteNode(texture:texture)
-                sprite.name = item
-                sprite.position = CGPoint(x: tempPosition.x, y: tempPosition.y)
-                moveableNode.addChild(sprite)
+            if let themeAssets = Theme.allAssets[item] {
+                let container = SKNode()
+                
+                // Add map using entity-component logic
+                let spriteMap = Map(
+                    themeAssets: themeAssets,
+                    mapName: item,
+                    mapPosition: spriteMapPosition,
+                    frame: frame
+                )
+                
+                let tempPosition = spriteMapPosition
+                
+                if let spriteComponent = spriteMap.component(ofType: SpriteComponent.self) {
+                    spriteMapPosition = CGPoint(x: spriteMapPosition.x + (spriteComponent.node.size.width*1.2), y: spriteMapPosition.y)
+                    container.addChild(spriteComponent.node)
+                }
+                
+                if let texture = view?.texture(from: container) {
+                    let sprite = SKSpriteNode(texture:texture)
+                    sprite.name = item
+                    sprite.position = CGPoint(x: tempPosition.x, y: tempPosition.y)
+                    moveableNode.addChild(sprite)
+                }
             }
         }
     }
