@@ -37,6 +37,12 @@ class GameView: GameScene {
         backgroundScene.position = CGPoint(x: frame.midX, y: frame.midY)
         backgroundScene.zPosition = -10
     
+        let datas = Theme.allGameViewAssets["challenge_1"] 
+        
+//        for data in datas {
+//
+//        }
+        
         textScene.text = "Lihatlah keluarga singa ini"
         textScene.fontSize = 40
         textScene.fontColor = SKColor.white
