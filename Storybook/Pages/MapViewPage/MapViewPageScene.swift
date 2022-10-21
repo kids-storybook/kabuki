@@ -24,7 +24,6 @@ class MapViewPageScene: SKScene {
         
         // Add background sound
         backgroundSound.run(SKAction.fadeIn(withDuration: 3))
-        backgroundSound.run(SKAction.changeVolume(to: 0.2, duration: 0))
         backgroundSound.autoplayLooped = true
         addChild(backgroundSound)
         
