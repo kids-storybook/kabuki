@@ -10,10 +10,11 @@ import SpriteKit
 
 class GameScene: SKScene {
     
-    var footer: SKNode!
     var header: SKNode!
+    var footer: SKNode!
     var nxtBtn: SKSpriteNode!
     var prevBtn: SKSpriteNode!
+    var exitBtn: SKSpriteNode!
     var entityManager: EntityManager!
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -42,12 +43,17 @@ class GameScene: SKScene {
         return nil
     }
     
+    func exitScene() -> SKScene? {
+        return nil
+    }
+    
     override func sceneDidLoad() {
         super.sceneDidLoad()
         footer = childNode(withName: "footer")
         header = childNode(withName: "header")
         nxtBtn = childNode(withName: "//nextButton") as? SKSpriteNode
         prevBtn = childNode(withName: "//previousButton") as? SKSpriteNode
+        exitBtn = childNode(withName: "//exitButton") as? SKSpriteNode
     }
     
     func goToScene(scene: SKScene, transitionDirection: SKTransitionDirection) {
@@ -57,16 +63,13 @@ class GameScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let touch = touches.first else { return }
         
-        // 1
+        guard let touch = touches.first else { return }
         let touchLocation = touch.location(in: self)
         
-        // 2
         if footer.contains(touchLocation) {
             let location = touch.location(in: footer)
             
-            // 3
             if nxtBtn.contains(location) {
                 nxtBtn.run(SoundManager.sharedInstance.soundClickedButton)
                 goToScene(scene: getNextScene()!, transitionDirection: SKTransitionDirection.left)
@@ -74,6 +77,14 @@ class GameScene: SKScene {
             else if prevBtn.contains(location) {
                 prevBtn.run(SoundManager.sharedInstance.soundClickedButton)
                 goToScene(scene: getPreviousScene()!, transitionDirection: SKTransitionDirection.right)
+            }
+            
+        } else if header.contains(touchLocation){
+            let location = touch.location(in: header)
+            
+            if exitBtn.contains(location) {
+                goToScene(scene: exitScene()!)
+//                print("exit dipencet")
             }
             
         } else {
