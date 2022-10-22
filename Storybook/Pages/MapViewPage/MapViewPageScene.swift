@@ -99,9 +99,9 @@ class MapViewPageScene: SKScene {
                     ])
                 )
                 
-                if let scene = GKScene(fileNamed: "GameViewStart") {
+                if let scene = GKScene(fileNamed: "GameView2") {
                     // Get the SKScene from the loaded GKScene
-                    if let sceneNode = scene.rootNode as! GameViewStart? {
+                    if let sceneNode = scene.rootNode as! GameView2? {
                         // Set the scale mode to scale to fit the window
                         sceneNode.scaleMode = .aspectFill
                         sceneNode.challengeName = name

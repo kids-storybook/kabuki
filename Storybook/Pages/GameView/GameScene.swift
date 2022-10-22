@@ -49,6 +49,8 @@ class GameScene: SKScene {
         return nil
     }
     
+    
+    
     override func sceneDidLoad() {
         super.sceneDidLoad()
         header = childNode(withName: "header")

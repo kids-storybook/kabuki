@@ -36,6 +36,7 @@ class GameView: GameScene {
         
         backgroundSceneViewOne.position = CGPoint(x: frame.midX, y: frame.midY)
         backgroundSceneViewOne.zPosition = -10
+        backgroundSceneViewOne.size = self.frame.size
     
         textScene.text = "Lihatlah keluarga singa ini"
         textScene.fontSize = 40

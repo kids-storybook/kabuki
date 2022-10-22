@@ -19,7 +19,7 @@ class GameView2: GameScene {
         
         let lionCub = Lion(imageName: "#1 Anak Singa")
         if let spriteComponent = lionCub.component(ofType: SpriteComponent.self) {
-            spriteComponent.node.position = CGPoint(x: spriteComponent.node.frame.midX/2+25, y: spriteComponent.node.frame.midY/2-85)
+            spriteComponent.node.position = CGPoint(x: -spriteComponent.node.frame.midX/2-250, y: spriteComponent.node.frame.midY/2-85)
             spriteComponent.node.size = CGSize(width: 550, height: 550)
             spriteComponent.node.zPosition = 10
         }
@@ -33,7 +33,7 @@ class GameView2: GameScene {
         
         let lionDad = Lion(imageName: "#1 Lion")
         if let spriteComponent = lionDad.component(ofType: SpriteComponent.self) {
-            spriteComponent.node.position = CGPoint(x: -spriteComponent.node.frame.midX/2-195, y: -spriteComponent.node.frame.midY/2-35)
+            spriteComponent.node.position = CGPoint(x: -spriteComponent.node.frame.midX/2-450, y: -spriteComponent.node.frame.midY/2-35)
             spriteComponent.node.size = CGSize(width: 600, height: 600)
             spriteComponent.node.zPosition = 5
         }
@@ -44,6 +44,7 @@ class GameView2: GameScene {
         
         backgroundSceneViewTwo.position = CGPoint(x: frame.midX, y: frame.midY)
         backgroundSceneViewTwo.zPosition = -10
+        backgroundSceneViewTwo.size = self.frame.size
         
         addChild(backgroundSceneViewTwo)
     }
