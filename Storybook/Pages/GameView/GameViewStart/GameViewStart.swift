@@ -8,6 +8,7 @@ class GameViewStart: GameScene {
     var startBtn: SKSpriteNode!
     let backgroundScene = SKSpriteNode(imageNamed: "kandangSinga")
     var challengeName: String?
+    let title = SKSpriteNode(imageNamed: "singaStoryTitle")
     
     private func setupPlayer(){
         
@@ -38,9 +39,13 @@ class GameViewStart: GameScene {
         entityManager.add(lionMom)
         entityManager.add(lionDad)
         
+        title.position = CGPoint(x: frame.midX, y: frame.midY/2+240)
+        title.zPosition = 10
+        
         backgroundScene.position = CGPoint(x: frame.midX, y: frame.midY)
         backgroundScene.zPosition = -10
         
+        addChild(title)
         addChild(backgroundScene)
     }
     
