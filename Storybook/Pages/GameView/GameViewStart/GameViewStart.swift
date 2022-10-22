@@ -66,6 +66,14 @@ class GameViewStart: GameScene {
                 goToScene(scene: getNextScene()!, transitionDirection: SKTransitionDirection.left)
             }
             
+        } else if header.contains(touchLocation) {
+            let location = touch.location(in: header)
+            
+            if exitBtn.contains(location) {
+                goToScene(scene: exitScene()!)
+                
+            }
+            
         } else {
             touchDown(at: touchLocation)
         }
@@ -78,6 +86,6 @@ class GameViewStart: GameScene {
     }
 
     override func exitScene() -> SKScene? {
-        return SKScene(fileNamed: "GameView2") as! GameView2
+        return SKScene(fileNamed: "MapViewPageScene") as! MapViewPageScene
     }
 }

@@ -12,9 +12,11 @@ class GameScene: SKScene {
     
     var header: SKNode!
     var footer: SKNode!
+//    var start: SKNode!
     var nxtBtn: SKSpriteNode!
     var prevBtn: SKSpriteNode!
     var exitBtn: SKSpriteNode!
+//    var startBtn: SKSpriteNode!
     var entityManager: EntityManager!
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -49,11 +51,13 @@ class GameScene: SKScene {
     
     override func sceneDidLoad() {
         super.sceneDidLoad()
-        footer = childNode(withName: "footer")
         header = childNode(withName: "header")
+        footer = childNode(withName: "footer")
+//        start = childNode(withName: "start")
         nxtBtn = childNode(withName: "//nextButton") as? SKSpriteNode
         prevBtn = childNode(withName: "//previousButton") as? SKSpriteNode
         exitBtn = childNode(withName: "//exitButton") as? SKSpriteNode
+//        startBtn = childNode(withName: "//startButton") as? SKSpriteNode
     }
     
     func goToScene(scene: SKScene, transitionDirection: SKTransitionDirection) {
@@ -79,15 +83,19 @@ class GameScene: SKScene {
                 goToScene(scene: getPreviousScene()!, transitionDirection: SKTransitionDirection.right)
             }
             
-        } else if header.contains(touchLocation){
+        }
+        
+        else if header.contains(touchLocation) {
             let location = touch.location(in: header)
             
             if exitBtn.contains(location) {
                 goToScene(scene: exitScene()!)
-//                print("exit dipencet")
             }
+        }
+        
+        
+        else {
             
-        } else {
             
             // 4
             touchDown(at: touchLocation)
