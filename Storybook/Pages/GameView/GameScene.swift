@@ -12,11 +12,9 @@ class GameScene: SKScene {
     
     var header: SKNode!
     var footer: SKNode!
-//    var start: SKNode!
     var nxtBtn: SKSpriteNode!
     var prevBtn: SKSpriteNode!
     var exitBtn: SKSpriteNode!
-//    var startBtn: SKSpriteNode!
     var entityManager: EntityManager!
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -49,17 +47,13 @@ class GameScene: SKScene {
         return nil
     }
     
-    
-    
     override func sceneDidLoad() {
         super.sceneDidLoad()
         header = childNode(withName: "header")
         footer = childNode(withName: "footer")
-//        start = childNode(withName: "start")
         nxtBtn = childNode(withName: "//nextButton") as? SKSpriteNode
         prevBtn = childNode(withName: "//previousButton") as? SKSpriteNode
         exitBtn = childNode(withName: "//exitButton") as? SKSpriteNode
-//        startBtn = childNode(withName: "//startButton") as? SKSpriteNode
     }
     
     func goToScene(scene: SKScene, transitionDirection: SKTransitionDirection) {
@@ -97,9 +91,6 @@ class GameScene: SKScene {
         
         
         else {
-            
-            
-            // 4
             touchDown(at: touchLocation)
         }
         
@@ -107,4 +98,63 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
     }
+    
+    func makeLion() {
+        entityManager = EntityManager(scene: self)
+        
+        let lionCub = Lion(imageName: "#1 Anak Singa")
+        if let spriteComponent = lionCub.component(ofType: SpriteComponent.self) {
+            spriteComponent.node.position = CGPoint(x: spriteComponent.node.frame.midX/2+25, y: spriteComponent.node.frame.midY/2-85)
+            spriteComponent.node.size = CGSize(width: 550, height: 550)
+            spriteComponent.node.zPosition = 10
+        }
+        
+        let lionMom = Lion(imageName: "#1 Female Lion")
+        if let spriteComponent = lionMom.component(ofType: SpriteComponent.self) {
+            spriteComponent.node.position = CGPoint(x: spriteComponent.node.frame.midX/2+180, y: -spriteComponent.node.frame.midY/2-45)
+            spriteComponent.node.size = CGSize(width: 550, height: 550)
+            spriteComponent.node.zPosition = 5
+        }
+
+        let lionDad = Lion(imageName: "#1 Lion")
+        if let spriteComponent = lionDad.component(ofType: SpriteComponent.self) {
+            spriteComponent.node.position = CGPoint(x: -spriteComponent.node.frame.midX/2-195, y: -spriteComponent.node.frame.midY/2-35)
+            spriteComponent.node.size = CGSize(width: 600, height: 600)
+            spriteComponent.node.zPosition = 5
+        }
+        
+        entityManager.add(lionCub)
+        entityManager.add(lionMom)
+        entityManager.add(lionDad)
+    }
+    
+    func makeLionTutorial() {
+        entityManager = EntityManager(scene: self)
+        
+        let lionCub = Lion(imageName: "#1 Anak Singa")
+        if let spriteComponent = lionCub.component(ofType: SpriteComponent.self) {
+            spriteComponent.node.position = CGPoint(x: -spriteComponent.node.frame.midX/2-250, y: spriteComponent.node.frame.midY/2-85)
+            spriteComponent.node.size = CGSize(width: 550, height: 550)
+            spriteComponent.node.zPosition = 10
+        }
+        
+        let lionMom = Lion(imageName: "#1 Female Lion")
+        if let spriteComponent = lionMom.component(ofType: SpriteComponent.self) {
+            spriteComponent.node.position = CGPoint(x: spriteComponent.node.frame.midX/2+300, y: -spriteComponent.node.frame.midY/2-45)
+            spriteComponent.node.size = CGSize(width: 550, height: 550)
+            spriteComponent.node.zPosition = 5
+        }
+
+        let lionDad = Lion(imageName: "#1 Lion")
+        if let spriteComponent = lionDad.component(ofType: SpriteComponent.self) {
+            spriteComponent.node.position = CGPoint(x: -spriteComponent.node.frame.midX/2-475, y: -spriteComponent.node.frame.midY/2-35)
+            spriteComponent.node.size = CGSize(width: 600, height: 600)
+            spriteComponent.node.zPosition = 5
+        }
+        
+        entityManager.add(lionCub)
+        entityManager.add(lionMom)
+        entityManager.add(lionDad)
+    }
+    
 }
