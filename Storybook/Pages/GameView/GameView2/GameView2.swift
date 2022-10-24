@@ -7,11 +7,13 @@
 
 import Foundation
 import SpriteKit
+import UIKit
 
 class GameView2: GameScene {
     
     let backgroundSceneViewTwo = SKSpriteNode(imageNamed: "kandangSingaZoom")
-    let text = MKOutlinedLabelNode(fontNamed: "Poppins-Bold", fontSize: 40)
+//    let text = MKOutlinedLabelNode(fontNamed: "Poppins-Bold", fontSize: 40)
+    let text = SKLabelNode(text: "Hello")
     var textAnimateOne = String("lingkaran")
     var textAnimateTwo = String("persegi")
     var textAnimateThree = String("segitiga")
@@ -26,13 +28,25 @@ class GameView2: GameScene {
         
         addChild(backgroundSceneViewTwo)
         
-        text.outlinedText = "Ada yang berbentuk \(textAnimateOne), \(textAnimateTwo) dan \(textAnimateThree) "
-        text.borderColor = UIColor.black
+//        text.outlinedText = "Ada yang berbentuk \(textAnimateOne), \(textAnimateTwo) dan \(textAnimateThree) "
+ 
         text.fontColor = UIColor.white
         text.position = CGPoint(x: 0, y: 175)
+        text.zPosition = 15
+        text.preferredMaxLayoutWidth = 700
+        text.numberOfLines = 2
+//        text.attributedText =
         
+//        let attributes: [NSAttributedString.Key: Any] = [
+//            .strokeWidth: 5.0,
+//            .strokeColor: UIColor.black
+//        ]
+        
+//        let attributedString = NSAttributedString(string: text, attributes: attributes)
+        
+//        text.horizontalAlignmentMode = .center
+
         addChild(text)
-        
     }
     
     override func didMove(to view: SKView) {

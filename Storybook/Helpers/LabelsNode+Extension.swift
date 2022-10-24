@@ -4,7 +4,7 @@ import SpriteKit
 class MKOutlinedLabelNode: SKLabelNode {
     
     var borderColor: UIColor = UIColor.black
-    var borderWidth: CGFloat = 20.0
+    var borderWidth: CGFloat = 7.0
     var borderOffset : CGPoint = CGPoint(x: 0, y: 0)
     enum borderStyleType {
         case over
@@ -43,11 +43,11 @@ class MKOutlinedLabelNode: SKLabelNode {
                 border.path = path
                 border.position = positionBorder(border: border)
                 switch self.borderStyle {
-                case borderStyleType.over:
-                    border.zPosition = self.zPosition + 1
-                    break
-                default:
-                    border.zPosition = self.zPosition - 1
+                    case borderStyleType.over:
+                        border.zPosition = self.zPosition + 1
+                        break
+                    default:
+                        border.zPosition = self.zPosition - 1
                 }
                 
                 addChild(border)
@@ -81,7 +81,7 @@ class MKOutlinedLabelNode: SKLabelNode {
             var xPosition = 0 as CGFloat
             for index in 0...(chars.count - 1) {
                 let letter = CTFontCreatePathForGlyph(borderFont, glyphs[index], nil)
-                var t = CGAffineTransformMakeTranslation(xPosition , 0)
+                let t = CGAffineTransform(translationX: xPosition , y: 0)
                 letters.addPath(letters, transform: t)
                 xPosition = xPosition + advances[index].width
             }
