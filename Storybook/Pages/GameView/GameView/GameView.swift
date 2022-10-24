@@ -68,8 +68,6 @@ class GameView: GameScene {
             let fetchRequest = Stories.fetchRequest()
             let orderPredicate = NSPredicate(format: "order == \(idxScene)")
             let challengeNamePredicate = NSPredicate(format: "challengeName == %@", challengeName ?? "")
-            print(orderPredicate)
-            print(challengeNamePredicate)
             fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
                 challengeNamePredicate, orderPredicate
             ])
