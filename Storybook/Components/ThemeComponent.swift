@@ -83,6 +83,23 @@ enum Theme: String {
                 ]
             ],
     ]
+    
+    static let allGameViewAssets: [String:[String:Any]] = [
+        "challenge_1": [
+            "scene_1": [
+                "labels": [
+                    "Ini adalah keluarga Singa"
+                ]
+            ],
+            "scene_2": [
+                "labels": [
+                    "Lihatlah keluarga singa ini",
+                    "Ada Bapak singa, Ibu singa, dan anak singa"
+                ]
+            ]
+        ]
+        
+    ]
 }
 
 class ThemeComponent: GKComponent {

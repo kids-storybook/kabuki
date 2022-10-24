@@ -15,7 +15,6 @@ class GameScene: SKScene {
     var nxtBtn: SKSpriteNode!
     var prevBtn: SKSpriteNode!
     var entityManager: EntityManager!
-    let textScene = SKLabelNode(fontNamed: "Poppins-Regular")
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
@@ -84,7 +83,7 @@ class GameScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
-//        textScene = SKLabelNode(fontNamed: "Poppins-Bold.ttf")
     }
+    
     
 }
