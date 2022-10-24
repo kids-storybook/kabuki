@@ -25,7 +25,7 @@ class MapViewPageScene: SKScene {
         // Add background sound
         backgroundSound.run(SKAction.fadeIn(withDuration: 3))
         backgroundSound.autoplayLooped = true
-        addChild(backgroundSound)
+//        addChild(backgroundSound)
         
         // Add background
         background = SKSpriteNode(imageNamed: self.data?["background"] as? String ?? "")

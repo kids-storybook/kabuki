@@ -18,8 +18,8 @@ extension HomepageScene {
         guard let scrollView = scrollView else { return }
         
         var contentSizeWidthScale: CGFloat = 2.5
-        if Theme.allValues.count > 4 {
-            contentSizeWidthScale = CGFloat(Theme.allValues.count-1)
+        if ThemeEnum.allValues.count > 4 {
+            contentSizeWidthScale = CGFloat(ThemeEnum.allValues.count-1)
         }
         scrollView.contentSize = CGSize(width: scrollView.frame.width * contentSizeWidthScale, height: scrollView.frame.height) // * 3 makes it three times as wide as screen
         view?.addSubview(scrollView)
@@ -30,8 +30,8 @@ extension HomepageScene {
         var spriteMapPosition = CGPoint(x: frame.midX - (scrollView.frame.width * CGFloat(contentSizeWidthScale-1)), y: frame.midY)
         
         // ScrollView Sprites for each content in scrollView
-        for (_, item) in Theme.allValues.enumerated() {
-            if let themeAssets = Theme.allAssets[item] {
+        for (_, item) in ThemeEnum.allValues.enumerated() {
+            if let themeAssets = ThemeEnum.allAssets[item] {
                 let container = SKNode()
                 
                 // Add map using entity-component logic

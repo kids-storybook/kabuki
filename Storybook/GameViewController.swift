@@ -10,10 +10,11 @@ import SpriteKit
 import GameplayKit
 
 class GameViewController: UIViewController {
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let helper = Helper()
+        let context = helper.getBackgroundContext()
+        helper.initializeDB(context: context)
         // Load 'HomepageScene.sks' as a GKScene. This provides gameplay related content
         // including entities and graphs.
         if let scene = GKScene(fileNamed: "HomepageScene") {

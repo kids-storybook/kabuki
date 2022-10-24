@@ -9,7 +9,7 @@ import Foundation
 import SpriteKit
 import GameplayKit
 
-enum Theme: String {
+enum ThemeEnum: String {
     case theme1 = "zoo"
     case theme2 = "forest"
     case theme3 = "garden"
@@ -103,9 +103,9 @@ enum Theme: String {
 }
 
 class ThemeComponent: GKComponent {
-    let theme: Theme
+    let theme: ThemeEnum
     
-    init(theme: Theme) {
+    init(theme: ThemeEnum) {
         self.theme = theme
         super.init()
     }

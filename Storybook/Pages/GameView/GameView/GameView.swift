@@ -39,7 +39,7 @@ class GameView: GameScene {
         backgroundScene.position = CGPoint(x: frame.midX, y: frame.midY)
         backgroundScene.zPosition = -10
     
-        let challenge_data = Theme.allGameViewAssets["challenge_1"]
+        let challenge_data = ThemeEnum.allGameViewAssets["challenge_1"]
         let datas = challenge_data?["scene_\(idxScene+1)"] as? [String:Any]
         let labels = datas?["labels"] as! [String]
         

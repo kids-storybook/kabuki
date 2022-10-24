@@ -51,7 +51,7 @@ class GameScene: SKScene {
     }
     
     func goToScene(scene: SKScene) {
-        let sceneTransition = SKTransition.fade(with: UIColor.darkGray, duration: 1)
+        let sceneTransition = SKTransition.push(with: SKTransitionDirection.left, duration: 1.5)
         scene.scaleMode = .aspectFill
         self.view?.presentScene(scene, transition: sceneTransition)
     }

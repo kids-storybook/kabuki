@@ -32,7 +32,7 @@ class HomepageScene: SKScene {
         // Add background sound
         backgroundSound.run(SKAction.fadeIn(withDuration: 3))
         backgroundSound.autoplayLooped = true
-        addChild(backgroundSound)
+//        addChild(backgroundSound)
         
         // Add background
         background.position = CGPoint(x: 0, y: 0)
@@ -68,7 +68,7 @@ class HomepageScene: SKScene {
         for touch in touches {
             let location = touch.location(in: self)
             let node = atPoint(location)
-            if let name = node.name, Theme.allValues.contains(where: {
+            if let name = node.name, ThemeEnum.allValues.contains(where: {
                 $0.range(of: name, options: .caseInsensitive) != nil
             }) {
                 print("aw, touches began!")
@@ -85,7 +85,7 @@ class HomepageScene: SKScene {
         for touch in touches {
             let location = touch.location(in: self)
             let node = atPoint(location)
-            if let name = node.name, Theme.allValues.contains(where: {
+            if let name = node.name, ThemeEnum.allValues.contains(where: {
                 $0.range(of: name, options: .caseInsensitive) != nil
             }) {
                 node.run(SoundManager.sharedInstance.soundClickedButton)
@@ -95,14 +95,14 @@ class HomepageScene: SKScene {
                     ])
                 )
                 
-                if let mapData = Theme.allAssets[name] {
+                if let mapData = ThemeEnum.allAssets[name] {
                     if mapData["isActive"] as? Bool ?? false {
                         if let scene = GKScene(fileNamed: "MapViewPageScene") {
                             // Get the SKScene from the loaded GKScene
                             if let sceneNode = scene.rootNode as! MapViewPageScene? {
                                 // Set the scale mode to scale to fit the window
                                 sceneNode.scaleMode = .aspectFit
-                                sceneNode.data = Theme.allMapAssets[name]
+                                sceneNode.data = ThemeEnum.allMapAssets[name]
                                 
                                 // Present the scene
                                 if let view = self.view {
