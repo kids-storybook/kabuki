@@ -78,7 +78,7 @@ class MiniGameView: SKScene {
         
         //setup the yellow bin with colour, dimensions and add to scene
         triangleBin.color = SKColor.yellow
-//        triangleBin.alpha = 0
+        triangleBin.alpha = 0
         triangleBin.size = CGSize(width:100, height: 100)
         triangleBin.position = CGPoint (x: frame.midX + 245 , y: frame.midY - 165)
         triangleBin.zPosition = -1
