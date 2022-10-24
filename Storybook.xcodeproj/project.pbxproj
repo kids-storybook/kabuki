@@ -160,7 +160,7 @@
 				362C2BC028FFE2D5009B9971 /* GameViewECS */,
 				36FD197528F464A3002C25BF /* HeaderFooter */,
 				368546F528FFF3D400E520B4 /* GameViewStart */,
-				36FD197A28F46958002C25BF /* GameView1 */,
+				36FD197A28F46958002C25BF /* GameView */,
 			);
 			path = GameView;
 			sourceTree = "<group>";
@@ -203,13 +203,13 @@
 			path = HeaderFooter;
 			sourceTree = "<group>";
 		};
-		36FD197A28F46958002C25BF /* GameView1 */ = {
+		36FD197A28F46958002C25BF /* GameView */ = {
 			isa = PBXGroup;
 			children = (
 				360A8EF328F459CB00949260 /* GameView.sks */,
 				360A8EF028F4598C00949260 /* GameView.swift */,
 			);
-			path = GameView1;
+			path = GameView;
 			sourceTree = "<group>";
 		};
 		E63DEA5B28E2EB32000AC43C = {
