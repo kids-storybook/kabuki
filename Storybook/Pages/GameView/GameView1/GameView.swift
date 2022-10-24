@@ -1,9 +1,11 @@
 import Foundation
 import SpriteKit
+import GameplayKit
 
 class GameView: GameScene {
 
     let backgroundScene = SKSpriteNode(imageNamed: "kandangSinga")
+    var idxScene: Int = 0
     
     private func setupPlayer(){
         
@@ -37,20 +39,21 @@ class GameView: GameScene {
         backgroundScene.position = CGPoint(x: frame.midX, y: frame.midY)
         backgroundScene.zPosition = -10
     
-        let datas = Theme.allGameViewAssets["challenge_1"] 
+        let challenge_data = Theme.allGameViewAssets["challenge_1"]
+        let datas = challenge_data?["scene_\(idxScene+1)"] as? [String:Any]
+        let labels = datas?["labels"] as! [String]
         
-//        for data in datas {
-//
-//        }
-        
-        textScene.text = "Lihatlah keluarga singa ini"
-        textScene.fontSize = 40
-        textScene.fontColor = SKColor.white
-        textScene.position = CGPoint(x: 0, y: 0)
-        textScene.zPosition = 100
+        for (idx, label) in labels.enumerated() {
+            let textScene = SKLabelNode(fontNamed: "Poppins-Black")
+            textScene.text = label
+            textScene.fontSize = 40
+            textScene.fontColor = SKColor.white
+            textScene.position = CGPoint(x: 0, y: -idx*40)
+            textScene.zPosition = 100
+            addChild(textScene)
+        }
         
         addChild(backgroundScene)
-        addChild(textScene)
 
     }
     
@@ -59,10 +62,31 @@ class GameView: GameScene {
     }
     
     override func getNextScene() -> SKScene? {
-        return SKScene(fileNamed: "GameView2") as! GameView2
+        if idxScene < 3 {
+            if let scene = GKScene(fileNamed: "GameView") {
+                // Get the SKScene from the loaded GKScene
+                if let sceneNode = scene.rootNode as! GameView? {
+                    // Set the scale mode to scale to fit the window
+                    sceneNode.idxScene = idxScene + 1
+                    return sceneNode
+                }
+            }
+        }
+        // Please change this to the next scene (mini challenge, not the story anymore)
+        return SKScene()
     }
     
     override func getPreviousScene() -> SKScene? {
+        if idxScene > 0 {
+            if let scene = GKScene(fileNamed: "GameView") {
+                // Get the SKScene from the loaded GKScene
+                if let sceneNode = scene.rootNode as! GameView? {
+                    // Set the scale mode to scale to fit the window
+                    sceneNode.idxScene = idxScene - 1
+                    return sceneNode
+                }
+            }
+        }
         return SKScene(fileNamed: "GameViewStart") as! GameViewStart
     }
     
