@@ -9,7 +9,7 @@ import SpriteKit
 import GameplayKit
 
 class MapViewPageScene: SKScene {
-    var data: [String: Any]?
+    var theme: Themes?
     let backgroundSound = SKAudioNode(fileNamed: "Maps Music.mp3")
     var background: SKSpriteNode!
     var activeChallenges: [Challenge] = []
@@ -25,10 +25,10 @@ class MapViewPageScene: SKScene {
         // Add background sound
         backgroundSound.run(SKAction.fadeIn(withDuration: 3))
         backgroundSound.autoplayLooped = true
-//        addChild(backgroundSound)
+        //        addChild(backgroundSound)
         
         // Add background
-        background = SKSpriteNode(imageNamed: self.data?["background"] as? String ?? "")
+        background = SKSpriteNode(imageNamed: self.theme?.mapBackground ?? "")
         background.position = CGPoint(x: 0, y: 0)
         background.xScale = 1.237
         background.yScale = 1.237
@@ -39,21 +39,19 @@ class MapViewPageScene: SKScene {
     }
     
     func showActiveCage() {
-        for idx in 1...7 {
-            let challengeData = data?["challenge_\(idx)"] as? [String:Any]
-            if !(challengeData?["isActive"] as? Bool ?? false) {
+        for challenge in theme?.challenges?.array as! [Challenges] {
+            if !(challenge.isActive) {
                 continue
             }
-            let challenge = Challenge(imageName: challengeData?["background"] as? String ?? "", challengeName: "challenge_\(idx)")
-            let location = challengeData?["location"] as? Array<Double>
-            if let spriteComponent = challenge.component(ofType: SpriteComponent.self) {
-                spriteComponent.node.position = CGPoint(x: location?[0] ?? 0.0, y: location?[1] ?? 0.0)
+            let activeChallenge = Challenge(imageName: challenge.background ?? "", challengeName: challenge.challengeName ?? "")
+            if let spriteComponent = activeChallenge.component(ofType: SpriteComponent.self) {
+                spriteComponent.node.position = CGPoint(x: challenge.xCoordinate, y: challenge.yCoordinate)
                 spriteComponent.node.xScale = 1.237
                 spriteComponent.node.yScale = 1.237
-                spriteComponent.node.zPosition = challengeData?["zPosition"] as? Double ?? 0.0
+                spriteComponent.node.zPosition = challenge.zPosition
             }
-            activeChallenges.append(challenge)
-            entityManager.add(challenge)
+            activeChallenges.append(activeChallenge)
+            entityManager.add(activeChallenge)
         }
     }
     
@@ -66,7 +64,6 @@ class MapViewPageScene: SKScene {
         background.removeAllChildren()
         
         for challenge in activeChallenges {
-            print("BYE GUYS")
             entityManager.remove(challenge)
         }
     }
@@ -79,7 +76,7 @@ class MapViewPageScene: SKScene {
         for touch in touches {
             let location = touch.location(in: self)
             let node = atPoint(location)
-            if let name = node.name, name.contains("challenge_") {
+            if let name = node.name, name.contains("_challenge") {
                 print("aw, touches began for \(name)!")
             }
         }
@@ -94,7 +91,7 @@ class MapViewPageScene: SKScene {
         for touch in touches {
             let location = touch.location(in: self)
             let node = atPoint(location)
-            if let name = node.name, name.contains("challenge_") {
+            if let name = node.name, name.contains("_challenge") {
                 node.run(SoundManager.sharedInstance.soundClickedButton)
                 node.run(SKAction.sequence(
                     [SKAction.scale(to: 1.5, duration: 0),
@@ -107,6 +104,7 @@ class MapViewPageScene: SKScene {
                     if let sceneNode = scene.rootNode as! GameViewStart? {
                         // Set the scale mode to scale to fit the window
                         sceneNode.scaleMode = .aspectFill
+                        sceneNode.challengeName = name
                         // Present the scene
                         if let view = self.view {
                             view.ignoresSiblingOrder = true

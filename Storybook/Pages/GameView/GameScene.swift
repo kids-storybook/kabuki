@@ -50,8 +50,8 @@ class GameScene: SKScene {
         prevBtn = childNode(withName: "//previousButton") as? SKSpriteNode
     }
     
-    func goToScene(scene: SKScene) {
-        let sceneTransition = SKTransition.push(with: SKTransitionDirection.left, duration: 1.5)
+    func goToScene(scene: SKScene, transitionDirection: SKTransitionDirection) {
+        let sceneTransition = SKTransition.push(with: transitionDirection, duration: 1.5)
         scene.scaleMode = .aspectFill
         self.view?.presentScene(scene, transition: sceneTransition)
     }
@@ -68,10 +68,12 @@ class GameScene: SKScene {
             
             // 3
             if nxtBtn.contains(location) {
-                goToScene(scene: getNextScene()!)
+                nxtBtn.run(SoundManager.sharedInstance.soundClickedButton)
+                goToScene(scene: getNextScene()!, transitionDirection: SKTransitionDirection.left)
             }
             else if prevBtn.contains(location) {
-                goToScene(scene: getPreviousScene()!)
+                prevBtn.run(SoundManager.sharedInstance.soundClickedButton)
+                goToScene(scene: getPreviousScene()!, transitionDirection: SKTransitionDirection.right)
             }
             
         } else {
@@ -84,6 +86,4 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
     }
-    
-    
 }

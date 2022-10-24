@@ -85,7 +85,7 @@ class Helper {
             let story = Stories(context: context)
             story.challengeName = data.challengeName
             story.order = data.order
-            story.labels = data.labels as NSObject
+            story.labels = data.labels as? [String]
             
             self.saveContext(saveContext: context)
         }

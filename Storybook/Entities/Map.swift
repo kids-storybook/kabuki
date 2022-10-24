@@ -10,10 +10,10 @@ import SpriteKit
 import GameplayKit
 
 class Map: GKEntity {
-    init(themeAssets: [String:Any], mapName: String,  mapPosition: CGPoint, frame: CGRect) {
+    init(themeAssets: Themes, mapName: String,  mapPosition: CGPoint, frame: CGRect) {
         super.init()
         
-        let texture = SKTexture(imageNamed: themeAssets["background"] as? String ?? "")
+        let texture = SKTexture(imageNamed: themeAssets.background ?? "")
         let spriteComponent = SpriteComponent(entity: self, texture: texture, size: texture.size())
         
         spriteComponent.node.name = mapName
@@ -21,12 +21,12 @@ class Map: GKEntity {
         spriteComponent.node.zPosition = 0
         
         // Add start button + label for each map
-        let startButton = SKSpriteNode(imageNamed: themeAssets["startButton"] as? String ?? "")
+        let startButton = SKSpriteNode(imageNamed: themeAssets.startButon ?? "")
         startButton.position = CGPoint(x: frame.midX, y: spriteComponent.node.frame.minY - (spriteComponent.node.frame.minY*0.2))
         startButton.zPosition = 1
         spriteComponent.node.addChild(startButton)
         
-        let labelMap = SKSpriteNode(imageNamed: themeAssets["label"] as? String ?? "")
+        let labelMap = SKSpriteNode(imageNamed: themeAssets.label ?? "")
         labelMap.position = CGPoint(x: frame.midX, y: spriteComponent.node.frame.maxY + (spriteComponent.node.frame.maxY*0.4))
         labelMap.zPosition = 1
         spriteComponent.node.addChild(labelMap)
