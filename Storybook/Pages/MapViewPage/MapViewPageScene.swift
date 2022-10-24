@@ -99,12 +99,13 @@ class MapViewPageScene: SKScene {
                     ])
                 )
                 
-                if let scene = GKScene(fileNamed: "GameView2") {
+                if let scene = GKScene(fileNamed: "StartPageScene") {
                     // Get the SKScene from the loaded GKScene
-                    if let sceneNode = scene.rootNode as! GameView2? {
+                    if let sceneNode = scene.rootNode as! StartPageScene? {
                         // Set the scale mode to scale to fit the window
                         sceneNode.scaleMode = .aspectFill
                         sceneNode.challengeName = name
+                        sceneNode.themeName = theme?.name ?? ""
                         // Present the scene
                         if let view = self.view {
                             view.ignoresSiblingOrder = true

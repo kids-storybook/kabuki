@@ -1,5 +1,5 @@
 //
-//  GameView.swift
+//  GameScene.swift
 //  Storybook
 //
 //  Created by Adam Ibnu fiadi on 10/10/22.
@@ -9,13 +9,23 @@ import Foundation
 import SpriteKit
 
 class GameScene: SKScene {
-    
+    var start: SKNode!
     var header: SKNode!
     var footer: SKNode!
+    var startBtn: SKSpriteNode!
     var nxtBtn: SKSpriteNode!
     var prevBtn: SKSpriteNode!
     var exitBtn: SKSpriteNode!
     var entityManager: EntityManager!
+    
+    // reusable variable for child
+    var themeName: String?
+    var theme: Themes?
+    var challengeName: String?
+    var idxScene: Int32 = 0
+    
+    // initialize core data context
+    let context = Helper().getBackgroundContext()
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
@@ -66,8 +76,15 @@ class GameScene: SKScene {
         
         guard let touch = touches.first else { return }
         let touchLocation = touch.location(in: self)
-        
-        if footer.contains(touchLocation) {
+        if let start = start, start.contains(touchLocation) {
+            let location = touch.location(in: start)
+            let node = atPoint(location)
+            node.run(SoundManager.sharedInstance.soundClickedButton)
+            if startBtn.contains(location) {
+                goToScene(scene: getNextScene()!, transitionDirection: SKTransitionDirection.left)
+            }
+            
+        } else if let footer = footer, footer.contains(touchLocation) {
             let location = touch.location(in: footer)
             
             if nxtBtn.contains(location) {
@@ -80,20 +97,29 @@ class GameScene: SKScene {
             }
             
         }
-        
         else if header.contains(touchLocation) {
             let location = touch.location(in: header)
             
             if exitBtn.contains(location) {
-                goToScene(scene: exitScene()!)
+                exitBtn.run(SoundManager.sharedInstance.soundClickedButton)
+                goToScene(scene: exitScene()!, transitionDirection: SKTransitionDirection.right)
             }
         }
-        
-        
         else {
             touchDown(at: touchLocation)
         }
-        
+    }
+    
+    func initThemeData(){
+        do {
+            let fetchRequest = Themes.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "name == %@", self.themeName ?? "")
+            fetchRequest.fetchLimit = 1
+            theme = try context.fetch(fetchRequest)[0]
+        } catch let error as NSError {
+            print(error)
+            print("error while fetching data in core data!")
+        }
     }
     
     override func didMove(to view: SKView) {
@@ -115,7 +141,7 @@ class GameScene: SKScene {
             spriteComponent.node.size = CGSize(width: 550, height: 550)
             spriteComponent.node.zPosition = 5
         }
-
+        
         let lionDad = Lion(imageName: "#1 Lion")
         if let spriteComponent = lionDad.component(ofType: SpriteComponent.self) {
             spriteComponent.node.position = CGPoint(x: -spriteComponent.node.frame.midX/2-195, y: -spriteComponent.node.frame.midY/2-35)
@@ -144,7 +170,7 @@ class GameScene: SKScene {
             spriteComponent.node.size = CGSize(width: 550, height: 550)
             spriteComponent.node.zPosition = 5
         }
-
+        
         let lionDad = Lion(imageName: "#1 Lion")
         if let spriteComponent = lionDad.component(ofType: SpriteComponent.self) {
             spriteComponent.node.position = CGPoint(x: -spriteComponent.node.frame.midX/2-475, y: -spriteComponent.node.frame.midY/2-35)

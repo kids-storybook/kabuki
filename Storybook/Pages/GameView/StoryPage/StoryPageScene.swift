@@ -2,20 +2,15 @@ import Foundation
 import SpriteKit
 import GameplayKit
 
-class GameView: GameScene {
+class StoryPageScene: GameScene {
     
     let backgroundScene = SKSpriteNode(imageNamed: "kandangSinga")
-    var idxScene: Int32 = 0
-    var challengeName: String?
-    
     var story: Stories?
-    
-    // initialize core data context
-    let context = Helper().getBackgroundContext()
+    var totalStories: Int?
     
     private func setupPlayer(){
         makeLion()
-
+        
         backgroundScene.position = CGPoint(x: frame.midX, y: frame.midY)
         backgroundScene.zPosition = -10
         backgroundScene.size = self.frame.size
@@ -48,36 +43,50 @@ class GameView: GameScene {
             ])
             fetchRequest.fetchLimit = 1
             story = try context.fetch(fetchRequest)[0]
+            
+            fetchRequest.predicate = NSPredicate(format: "challengeName == %@", challengeName ?? "")
+            totalStories = try context.count(for: fetchRequest)
         } catch let error as NSError {
             print(error)
             print("error while fetching data in core data!")
         }
+        
         self.setupPlayer()
     }
     
     override func getNextScene() -> SKScene? {
-        if idxScene < 3 {
-            let scene = SKScene(fileNamed: "GameView") as! GameView
+        if Int(idxScene) < totalStories ?? 0 {
+            let scene = SKScene(fileNamed: "StoryPageScene") as! StoryPageScene
             scene.idxScene = self.idxScene + 1
             scene.challengeName = self.challengeName
+            scene.theme = self.theme
             return scene
         }
-        // Please change this to the next scene (mini challenge, not the story anymore)
-        return SKScene()
+        let scene = SKScene(fileNamed: "AnimationPageScene") as! AnimationPageScene
+        scene.challengeName = self.challengeName
+        scene.theme = self.theme
+        scene.idxScene = self.idxScene
+        return scene
     }
     
     override func getPreviousScene() -> SKScene? {
         if idxScene > 0 {
-            let scene = SKScene(fileNamed: "GameView") as! GameView
+            let scene = SKScene(fileNamed: "StoryPageScene") as! StoryPageScene
             scene.idxScene = self.idxScene - 1
             scene.challengeName = self.challengeName
+            scene.theme = self.theme
             return scene
         }
         
-        let scene = SKScene(fileNamed: "GameViewStart") as! GameViewStart
+        let scene = SKScene(fileNamed: "StartPageScene") as! StartPageScene
         scene.challengeName = self.challengeName
+        scene.theme = self.theme
         return scene
     }
     
-    
+    override func exitScene() -> SKScene? {
+        let scene = SKScene(fileNamed: "MapViewPageScene") as! MapViewPageScene
+        scene.theme = self.theme
+        return scene
+    }
 }
