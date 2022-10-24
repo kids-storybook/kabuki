@@ -1,11 +1,13 @@
 import Foundation
 import SpriteKit
+import GameplayKit
 
 class GameViewStart: GameScene {
     
     var start: SKNode!
     var startBtn: SKSpriteNode!
     let backgroundScene = SKSpriteNode(imageNamed: "kandangSinga")
+    var challengeName: String?
     
     private func setupPlayer(){
         
@@ -58,9 +60,10 @@ class GameViewStart: GameScene {
         
         if start.contains(touchLocation) {
             let location = touch.location(in: start)
-            
+            let node = atPoint(location)
+            node.run(SoundManager.sharedInstance.soundClickedButton)
             if startBtn.contains(location) {
-                goToScene(scene: getNextScene()!)
+                goToScene(scene: getNextScene()!, transitionDirection: SKTransitionDirection.left)
             }
             
         } else {
@@ -69,9 +72,8 @@ class GameViewStart: GameScene {
     }
     
     override func getNextScene() -> SKScene? {
-        return SKScene(fileNamed: "GameView") as! GameView
+        let scene = SKScene(fileNamed: "GameView") as! GameView
+        scene.challengeName = self.challengeName
+        return scene
     }
-    
-    
-    
 }
