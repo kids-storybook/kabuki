@@ -23,9 +23,13 @@ class GameScene: SKScene {
     var theme: Themes?
     var challengeName: String?
     var idxScene: Int32 = 0
+    var idxSceneAnimate: Int32 = 0
     
     // initialize core data context
     let context = Helper().getBackgroundContext()
+    
+    // make new color for text border
+    let textBorder = UIColor(red: 137, green: 165, blue: 81)
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }

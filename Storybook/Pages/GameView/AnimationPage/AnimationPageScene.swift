@@ -17,6 +17,8 @@ class AnimationPageScene: GameScene {
     var textAnimateOne = String("lingkaran")
     var textAnimateTwo = String("persegi")
     var textAnimateThree = String("segitiga")
+    var story: Stories?
+    var totalStories: Int?
     
     private func setupPlayer(){
         
@@ -28,43 +30,69 @@ class AnimationPageScene: GameScene {
         
         addChild(backgroundSceneViewTwo)
         
-        //        text.outlinedText = "Ada yang berbentuk \(textAnimateOne), \(textAnimateTwo) dan \(textAnimateThree) "
+        let rawLabels = story?.labels as? [String]
         
-        text.fontColor = UIColor.white
-        text.position = CGPoint(x: 0, y: 175)
-        text.zPosition = 15
-        text.preferredMaxLayoutWidth = 700
-        text.numberOfLines = 2
-        //        text.attributedText =
-        
-        //        let attributes: [NSAttributedString.Key: Any] = [
-        //            .strokeWidth: 5.0,
-        //            .strokeColor: UIColor.black
-        //        ]
-        
-        //        let attributedString = NSAttributedString(string: text, attributes: attributes)
-        
-        //        text.horizontalAlignmentMode = .center
-        
-        addChild(text)
+        if let labels = rawLabels {
+            for (idx, label) in labels.enumerated() {
+                let textScene = SKLabelNode(fontNamed: "Poppins-Black")
+                textScene.text = label
+                textScene.fontSize = 50
+                textScene.fontColor = SKColor.white
+                textScene.position = CGPoint(x: 0, y: Int(frame.height)/3-idx*40)
+                textScene.zPosition = 100
+                textScene.addStroke(color: textBorder, width: 7.0)
+                addChild(textScene)
+            }
+        }
     }
     
     override func didMove(to view: SKView) {
+        do {
+            let fetchRequest = Stories.fetchRequest()
+            let orderPredicate = NSPredicate(format: "order == \(idxSceneAnimate)")
+            let challengeNamePredicate = NSPredicate(format: "challengeName == %@", (challengeName ?? "") + "_animate")
+            fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+                challengeNamePredicate, orderPredicate
+            ])
+            fetchRequest.fetchLimit = 1
+            story = try context.fetch(fetchRequest)[0]
+            
+            fetchRequest.predicate = NSPredicate(format: "challengeName == %@", challengeName ?? "")
+            totalStories = try context.count(for: fetchRequest)
+        } catch let error as NSError {
+            print(error)
+            print("error while fetching data in core data!")
+        }
+        
         self.setupPlayer()
     }
     
     override func getNextScene() -> SKScene? {
-        let scene = SKScene(fileNamed: "ShapeGameScene") as! ShapeGameScene
+        if Int(idxSceneAnimate) < totalStories ?? 0 {
+            let scene = SKScene(fileNamed: "AnimationPageScene") as! AnimationPageScene
+            scene.idxSceneAnimate = self.idxSceneAnimate + 1
+            scene.challengeName = self.challengeName
+            scene.theme = self.theme
+            return scene
+        }
+        let scene = SKScene(fileNamed: "StartPageScene") as! StartPageScene
         scene.challengeName = self.challengeName
         scene.theme = self.theme
         return scene
     }
     
     override func getPreviousScene() -> SKScene? {
+        if idxSceneAnimate > 0 {
+            let scene = SKScene(fileNamed: "AnimationPageScene") as! AnimationPageScene
+            scene.idxSceneAnimate = self.idxSceneAnimate - 1
+            scene.challengeName = self.challengeName
+            scene.theme = self.theme
+            return scene
+        }
         let scene = SKScene(fileNamed: "StoryPageScene") as! StoryPageScene
+        scene.idxScene = self.idxScene
         scene.challengeName = self.challengeName
         scene.theme = self.theme
-        scene.idxScene = self.idxScene
         return scene
     }
     

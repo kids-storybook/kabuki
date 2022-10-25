@@ -4,12 +4,13 @@ import GameplayKit
 
 class StoryPageScene: GameScene {
     
-    let backgroundScene = SKSpriteNode(imageNamed: "kandangSinga")
     var story: Stories?
     var totalStories: Int?
     
     private func setupPlayer(){
         makeLion()
+        
+        let backgroundScene = SKSpriteNode(imageNamed: story?.background ?? "")
         
         backgroundScene.position = CGPoint(x: frame.midX, y: frame.midY)
         backgroundScene.zPosition = -10
@@ -21,10 +22,11 @@ class StoryPageScene: GameScene {
             for (idx, label) in labels.enumerated() {
                 let textScene = SKLabelNode(fontNamed: "Poppins-Black")
                 textScene.text = label
-                textScene.fontSize = 40
+                textScene.fontSize = 50
                 textScene.fontColor = SKColor.white
-                textScene.position = CGPoint(x: 0, y: -idx*40)
+                textScene.position = CGPoint(x: 0, y: Int(frame.height)/3-idx*40)
                 textScene.zPosition = 100
+                textScene.addStroke(color: textBorder, width: 7.0)
                 addChild(textScene)
             }
         }

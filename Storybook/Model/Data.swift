@@ -24,6 +24,8 @@ struct StoryModel {
     var challengeName: String?
     var labels: [NSString?]
     var order: Int32
+    var background: String?
+    var character: String?
 }
 
 struct ChallangeModel {
@@ -64,8 +66,10 @@ let initThemeData: [ThemeModel] = [
 ]
 
 let initAssessmentData: [StoryModel] = [
-    StoryModel(challengeName: "lion_challenge", labels: ["Ini adalah keluarga Singa"], order: 0),
-    StoryModel(challengeName: "lion_challenge", labels: ["Lihatlah keluarga singa ini", "Ada Bapak singa, Ibu singa, dan anak singa"], order: 1)
+    StoryModel(challengeName: "lion_challenge", labels: ["Lihatlah keluarga singa ini"], order: 0, background: "kandangSinga", character: "kandangSinga"),
+    StoryModel(challengeName: "lion_challenge", labels: ["Ada Bapak singa, Ibu singa, dan", "anak singa"], order: 1, background: "kandangSinga", character: "kandangSinga"),
+    StoryModel(challengeName: "lion_challenge_animate", labels: ["Text Scene tutorial 1", "Text Scene tutorial 1"], order: 0, background: "kandangSingaZoom", character: "kandangSinga"),
+    StoryModel(challengeName: "lion_challenge_animate", labels: ["Text Scene tutorial 2", "Text Scene tutorial 2"], order: 1, background: "kandangSingaZoom", character: "kandangSinga")
 ]
 
 let initShapeData: [ShapeModel] = [
