@@ -23,6 +23,7 @@ class GameScene: SKScene {
     var theme: Themes?
     var challengeName: String?
     var idxScene: Int32 = 0
+    var idxScenePreAnimate: Int32 = 0
     var idxSceneAnimate: Int32 = 0
     
     // initialize core data context

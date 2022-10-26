@@ -24,6 +24,8 @@
 		36AF5FCD2906FBBC00C25714 /* Themes+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AF5FC72906FBBC00C25714 /* Themes+CoreDataProperties.swift */; };
 		36AF5FCF2906FBBC00C25714 /* Challenges+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AF5FC92906FBBC00C25714 /* Challenges+CoreDataProperties.swift */; };
 		36EC630E28FFF85800176DA3 /* Start.sks in Resources */ = {isa = PBXBuildFile; fileRef = 36EC630D28FFF85800176DA3 /* Start.sks */; };
+		36F7DC752907B5D80045984E /* AnimationPageScene2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 36F7DC742907B5D80045984E /* AnimationPageScene2.sks */; };
+		36F7DC772907B67C0045984E /* AnimationPageScene2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F7DC762907B67C0045984E /* AnimationPageScene2.swift */; };
 		36FD197428F46499002C25BF /* Footer.sks in Resources */ = {isa = PBXBuildFile; fileRef = 36FD197328F46499002C25BF /* Footer.sks */; };
 		36FD197928F468D6002C25BF /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FD197828F468D6002C25BF /* GameScene.swift */; };
 		36FD198328F46C92002C25BF /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 36FD198228F46C92002C25BF /* GameScene.sks */; };
@@ -111,6 +113,8 @@
 		36AF5FC82906FBBC00C25714 /* Challenges+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Challenges+CoreDataClass.swift"; sourceTree = "<group>"; };
 		36AF5FC92906FBBC00C25714 /* Challenges+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Challenges+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		36EC630D28FFF85800176DA3 /* Start.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Start.sks; sourceTree = "<group>"; };
+		36F7DC742907B5D80045984E /* AnimationPageScene2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = AnimationPageScene2.sks; sourceTree = "<group>"; };
+		36F7DC762907B67C0045984E /* AnimationPageScene2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationPageScene2.swift; sourceTree = "<group>"; };
 		36FD197328F46499002C25BF /* Footer.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Footer.sks; sourceTree = "<group>"; };
 		36FD197828F468D6002C25BF /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		36FD198228F46C92002C25BF /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -270,6 +274,8 @@
 			isa = PBXGroup;
 			children = (
 				E601FEC6290686AE00810558 /* AnimationPageScene.sks */,
+				36F7DC742907B5D80045984E /* AnimationPageScene2.sks */,
+				36F7DC762907B67C0045984E /* AnimationPageScene2.swift */,
 				E601FEC7290686AE00810558 /* AnimationPageScene.swift */,
 			);
 			path = AnimationPage;
@@ -538,6 +544,7 @@
 				E6E3369228ECA2FF00FE2BEE /* lioncry3.wav in Resources */,
 				3644BD9D28FF02D70027DDE5 /* Poppins-Bold.ttf in Resources */,
 				360A8EF428F459CB00949260 /* StoryPageScene.sks in Resources */,
+				36F7DC752907B5D80045984E /* AnimationPageScene2.sks in Resources */,
 				E6E3365228EC295700FE2BEE /* HomepageScene.sks in Resources */,
 				E6BBB42128F4529200D003F0 /* MapViewPageScene.sks in Resources */,
 				3644BD9C28FF02D50027DDE5 /* Poppins-Black.ttf in Resources */,
@@ -592,6 +599,7 @@
 				E63DEA6828E2EB32000AC43C /* AppDelegate.swift in Sources */,
 				E6F74EE1290F5A3400256CF5 /* Stories+CoreDataClass.swift in Sources */,
 				36AF5FC32906F6DA00C25714 /* SKLabelNode+Extension.swift in Sources */,
+				36F7DC772907B67C0045984E /* AnimationPageScene2.swift in Sources */,
 				E601FEC9290686AE00810558 /* AnimationPageScene.swift in Sources */,
 				36AF5FCC2906FBBC00C25714 /* Themes+CoreDataClass.swift in Sources */,
 				E6D4168728E591720030681F /* ButtonNode.swift in Sources */,

@@ -87,7 +87,7 @@ class Helper {
             story.challengeName = data.challengeName
             story.order = data.order
             story.labels = data.labels as? [String]
-            
+            story.background = data.background
             self.saveContext(saveContext: context)
         }
         
