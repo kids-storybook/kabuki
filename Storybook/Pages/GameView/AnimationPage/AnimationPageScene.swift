@@ -11,24 +11,20 @@ import UIKit
 
 class AnimationPageScene: GameScene {
     
-    let backgroundSceneViewTwo = SKSpriteNode(imageNamed: "kandangSingaZoom")
-    //    let text = MKOutlinedLabelNode(fontNamed: "Poppins-Bold", fontSize: 40)
-    let text = SKLabelNode(text: "Hello")
-    var textAnimateOne = String("lingkaran")
-    var textAnimateTwo = String("persegi")
-    var textAnimateThree = String("segitiga")
     var story: Stories?
     var totalStories: Int?
+    var backgroundScene: SKSpriteNode!
     
     private func setupPlayer(){
         
         makeLionTutorial()
         
-        backgroundSceneViewTwo.position = CGPoint(x: frame.midX, y: frame.midY)
-        backgroundSceneViewTwo.zPosition = -10
-        backgroundSceneViewTwo.size = self.frame.size
+        backgroundScene = SKSpriteNode(imageNamed: self.story?.background ?? "")
+        backgroundScene.position = CGPoint(x: frame.midX, y: frame.midY)
+        backgroundScene.zPosition = -10
+        backgroundScene.size = self.frame.size
         
-        addChild(backgroundSceneViewTwo)
+        addChild(backgroundScene)
         
         let rawLabels = story?.labels as? [String]
         

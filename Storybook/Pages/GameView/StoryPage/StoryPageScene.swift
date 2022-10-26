@@ -47,7 +47,7 @@ class StoryPageScene: GameScene {
             ])
             fetchRequest.fetchLimit = 1
             story = try context.fetch(fetchRequest)[0]
-            print("Data \(story?.background)")
+//            print("Data \(story?.background)")
             fetchRequest.predicate = NSPredicate(format: "challengeName == %@", challengeName ?? "")
             totalStories = try context.count(for: fetchRequest)
         } catch let error as NSError {
