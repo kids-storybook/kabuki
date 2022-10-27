@@ -34,6 +34,12 @@ struct ChallangeModel {
     var zPosition: Double?
 }
 
+struct ShapeModel {
+    var challengeName: String?
+    var background: String?
+    var order: Int32
+}
+
 let initThemeData: [ThemeModel] = [
     ThemeModel(background: "mini zoo card", mapBackground: "zoo_background", label: "mini zoo", name: "zoo", startButton: "start button", isActive: true, challenges: [
         ChallangeModel(background: "bright_elephant_cage", challengeName: "elephant_challenge", isActive: false, xCoordinate: -452.187, yCoordinate: 166.877, zPosition: 1.0),
@@ -51,4 +57,16 @@ let initThemeData: [ThemeModel] = [
 let initAssessmentData: [StoryModel] = [
     StoryModel(challengeName: "lion_challenge", labels: ["Ini adalah keluarga Singa"], order: 0),
     StoryModel(challengeName: "lion_challenge", labels: ["Lihatlah keluarga singa ini", "Ada Bapak singa, Ibu singa, dan anak singa"], order: 1)
+]
+
+let initMiniGamesData: [ShapeModel] = [
+    ShapeModel(challengeName: "lion_challenge", background: "triangle_1", order: 0),
+    ShapeModel(challengeName: "lion_challenge", background: "triangle_2", order: 1),
+    ShapeModel(challengeName: "lion_challenge", background: "triangle_3", order: 2),
+    ShapeModel(challengeName: "lion_challenge", background: "circle_1", order: 0),
+    ShapeModel(challengeName: "lion_challenge", background: "circle_2", order: 1),
+    ShapeModel(challengeName: "lion_challenge", background: "circle_3", order: 2),
+    ShapeModel(challengeName: "lion_challenge", background: "square_1", order: 0),
+    ShapeModel(challengeName: "lion_challenge", background: "square_2", order: 1),
+    ShapeModel(challengeName: "lion_challenge", background: "square_3", order: 2),
 ]

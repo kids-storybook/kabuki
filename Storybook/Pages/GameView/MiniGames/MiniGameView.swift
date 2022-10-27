@@ -9,40 +9,26 @@ import SpriteKit
 import Foundation
 
 
-class MiniGameView: SKScene {
+class MiniGameView: GameScene {
+    private var currentNode: SKNode?
+    var shapes: [Shapes?]?
+    var totalGames: Int?
     
     let backgroundScene = SKSpriteNode(imageNamed: "EasyGameScene")
     let lionCub = SKSpriteNode(imageNamed: "#1 Anak Singa")
     
-    let label = SKLabelNode()
-    var shape = SKSpriteNode()
-    
-    var triangle = SKSpriteNode()
-    var square = SKSpriteNode()
-    var circle = SKSpriteNode()
-    
-    let squareBin = SKSpriteNode()
-    let triangleBin = SKSpriteNode()
-    let circleBin = SKSpriteNode()
-    
-    let triangleBinTitle = SKLabelNode()
-    let squareBinTitle = SKLabelNode()
-    let circleBinTitle = SKLabelNode()
-    
-    var c = 0
-    var s = 0
-    var t = 0
+    let squareBin = SKSpriteNode(imageNamed: "square")
+    let triangleBin = SKSpriteNode(imageNamed: "triangle")
+    let circleBin = SKSpriteNode(imageNamed: "circle")
     
     func setBackground() {
         backgroundScene.position = CGPoint(x: frame.midX, y: frame.midY)
-        
-        //QUESTION 1
-        backgroundScene.setScale(0.65)
         backgroundScene.zPosition = -10
+        backgroundScene.size = self.frame.size
         addChild(backgroundScene)
         
-        lionCub.position = CGPoint(x: frame.midX-150, y: frame.midY - 75)
-        lionCub.setScale(0.2)
+        lionCub.position = CGPoint(x: frame.midX, y: frame.midY - 75)
+        lionCub.setScale(0.15)
         lionCub.zPosition = -9
         addChild(lionCub)
     }
@@ -50,77 +36,40 @@ class MiniGameView: SKScene {
     
     func setupShapes() {
         //Create shapes
-        //Triangle
-        triangle = SKSpriteNode(texture: SKTexture(imageNamed: "T1"))
-        triangle.name = "Triangle"
-        triangle.setScale(0.15)
-        triangle.position = CGPoint(x: frame.midX-275, y: frame.midY - 175)
-        addChild(triangle)
-        
-        //Square
-        square = SKSpriteNode(texture: SKTexture(imageNamed: "S1"))
-        square.name = "Square"
-        square.setScale(0.15)
-        square.position = CGPoint(x: frame.midX-150, y: frame.midY - 175)
-        addChild(square)
-        
-        //Circle
-        circle = SKSpriteNode(texture: SKTexture(imageNamed: "C1"))
-        circle.name = "Circle"
-        circle.setScale(0.15)
-        circle.position = CGPoint(x: frame.midX-25, y: frame.midY - 175)
-        addChild(circle)
-        
+        for (idx, shape) in (shapes ?? []).enumerated() {
+            let activeChallenge = Shape(imageName: shape?.background ?? "", shapeName: shape?.background?.components(separatedBy: "_")[0] ?? "")
+            if let spriteComponent = activeChallenge.component(ofType: SpriteComponent.self) {
+                spriteComponent.node.position = CGPoint(x: frame.midX-CGFloat(idx*200), y: frame.midY - 175)
+                spriteComponent.node.setScale(0.5)
+                spriteComponent.node.zPosition = 2
+            }
+            entityManager.add(activeChallenge)
+        }
     }
     
     
     func setupTargets(){
         
         //setup the yellow bin with colour, dimensions and add to scene
-        triangleBin.color = SKColor.yellow
-        triangleBin.alpha = 0
-        triangleBin.size = CGSize(width:100, height: 100)
-        triangleBin.position = CGPoint (x: frame.midX + 245 , y: frame.midY - 165)
+        triangleBin.alpha = 1
+        triangleBin.setScale(0.474)
+        triangleBin.position = CGPoint (x: 373.999, y: -236.251)
         triangleBin.zPosition = -1
         addChild(triangleBin)
         
-        triangleBinTitle.fontName = "Chalkduster";
-        triangleBinTitle.fontSize = 20
-        triangleBinTitle.fontColor = SKColor.black
-        triangleBinTitle.position = CGPoint (x: frame.midX + 245 , y: frame.midY - 175)
-        triangleBinTitle.text = "Triangle"
-        triangleBinTitle.zPosition = -1
-        
-        
         //note that we can determine property of a fixed type using shorthand, shown here for setting colour
-        squareBin.color = SKColor.blue
-        squareBin.alpha = 0
-        squareBin.size = CGSize(width:100, height: 100)
-        squareBin.position = CGPoint (x: frame.midX + 245, y: frame.midY)
+        squareBin.alpha = 1
+        squareBin.setScale(0.474)
+        squareBin.position = CGPoint (x: 372.854, y: 8)
         squareBin.zPosition = -1
         addChild(squareBin)
         
-        squareBinTitle.fontName = "Chalkduster";
-        squareBinTitle.fontSize = 20
-        squareBinTitle.fontColor = SKColor.white
-        squareBinTitle.position = CGPoint (x: frame.midX + 245, y: frame.midY)
-        squareBinTitle.text = "Square"
-        squareBinTitle.zPosition = -1
-        
         //Circle Bin
-        circleBin.color = SKColor.green
-        circleBin.alpha = 0
-        circleBin.size = CGSize(width:100, height: 100)
-        circleBin.position = CGPoint (x: frame.midX + 240, y: frame.midY + 165)
+        circleBin.alpha = 1
+        circleBin.setScale(0.474)
+        circleBin.position = CGPoint (x: 369.188, y: 251.081)
         circleBin.zPosition = -1
         addChild(circleBin)
-        
-        circleBinTitle.fontName = "Chalkduster";
-        circleBinTitle.fontSize = 20
-        circleBinTitle.fontColor = SKColor.white
-        circleBinTitle.position = CGPoint (x: frame.midX + 250, y: frame.midY + 175)
-        circleBinTitle.text = "Circle"
-        circleBinTitle.zPosition = -1
     }
     
     func wrongClick(){
@@ -141,129 +90,123 @@ class MiniGameView: SKScene {
     }
     
     public override func didMove(to view: SKView) {
+        entityManager = EntityManager(scene: self)
+        print("scene size: \(size)")
+        
+        do {
+            let fetchRequest = Shapes.fetchRequest()
+            let orderPredicate = NSPredicate(format: "order == \(idxScene)")
+            let challengeNamePredicate = NSPredicate(format: "challengeName == %@", challengeName ?? "")
+            fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+                challengeNamePredicate, orderPredicate
+            ])
+            shapes = try context.fetch(fetchRequest)
+            
+            fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+                challengeNamePredicate, orderPredicate
+            ])
+            totalGames = try context.count(for: fetchRequest)
+        } catch let error as NSError {
+            print(error)
+            print("error while fetching data in core data!")
+        }
+        
         setBackground()
         setupShapes()
         setupTargets()
     }
     
-    public override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        //get a touch
-        let touch = touches.first!
-        let location = touch.location(in: self)
-        let node = atPoint(location)
-        
-        //if it started in the Shapes, move it to the new location
-        if let name = node.name, name == square.name {
-            square.position = touch.location(in:self)
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let touch = touches.first {
+            let location = touch.location(in: self)
+            
+            let touchedNodes = self.nodes(at: location)
+            for node in touchedNodes.reversed() {
+                if node.name == "triangle" || node.name == "square" || node.name == "circle"
+                {
+                    self.currentNode = node
+                }
+            }
         }
-        else if let name = node.name, name == circle.name {
-            circle.position = touch.location(in:self)
-        }
-        else if let name = node.name, name == triangle.name {
-            triangle.position = touch.location(in:self)
-        }
-        
     }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let touch = touches.first, let node = self.currentNode {
+            let touchLocation = touch.location(in: self)
+            node.position = touchLocation
+        }
+    }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.currentNode = nil
+    }
+    
     
     public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         //if shape is called triangle and its centre is inside the triangle target
-        if triangle.name == "Triangle"{
-            if triangleBin.frame.contains(triangle.position){
-                //remove it and create a new label
-                triangle.position = triangleBin.position
-                t = t + 1
+        if let node = self.currentNode {
+            if node.name == "triangle"{
+                if triangleBin.frame.contains(node.position){
+                    //remove it and create a new label
+                    node.position = triangleBin.position
+                }
+                else if squareBin.frame.contains(node.position) || circleBin.frame.contains(node.position){
+                    wrongClick()
+                    node.run(
+                        SKAction.sequence([
+                            SKAction.scale(by: 0.5, duration: 0.15),
+                            SKAction.wait(forDuration: 0.01),
+                            SKAction.scale(by: 2, duration: 0.15)
+                        ])
+                    )
+                    node.position = CGPoint(x: frame.midX, y: frame.midY - 175)
+                }
             }
-            else if squareBin.frame.contains(triangle.position){
-                wrongClick()
-                triangle.run(
-                    SKAction.sequence([
-                        SKAction.scale(by: 0.5, duration: 0.15),
-                        SKAction.wait(forDuration: 0.01),
-                        SKAction.scale(by: 2, duration: 0.15)
-                    ])
-                )
-                triangle.position = CGPoint(x: frame.midX-275, y: frame.midY - 175)
-            }
-            else if circleBin.frame.contains(triangle.position){
-                wrongClick()
-                triangle.run(
-                    SKAction.sequence([
-                        SKAction.scale(by: 0.5, duration: 0.15),
-                        SKAction.wait(forDuration: 0.01),
-                        SKAction.scale(by: 2, duration: 0.15)
-                    ])
-                )
-                triangle.position = CGPoint(x: frame.midX-275, y: frame.midY - 175)
-            }
-        }
-        
-        //same process for square label
-        if square.name == "Square"{
-            if squareBin.frame.contains(square.position){
-                //remove it and create a new label
-                square.position = squareBin.position
-                s = s + 1
-            }
-            else if triangleBin.frame.contains(square.position){
-                square.run(
-                    SKAction.sequence([
-                        SKAction.scale(by: 0.5, duration: 0.15),
-                        SKAction.wait(forDuration: 0.02),
-                        SKAction.scale(by: 2, duration: 0.15)
-                    ])
-                )
-                wrongClick()
-                square.position = CGPoint(x: frame.midX-150, y: frame.midY - 175)
-            }
-            else if circleBin.frame.contains(square.position){
-                square.run(
-                    SKAction.sequence([
-                        SKAction.scale(by: 0.5, duration: 0.15),
-                        SKAction.wait(forDuration: 0.01),
-                        SKAction.scale(by: 2, duration: 0.15)
-                    ])
-                )
-                wrongClick()
-                square.position = CGPoint(x: frame.midX-150, y: frame.midY - 175)
-            }
-        }
-        
-        //same process for circle label
-        if circle.name == "Circle"{
-            if circleBin.frame.contains(circle.position){
-                //remove it and create a new label
-                circle.position = circleBin.position
-                c = c + 1
-            }
-            else if triangleBin.frame.contains(circle.position){
-                circle.run(
-                    SKAction.sequence([
-                        SKAction.scale(by: 0.5, duration: 0.15),
-                        SKAction.wait(forDuration: 0.02),
-                        SKAction.scale(by: 2, duration: 0.15)
-                    ])
-                )
-                wrongClick()
-                circle.position = CGPoint(x: frame.midX-25, y: frame.midY - 175)
-            }
-            else if squareBin.frame.contains(circle.position){
-                circle.run(
-                    SKAction.sequence([
-                        SKAction.scale(by: 0.5, duration: 0.15),
-                        SKAction.wait(forDuration: 0.01),
-                        SKAction.scale(by: 2, duration: 0.15)
-                    ])
-                )
-                wrongClick()
-                circle.position = CGPoint(x: frame.midX-25, y: frame.midY - 175)
-            }
-        }
-        
-        if c == 1 && t == 1 && s == 1 {
             
+            //same process for square label
+            else if node.name == "square"{
+                if squareBin.frame.contains(node.position){
+                    //remove it and create a new label
+                    node.position = squareBin.position
+                }
+                else if triangleBin.frame.contains(node.position) || circleBin.frame.contains(node.position){
+                    node.run(
+                        SKAction.sequence([
+                            SKAction.scale(by: 0.5, duration: 0.15),
+                            SKAction.wait(forDuration: 0.02),
+                            SKAction.scale(by: 2, duration: 0.15)
+                        ])
+                    )
+                    wrongClick()
+                    node.position = CGPoint(x: frame.midX-400, y: frame.midY - 175)
+                }
+            }
             
+            //same process for circle label
+            else if node.name == "circle"{
+                if circleBin.frame.contains(node.position){
+                    //remove it and create a new label
+                    node.position = circleBin.position
+                }
+                else if triangleBin.frame.contains(node.position) || squareBin.frame.contains(node.position){
+                    node.run(
+                        SKAction.sequence([
+                            SKAction.scale(by: 0.5, duration: 0.15),
+                            SKAction.wait(forDuration: 0.02),
+                            SKAction.scale(by: 2, duration: 0.15)
+                        ])
+                    )
+                    wrongClick()
+                    node.position = CGPoint(x: frame.midX-200, y: frame.midY - 175)
+                }
+            }
         }
-        
+        self.currentNode = nil
     }
     
+    override func exitScene() -> SKScene? {
+        let scene = SKScene(fileNamed: "MapViewPageScene") as! MapViewPageScene
+        scene.theme = self.theme
+        return scene
+    }
 }

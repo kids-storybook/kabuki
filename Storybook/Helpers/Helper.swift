@@ -90,6 +90,26 @@ class Helper {
             self.saveContext(saveContext: context)
         }
         
+        fetchRequest = Shapes.fetchRequest()
+        deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        do {
+            try context.execute(deleteRequest)
+            try context.save()
+        } catch let error as NSError {
+            // TODO: handle the error
+            print(error)
+        }
+        
+        for data in initMiniGamesData {
+            let shape = Shapes(context: context)
+            shape.challengeName = data.challengeName
+            shape.order = data.order
+            shape.background = data.background
+            
+            self.saveContext(saveContext: context)
+        }
+        
         do {
             let themes = try context.fetch(Themes.fetchRequest())
             for data in themes {

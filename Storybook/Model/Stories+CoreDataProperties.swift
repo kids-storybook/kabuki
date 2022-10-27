@@ -2,7 +2,7 @@
 //  Stories+CoreDataProperties.swift
 //  Storybook
 //
-//  Created by zy on 24/10/22.
+//  Created by zy on 27/10/22.
 //
 //
 
@@ -17,7 +17,7 @@ extension Stories {
     }
 
     @NSManaged public var challengeName: String?
-    @NSManaged public var labels: [String]?
+    @NSManaged public var labels: Array<String>?
     @NSManaged public var order: Int32
 
 }
