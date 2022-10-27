@@ -88,6 +88,7 @@ class Helper {
             story.order = data.order
             story.labels = data.labels as? [String]
             story.background = data.background
+            story.character = data.character
             self.saveContext(saveContext: context)
         }
         

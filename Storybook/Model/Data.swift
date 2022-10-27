@@ -53,7 +53,7 @@ struct ShapeTargetModel {
 
 let initThemeData: [ThemeModel] = [
     ThemeModel(background: "mini zoo card", mapBackground: "zoo_background", gameBackground: "EasyGameScene", label: "mini zoo", name: "zoo", startButton: "start button", isActive: true, challenges: [
-        ChallangeModel(background: "bright_elephant_cage", challengeName: "elephant_challenge", isActive: false, xCoordinate: -452.187, yCoordinate: 166.877, zPosition: 1.0),
+        ChallangeModel(background: "bright_elephant_cage", challengeName: "elephant_challenge", isActive: true, xCoordinate: -452.187, yCoordinate: 166.877, zPosition: 1.0),
         ChallangeModel(background: "bright_gorilla_cage", challengeName: "gorilla_challenge", isActive: false, xCoordinate: 524.09, yCoordinate: 179.16, zPosition: 0.0),
         ChallangeModel(background: "bright_giraffe_cage", challengeName: "giraffe_challenge", isActive: false, xCoordinate: 401.719, yCoordinate: -127.736, zPosition: 1.0),
         ChallangeModel(background: "bright_panda_cage", challengeName: "panda_challenge", isActive: false, xCoordinate: -327.585, yCoordinate: 379.641, zPosition: 0.0),
@@ -66,10 +66,17 @@ let initThemeData: [ThemeModel] = [
 ]
 
 let initAssessmentData: [StoryModel] = [
-    StoryModel(challengeName: "lion_challenge", labels: ["Lihatlah keluarga singa ini"], order: 0, background: "kandangSinga", character: "kandangSinga"),
+    StoryModel(challengeName: "lion_challenge", labels: ["Lihatlah keluarga singa ini"], order: 0, background: "kandangSinga", character: "#1 Anak Singa"),
     StoryModel(challengeName: "lion_challenge", labels: ["Ada Bapak singa, Ibu singa, dan", "anak singa"], order: 1, background: "kandangSinga", character: "kandangSinga"),
     StoryModel(challengeName: "lion_challenge_animate", labels: ["Ibu Singa memberikan anaknya", "berbagai bentuk mainan"], order: 0, background: "kandangSingaZoom", character: "kandangSinga"),
-    StoryModel(challengeName: "lion_challenge_animate_2", labels: ["Ada yang berbentuk lingkaran,", "persegi, dan segitiga"], order: 0, background: "kandangSingaZoom", character: "kandangSinga")
+    StoryModel(challengeName: "lion_challenge_animate_2", labels: ["Ada yang berbentuk lingkaran,", "persegi, dan segitiga"], order: 0, background: "kandangSingaZoom", character: "kandangSinga"),
+    
+    
+    StoryModel(challengeName: "elephant_challenge", labels: ["Lihatlah keluarga singa ini"], order: 0, background: "kandangSinga", character: "Elephant"),
+    StoryModel(challengeName: "elephant_challenge", labels: ["Ada Bapak singa, Ibu singa, dan", "anak singa"], order: 1, background: "kandangSinga", character: "kandangSinga"),
+    StoryModel(challengeName: "elephant_challenge_animate", labels: ["Ibu Singa memberikan anaknya", "berbagai bentuk mainan"], order: 0, background: "kandangSingaZoom", character: "kandangSinga"),
+    StoryModel(challengeName: "elephant_challenge_animate_2", labels: ["Ada yang berbentuk lingkaran,", "persegi, dan segitiga"], order: 0, background: "kandangSingaZoom", character: "kandangSinga")
+    
 ]
 
 let initShapeData: [ShapeModel] = [

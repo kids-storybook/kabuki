@@ -9,7 +9,7 @@ class StoryPageScene: GameScene {
     var backgroundScene: SKSpriteNode!
     
     private func setupPlayer(){
-        makeLion()
+        makeLion(imageName: self.story?.character ?? "")
         entityManager = EntityManager(scene: self)
         backgroundScene = SKSpriteNode(imageNamed: self.story?.background ?? "")
 //        backgroundScene = SKSpriteNode(imageNamed: "kandangSingaZoom")
@@ -47,7 +47,7 @@ class StoryPageScene: GameScene {
             ])
             fetchRequest.fetchLimit = 1
             story = try context.fetch(fetchRequest)[0]
-//            print("Data \(story?.background)")
+//            print("Data \(story?.character)")
             fetchRequest.predicate = NSPredicate(format: "challengeName == %@", challengeName ?? "")
             totalStories = try context.count(for: fetchRequest)
         } catch let error as NSError {

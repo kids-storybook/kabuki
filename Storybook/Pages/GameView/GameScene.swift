@@ -26,6 +26,8 @@ class GameScene: SKScene {
     var idxScenePreAnimate: Int32 = 0
     var idxSceneAnimate: Int32 = 0
     
+    
+    
     // initialize core data context
     let context = Helper().getBackgroundContext()
     
@@ -127,12 +129,17 @@ class GameScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
+        
+        
+        
     }
     
-    func makeLion() {
+    func makeLion(imageName: String?) {
+        
         entityManager = EntityManager(scene: self)
         
-        let lionCub = Lion(imageName: "#1 Anak Singa")
+        let lionCub = Lion(imageName: imageName ?? "")
+//        print(lionCub)
         if let spriteComponent = lionCub.component(ofType: SpriteComponent.self) {
             spriteComponent.node.position = CGPoint(x: spriteComponent.node.frame.midX/2+25, y: spriteComponent.node.frame.midY/2-85)
             spriteComponent.node.size = CGSize(width: 550, height: 550)
@@ -154,8 +161,8 @@ class GameScene: SKScene {
         }
         
         entityManager.add(lionCub)
-        entityManager.add(lionMom)
-        entityManager.add(lionDad)
+//        entityManager.add(lionMom)
+//        entityManager.add(lionDad)
     }
     
     func makeLionTutorial() {

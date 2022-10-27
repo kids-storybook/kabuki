@@ -11,7 +11,7 @@ class StartPageScene: GameScene {
     
     private func setupPlayer(){
         
-        makeLion()
+        makeLion(imageName: self.story?.character)
         
         backgroundScene = SKSpriteNode(imageNamed: self.story?.background ?? "")
         
@@ -24,6 +24,7 @@ class StartPageScene: GameScene {
         
         addChild(title)
         addChild(backgroundScene)
+        
     }
     
     override func sceneDidLoad() {

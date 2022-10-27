@@ -24,6 +24,7 @@
 		36AF5FCD2906FBBC00C25714 /* Themes+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AF5FC72906FBBC00C25714 /* Themes+CoreDataProperties.swift */; };
 		36AF5FCF2906FBBC00C25714 /* Challenges+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AF5FC92906FBBC00C25714 /* Challenges+CoreDataProperties.swift */; };
 		36EC630E28FFF85800176DA3 /* Start.sks in Resources */ = {isa = PBXBuildFile; fileRef = 36EC630D28FFF85800176DA3 /* Start.sks */; };
+		36F0E082290A2D69000702C0 /* SKSpriteNode+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F0E081290A2D69000702C0 /* SKSpriteNode+Extension.swift */; };
 		36F7DC752907B5D80045984E /* AnimationPageScene2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 36F7DC742907B5D80045984E /* AnimationPageScene2.sks */; };
 		36F7DC772907B67C0045984E /* AnimationPageScene2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F7DC762907B67C0045984E /* AnimationPageScene2.swift */; };
 		36FD197428F46499002C25BF /* Footer.sks in Resources */ = {isa = PBXBuildFile; fileRef = 36FD197328F46499002C25BF /* Footer.sks */; };
@@ -113,6 +114,7 @@
 		36AF5FC82906FBBC00C25714 /* Challenges+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Challenges+CoreDataClass.swift"; sourceTree = "<group>"; };
 		36AF5FC92906FBBC00C25714 /* Challenges+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Challenges+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		36EC630D28FFF85800176DA3 /* Start.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Start.sks; sourceTree = "<group>"; };
+		36F0E081290A2D69000702C0 /* SKSpriteNode+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKSpriteNode+Extension.swift"; sourceTree = "<group>"; };
 		36F7DC742907B5D80045984E /* AnimationPageScene2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = AnimationPageScene2.sks; sourceTree = "<group>"; };
 		36F7DC762907B67C0045984E /* AnimationPageScene2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationPageScene2.swift; sourceTree = "<group>"; };
 		36FD197328F46499002C25BF /* Footer.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Footer.sks; sourceTree = "<group>"; };
@@ -347,6 +349,7 @@
 				3655A58A28F80EF600C97C09 /* Reference+Extension.swift */,
 				36AF5FC02906F4F300C25714 /* UIColor+Extension.swift */,
 				36AF5FC22906F6DA00C25714 /* SKLabelNode+Extension.swift */,
+				36F0E081290A2D69000702C0 /* SKSpriteNode+Extension.swift */,
 				E6E3362F28EC273D00FE2BEE /* Helper.swift */,
 				E6E3363128EC276500FE2BEE /* Constants.swift */,
 				E6E3363328EC27C800FE2BEE /* SoundManager.swift */,
@@ -609,6 +612,7 @@
 				B2E1A8E229013FBB00349559 /* ShapeGameScene.swift in Sources */,
 				E6E3365628EC2A7600FE2BEE /* EntityManager.swift in Sources */,
 				E601FEAC29063F7E00810558 /* Data.swift in Sources */,
+				36F0E082290A2D69000702C0 /* SKSpriteNode+Extension.swift in Sources */,
 				E6E3365828EC2AA200FE2BEE /* SpriteComponent.swift in Sources */,
 				36A42D9E28FE7568001E3C7D /* Lion.swift in Sources */,
 				368546F728FFF3EC00E520B4 /* StartPageScene.swift in Sources */,
