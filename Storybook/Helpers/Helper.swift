@@ -49,7 +49,6 @@ class Helper {
             let theme = Themes(context: context)
             theme.background = data.background
             theme.mapBackground = data.mapBackground
-            theme.gameBackground = data.gameBackground
             theme.label = data.label
             theme.name = data.name
             theme.isActive = data.isActive ?? false
@@ -65,6 +64,7 @@ class Helper {
                 challenge.challengeName = c?.challengeName
                 challenge.xCoordinate = c?.xCoordinate ?? 0.0
                 challenge.yCoordinate = c?.yCoordinate ?? 0.0
+                challenge.gameBackground = c?.gameBackground
                 challenges.append(challenge)
             }
             theme.addToChallenges(NSOrderedSet(array: challenges))

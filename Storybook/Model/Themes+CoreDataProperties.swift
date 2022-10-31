@@ -17,7 +17,6 @@ extension Themes {
     }
 
     @NSManaged public var background: String?
-    @NSManaged public var gameBackground: String?
     @NSManaged public var isActive: Bool
     @NSManaged public var label: String?
     @NSManaged public var mapBackground: String?

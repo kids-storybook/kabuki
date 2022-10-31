@@ -22,7 +22,9 @@ class ShapeGameScene: GameScene {
     var solvedShapes: Set<String> = Set([])
     
     func setBackground() {
-        backgroundScene = SKSpriteNode(imageNamed: self.theme?.gameBackground ?? "")
+        let challenge = self.theme?.challenges?.filtered(using: NSPredicate(format: "challengeName == %@", self.challengeName ?? "")).array as! [Challenges]
+        
+        backgroundScene = SKSpriteNode(imageNamed: challenge[0].gameBackground ?? "")
         backgroundScene.position = CGPoint(x: 0, y: 0)
         backgroundScene.zPosition = -10
         backgroundScene.size = self.frame.size
