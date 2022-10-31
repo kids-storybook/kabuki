@@ -49,6 +49,7 @@ class Helper {
             let theme = Themes(context: context)
             theme.background = data.background
             theme.mapBackground = data.mapBackground
+            theme.gameBackground = data.gameBackground
             theme.label = data.label
             theme.name = data.name
             theme.isActive = data.isActive ?? false
@@ -101,7 +102,7 @@ class Helper {
             print(error)
         }
         
-        for data in initMiniGamesData {
+        for data in initShapeData {
             let shape = Shapes(context: context)
             shape.challengeName = data.challengeName
             shape.order = data.order

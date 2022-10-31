@@ -13,8 +13,9 @@ class StartPageScene: GameScene {
         title.position = CGPoint(x: frame.midX, y: frame.midY/2+240)
         title.zPosition = 10
         
-        backgroundScene.position = CGPoint(x: frame.midX, y: frame.midY)
+        backgroundScene.position = CGPoint(x: 0, y: 0)
         backgroundScene.zPosition = -10
+        backgroundScene.size = self.frame.size
         
         addChild(title)
         addChild(backgroundScene)

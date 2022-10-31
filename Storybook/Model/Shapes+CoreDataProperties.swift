@@ -2,7 +2,7 @@
 //  Shapes+CoreDataProperties.swift
 //  Storybook
 //
-//  Created by zy on 27/10/22.
+//  Created by zy on 31/10/22.
 //
 //
 
