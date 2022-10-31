@@ -13,6 +13,7 @@ class MapViewPageScene: SKScene {
     let backgroundSound = SKAudioNode(fileNamed: "Maps Music.mp3")
     var background: SKSpriteNode!
     var activeChallenges: [Challenge] = []
+    var passiveChallenges: [Challenge] = []
     
     // Entity-component system
     var entityManager: EntityManager!
@@ -55,6 +56,22 @@ class MapViewPageScene: SKScene {
         }
     }
     
+//    func showPassiveCage() {
+//        for challenge in theme?.challenges?.array as! [Challenges] {
+//            if !(challenge.isActive) {
+//                let passiveChallenge = Challenge(imageName: challenge.background ?? "", challengeName: challenge.challengeName ?? "")
+//                if let spriteComponent = passiveChallenge.component(ofType: SpriteComponent.self) {
+//                    spriteComponent.node.position = CGPoint(x: challenge.xCoordinate, y: challenge.yCoordinate)
+//                    spriteComponent.node.xScale = 1.237
+//                    spriteComponent.node.yScale = 1.237
+//                    spriteComponent.node.zPosition = challenge.zPosition
+//                }
+//                passiveChallenges.append(passiveChallenge)
+//                entityManager.add(passiveChallenge)
+//            }
+//        }
+//    }
+    
     override func willMove(from view: SKView) {
         backgroundSound.removeAllActions()
         backgroundSound.removeFromParent()
@@ -66,6 +83,10 @@ class MapViewPageScene: SKScene {
         for challenge in activeChallenges {
             entityManager.remove(challenge)
         }
+        for challenge in passiveChallenges {
+            entityManager.remove(challenge)
+        }
+        
     }
     
     // MARK: - Touches
