@@ -49,6 +49,7 @@ class Helper {
             let theme = Themes(context: context)
             theme.background = data.background
             theme.mapBackground = data.mapBackground
+            theme.gameBackground = data.gameBackground
             theme.label = data.label
             theme.name = data.name
             theme.isActive = data.isActive ?? false
@@ -86,6 +87,26 @@ class Helper {
             story.challengeName = data.challengeName
             story.order = data.order
             story.labels = data.labels as? [String]
+            
+            self.saveContext(saveContext: context)
+        }
+        
+        fetchRequest = Shapes.fetchRequest()
+        deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        do {
+            try context.execute(deleteRequest)
+            try context.save()
+        } catch let error as NSError {
+            // TODO: handle the error
+            print(error)
+        }
+        
+        for data in initShapeData {
+            let shape = Shapes(context: context)
+            shape.challengeName = data.challengeName
+            shape.order = data.order
+            shape.background = data.background
             
             self.saveContext(saveContext: context)
         }

@@ -54,10 +54,9 @@ class AnimationPageScene: GameScene {
     }
     
     override func getNextScene() -> SKScene? {
-        let scene = SKScene(fileNamed: "AnimationPageScene") as! AnimationPageScene
+        let scene = SKScene(fileNamed: "ShapeGameScene") as! ShapeGameScene
         scene.challengeName = self.challengeName
         scene.theme = self.theme
-        scene.idxScene = self.idxScene
         return scene
     }
     

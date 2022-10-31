@@ -12,6 +12,7 @@ import UIKit
 struct ThemeModel {
     var background: String?
     var mapBackground: String?
+    var gameBackground: String?
     var label: String?
     var name: String?
     var startButton: String?
@@ -34,8 +35,22 @@ struct ChallangeModel {
     var zPosition: Double?
 }
 
+struct ShapeModel {
+    var challengeName: String?
+    var background: String?
+    var order: Int32
+}
+
+struct ShapeTargetModel {
+    var challengeName: String?
+    var background: String?
+    var xCoordinate: Double?
+    var yCoordinate: Double?
+    var zPosition: Double?
+}
+
 let initThemeData: [ThemeModel] = [
-    ThemeModel(background: "mini zoo card", mapBackground: "zoo_background", label: "mini zoo", name: "zoo", startButton: "start button", isActive: true, challenges: [
+    ThemeModel(background: "mini zoo card", mapBackground: "zoo_background", gameBackground: "EasyGameScene", label: "mini zoo", name: "zoo", startButton: "start button", isActive: true, challenges: [
         ChallangeModel(background: "bright_elephant_cage", challengeName: "elephant_challenge", isActive: false, xCoordinate: -452.187, yCoordinate: 166.877, zPosition: 1.0),
         ChallangeModel(background: "bright_gorilla_cage", challengeName: "gorilla_challenge", isActive: false, xCoordinate: 524.09, yCoordinate: 179.16, zPosition: 0.0),
         ChallangeModel(background: "bright_giraffe_cage", challengeName: "giraffe_challenge", isActive: false, xCoordinate: 401.719, yCoordinate: -127.736, zPosition: 1.0),
@@ -44,11 +59,32 @@ let initThemeData: [ThemeModel] = [
         ChallangeModel(background: "bright_lion_cage", challengeName: "lion_challenge", isActive: true, xCoordinate: -402.944, yCoordinate: -188.175, zPosition: 2.0),
         ChallangeModel(background: "bright_zebra_cage", challengeName: "zebra_challenge", isActive: false, xCoordinate: 362.28, yCoordinate: 349.953, zPosition: 0.0)
     ]),
-    ThemeModel(background: "empty card", mapBackground: "zoo_background", label: "mini zoo", name: "forest", startButton: "start button", isActive: false, challenges: []),
-    ThemeModel(background: "empty card", mapBackground: "zoo_background", label: "mini zoo", name: "garden", startButton: "start button", isActive: false, challenges: []),
+    ThemeModel(background: "empty card", mapBackground: "zoo_background", gameBackground: "EasyGameScene", label: "mini zoo", name: "forest", startButton: "start button", isActive: false, challenges: []),
+    ThemeModel(background: "empty card", mapBackground: "zoo_background", gameBackground: "EasyGameScene", label: "mini zoo", name: "garden", startButton: "start button", isActive: false, challenges: []),
 ]
 
 let initAssessmentData: [StoryModel] = [
     StoryModel(challengeName: "lion_challenge", labels: ["Ini adalah keluarga Singa"], order: 0),
     StoryModel(challengeName: "lion_challenge", labels: ["Lihatlah keluarga singa ini", "Ada Bapak singa, Ibu singa, dan anak singa"], order: 1)
+]
+
+let initShapeData: [ShapeModel] = [
+    ShapeModel(challengeName: "lion_challenge", background: "triangle_1", order: 0),
+    ShapeModel(challengeName: "lion_challenge", background: "triangle_2", order: 1),
+    ShapeModel(challengeName: "lion_challenge", background: "triangle_3", order: 2),
+    ShapeModel(challengeName: "lion_challenge", background: "circle_1", order: 0),
+    ShapeModel(challengeName: "lion_challenge", background: "circle_2", order: 1),
+    ShapeModel(challengeName: "lion_challenge", background: "circle_3", order: 2),
+    ShapeModel(challengeName: "lion_challenge", background: "square_1", order: 0),
+    ShapeModel(challengeName: "lion_challenge", background: "square_2", order: 1),
+    ShapeModel(challengeName: "lion_challenge", background: "square_3", order: 2),
+]
+
+let initShapeTargetData: [ShapeTargetModel] = [
+    ShapeTargetModel(challengeName: "lion_challenge", background: "triangle",
+                     xCoordinate: 426.6, yCoordinate: -290, zPosition: 0.0),
+    ShapeTargetModel(challengeName: "lion_challenge", background: "square",
+                     xCoordinate: 426.6, yCoordinate: 9, zPosition: 0.0),
+    ShapeTargetModel(challengeName: "lion_challenge", background: "circle",
+                     xCoordinate: 422.331, yCoordinate: 309, zPosition: 0.0),
 ]
