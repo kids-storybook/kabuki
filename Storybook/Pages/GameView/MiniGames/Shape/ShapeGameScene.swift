@@ -42,7 +42,7 @@ class ShapeGameScene: GameScene {
             if let spriteComponent = activeShape.component(ofType: SpriteComponent.self) {
                 let line = idx + 1 < 4 ? 0 : (idx+1 / 3) - 1
                 spriteComponent.node.position = CGPoint(x: frame.midX-CGFloat(idx*250), y: frame.midY - 200 + CGFloat((line*180)))
-                spriteComponent.node.setScale(0.62)
+                spriteComponent.node.setScale(0.65)
                 spriteComponent.node.zPosition = 2
             }
             activeShapes.append(activeShape)

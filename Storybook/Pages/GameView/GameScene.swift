@@ -130,68 +130,34 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
         
-        
-        
     }
     
     func makeCharacter(imageName: String?) {
         
         entityManager = EntityManager(scene: self)
         
-        let lions = Lion(imageName: imageName ?? "")
+        let character = Character(imageName: imageName ?? "")
 //        print(lionCub)
-        if let spriteComponent = lions.component(ofType: SpriteComponent.self) {
+        if let spriteComponent = character.component(ofType: SpriteComponent.self) {
             spriteComponent.node.position = CGPoint(x: -spriteComponent.node.frame.midX/2, y: spriteComponent.node.frame.midY/2-30)
             spriteComponent.node.size = CGSize(width: 855, height: 516)
             spriteComponent.node.zPosition = 10
         }
         
-        let lionMom = Lion(imageName: "#1 Female Lion")
-        if let spriteComponent = lionMom.component(ofType: SpriteComponent.self) {
-            spriteComponent.node.position = CGPoint(x: spriteComponent.node.frame.midX/2+180, y: -spriteComponent.node.frame.midY/2-45)
-            spriteComponent.node.size = CGSize(width: 550, height: 550)
-            spriteComponent.node.zPosition = 5
-        }
-        
-        let lionDad = Lion(imageName: "#1 Lion")
-        if let spriteComponent = lionDad.component(ofType: SpriteComponent.self) {
-            spriteComponent.node.position = CGPoint(x: -spriteComponent.node.frame.midX/2-195, y: -spriteComponent.node.frame.midY/2-35)
-            spriteComponent.node.size = CGSize(width: 600, height: 600)
-            spriteComponent.node.zPosition = 5
-        }
-        
-        entityManager.add(lions)
-//        entityManager.add(lionMom)
-//        entityManager.add(lionDad)
+        entityManager.add(character)
     }
     
     func makeCharacterTutorial(imageName: String?) {
         entityManager = EntityManager(scene: self)
         
-        let lions = Lion(imageName: imageName ?? "")
-        if let spriteComponent = lions.component(ofType: SpriteComponent.self) {
+        let character = Character(imageName: imageName ?? "")
+        if let spriteComponent = character.component(ofType: SpriteComponent.self) {
             spriteComponent.node.position = CGPoint(x: -spriteComponent.node.frame.midX/2-100, y: spriteComponent.node.frame.midY/2-50)
             spriteComponent.node.size = CGSize(width: 1260, height: 516)
             spriteComponent.node.zPosition = 10
         }
         
-        let lionMom = Lion(imageName: "#1 Female Lion")
-        if let spriteComponent = lionMom.component(ofType: SpriteComponent.self) {
-            spriteComponent.node.position = CGPoint(x: spriteComponent.node.frame.midX/2+300, y: -spriteComponent.node.frame.midY/2-45)
-            spriteComponent.node.size = CGSize(width: 550, height: 550)
-            spriteComponent.node.zPosition = 5
-        }
-        
-        let lionDad = Lion(imageName: "#1 Lion")
-        if let spriteComponent = lionDad.component(ofType: SpriteComponent.self) {
-            spriteComponent.node.position = CGPoint(x: -spriteComponent.node.frame.midX/2-475, y: -spriteComponent.node.frame.midY/2-35)
-            spriteComponent.node.size = CGSize(width: 600, height: 600)
-            spriteComponent.node.zPosition = 5
-        }
-        
-        entityManager.add(lions)
-//        entityManager.add(lionMom)
-//        entityManager.add(lionDad)
+        entityManager.add(character)
     }
     
 }

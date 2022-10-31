@@ -1,5 +1,5 @@
 //
-//  AnimationPageScene.swift
+//  AnimationPageSceneTutorial.swift
 //  Storybook
 //
 //  Created by Adam Ibnu fiadi on 10/10/22.
@@ -9,7 +9,7 @@ import Foundation
 import SpriteKit
 import UIKit
 
-class AnimationPageScene2: GameScene {
+class AnimationPageSceneTutorial: GameScene {
     
     var story: Stories?
     var totalStories: Int?
@@ -84,6 +84,7 @@ class AnimationPageScene2: GameScene {
         lingkaran.alpha = 0
         
         bgOpacity.position = CGPoint(x: 0, y: 0)
+        bgOpacity.size = CGSize(width: frame.width, height: frame.width)
         bgOpacity.zPosition = 13
         bgOpacity.alpha = 0
         
@@ -127,13 +128,6 @@ class AnimationPageScene2: GameScene {
     }
     
     override func getNextScene() -> SKScene? {
-//        if Int(idxSceneAnimate) < totalStories ?? 0 {
-//            let scene = SKScene(fileNamed: "AnimationPageScene") as! AnimationPageScene
-////            scene.idxSceneAnimate = self.idxSceneAnimate + 1
-//            scene.challengeName = self.challengeName
-//            scene.theme = self.theme
-//            return scene
-//        }
         let scene = SKScene(fileNamed: "ShapeGameScene") as! ShapeGameScene
         scene.challengeName = self.challengeName
         scene.theme = self.theme
@@ -141,13 +135,6 @@ class AnimationPageScene2: GameScene {
     }
     
     override func getPreviousScene() -> SKScene? {
-//        if idxSceneAnimate > 0 {
-//            let scene = SKScene(fileNamed: "AnimationPageScene2") as! AnimationPageScene2
-////            scene.idxSceneAnimate = self.idxSceneAnimate - 1
-//            scene.challengeName = self.challengeName
-//            scene.theme = self.theme
-//            return scene
-//        }
         let scene = SKScene(fileNamed: "AnimationPageScene") as! AnimationPageScene
         scene.idxScene = self.idxScene
         scene.challengeName = self.challengeName

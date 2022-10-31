@@ -3,7 +3,7 @@ import SpriteKit
 import GameplayKit
 
 class StartPageScene: GameScene {
-//    let backgroundScene = SKSpriteNode(imageNamed: "kandangSinga")
+
     var story: Stories?
     var totalStories: Int?
     var backgroundScene: SKSpriteNode!

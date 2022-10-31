@@ -84,27 +84,13 @@ class AnimationPageScene: GameScene {
     }
     
     override func getNextScene() -> SKScene? {
-//        if Int(idxScenePreAnimate) < totalStories ?? 0 {
-//            let scene = SKScene(fileNamed: "AnimationPageScene") as! AnimationPageScene
-////            scene.idxScenePreAnimate = self.idxScenePreAnimate + 1
-//            scene.challengeName = self.challengeName
-//            scene.theme = self.theme
-//            return scene
-//        }
-        let scene = SKScene(fileNamed: "AnimationPageScene2") as! AnimationPageScene2
+        let scene = SKScene(fileNamed: "AnimationPageSceneTutorial") as! AnimationPageSceneTutorial
         scene.challengeName = self.challengeName
         scene.theme = self.theme
         return scene
     }
     
     override func getPreviousScene() -> SKScene? {
-//        if idxScenePreAnimate > 0 {
-//            let scene = SKScene(fileNamed: "AnimationPageScene") as! AnimationPageScene
-////            scene.idxScenePreAnimate = self.idxScenePreAnimate - 1
-//            scene.challengeName = self.challengeName
-//            scene.theme = self.theme
-//            return scene
-//        }
         let scene = SKScene(fileNamed: "StoryPageScene") as! StoryPageScene
         scene.idxScene = self.idxScene
         scene.challengeName = self.challengeName
