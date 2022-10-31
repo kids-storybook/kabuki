@@ -149,7 +149,8 @@ class ShapeGameScene: GameScene {
            let squareBin = shapeTargets["square"]?.component(ofType: SpriteComponent.self),
            let circleBin = shapeTargets["circle"]?.component(ofType: SpriteComponent.self),
            let name = node.name {
-            if name == "triangle"{
+            switch name{
+            case "triangle":
                 if triangleBin.node.frame.contains(node.position){
                     node.position = triangleBin.node.position
                     solvedShapes.insert(name)
@@ -168,8 +169,7 @@ class ShapeGameScene: GameScene {
                 } else {
                     solvedShapes.remove(name)
                 }
-            }
-            else if name == "square"{
+            case "square":
                 if squareBin.node.frame.contains(node.position){
                     node.position = squareBin.node.position
                     solvedShapes.insert(name)
@@ -189,8 +189,7 @@ class ShapeGameScene: GameScene {
                 else {
                     solvedShapes.remove(name)
                 }
-            }
-            else if name == "circle"{
+            case "circle":
                 if circleBin.node.frame.contains(node.position){
                     node.position = circleBin.node.position
                     solvedShapes.insert(name)
@@ -209,6 +208,8 @@ class ShapeGameScene: GameScene {
                 } else {
                     solvedShapes.remove(name)
                 }
+            default:
+                break
             }
         }
         if solvedShapes.count == shapes?.count {
