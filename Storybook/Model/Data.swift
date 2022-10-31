@@ -51,10 +51,12 @@ struct ShapeTargetModel {
 }
 
 struct AnimationModel {
+    var challengeName: String?
     var shapeImage: String?
     var xCoordinateShape: Double?
     var yCoordinateShape: Double?
-    var fontColor: UIColor?
+//    var fontColor: UIColor?
+//    var shapeName: String?
     var xCoordinateFont: Double?
     var yCoordinateFont: Double?
 }
@@ -87,11 +89,6 @@ let initAssessmentData: [StoryModel] = [
     
 ]
 
-let initAnimationData: [AnimationModel] = [
-    AnimationModel(shapeImage: "square_3", xCoordinateShape: -265, yCoordinateShape: -245, fontColor: UIColor.red, xCoordinateFont: -263, yCoordinateFont: 0)
-]
-
-
 let initShapeData: [ShapeModel] = [
     ShapeModel(challengeName: "lion_challenge", background: "triangle_1", order: 0),
     ShapeModel(challengeName: "lion_challenge", background: "triangle_2", order: 1),
@@ -111,4 +108,10 @@ let initShapeTargetData: [ShapeTargetModel] = [
                      xCoordinate: 426.6, yCoordinate: 9, zPosition: 0.0),
     ShapeTargetModel(challengeName: "lion_challenge", background: "circle",
                      xCoordinate: 422.331, yCoordinate: 309, zPosition: 0.0),
+]
+
+let initAnimationData: [AnimationModel] = [
+    AnimationModel(challengeName: "lion_challenge", shapeImage: "square_3", xCoordinateShape: -265, yCoordinateShape: -245, xCoordinateFont: -263, yCoordinateFont: 0),
+    AnimationModel(challengeName: "lion_challenge", shapeImage: "triangle_1", xCoordinateShape: -25, yCoordinateShape: -250, xCoordinateFont: -23, yCoordinateFont: 0),
+    AnimationModel(challengeName: "lion_challenge", shapeImage: "circle_1", xCoordinateShape: 204, yCoordinateShape: -235, xCoordinateFont: 196, yCoordinateFont: 0)
 ]

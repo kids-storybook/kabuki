@@ -112,6 +112,28 @@ class Helper {
             self.saveContext(saveContext: context)
         }
         
+        fetchRequest = AnimatedShapes.fetchRequest()
+        deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        do {
+            try context.execute(deleteRequest)
+            try context.save()
+        } catch let error as NSError {
+            // TODO: handle the error
+            print(error)
+        }
+        
+        for data in initAnimationData {
+            let animatedShape = AnimatedShapes(context: context)
+            animatedShape.challengeName = data.challengeName
+            animatedShape.shapeImage = data.shapeImage
+            animatedShape.xCoordinateShape = data.xCoordinateShape ?? 0.0
+            animatedShape.yCoordinateShape = data.yCoordinateShape ?? 0.0
+            animatedShape.xCoordinateFont = data.xCoordinateFont ?? 0.0
+            animatedShape.yCoordinateFont = data.yCoordinateFont ?? 0.0
+            self.saveContext(saveContext: context)
+        }
+        
         do {
             let themes = try context.fetch(Themes.fetchRequest())
             for data in themes {
