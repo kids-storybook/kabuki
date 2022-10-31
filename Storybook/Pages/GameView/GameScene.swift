@@ -134,15 +134,15 @@ class GameScene: SKScene {
         
     }
     
-    func makeLion(imageName: String?) {
+    func makeCharacter(imageName: String?) {
         
         entityManager = EntityManager(scene: self)
         
-        let lionCub = Lion(imageName: imageName ?? "")
+        let lions = Lion(imageName: imageName ?? "")
 //        print(lionCub)
-        if let spriteComponent = lionCub.component(ofType: SpriteComponent.self) {
-            spriteComponent.node.position = CGPoint(x: spriteComponent.node.frame.midX/2+25, y: spriteComponent.node.frame.midY/2-85)
-            spriteComponent.node.size = CGSize(width: 550, height: 550)
+        if let spriteComponent = lions.component(ofType: SpriteComponent.self) {
+            spriteComponent.node.position = CGPoint(x: -spriteComponent.node.frame.midX/2, y: spriteComponent.node.frame.midY/2-30)
+            spriteComponent.node.size = CGSize(width: 855, height: 516)
             spriteComponent.node.zPosition = 10
         }
         
@@ -160,18 +160,18 @@ class GameScene: SKScene {
             spriteComponent.node.zPosition = 5
         }
         
-        entityManager.add(lionCub)
+        entityManager.add(lions)
 //        entityManager.add(lionMom)
 //        entityManager.add(lionDad)
     }
     
-    func makeLionTutorial() {
+    func makeCharacterTutorial(imageName: String?) {
         entityManager = EntityManager(scene: self)
         
-        let lionCub = Lion(imageName: "#1 Anak Singa")
-        if let spriteComponent = lionCub.component(ofType: SpriteComponent.self) {
-            spriteComponent.node.position = CGPoint(x: -spriteComponent.node.frame.midX/2-250, y: spriteComponent.node.frame.midY/2-85)
-            spriteComponent.node.size = CGSize(width: 550, height: 550)
+        let lions = Lion(imageName: imageName ?? "")
+        if let spriteComponent = lions.component(ofType: SpriteComponent.self) {
+            spriteComponent.node.position = CGPoint(x: -spriteComponent.node.frame.midX/2-100, y: spriteComponent.node.frame.midY/2-50)
+            spriteComponent.node.size = CGSize(width: 1260, height: 516)
             spriteComponent.node.zPosition = 10
         }
         
@@ -189,9 +189,9 @@ class GameScene: SKScene {
             spriteComponent.node.zPosition = 5
         }
         
-        entityManager.add(lionCub)
-        entityManager.add(lionMom)
-        entityManager.add(lionDad)
+        entityManager.add(lions)
+//        entityManager.add(lionMom)
+//        entityManager.add(lionDad)
     }
     
 }

@@ -14,10 +14,13 @@ class AnimationPageScene: GameScene {
     var story: Stories?
     var totalStories: Int?
     var backgroundScene: SKSpriteNode!
+    var box = SKSpriteNode(imageNamed: "Box")
+    var cone = SKSpriteNode(imageNamed: "Cone")
+    var ball = SKSpriteNode(imageNamed: "Ball")
     
     private func setupPlayer(){
         
-        makeLionTutorial()
+        makeCharacterTutorial(imageName: self.story?.character)
         
         backgroundScene = SKSpriteNode(imageNamed: self.story?.background ?? "")
         backgroundScene.position = CGPoint(x: frame.midX, y: frame.midY)
@@ -40,6 +43,22 @@ class AnimationPageScene: GameScene {
                 addChild(textScene)
             }
         }
+        
+        box.position = CGPoint(x: -265, y: -245)
+        box.zPosition = 15
+        box.size = CGSize(width: 178, height: 191)
+        
+        cone.position = CGPoint(x: -25, y: -250)
+        cone.zPosition = 15
+        cone.size = CGSize(width: 208, height: 194)
+        
+        ball.position = CGPoint(x: 204, y: -235)
+        ball.zPosition = 15
+        ball.size = CGSize(width: 198, height: 217)
+        
+        addChild(box)
+        addChild(cone)
+        addChild(ball)
     }
     
     override func didMove(to view: SKView) {

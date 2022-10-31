@@ -11,12 +11,12 @@ class StartPageScene: GameScene {
     
     private func setupPlayer(){
         
-        makeLion(imageName: self.story?.character)
+        makeCharacter(imageName: self.story?.character)
         
         backgroundScene = SKSpriteNode(imageNamed: self.story?.background ?? "")
         
         title.position = CGPoint(x: frame.midX, y: frame.midY/2+240)
-        title.zPosition = 10
+        title.zPosition = 15
         
         backgroundScene.position = CGPoint(x: 0, y: 0)
         backgroundScene.zPosition = -10

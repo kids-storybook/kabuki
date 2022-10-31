@@ -9,7 +9,7 @@ class StoryPageScene: GameScene {
     var backgroundScene: SKSpriteNode!
     
     private func setupPlayer(){
-        makeLion(imageName: self.story?.character ?? "")
+        makeCharacter(imageName: self.story?.character ?? "")
         entityManager = EntityManager(scene: self)
         backgroundScene = SKSpriteNode(imageNamed: self.story?.background ?? "")
 //        backgroundScene = SKSpriteNode(imageNamed: "kandangSingaZoom")
