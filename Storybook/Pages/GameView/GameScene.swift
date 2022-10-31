@@ -137,7 +137,6 @@ class GameScene: SKScene {
         entityManager = EntityManager(scene: self)
         
         let character = Character(imageName: imageName ?? "")
-//        print(lionCub)
         if let spriteComponent = character.component(ofType: SpriteComponent.self) {
             spriteComponent.node.position = CGPoint(x: -spriteComponent.node.frame.midX/2, y: spriteComponent.node.frame.midY/2-30)
             spriteComponent.node.size = CGSize(width: 855, height: 516)

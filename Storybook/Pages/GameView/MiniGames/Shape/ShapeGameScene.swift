@@ -16,7 +16,6 @@ class ShapeGameScene: GameScene {
     var shapeOrder: Int32 = 0
     
     var backgroundScene: SKSpriteNode!
-    //    let lionCub = SKSpriteNode(imageNamed: "#1 Anak Singa")
     var shapeTargets: [String:Shape] = [:]
     var activeShapes: [Shape] = []
     var solvedShapes: Set<String> = Set([])
@@ -29,11 +28,6 @@ class ShapeGameScene: GameScene {
         backgroundScene.zPosition = -10
         backgroundScene.size = self.frame.size
         addChild(backgroundScene)
-        
-        //        lionCub.position = CGPoint(x: frame.midX, y: frame.midY - 75)
-        //        lionCub.setScale(0.15)
-        //        lionCub.zPosition = -9
-        //        addChild(lionCub)
     }
     
     

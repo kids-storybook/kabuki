@@ -26,7 +26,6 @@
 		3662B02429029A8500956BDE /* Header.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3662B02329029A8500956BDE /* Header.sks */; };
 		368546F428FFF3CE00E520B4 /* StartPageScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 368546F328FFF3CE00E520B4 /* StartPageScene.sks */; };
 		368546F728FFF3EC00E520B4 /* StartPageScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368546F628FFF3EC00E520B4 /* StartPageScene.swift */; };
-		36A42D9E28FE7568001E3C7D /* Lion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A42D9D28FE7568001E3C7D /* Lion.swift */; };
 		36A6DFDE290FC6E900E72322 /* AnimatedShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A6DFDD290FC6E900E72322 /* AnimatedShape.swift */; };
 		36AF5FC12906F4F300C25714 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AF5FC02906F4F300C25714 /* UIColor+Extension.swift */; };
 		36AF5FC32906F6DA00C25714 /* SKLabelNode+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AF5FC22906F6DA00C25714 /* SKLabelNode+Extension.swift */; };
@@ -116,7 +115,6 @@
 		3662B02329029A8500956BDE /* Header.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Header.sks; sourceTree = "<group>"; };
 		368546F328FFF3CE00E520B4 /* StartPageScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StartPageScene.sks; sourceTree = "<group>"; };
 		368546F628FFF3EC00E520B4 /* StartPageScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartPageScene.swift; sourceTree = "<group>"; };
-		36A42D9D28FE7568001E3C7D /* Lion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lion.swift; sourceTree = "<group>"; };
 		36A6DFDD290FC6E900E72322 /* AnimatedShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedShape.swift; sourceTree = "<group>"; };
 		36AF5FC02906F4F300C25714 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		36AF5FC22906F6DA00C25714 /* SKLabelNode+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKLabelNode+Extension.swift"; sourceTree = "<group>"; };
@@ -399,7 +397,6 @@
 				E6E3365528EC2A7600FE2BEE /* EntityManager.swift */,
 				E6E3365928EC3E1700FE2BEE /* Map.swift */,
 				E69FDAE028FEDF030059FD30 /* Challenge.swift */,
-				36A42D9D28FE7568001E3C7D /* Lion.swift */,
 				36CAFF93290FB69F00AD54FD /* Character.swift */,
 				E65F543B290A6E8D00FC6AA5 /* Shape.swift */,
 				36A6DFDD290FC6E900E72322 /* AnimatedShape.swift */,
@@ -630,7 +627,6 @@
 				363A1C63290FCCC50007F580 /* Stories+CoreDataProperties.swift in Sources */,
 				E6E3365828EC2AA200FE2BEE /* SpriteComponent.swift in Sources */,
 				363A1C5F290FCCC50007F580 /* Shapes+CoreDataProperties.swift in Sources */,
-				36A42D9E28FE7568001E3C7D /* Lion.swift in Sources */,
 				368546F728FFF3EC00E520B4 /* StartPageScene.swift in Sources */,
 				E65F543C290A6E8D00FC6AA5 /* Shape.swift in Sources */,
 				3655A58B28F80EF600C97C09 /* Reference+Extension.swift in Sources */,
