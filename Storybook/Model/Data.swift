@@ -6,7 +6,6 @@
 //
 
 import Foundation
-
 import UIKit
 
 struct ThemeModel {
@@ -51,6 +50,15 @@ struct ShapeTargetModel {
     var zPosition: Double?
 }
 
+struct AnimationModel {
+    var shapeImage: String?
+    var xCoordinateShape: Double?
+    var yCoordinateShape: Double?
+    var fontColor: UIColor?
+    var xCoordinateFont: Double?
+    var yCoordinateFont: Double?
+}
+
 let initThemeData: [ThemeModel] = [
     ThemeModel(background: "mini zoo card", mapBackground: "zoo_background", label: "mini zoo", name: "zoo", startButton: "start button", isActive: true, challenges: [
         ChallangeModel(background: "bright_elephant_cage", challengeName: "elephant_challenge", isActive: true, xCoordinate: -452.187, yCoordinate: 166.877, zPosition: 1.0, gameBackground: "zoo_background"),
@@ -78,6 +86,11 @@ let initAssessmentData: [StoryModel] = [
     StoryModel(challengeName: "elephant_challenge_animate_2", labels: ["Ada yang berbentuk lingkaran,", "persegi, dan segitiga"], order: 0, background: "kandangSingaZoom", character: "kandangSinga")
     
 ]
+
+let initAnimationData: [AnimationModel] = [
+    AnimationModel(shapeImage: "square_3", xCoordinateShape: -265, yCoordinateShape: -245, fontColor: UIColor.red, xCoordinateFont: -263, yCoordinateFont: 0)
+]
+
 
 let initShapeData: [ShapeModel] = [
     ShapeModel(challengeName: "lion_challenge", background: "triangle_1", order: 0),

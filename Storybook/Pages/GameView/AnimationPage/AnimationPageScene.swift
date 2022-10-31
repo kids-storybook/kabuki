@@ -14,9 +14,9 @@ class AnimationPageScene: GameScene {
     var story: Stories?
     var totalStories: Int?
     var backgroundScene: SKSpriteNode!
-    var box = SKSpriteNode(imageNamed: "Box")
-    var cone = SKSpriteNode(imageNamed: "Cone")
-    var ball = SKSpriteNode(imageNamed: "Ball")
+    var box = SKSpriteNode(imageNamed: "square_3")
+    var cone = SKSpriteNode(imageNamed: "triangle_1")
+    var ball = SKSpriteNode(imageNamed: "circle_1")
     
     private func setupPlayer(){
         
