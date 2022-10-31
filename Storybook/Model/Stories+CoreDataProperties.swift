@@ -16,11 +16,11 @@ extension Stories {
         return NSFetchRequest<Stories>(entityName: "Stories")
     }
 
+    @NSManaged public var background: String?
     @NSManaged public var challengeName: String?
+    @NSManaged public var character: String?
     @NSManaged public var labels: Array<String>?
     @NSManaged public var order: Int32
-    @NSManaged public var background: String?
-    @NSManaged public var character: String?
 
 }
 

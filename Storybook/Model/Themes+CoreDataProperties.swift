@@ -17,12 +17,12 @@ extension Themes {
     }
 
     @NSManaged public var background: String?
+    @NSManaged public var gameBackground: String?
     @NSManaged public var isActive: Bool
     @NSManaged public var label: String?
     @NSManaged public var mapBackground: String?
     @NSManaged public var name: String?
     @NSManaged public var startButon: String?
-    @NSManaged public var gameBackground: String?
     @NSManaged public var challenges: NSOrderedSet?
 
 }
