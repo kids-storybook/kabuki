@@ -22,7 +22,7 @@ extension SKSpriteNode {
     func fadeInOut(start: TimeInterval) {
         let fadeStartTime = SKAction.wait(forDuration: start)
         let fadeIn = SKAction.fadeIn(withDuration: 1)
-        let fadeTime = SKAction.wait(forDuration: 13)
+        let fadeTime = SKAction.wait(forDuration: 11)
         let fadeOut = SKAction.fadeOut(withDuration: 1)
         let sequence2 = SKAction.sequence([fadeStartTime, fadeIn, fadeTime, fadeOut])
         self.run(sequence2)

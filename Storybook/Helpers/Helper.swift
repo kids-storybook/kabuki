@@ -85,10 +85,13 @@ class Helper {
         for data in initAssessmentData {
             let story = Stories(context: context)
             story.challengeName = data.challengeName
+            story.title = data.title
             story.order = data.order
             story.labels = data.labels as? [String]
             story.background = data.background
             story.character = data.character
+            story.characterXPosition = data.characterXPosition ?? 0.0
+            story.characterYPosition = data.characterYPosition ?? 0.0
             self.saveContext(saveContext: context)
         }
         
@@ -108,6 +111,7 @@ class Helper {
             shape.challengeName = data.challengeName
             shape.order = data.order
             shape.background = data.background
+            shape.level = data.level?.rawValue
             
             self.saveContext(saveContext: context)
         }
@@ -129,6 +133,7 @@ class Helper {
             animatedShape.shapeImage = data.shapeImage
             animatedShape.xCoordinateShape = data.xCoordinateShape ?? 0.0
             animatedShape.yCoordinateShape = data.yCoordinateShape ?? 0.0
+            animatedShape.shapeName = data.shapeName
             animatedShape.xCoordinateFont = data.xCoordinateFont ?? 0.0
             animatedShape.yCoordinateFont = data.yCoordinateFont ?? 0.0
             self.saveContext(saveContext: context)

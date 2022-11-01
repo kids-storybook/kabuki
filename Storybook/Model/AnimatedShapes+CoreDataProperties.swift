@@ -20,6 +20,7 @@ extension AnimatedShapes {
     @NSManaged public var shapeImage: String?
     @NSManaged public var xCoordinateShape: Double
     @NSManaged public var yCoordinateShape: Double
+    @NSManaged public var shapeName: String?
     @NSManaged public var xCoordinateFont: Double
     @NSManaged public var yCoordinateFont: Double
 

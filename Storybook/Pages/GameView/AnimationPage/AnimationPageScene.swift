@@ -12,11 +12,10 @@ import UIKit
 class AnimationPageScene: GameScene {
     
     var story: Stories?
+    var animateShape: [AnimatedShapes]?
+    var activeShapes: [AnimatedShape] = []
     var totalStories: Int?
     var backgroundScene: SKSpriteNode!
-    var box = SKSpriteNode(imageNamed: "square_3")
-    var cone = SKSpriteNode(imageNamed: "triangle_1")
-    var ball = SKSpriteNode(imageNamed: "circle_1")
     
     private func setupPlayer(){
         
@@ -37,31 +36,33 @@ class AnimationPageScene: GameScene {
                 textScene.text = label
                 textScene.fontSize = 50
                 textScene.fontColor = SKColor.white
-                textScene.position = CGPoint(x: 0, y: Int(frame.height)/3-idx*60)
+                textScene.position = CGPoint(x: 0, y: Int(Double(frame.height)/3.5)-idx*60)
                 textScene.zPosition = 100
                 textScene.addStroke(color: textBorder, width: 7.0)
                 addChild(textScene)
             }
         }
+    }
+    
+    func setupShapes() {
         
-        box.position = CGPoint(x: -265, y: -245)
-        box.zPosition = 15
-        box.size = CGSize(width: 178, height: 191)
-        
-        cone.position = CGPoint(x: -25, y: -250)
-        cone.zPosition = 15
-        cone.size = CGSize(width: 208, height: 194)
-        
-        ball.position = CGPoint(x: 204, y: -235)
-        ball.zPosition = 15
-        ball.size = CGSize(width: 198, height: 217)
-        
-        addChild(box)
-        addChild(cone)
-        addChild(ball)
+        //Create shapes
+        for (_, shape) in (animateShape ?? []).enumerated() {
+            let activeShape = AnimatedShape(imageName: shape.shapeImage ?? "")
+            if let spriteComponent = activeShape.component(ofType: SpriteComponent.self) {
+                spriteComponent.node.position = CGPoint(x: shape.xCoordinateShape, y: shape.yCoordinateShape)
+                spriteComponent.node.setScale(0.55)
+                
+            }
+            activeShapes.append(activeShape)
+            entityManager.add(activeShape)
+        }
     }
     
     override func didMove(to view: SKView) {
+        
+        // Fetch Stories Model
+        entityManager = EntityManager(scene: self)
         do {
             let fetchRequest = Stories.fetchRequest()
             let orderPredicate = NSPredicate(format: "order == 0")
@@ -73,14 +74,27 @@ class AnimationPageScene: GameScene {
             story = try context.fetch(fetchRequest)[0]
             
             fetchRequest.predicate = NSPredicate(format: "challengeName == %@", (challengeName ?? "") + "_animate")
-
+            
             totalStories = try context.count(for: fetchRequest)
         } catch let error as NSError {
             print(error)
             print("error while fetching data in core data!")
         }
         
+        // Fetch AnimatedShapes Model
+        do {
+            let fetchRequest = AnimatedShapes.fetchRequest()
+            let challengeNamePredicate = NSPredicate(format: "challengeName == %@", (challengeName ?? ""))
+            fetchRequest.predicate = challengeNamePredicate
+            
+            animateShape = try context.fetch(fetchRequest)
+        } catch let error as NSError {
+            print(error)
+            print("error while fetching data in core data!")
+        }
+        
         self.setupPlayer()
+        self.setupShapes()
     }
     
     override func getNextScene() -> SKScene? {

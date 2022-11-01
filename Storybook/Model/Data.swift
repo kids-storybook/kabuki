@@ -20,10 +20,13 @@ struct ThemeModel {
 
 struct StoryModel {
     var challengeName: String?
+    var title: String?
     var labels: [NSString?]
     var order: Int32
     var background: String?
     var character: String?
+    var characterXPosition: Double?
+    var characterYPosition: Double?
 }
 
 struct ChallangeModel {
@@ -40,6 +43,7 @@ struct ShapeModel {
     var challengeName: String?
     var background: String?
     var order: Int32
+    var level: AttributeLevel?
 }
 
 struct ShapeTargetModel {
@@ -56,9 +60,15 @@ struct AnimationModel {
     var xCoordinateShape: Double?
     var yCoordinateShape: Double?
 //    var fontColor: UIColor?
-//    var shapeName: String?
+    var shapeName: String?
     var xCoordinateFont: Double?
     var yCoordinateFont: Double?
+}
+
+enum AttributeLevel: String {
+    case easy = "easy"
+    case medium = "medium"
+    case hard = "hard"
 }
 
 let initThemeData: [ThemeModel] = [
@@ -76,29 +86,28 @@ let initThemeData: [ThemeModel] = [
 ]
 
 let initAssessmentData: [StoryModel] = [
-    StoryModel(challengeName: "lion_challenge", labels: ["Lihatlah keluarga singa ini"], order: 0, background: "kandangSinga", character: "lions_1"),
-    StoryModel(challengeName: "lion_challenge", labels: ["Ada Bapak singa, Ibu singa, dan", "anak singa"], order: 1, background: "kandangSinga", character: "lions_1"),
-    StoryModel(challengeName: "lion_challenge_animate", labels: ["Ibu Singa memberikan anaknya", "berbagai bentuk mainan"], order: 0, background: "kandangSingaZoom", character: "lions_2"),
-    StoryModel(challengeName: "lion_challenge_animate_2", labels: ["Ada yang berbentuk persegi,", "segitiga, dan lingkaran"], order: 0, background: "kandangSingaZoom", character: "lions_2"),
+    StoryModel(challengeName: "lion_challenge", title: "singaStoryTitle", labels: ["Lihatlah keluarga singa ini"], order: 0, background: "kandangSinga", character: "lions_1", characterXPosition: 0, characterYPosition: 0),
+    StoryModel(challengeName: "lion_challenge", title: "singaStoryTitle", labels: ["Ada Bapak singa, Ibu singa, dan", "anak singa"], order: 1, background: "kandangSinga", character: "lions_1", characterXPosition: 0, characterYPosition: 0),
+    StoryModel(challengeName: "lion_challenge_animate", title: "singaStoryTitle", labels: ["Ibu Singa memberikan anaknya", "berbagai bentuk mainan"], order: 0, background: "kandangSingaZoom", character: "lions_2", characterXPosition: 0, characterYPosition: 0),
+    StoryModel(challengeName: "lion_challenge_animate_2", title: "singaStoryTitle", labels: ["Ada yang berbentuk persegi,", "segitiga, dan lingkaran"], order: 0, background: "kandangSingaZoom", character: "lions_2", characterXPosition: 0, characterYPosition: 0),
     
     
-    StoryModel(challengeName: "elephant_challenge", labels: ["Lihatlah keluarga singa ini"], order: 0, background: "kandangSinga", character: "Elephant"),
-    StoryModel(challengeName: "elephant_challenge", labels: ["Ada Bapak singa, Ibu singa, dan", "anak singa"], order: 1, background: "kandangSinga", character: "kandangSinga"),
-    StoryModel(challengeName: "elephant_challenge_animate", labels: ["Ibu Singa memberikan anaknya", "berbagai bentuk mainan"], order: 0, background: "kandangSingaZoom", character: "kandangSinga"),
-    StoryModel(challengeName: "elephant_challenge_animate_2", labels: ["Ada yang berbentuk lingkaran,", "persegi, dan segitiga"], order: 0, background: "kandangSingaZoom", character: "kandangSinga")
-    
+    StoryModel(challengeName: "elephant_challenge", title: "gajahStoryTitle", labels: ["Lihatlah sekelompok gajah ini"], order: 0, background: "kandangGajah", character: "elephants_1", characterXPosition: 0, characterYPosition: 0),
+    StoryModel(challengeName: "elephant_challenge", title: "gajahStoryTitle", labels: ["Mereka sedang diberi makan", "oleh penjaga kebun binatang "], order: 1, background: "kandangGajah", character: "elephants_2", characterXPosition: 0, characterYPosition: 0),
+    StoryModel(challengeName: "elephant_challenge_animate", title: "gajahStoryTitle", labels: ["Gajah adalah pemakan tumbuhan"], order: 0, background: "kandangGajahZoom", character: "elephants_2", characterXPosition: 0, characterYPosition: 0),
+    StoryModel(challengeName: "elephant_challenge_animate_2", title: "gajahStoryTitle", labels: ["Ada makanan yang berbentuk", "persegi, segitiga, dan lingkaran"], order: 0, background: "kandangGajahZoom", character: "elephants_2", characterXPosition: 0, characterYPosition: 0)
 ]
 
 let initShapeData: [ShapeModel] = [
-    ShapeModel(challengeName: "lion_challenge", background: "triangle_1", order: 0),
-    ShapeModel(challengeName: "lion_challenge", background: "triangle_2", order: 1),
-    ShapeModel(challengeName: "lion_challenge", background: "triangle_3", order: 2),
-    ShapeModel(challengeName: "lion_challenge", background: "circle_1", order: 0),
-    ShapeModel(challengeName: "lion_challenge", background: "circle_2", order: 1),
-    ShapeModel(challengeName: "lion_challenge", background: "circle_3", order: 2),
-    ShapeModel(challengeName: "lion_challenge", background: "square_1", order: 0),
-    ShapeModel(challengeName: "lion_challenge", background: "square_2", order: 1),
-    ShapeModel(challengeName: "lion_challenge", background: "square_3", order: 2),
+    ShapeModel(challengeName: "lion_challenge", background: "triangle_1", order: 0, level: AttributeLevel.easy),
+    ShapeModel(challengeName: "lion_challenge", background: "triangle_2", order: 1, level: AttributeLevel.easy),
+    ShapeModel(challengeName: "lion_challenge", background: "triangle_3", order: 2, level: AttributeLevel.easy),
+    ShapeModel(challengeName: "lion_challenge", background: "circle_1", order: 0, level: AttributeLevel.easy),
+    ShapeModel(challengeName: "lion_challenge", background: "circle_2", order: 1, level: AttributeLevel.easy),
+    ShapeModel(challengeName: "lion_challenge", background: "circle_3", order: 2, level: AttributeLevel.easy),
+    ShapeModel(challengeName: "lion_challenge", background: "square_1", order: 0, level: AttributeLevel.easy),
+    ShapeModel(challengeName: "lion_challenge", background: "square_2", order: 1, level: AttributeLevel.easy),
+    ShapeModel(challengeName: "lion_challenge", background: "square_3", order: 2, level: AttributeLevel.easy),
 ]
 
 let initShapeTargetData: [ShapeTargetModel] = [
@@ -111,7 +120,11 @@ let initShapeTargetData: [ShapeTargetModel] = [
 ]
 
 let initAnimationData: [AnimationModel] = [
-    AnimationModel(challengeName: "lion_challenge", shapeImage: "square_3", xCoordinateShape: -265, yCoordinateShape: -245, xCoordinateFont: -263, yCoordinateFont: 0),
-    AnimationModel(challengeName: "lion_challenge", shapeImage: "triangle_1", xCoordinateShape: -25, yCoordinateShape: -250, xCoordinateFont: -23, yCoordinateFont: 0),
-    AnimationModel(challengeName: "lion_challenge", shapeImage: "circle_1", xCoordinateShape: 204, yCoordinateShape: -235, xCoordinateFont: 196, yCoordinateFont: 0)
+    AnimationModel(challengeName: "lion_challenge", shapeImage: "square_3", xCoordinateShape: -265, yCoordinateShape: -245, shapeName: "Persegi", xCoordinateFont: -263, yCoordinateFont: 0),
+    AnimationModel(challengeName: "lion_challenge", shapeImage: "triangle_1", xCoordinateShape: -25, yCoordinateShape: -250, shapeName: "Segitiga", xCoordinateFont: -23, yCoordinateFont: 0),
+    AnimationModel(challengeName: "lion_challenge", shapeImage: "circle_1", xCoordinateShape: 204, yCoordinateShape: -235, shapeName: "Lingkaran", xCoordinateFont: 196, yCoordinateFont: 0),
+    
+    AnimationModel(challengeName: "elephant_challenge", shapeImage: "persegi_rumput", xCoordinateShape: -265, yCoordinateShape: -245, shapeName: "Persegi", xCoordinateFont: -263, yCoordinateFont: 0),
+    AnimationModel(challengeName: "elephant_challenge", shapeImage: "segitiga_rumput", xCoordinateShape: -25, yCoordinateShape: -250, shapeName: "Segitiga", xCoordinateFont: -23, yCoordinateFont: 0),
+    AnimationModel(challengeName: "elephant_challenge", shapeImage: "lingkaran_rumput", xCoordinateShape: 204, yCoordinateShape: -235, shapeName: "Lingkaran", xCoordinateFont: 196, yCoordinateFont: 0)
 ]

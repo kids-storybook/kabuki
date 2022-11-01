@@ -25,7 +25,10 @@ class GameScene: SKScene {
     var idxScene: Int32 = 0
     var idxScenePreAnimate: Int32 = 0
     var idxSceneAnimate: Int32 = 0
-    
+    var addCharacter: [Stories]?
+    var character: [Character] = []
+    var stories: Stories?
+
     
     
     // initialize core data context
@@ -138,8 +141,8 @@ class GameScene: SKScene {
         
         let character = Character(imageName: imageName ?? "")
         if let spriteComponent = character.component(ofType: SpriteComponent.self) {
-            spriteComponent.node.position = CGPoint(x: -spriteComponent.node.frame.midX/2, y: spriteComponent.node.frame.midY/2-30)
-            spriteComponent.node.size = CGSize(width: 855, height: 516)
+            spriteComponent.node.position = CGPoint(x: stories?.characterXPosition ?? 0.0, y: stories?.characterYPosition ?? 0.0)
+//            spriteComponent.node.size = CGSize(width: stories?.characterWidth ?? 0.0, height: stories?.characterHeight ?? 0.0)
             spriteComponent.node.zPosition = 10
         }
         
@@ -151,12 +154,28 @@ class GameScene: SKScene {
         
         let character = Character(imageName: imageName ?? "")
         if let spriteComponent = character.component(ofType: SpriteComponent.self) {
-            spriteComponent.node.position = CGPoint(x: -spriteComponent.node.frame.midX/2-100, y: spriteComponent.node.frame.midY/2-50)
-            spriteComponent.node.size = CGSize(width: 1260, height: 516)
+            spriteComponent.node.position = CGPoint(x: stories?.characterXPosition ?? 0.0, y: stories?.characterYPosition ?? 0.0)
+//            spriteComponent.node.size = CGSize(width: 1260, height: 516)
             spriteComponent.node.zPosition = 10
         }
         
         entityManager.add(character)
+    }
+    
+    func setupCharacter(imageName: String?) {
+        
+        //Create shapes
+        for (_, characters) in (addCharacter ?? []).enumerated() {
+            let activeCharacter = Character(imageName: imageName ?? "")
+            if let spriteComponent = activeCharacter.component(ofType: SpriteComponent.self) {
+                spriteComponent.node.position = CGPoint(x: characters.characterYPosition , y: characters.characterXPosition)
+//                spriteComponent.node.size = CGSize(width: characters.characterWidth, height: characters.characterHeight)
+//                spriteComponent.node.setScale(0.55)
+                
+            }
+            character.append(activeCharacter)
+            entityManager.add(activeCharacter)
+        }
     }
     
 }
