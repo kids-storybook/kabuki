@@ -49,7 +49,6 @@ class Helper {
             let theme = Themes(context: context)
             theme.background = data.background
             theme.mapBackground = data.mapBackground
-            theme.gameBackground = data.gameBackground
             theme.label = data.label
             theme.name = data.name
             theme.isActive = data.isActive ?? false
@@ -65,6 +64,7 @@ class Helper {
                 challenge.challengeName = c?.challengeName
                 challenge.xCoordinate = c?.xCoordinate ?? 0.0
                 challenge.yCoordinate = c?.yCoordinate ?? 0.0
+                challenge.gameBackground = c?.gameBackground
                 challenges.append(challenge)
             }
             theme.addToChallenges(NSOrderedSet(array: challenges))
@@ -87,7 +87,8 @@ class Helper {
             story.challengeName = data.challengeName
             story.order = data.order
             story.labels = data.labels as? [String]
-            
+            story.background = data.background
+            story.character = data.character
             self.saveContext(saveContext: context)
         }
         
@@ -108,6 +109,28 @@ class Helper {
             shape.order = data.order
             shape.background = data.background
             
+            self.saveContext(saveContext: context)
+        }
+        
+        fetchRequest = AnimatedShapes.fetchRequest()
+        deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        do {
+            try context.execute(deleteRequest)
+            try context.save()
+        } catch let error as NSError {
+            // TODO: handle the error
+            print(error)
+        }
+        
+        for data in initAnimationData {
+            let animatedShape = AnimatedShapes(context: context)
+            animatedShape.challengeName = data.challengeName
+            animatedShape.shapeImage = data.shapeImage
+            animatedShape.xCoordinateShape = data.xCoordinateShape ?? 0.0
+            animatedShape.yCoordinateShape = data.yCoordinateShape ?? 0.0
+            animatedShape.xCoordinateFont = data.xCoordinateFont ?? 0.0
+            animatedShape.yCoordinateFont = data.yCoordinateFont ?? 0.0
             self.saveContext(saveContext: context)
         }
         

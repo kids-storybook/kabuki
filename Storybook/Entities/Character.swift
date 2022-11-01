@@ -2,7 +2,7 @@ import SpriteKit
 import GameplayKit
 
 // 1
-class Lion: GKEntity {
+class Character: GKEntity {
     
     init(imageName: String) {
         super.init()

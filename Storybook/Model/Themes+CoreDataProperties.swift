@@ -2,7 +2,7 @@
 //  Themes+CoreDataProperties.swift
 //  Storybook
 //
-//  Created by zy on 31/10/22.
+//  Created by Adam Ibnu fiadi on 31/10/22.
 //
 //
 
@@ -22,7 +22,6 @@ extension Themes {
     @NSManaged public var mapBackground: String?
     @NSManaged public var name: String?
     @NSManaged public var startButon: String?
-    @NSManaged public var gameBackground: String?
     @NSManaged public var challenges: NSOrderedSet?
 
 }

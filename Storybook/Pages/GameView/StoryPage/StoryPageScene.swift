@@ -4,12 +4,14 @@ import GameplayKit
 
 class StoryPageScene: GameScene {
     
-    let backgroundScene = SKSpriteNode(imageNamed: "kandangSinga")
     var story: Stories?
     var totalStories: Int?
+    var backgroundScene: SKSpriteNode!
     
     private func setupPlayer(){
-        makeLion()
+        makeCharacter(imageName: self.story?.character ?? "")
+        entityManager = EntityManager(scene: self)
+        backgroundScene = SKSpriteNode(imageNamed: self.story?.background ?? "")
         
         backgroundScene.position = CGPoint(x: frame.midX, y: frame.midY)
         backgroundScene.zPosition = -10
@@ -21,10 +23,11 @@ class StoryPageScene: GameScene {
             for (idx, label) in labels.enumerated() {
                 let textScene = SKLabelNode(fontNamed: "Poppins-Black")
                 textScene.text = label
-                textScene.fontSize = 40
+                textScene.fontSize = 50
                 textScene.fontColor = SKColor.white
-                textScene.position = CGPoint(x: 0, y: -idx*40)
+                textScene.position = CGPoint(x: 0, y: Int(frame.height)/3-idx*60)
                 textScene.zPosition = 100
+                textScene.addStroke(color: textBorder, width: 7.0)
                 addChild(textScene)
             }
         }
@@ -43,7 +46,6 @@ class StoryPageScene: GameScene {
             ])
             fetchRequest.fetchLimit = 1
             story = try context.fetch(fetchRequest)[0]
-            
             fetchRequest.predicate = NSPredicate(format: "challengeName == %@", challengeName ?? "")
             totalStories = try context.count(for: fetchRequest)
         } catch let error as NSError {

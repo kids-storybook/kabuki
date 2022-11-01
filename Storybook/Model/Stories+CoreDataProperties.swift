@@ -2,7 +2,7 @@
 //  Stories+CoreDataProperties.swift
 //  Storybook
 //
-//  Created by zy on 31/10/22.
+//  Created by Adam Ibnu fiadi on 31/10/22.
 //
 //
 
@@ -16,7 +16,9 @@ extension Stories {
         return NSFetchRequest<Stories>(entityName: "Stories")
     }
 
+    @NSManaged public var background: String?
     @NSManaged public var challengeName: String?
+    @NSManaged public var character: String?
     @NSManaged public var labels: Array<String>?
     @NSManaged public var order: Int32
 

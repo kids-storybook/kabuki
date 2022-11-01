@@ -3,15 +3,20 @@ import SpriteKit
 import GameplayKit
 
 class StartPageScene: GameScene {
-    let backgroundScene = SKSpriteNode(imageNamed: "kandangSinga")
+
+    var story: Stories?
+    var totalStories: Int?
+    var backgroundScene: SKSpriteNode!
     let title = SKSpriteNode(imageNamed: "singaStoryTitle")
     
     private func setupPlayer(){
         
-        makeLion()
+        makeCharacter(imageName: self.story?.character)
+        
+        backgroundScene = SKSpriteNode(imageNamed: self.story?.background ?? "")
         
         title.position = CGPoint(x: frame.midX, y: frame.midY/2+240)
-        title.zPosition = 10
+        title.zPosition = 15
         
         backgroundScene.position = CGPoint(x: 0, y: 0)
         backgroundScene.zPosition = -10
@@ -19,6 +24,7 @@ class StartPageScene: GameScene {
         
         addChild(title)
         addChild(backgroundScene)
+        
     }
     
     override func sceneDidLoad() {
@@ -28,6 +34,24 @@ class StartPageScene: GameScene {
     }
     
     override func didMove(to view: SKView) {
+        
+        do {
+            let fetchRequest = Stories.fetchRequest()
+            let orderPredicate = NSPredicate(format: "order == \(idxScene)")
+            let challengeNamePredicate = NSPredicate(format: "challengeName == %@", challengeName ?? "")
+            fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+                challengeNamePredicate, orderPredicate
+            ])
+            fetchRequest.fetchLimit = 1
+            story = try context.fetch(fetchRequest)[0]
+//            print("Data \(story?.background)")
+            fetchRequest.predicate = NSPredicate(format: "challengeName == %@", challengeName ?? "")
+            totalStories = try context.count(for: fetchRequest)
+        } catch let error as NSError {
+            print(error)
+            print("error while fetching data in core data!")
+        }
+        
         self.setupPlayer()
         if self.theme == nil {
             self.initThemeData()

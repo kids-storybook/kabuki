@@ -2,7 +2,7 @@
 //  Challenges+CoreDataProperties.swift
 //  Storybook
 //
-//  Created by zy on 31/10/22.
+//  Created by Adam Ibnu fiadi on 31/10/22.
 //
 //
 
@@ -18,6 +18,7 @@ extension Challenges {
 
     @NSManaged public var background: String?
     @NSManaged public var challengeName: String?
+    @NSManaged public var gameBackground: String?
     @NSManaged public var isActive: Bool
     @NSManaged public var xCoordinate: Double
     @NSManaged public var yCoordinate: Double

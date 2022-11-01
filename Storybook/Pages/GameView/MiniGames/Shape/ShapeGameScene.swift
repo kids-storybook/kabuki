@@ -16,22 +16,18 @@ class ShapeGameScene: GameScene {
     var shapeOrder: Int32 = 0
     
     var backgroundScene: SKSpriteNode!
-    //    let lionCub = SKSpriteNode(imageNamed: "#1 Anak Singa")
     var shapeTargets: [String:Shape] = [:]
     var activeShapes: [Shape] = []
     var solvedShapes: Set<String> = Set([])
     
     func setBackground() {
-        backgroundScene = SKSpriteNode(imageNamed: self.theme?.gameBackground ?? "")
+        let challenge = self.theme?.challenges?.filtered(using: NSPredicate(format: "challengeName == %@", self.challengeName ?? "")).array as! [Challenges]
+        
+        backgroundScene = SKSpriteNode(imageNamed: challenge[0].gameBackground ?? "")
         backgroundScene.position = CGPoint(x: 0, y: 0)
         backgroundScene.zPosition = -10
         backgroundScene.size = self.frame.size
         addChild(backgroundScene)
-        
-        //        lionCub.position = CGPoint(x: frame.midX, y: frame.midY - 75)
-        //        lionCub.setScale(0.15)
-        //        lionCub.zPosition = -9
-        //        addChild(lionCub)
     }
     
     
@@ -42,7 +38,7 @@ class ShapeGameScene: GameScene {
             if let spriteComponent = activeShape.component(ofType: SpriteComponent.self) {
                 let line = idx + 1 < 4 ? 0 : (idx+1 / 3) - 1
                 spriteComponent.node.position = CGPoint(x: frame.midX-CGFloat(idx*250), y: frame.midY - 200 + CGFloat((line*180)))
-                spriteComponent.node.setScale(0.62)
+                spriteComponent.node.setScale(0.65)
                 spriteComponent.node.zPosition = 2
             }
             activeShapes.append(activeShape)
@@ -149,7 +145,8 @@ class ShapeGameScene: GameScene {
            let squareBin = shapeTargets["square"]?.component(ofType: SpriteComponent.self),
            let circleBin = shapeTargets["circle"]?.component(ofType: SpriteComponent.self),
            let name = node.name {
-            if name == "triangle"{
+            switch name{
+            case "triangle":
                 if triangleBin.node.frame.contains(node.position){
                     node.position = triangleBin.node.position
                     solvedShapes.insert(name)
@@ -168,8 +165,7 @@ class ShapeGameScene: GameScene {
                 } else {
                     solvedShapes.remove(name)
                 }
-            }
-            else if name == "square"{
+            case "square":
                 if squareBin.node.frame.contains(node.position){
                     node.position = squareBin.node.position
                     solvedShapes.insert(name)
@@ -189,8 +185,7 @@ class ShapeGameScene: GameScene {
                 else {
                     solvedShapes.remove(name)
                 }
-            }
-            else if name == "circle"{
+            case "circle":
                 if circleBin.node.frame.contains(node.position){
                     node.position = circleBin.node.position
                     solvedShapes.insert(name)
@@ -209,6 +204,8 @@ class ShapeGameScene: GameScene {
                 } else {
                     solvedShapes.remove(name)
                 }
+            default:
+                break
             }
         }
         if solvedShapes.count == shapes?.count {
