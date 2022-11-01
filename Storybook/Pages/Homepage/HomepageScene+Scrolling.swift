@@ -18,8 +18,8 @@ extension HomepageScene {
         guard let scrollView = scrollView else { return }
         
         var contentSizeWidthScale: CGFloat = 2.5
-        if Theme.allValues.count > 4 {
-            contentSizeWidthScale = CGFloat(Theme.allValues.count-1)
+        if themes.count > 4 {
+            contentSizeWidthScale = CGFloat(themes.count-1)
         }
         scrollView.contentSize = CGSize(width: scrollView.frame.width * contentSizeWidthScale, height: scrollView.frame.height) // * 3 makes it three times as wide as screen
         view?.addSubview(scrollView)
@@ -30,30 +30,31 @@ extension HomepageScene {
         var spriteMapPosition = CGPoint(x: frame.midX - (scrollView.frame.width * CGFloat(contentSizeWidthScale-1)), y: frame.midY)
         
         // ScrollView Sprites for each content in scrollView
-        for (_, item) in Theme.allValues.enumerated() {
-            let themeAssets = Theme.allAssets[item]!
-            let container = SKNode()
-            
-            // Add map using entity-component logic
-            let spriteMap = Maps(
-                themeAssets: themeAssets,
-                mapName: item,
-                mapPosition: spriteMapPosition,
-                frame: frame
-            )
-            
-            let tempPosition = spriteMapPosition
-            
-            if let spriteComponent = spriteMap.component(ofType: SpriteComponent.self) {
-                spriteMapPosition = CGPoint(x: spriteMapPosition.x + (spriteComponent.node.size.width*1.2), y: spriteMapPosition.y)
-                container.addChild(spriteComponent.node)
-            }
-            
-            if let texture = view?.texture(from: container) {
-                let sprite = SKSpriteNode(texture:texture)
-                sprite.name = item
-                sprite.position = CGPoint(x: tempPosition.x, y: tempPosition.y)
-                moveableNode.addChild(sprite)
+        for (_, item) in themes.enumerated() {
+            if let themeAssets = item {
+                let container = SKNode()
+                
+                // Add map using entity-component logic
+                let spriteMap = Map(
+                    themeAssets: themeAssets,
+                    mapName: item?.name ?? "",
+                    mapPosition: spriteMapPosition,
+                    frame: frame
+                )
+                
+                let tempPosition = spriteMapPosition
+                
+                if let spriteComponent = spriteMap.component(ofType: SpriteComponent.self) {
+                    spriteMapPosition = CGPoint(x: spriteMapPosition.x + (spriteComponent.node.size.width*1.2), y: spriteMapPosition.y)
+                    container.addChild(spriteComponent.node)
+                }
+                
+                if let texture = view?.texture(from: container) {
+                    let sprite = SKSpriteNode(texture:texture)
+                    sprite.name = item?.name
+                    sprite.position = CGPoint(x: tempPosition.x, y: tempPosition.y)
+                    moveableNode.addChild(sprite)
+                }
             }
         }
     }

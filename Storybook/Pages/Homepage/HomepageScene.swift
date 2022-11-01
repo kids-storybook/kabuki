@@ -10,19 +10,30 @@ import GameplayKit
 
 
 class HomepageScene: SKScene {
-    enum Config {
-        static let scrollViewWidthAdjuster: CGFloat = 3
-    }
-    
     var scrollView: SwiftySKScrollView?
     let moveableNode = SKNode()
-    let backgroundSound = SKAudioNode(fileNamed: "bg-audio.mp3")
-    
-    // Update time
-    var lastUpdateTimeInterval: TimeInterval = 0
+    let backgroundSound = SKAudioNode(fileNamed: "Opening Music.mp3")
+    let background = SKSpriteNode(imageNamed: "background")
+    var themes: [Themes?] = []
     
     // Entity-component system
     var entityManager: EntityManager!
+    
+    // initialize core data context
+    let context = Helper().getBackgroundContext()
+    
+    override func sceneDidLoad() {
+        super.sceneDidLoad()
+        self.size.width = self.size.height * (UIScreen.main.bounds.size.width / UIScreen.main.bounds.size.height)
+        
+        do {
+            let fetchRequest = Themes.fetchRequest()
+            themes = try context.fetch(fetchRequest)
+        } catch let error as NSError {
+            print(error)
+            print("error while fetching data in core data!")
+        }
+    }
     
     override func didMove(to view: SKView) {
         print("scene size: \(size)")
@@ -31,12 +42,11 @@ class HomepageScene: SKScene {
         entityManager = EntityManager(scene: self)
         
         // Add background sound
-        backgroundSound.run(SKAction.changeVolume(to: 0.3, duration: 0))
+        backgroundSound.run(SKAction.fadeIn(withDuration: 3))
         backgroundSound.autoplayLooped = true
-        addChild(backgroundSound)
+        //        addChild(backgroundSound)
         
         // Add background
-        let background = SKSpriteNode(imageNamed: "background")
         background.position = CGPoint(x: 0, y: 0)
         background.size = CGSize(width: size.width, height: size.height)
         background.zPosition = -1
@@ -49,13 +59,19 @@ class HomepageScene: SKScene {
     override func willMove(from view: SKView) {
         scrollView?.removeFromSuperview()
         scrollView = nil
+        
+        moveableNode.removeAllActions()
+        moveableNode.removeFromParent()
+        moveableNode.removeAllChildren()
+        
         backgroundSound.removeAllActions()
+        backgroundSound.removeFromParent()
+        backgroundSound.removeAllChildren()
+        
+        background.removeFromParent()
+        background.removeAllChildren()
     }
     
-    func startPressed() {
-        print("Start pressed!")
-    }
-
     // MARK: - Touches
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -64,9 +80,7 @@ class HomepageScene: SKScene {
         for touch in touches {
             let location = touch.location(in: self)
             let node = atPoint(location)
-            if let name = node.name, Theme.allValues.contains(where: {
-                $0.range(of: name, options: .caseInsensitive) != nil
-            }) {
+            if let name = node.name, let _ = themes.filter({$0?.name == name})[0] {
                 print("aw, touches began!")
             }
         }
@@ -81,15 +95,35 @@ class HomepageScene: SKScene {
         for touch in touches {
             let location = touch.location(in: self)
             let node = atPoint(location)
-            if let name = node.name, Theme.allValues.contains(where: {
-                $0.range(of: name, options: .caseInsensitive) != nil
-            }) {
+            if let name = node.name, let theme = themes.filter({$0?.name == name})[0] {
                 node.run(SoundManager.sharedInstance.soundClickedButton)
-                var scale = SKAction.scale(to: 0.9, duration: 0)
-                node.run(scale)
-                scale = SKAction.scale(to: 1.0, duration: 0.2)
-                node.run(scale)
-                print("Let's move to \(name)~")
+                node.run(SKAction.sequence(
+                    [SKAction.scale(to: 0.9, duration: 0),
+                     SKAction.scale(to: 1.0, duration: 0.1)
+                    ])
+                )
+                
+                if theme.isActive {
+                    if let scene = GKScene(fileNamed: "MapViewPageScene") {
+                        // Get the SKScene from the loaded GKScene
+                        if let sceneNode = scene.rootNode as! MapViewPageScene? {
+                            // Set the scale mode to scale to fit the window
+                            sceneNode.scaleMode = .aspectFit
+                            sceneNode.theme = theme
+                            
+                            // Present the scene
+                            if let view = self.view {
+                                view.presentScene(sceneNode, transition: SKTransition.push(with: SKTransitionDirection.left, duration: 1.5))
+                                view.ignoresSiblingOrder = true
+                                view.showsFPS = true
+                                view.showsNodeCount = true
+                            }
+                        }
+                    }
+                    print("Let's move to \(name)~")
+                } else {
+                    print("Oops! This map isn't active yet, please stay tune ;)")
+                }
             }
         }
     }
