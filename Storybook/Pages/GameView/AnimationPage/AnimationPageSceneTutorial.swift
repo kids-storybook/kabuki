@@ -16,9 +16,6 @@ class AnimationPageSceneTutorial: GameScene {
     var activeShapes: [AnimatedShape] = []
     var totalStories: Int?
     var backgroundScene: SKSpriteNode!
-    var box = SKSpriteNode(imageNamed: "square_3")
-    var cone = SKSpriteNode(imageNamed: "triangle_1")
-    var ball = SKSpriteNode(imageNamed: "circle_1")
     var bgOpacity = SKSpriteNode(imageNamed: "opacityBg")
     
     private func setupPlayer(){
@@ -51,11 +48,7 @@ class AnimationPageSceneTutorial: GameScene {
         bgOpacity.size = CGSize(width: frame.width, height: frame.width)
         bgOpacity.zPosition = 13
         bgOpacity.alpha = 0
-        
-        box.animateUpDown(start: 3.0)
-        cone.animateUpDown(start: 7.5)
-        ball.animateUpDown(start: 12.0)
-        bgOpacity.fadeInOut(start: 3.0)
+        bgOpacity.fadeInOut(start: 2.0)
         
         addChild(bgOpacity)
 
@@ -75,9 +68,9 @@ class AnimationPageSceneTutorial: GameScene {
             activeShapes.append(activeShape)
             entityManager.add(activeShape)
             
-            let label = SKLabelNode(text: shape.shapeImage ?? "")
+            let label = SKLabelNode(text: shape.shapeName ?? "")
             
-            label.fontName = "Poppins-Bold"
+            label.fontName = "Poppins-Black"
             label.position = CGPoint(x: shape.xCoordinateFont, y: shape.yCoordinateFont)
             label.textFadeInOut(start: TimeInterval((idx+1)*2 + (idx*2)))
             label.zPosition = 15
