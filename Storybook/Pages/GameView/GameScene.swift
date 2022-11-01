@@ -25,7 +25,8 @@ class GameScene: SKScene {
     var idxScene: Int32 = 0
     var idxScenePreAnimate: Int32 = 0
     var idxSceneAnimate: Int32 = 0
-    
+    var addCharacter: [Stories]?
+    var character: [Character] = []
     
     
     // initialize core data context
@@ -137,11 +138,11 @@ class GameScene: SKScene {
         entityManager = EntityManager(scene: self)
         
         let character = Character(imageName: imageName ?? "")
-        if let spriteComponent = character.component(ofType: SpriteComponent.self) {
-            spriteComponent.node.position = CGPoint(x: -spriteComponent.node.frame.midX/2, y: spriteComponent.node.frame.midY/2-30)
-            spriteComponent.node.size = CGSize(width: 855, height: 516)
-            spriteComponent.node.zPosition = 10
-        }
+//        if let spriteComponent = character.component(ofType: SpriteComponent.self) {
+//            spriteComponent.node.position = CGPoint(x: -spriteComponent.node.frame.midX/2, y: spriteComponent.node.frame.midY/2-30)
+//            spriteComponent.node.size = CGSize(width: 855, height: 516)
+//            spriteComponent.node.zPosition = 10
+//        }
         
         entityManager.add(character)
     }
@@ -157,6 +158,22 @@ class GameScene: SKScene {
         }
         
         entityManager.add(character)
+    }
+    
+    func setupCharacter(imageName: String?) {
+        
+        //Create shapes
+        for (_, characters) in (addCharacter ?? []).enumerated() {
+            let activeCharacter = Character(imageName: imageName ?? "")
+            if let spriteComponent = activeCharacter.component(ofType: SpriteComponent.self) {
+                spriteComponent.node.position = CGPoint(x: characters.characterYPosition , y: characters.characterXPosition)
+                spriteComponent.node.size = CGSize(width: characters.characterWidth, height: characters.characterHeight)
+//                spriteComponent.node.setScale(0.55)
+                
+            }
+            character.append(activeCharacter)
+            entityManager.add(activeCharacter)
+        }
     }
     
 }

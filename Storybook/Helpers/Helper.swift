@@ -90,6 +90,10 @@ class Helper {
             story.labels = data.labels as? [String]
             story.background = data.background
             story.character = data.character
+            story.characterWidth = data.characterWidth ?? 0.0
+            story.characterHeight = data.characterHeight ?? 0.0
+            story.characterXPosition = data.characterXPosition ?? 0.0
+            story.characterYPosition = data.characterYPosition ?? 0.0
             self.saveContext(saveContext: context)
         }
         

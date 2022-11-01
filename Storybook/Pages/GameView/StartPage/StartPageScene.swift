@@ -12,7 +12,7 @@ class StartPageScene: GameScene {
     private func setupPlayer(){
         
         makeCharacter(imageName: self.story?.character)
-        
+//        setupCharacter(imageName: self.story?.character)
         backgroundScene = SKSpriteNode(imageNamed: self.story?.background ?? "")
         titleImage = SKSpriteNode(imageNamed: self.story?.title ?? "")
         

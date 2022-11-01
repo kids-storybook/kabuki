@@ -22,6 +22,10 @@ extension Stories {
     @NSManaged public var character: String?
     @NSManaged public var labels: Array<String>?
     @NSManaged public var order: Int32
+    @NSManaged public var characterWidth: Double
+    @NSManaged public var characterHeight: Double
+    @NSManaged public var characterXPosition: Double
+    @NSManaged public var characterYPosition: Double
 
 }
 

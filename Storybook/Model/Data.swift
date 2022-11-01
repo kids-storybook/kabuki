@@ -25,6 +25,10 @@ struct StoryModel {
     var order: Int32
     var background: String?
     var character: String?
+    var characterWidth: Double?
+    var characterHeight: Double?
+    var characterXPosition: Double?
+    var characterYPosition: Double?
 }
 
 struct ChallangeModel {
@@ -77,16 +81,16 @@ let initThemeData: [ThemeModel] = [
 ]
 
 let initAssessmentData: [StoryModel] = [
-    StoryModel(challengeName: "lion_challenge", title: "singaStoryTitle", labels: ["Lihatlah keluarga singa ini"], order: 0, background: "kandangSinga", character: "lions_1"),
-    StoryModel(challengeName: "lion_challenge", title: "singaStoryTitle", labels: ["Ada Bapak singa, Ibu singa, dan", "anak singa"], order: 1, background: "kandangSinga", character: "lions_1"),
-    StoryModel(challengeName: "lion_challenge_animate", title: "singaStoryTitle", labels: ["Ibu Singa memberikan anaknya", "berbagai bentuk mainan"], order: 0, background: "kandangSingaZoom", character: "lions_2"),
-    StoryModel(challengeName: "lion_challenge_animate_2", title: "singaStoryTitle", labels: ["Ada yang berbentuk persegi,", "segitiga, dan lingkaran"], order: 0, background: "kandangSingaZoom", character: "lions_2"),
+    StoryModel(challengeName: "lion_challenge", title: "singaStoryTitle", labels: ["Lihatlah keluarga singa ini"], order: 0, background: "kandangSinga", character: "lions_1", characterWidth: 855, characterHeight: 516, characterXPosition: 0, characterYPosition: 0),
+    StoryModel(challengeName: "lion_challenge", title: "singaStoryTitle", labels: ["Ada Bapak singa, Ibu singa, dan", "anak singa"], order: 1, background: "kandangSinga", character: "lions_1", characterWidth: 855, characterHeight: 516, characterXPosition: 0, characterYPosition: 0),
+    StoryModel(challengeName: "lion_challenge_animate", title: "singaStoryTitle", labels: ["Ibu Singa memberikan anaknya", "berbagai bentuk mainan"], order: 0, background: "kandangSingaZoom", character: "lions_2", characterWidth: 855, characterHeight: 516, characterXPosition: 0, characterYPosition: 0),
+    StoryModel(challengeName: "lion_challenge_animate_2", title: "singaStoryTitle", labels: ["Ada yang berbentuk persegi,", "segitiga, dan lingkaran"], order: 0, background: "kandangSingaZoom", character: "lions_2", characterWidth: 855, characterHeight: 516, characterXPosition: 0, characterYPosition: 0),
     
     
-    StoryModel(challengeName: "elephant_challenge", title: "gajahStoryTitle", labels: ["Lihatlah keluarga singa ini"], order: 0, background: "kandangGajah", character: "elephants_1"),
-    StoryModel(challengeName: "elephant_challenge", title: "gajahStoryTitle", labels: ["Ada Bapak singa, Ibu singa, dan", "anak singa"], order: 1, background: "kandangGajah", character: "elephants_2"),
-    StoryModel(challengeName: "elephant_challenge_animate", title: "gajahStoryTitle", labels: ["Ibu Singa memberikan anaknya", "berbagai bentuk mainan"], order: 0, background: "kandangGajahZoom", character: "elephants_2"),
-    StoryModel(challengeName: "elephant_challenge_animate_2", title: "gajahStoryTitle", labels: ["Ada yang berbentuk lingkaran,", "persegi, dan segitiga"], order: 0, background: "kandangGajahZoom", character: "elephants_2")
+    StoryModel(challengeName: "elephant_challenge", title: "gajahStoryTitle", labels: ["Lihatlah keluarga singa ini"], order: 0, background: "kandangGajah", character: "elephants_1", characterWidth: 855, characterHeight: 516, characterXPosition: 0, characterYPosition: 0),
+    StoryModel(challengeName: "elephant_challenge", title: "gajahStoryTitle", labels: ["Ada Bapak singa, Ibu singa, dan", "anak singa"], order: 1, background: "kandangGajah", character: "elephants_2", characterWidth: 855, characterHeight: 516, characterXPosition: 0, characterYPosition: 0),
+    StoryModel(challengeName: "elephant_challenge_animate", title: "gajahStoryTitle", labels: ["Ibu Singa memberikan anaknya", "berbagai bentuk mainan"], order: 0, background: "kandangGajahZoom", character: "elephants_2", characterWidth: 855, characterHeight: 516, characterXPosition: 0, characterYPosition: 0),
+    StoryModel(challengeName: "elephant_challenge_animate_2", title: "gajahStoryTitle", labels: ["Ada yang berbentuk lingkaran,", "persegi, dan segitiga"], order: 0, background: "kandangGajahZoom", character: "elephants_2", characterWidth: 855, characterHeight: 516, characterXPosition: 0, characterYPosition: 0)
     
 ]
 
