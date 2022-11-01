@@ -85,6 +85,7 @@ class Helper {
         for data in initAssessmentData {
             let story = Stories(context: context)
             story.challengeName = data.challengeName
+            story.title = data.title
             story.order = data.order
             story.labels = data.labels as? [String]
             story.background = data.background

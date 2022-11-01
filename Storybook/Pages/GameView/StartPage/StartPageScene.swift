@@ -7,22 +7,23 @@ class StartPageScene: GameScene {
     var story: Stories?
     var totalStories: Int?
     var backgroundScene: SKSpriteNode!
-    let title = SKSpriteNode(imageNamed: "singaStoryTitle")
+    var titleImage: SKSpriteNode!
     
     private func setupPlayer(){
         
         makeCharacter(imageName: self.story?.character)
         
         backgroundScene = SKSpriteNode(imageNamed: self.story?.background ?? "")
+        titleImage = SKSpriteNode(imageNamed: self.story?.title ?? "")
         
-        title.position = CGPoint(x: frame.midX, y: frame.midY/2+240)
-        title.zPosition = 15
+        titleImage.position = CGPoint(x: frame.midX, y: frame.midY/2+240)
+        titleImage.zPosition = 15
         
         backgroundScene.position = CGPoint(x: 0, y: 0)
         backgroundScene.zPosition = -10
         backgroundScene.size = self.frame.size
         
-        addChild(title)
+        addChild(titleImage)
         addChild(backgroundScene)
         
     }
