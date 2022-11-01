@@ -129,6 +129,7 @@ class Helper {
             animatedShape.shapeImage = data.shapeImage
             animatedShape.xCoordinateShape = data.xCoordinateShape ?? 0.0
             animatedShape.yCoordinateShape = data.yCoordinateShape ?? 0.0
+            animatedShape.shapeName = data.shapeName
             animatedShape.xCoordinateFont = data.xCoordinateFont ?? 0.0
             animatedShape.yCoordinateFont = data.yCoordinateFont ?? 0.0
             self.saveContext(saveContext: context)

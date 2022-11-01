@@ -3,6 +3,7 @@
     <entity name="AnimatedShapes" representedClassName=".AnimatedShapes" syncable="YES">
         <attribute name="challengeName" optional="YES" attributeType="String"/>
         <attribute name="shapeImage" optional="YES" attributeType="String"/>
+        <attribute name="shapeName" optional="YES" attributeType="String"/>
         <attribute name="xCoordinateFont" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="xCoordinateShape" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="yCoordinateFont" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
