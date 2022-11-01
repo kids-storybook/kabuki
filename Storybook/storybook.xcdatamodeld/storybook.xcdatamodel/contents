@@ -21,6 +21,7 @@
     <entity name="Shapes" representedClassName="Shapes" syncable="YES">
         <attribute name="background" optional="YES" attributeType="String"/>
         <attribute name="challengeName" optional="YES" attributeType="String"/>
+        <attribute name="level" optional="YES" attributeType="String"/>
         <attribute name="order" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <entity name="Stories" representedClassName="Stories" syncable="YES">

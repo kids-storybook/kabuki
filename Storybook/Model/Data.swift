@@ -43,6 +43,7 @@ struct ShapeModel {
     var challengeName: String?
     var background: String?
     var order: Int32
+    var level: AttributeLevel?
 }
 
 struct ShapeTargetModel {
@@ -62,6 +63,12 @@ struct AnimationModel {
     var shapeName: String?
     var xCoordinateFont: Double?
     var yCoordinateFont: Double?
+}
+
+enum AttributeLevel: String {
+    case easy = "easy"
+    case medium = "medium"
+    case hard = "hard"
 }
 
 let initThemeData: [ThemeModel] = [
@@ -89,19 +96,18 @@ let initAssessmentData: [StoryModel] = [
     StoryModel(challengeName: "elephant_challenge", title: "gajahStoryTitle", labels: ["Mereka sedang diberi makan", "oleh penjaga kebun binatang "], order: 1, background: "kandangGajah", character: "elephants_2", characterXPosition: 0, characterYPosition: 0),
     StoryModel(challengeName: "elephant_challenge_animate", title: "gajahStoryTitle", labels: ["Gajah adalah pemakan tumbuhan"], order: 0, background: "kandangGajahZoom", character: "elephants_2", characterXPosition: 0, characterYPosition: 0),
     StoryModel(challengeName: "elephant_challenge_animate_2", title: "gajahStoryTitle", labels: ["Ada makanan yang berbentuk", "persegi, segitiga, dan lingkaran"], order: 0, background: "kandangGajahZoom", character: "elephants_2", characterXPosition: 0, characterYPosition: 0)
-    
 ]
 
 let initShapeData: [ShapeModel] = [
-    ShapeModel(challengeName: "lion_challenge", background: "triangle_1", order: 0),
-    ShapeModel(challengeName: "lion_challenge", background: "triangle_2", order: 1),
-    ShapeModel(challengeName: "lion_challenge", background: "triangle_3", order: 2),
-    ShapeModel(challengeName: "lion_challenge", background: "circle_1", order: 0),
-    ShapeModel(challengeName: "lion_challenge", background: "circle_2", order: 1),
-    ShapeModel(challengeName: "lion_challenge", background: "circle_3", order: 2),
-    ShapeModel(challengeName: "lion_challenge", background: "square_1", order: 0),
-    ShapeModel(challengeName: "lion_challenge", background: "square_2", order: 1),
-    ShapeModel(challengeName: "lion_challenge", background: "square_3", order: 2),
+    ShapeModel(challengeName: "lion_challenge", background: "triangle_1", order: 0, level: AttributeLevel.easy),
+    ShapeModel(challengeName: "lion_challenge", background: "triangle_2", order: 1, level: AttributeLevel.easy),
+    ShapeModel(challengeName: "lion_challenge", background: "triangle_3", order: 2, level: AttributeLevel.easy),
+    ShapeModel(challengeName: "lion_challenge", background: "circle_1", order: 0, level: AttributeLevel.easy),
+    ShapeModel(challengeName: "lion_challenge", background: "circle_2", order: 1, level: AttributeLevel.easy),
+    ShapeModel(challengeName: "lion_challenge", background: "circle_3", order: 2, level: AttributeLevel.easy),
+    ShapeModel(challengeName: "lion_challenge", background: "square_1", order: 0, level: AttributeLevel.easy),
+    ShapeModel(challengeName: "lion_challenge", background: "square_2", order: 1, level: AttributeLevel.easy),
+    ShapeModel(challengeName: "lion_challenge", background: "square_3", order: 2, level: AttributeLevel.easy),
 ]
 
 let initShapeTargetData: [ShapeTargetModel] = [

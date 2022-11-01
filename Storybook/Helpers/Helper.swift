@@ -111,6 +111,7 @@ class Helper {
             shape.challengeName = data.challengeName
             shape.order = data.order
             shape.background = data.background
+            shape.level = data.level?.rawValue
             
             self.saveContext(saveContext: context)
         }
