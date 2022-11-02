@@ -12,10 +12,13 @@ class GameScene: SKScene {
     var start: SKNode!
     var header: SKNode!
     var footer: SKNode!
+    var continueRetry: SKNode!
     var startBtn: SKSpriteNode!
     var nxtBtn: SKSpriteNode!
     var prevBtn: SKSpriteNode!
     var exitBtn: SKSpriteNode!
+    var retryButton: SKSpriteNode!
+    var continueButton: SKSpriteNode!
     var entityManager: EntityManager!
     
     // reusable variable for child
