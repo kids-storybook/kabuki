@@ -51,7 +51,6 @@ class AnimationPageScene: GameScene {
             let activeShape = AnimatedShape(imageName: shape.shapeImage ?? "")
             if let spriteComponent = activeShape.component(ofType: SpriteComponent.self) {
                 spriteComponent.node.position = CGPoint(x: shape.xCoordinateShape, y: shape.yCoordinateShape)
-                spriteComponent.node.setScale(0.55)
                 
             }
             activeShapes.append(activeShape)

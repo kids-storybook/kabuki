@@ -73,13 +73,13 @@ enum AttributeLevel: String {
 
 let initThemeData: [ThemeModel] = [
     ThemeModel(background: "mini zoo theme", mapBackground: "zoo_background", name: "zoo", isActive: true, challenges: [
-        ChallangeModel(background: "bright_elephant_cage", challengeName: "elephant_challenge", isActive: false, xCoordinate: -545.187, yCoordinate: 165.877, zPosition: 1.0, gameBackground: "zoo_background"),
-        ChallangeModel(background: "bright_gorilla_cage", challengeName: "gorilla_challenge", isActive: false, xCoordinate: 524.09, yCoordinate: 179.16, zPosition: 0.0, gameBackground: "EasyGameScene"),
-        ChallangeModel(background: "bright_giraffe_cage", challengeName: "giraffe_challenge", isActive: false, xCoordinate: 445.219, yCoordinate: -183.736, zPosition: 1.0, gameBackground: "EasyGameScene"),
-        ChallangeModel(background: "bright_panda_cage", challengeName: "panda_challenge", isActive: false, xCoordinate: -327.585, yCoordinate: 379.641, zPosition: 0.0, gameBackground: "EasyGameScene"),
-        ChallangeModel(background: "bright_penguin_cage", challengeName: "penguin_challenge", isActive: false, xCoordinate: 49.005, yCoordinate: 49.594, zPosition: 1.0, gameBackground: "EasyGameScene"),
-        ChallangeModel(background: "bright_lion_cage", challengeName: "lion_challenge", isActive: true, xCoordinate: -480.944, yCoordinate: -215.175, zPosition: 2.0, gameBackground: "EasyGameScene"),
-        ChallangeModel(background: "bright_zebra_cage", challengeName: "zebra_challenge", isActive: false, xCoordinate: 362.28, yCoordinate: 349.953, zPosition: 0.0, gameBackground: "EasyGameScene")
+        ChallangeModel(background: "bright_elephant_cage", challengeName: "elephant_challenge", isActive: false, xCoordinate: -545.187, yCoordinate: 165.877, zPosition: 1.0, gameBackground: "lion_shape_background"),
+        ChallangeModel(background: "bright_gorilla_cage", challengeName: "gorilla_challenge", isActive: false, xCoordinate: 524.09, yCoordinate: 179.16, zPosition: 0.0, gameBackground: "lion_shape_background"),
+        ChallangeModel(background: "bright_giraffe_cage", challengeName: "giraffe_challenge", isActive: false, xCoordinate: 445.219, yCoordinate: -183.736, zPosition: 1.0, gameBackground: "lion_shape_background"),
+        ChallangeModel(background: "bright_panda_cage", challengeName: "panda_challenge", isActive: false, xCoordinate: -327.585, yCoordinate: 379.641, zPosition: 0.0, gameBackground: "lion_shape_background"),
+        ChallangeModel(background: "bright_penguin_cage", challengeName: "penguin_challenge", isActive: false, xCoordinate: 49.005, yCoordinate: 49.594, zPosition: 1.0, gameBackground: "lion_shape_background"),
+        ChallangeModel(background: "bright_lion_cage", challengeName: "lion_challenge", isActive: true, xCoordinate: -480.944, yCoordinate: -215.175, zPosition: 2.0, gameBackground: "lion_shape_background"),
+        ChallangeModel(background: "bright_zebra_cage", challengeName: "zebra_challenge", isActive: false, xCoordinate: 362.28, yCoordinate: 349.953, zPosition: 0.0, gameBackground: "lion_shape_background")
     ]),
     ThemeModel(background: "locked theme", mapBackground: "zoo_background", name: "forest", isActive: false, challenges: []),
     ThemeModel(background: "locked theme", mapBackground: "zoo_background", name: "garden", isActive: false, challenges: []),
@@ -112,11 +112,11 @@ let initShapeData: [ShapeModel] = [
 
 let initShapeTargetData: [ShapeTargetModel] = [
     ShapeTargetModel(challengeName: "lion_challenge", background: "triangle",
-                     xCoordinate: 426.6, yCoordinate: -290, zPosition: 0.0),
+                     xCoordinate: 417, yCoordinate: -288, zPosition: 0.0),
     ShapeTargetModel(challengeName: "lion_challenge", background: "square",
-                     xCoordinate: 426.6, yCoordinate: 9, zPosition: 0.0),
+                     xCoordinate: 412, yCoordinate: 18.5, zPosition: 0.0),
     ShapeTargetModel(challengeName: "lion_challenge", background: "circle",
-                     xCoordinate: 422.331, yCoordinate: 309, zPosition: 0.0),
+                     xCoordinate: 410.5, yCoordinate: 309, zPosition: 0.0),
 ]
 
 let initAnimationData: [AnimationModel] = [
