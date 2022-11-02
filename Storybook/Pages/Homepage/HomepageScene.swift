@@ -44,7 +44,7 @@ class HomepageScene: SKScene {
         // Add background sound
         backgroundSound.run(SKAction.fadeIn(withDuration: 3))
         backgroundSound.autoplayLooped = true
-        //        addChild(backgroundSound)
+        addChild(backgroundSound)
         
         // Add background
         background.position = CGPoint(x: 0, y: 0)
@@ -104,19 +104,21 @@ class HomepageScene: SKScene {
                 )
                 
                 if theme.isActive {
-                    if let scene = GKScene(fileNamed: "MapViewPageScene") {
-                        // Get the SKScene from the loaded GKScene
-                        if let sceneNode = scene.rootNode as! MapViewPageScene? {
-                            // Set the scale mode to scale to fit the window
-                            sceneNode.scaleMode = .aspectFit
-                            sceneNode.theme = theme
-                            
-                            // Present the scene
-                            if let view = self.view {
-                                view.presentScene(sceneNode, transition: SKTransition.push(with: SKTransitionDirection.left, duration: 1.5))
-                                view.ignoresSiblingOrder = true
-                                view.showsFPS = true
-                                view.showsNodeCount = true
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+                        if let scene = GKScene(fileNamed: "MapViewPageScene") {
+                            // Get the SKScene from the loaded GKScene
+                            if let sceneNode = scene.rootNode as! MapViewPageScene? {
+                                // Set the scale mode to scale to fit the window
+                                sceneNode.scaleMode = .aspectFit
+                                sceneNode.theme = theme
+                                
+                                // Present the scene
+                                if let view = self.view {
+                                    view.presentScene(sceneNode, transition: SKTransition.fade(withDuration: 1.3))
+                                    view.ignoresSiblingOrder = true
+                                    view.showsFPS = true
+                                    view.showsNodeCount = true
+                                }
                             }
                         }
                     }

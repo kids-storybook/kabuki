@@ -49,10 +49,8 @@ class Helper {
             let theme = Themes(context: context)
             theme.background = data.background
             theme.mapBackground = data.mapBackground
-            theme.label = data.label
             theme.name = data.name
             theme.isActive = data.isActive ?? false
-            theme.startButon = data.startButton
             
             var challenges: [Challenges] = []
             

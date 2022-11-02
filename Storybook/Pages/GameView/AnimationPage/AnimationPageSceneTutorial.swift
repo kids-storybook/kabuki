@@ -122,9 +122,11 @@ class AnimationPageSceneTutorial: GameScene {
     }
     
     override func getNextScene() -> SKScene? {
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "StopBackgroundSound"), object: self, userInfo:nil)
         let scene = SKScene(fileNamed: "ShapeGameScene") as! ShapeGameScene
         scene.challengeName = self.challengeName
         scene.theme = self.theme
+        scene.shapeOrder = 0
         return scene
     }
     
@@ -137,6 +139,7 @@ class AnimationPageSceneTutorial: GameScene {
     }
     
     override func exitScene() -> SKScene? {
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "StopBackgroundSound"), object: self, userInfo:nil)
         let scene = SKScene(fileNamed: "MapViewPageScene") as! MapViewPageScene
         scene.theme = self.theme
         return scene

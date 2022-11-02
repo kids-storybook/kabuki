@@ -13,12 +13,14 @@ class ShapeGameScene: GameScene {
     private var currentNode: SKNode?
     var shapes: [Shapes?]?
     var totalGames: Int?
-    var shapeOrder: Int32 = 0
+    var shapeOrder: Int32?
     
     var backgroundScene: SKSpriteNode!
     var shapeTargets: [String:Shape] = [:]
     var activeShapes: [Shape] = []
     var solvedShapes: Set<String> = Set([])
+    
+    let soundPayload: [String: Any] = ["fileToPlay" : "Mini Games-Lion", "isKeepToPlay": true ]
     
     func setBackground() {
         let challenge = self.theme?.challenges?.filtered(using: NSPredicate(format: "challengeName == %@", self.challengeName ?? "")).array as! [Challenges]
@@ -28,6 +30,9 @@ class ShapeGameScene: GameScene {
         backgroundScene.zPosition = -10
         backgroundScene.size = self.frame.size
         addChild(backgroundScene)
+        
+        // Add background sound
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "PlayBackgroundSound"), object: self, userInfo:soundPayload)
     }
     
     
@@ -84,7 +89,7 @@ class ShapeGameScene: GameScene {
     func getAllShapeAssets() {
         do {
             let fetchRequest = Shapes.fetchRequest()
-            let orderPredicate = NSPredicate(format: "order == \(self.shapeOrder)")
+            let orderPredicate = NSPredicate(format: "order == \(self.shapeOrder ?? 0)")
             let challengeNamePredicate = NSPredicate(format: "challengeName == %@", self.challengeName ?? "")
             fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
                 challengeNamePredicate, orderPredicate
@@ -209,13 +214,17 @@ class ShapeGameScene: GameScene {
             }
         }
         if solvedShapes.count == shapes?.count {
-            shapeOrder += 1
             for shape in activeShapes {
                 entityManager.remove(shape)
             }
-            getAllShapeAssets()
-            setupShapes()
             solvedShapes.removeAll()
+            
+            let scene = SKScene(fileNamed: "ShapeGameScene") as! ShapeGameScene
+            scene.challengeName = self.challengeName
+            scene.theme = self.theme
+            scene.shapeOrder = (self.shapeOrder ?? 0) + 1
+            
+            goToScene(scene: scene, transition: SKTransition.fade(withDuration: 1.3))
         }
         self.currentNode = nil
     }

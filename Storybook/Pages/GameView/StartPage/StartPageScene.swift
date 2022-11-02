@@ -9,10 +9,11 @@ class StartPageScene: GameScene {
     var backgroundScene: SKSpriteNode!
     var titleImage: SKSpriteNode!
     
+    let soundPayload: [String: Any] = ["fileToPlay" : "Story Music-Lion", "isKeepToPlay": true ]
+    
     private func setupPlayer(){
         
         makeCharacter(imageName: self.story?.character)
-//        setupCharacter(imageName: self.story?.character)
         backgroundScene = SKSpriteNode(imageNamed: self.story?.background ?? "")
         titleImage = SKSpriteNode(imageNamed: self.story?.title ?? "")
         
@@ -22,6 +23,9 @@ class StartPageScene: GameScene {
         backgroundScene.position = CGPoint(x: 0, y: 0)
         backgroundScene.zPosition = -10
         backgroundScene.size = self.frame.size
+        
+        // Add background sound
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "PlayBackgroundSound"), object: self, userInfo:soundPayload)
         
         addChild(titleImage)
         addChild(backgroundScene)
@@ -45,7 +49,6 @@ class StartPageScene: GameScene {
             ])
             fetchRequest.fetchLimit = 1
             story = try context.fetch(fetchRequest)[0]
-//            print("Data \(story?.background)")
             fetchRequest.predicate = NSPredicate(format: "challengeName == %@", challengeName ?? "")
             totalStories = try context.count(for: fetchRequest)
         } catch let error as NSError {
@@ -67,6 +70,7 @@ class StartPageScene: GameScene {
     }
     
     override func exitScene() -> SKScene? {
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "StopBackgroundSound"), object: self, userInfo:nil)
         let scene = SKScene(fileNamed: "MapViewPageScene") as! MapViewPageScene
         scene.theme = self.theme
         return scene

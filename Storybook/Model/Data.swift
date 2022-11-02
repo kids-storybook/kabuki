@@ -59,7 +59,7 @@ struct AnimationModel {
     var shapeImage: String?
     var xCoordinateShape: Double?
     var yCoordinateShape: Double?
-//    var fontColor: UIColor?
+    //    var fontColor: UIColor?
     var shapeName: String?
     var xCoordinateFont: Double?
     var yCoordinateFont: Double?
@@ -72,7 +72,7 @@ enum AttributeLevel: String {
 }
 
 let initThemeData: [ThemeModel] = [
-    ThemeModel(background: "mini zoo card", mapBackground: "zoo_background", label: "mini zoo", name: "zoo", startButton: "start button", isActive: true, challenges: [
+    ThemeModel(background: "mini zoo theme", mapBackground: "zoo_background", name: "zoo", isActive: true, challenges: [
         ChallangeModel(background: "bright_elephant_cage", challengeName: "elephant_challenge", isActive: false, xCoordinate: -545.187, yCoordinate: 165.877, zPosition: 1.0, gameBackground: "zoo_background"),
         ChallangeModel(background: "bright_gorilla_cage", challengeName: "gorilla_challenge", isActive: false, xCoordinate: 524.09, yCoordinate: 179.16, zPosition: 0.0, gameBackground: "EasyGameScene"),
         ChallangeModel(background: "bright_giraffe_cage", challengeName: "giraffe_challenge", isActive: false, xCoordinate: 445.219, yCoordinate: -183.736, zPosition: 1.0, gameBackground: "EasyGameScene"),
@@ -81,8 +81,8 @@ let initThemeData: [ThemeModel] = [
         ChallangeModel(background: "bright_lion_cage", challengeName: "lion_challenge", isActive: true, xCoordinate: -480.944, yCoordinate: -215.175, zPosition: 2.0, gameBackground: "EasyGameScene"),
         ChallangeModel(background: "bright_zebra_cage", challengeName: "zebra_challenge", isActive: false, xCoordinate: 362.28, yCoordinate: 349.953, zPosition: 0.0, gameBackground: "EasyGameScene")
     ]),
-    ThemeModel(background: "empty card", mapBackground: "zoo_background", label: "mini zoo", name: "forest", startButton: "start button", isActive: false, challenges: []),
-    ThemeModel(background: "empty card", mapBackground: "zoo_background", label: "mini zoo", name: "garden", startButton: "start button", isActive: false, challenges: []),
+    ThemeModel(background: "locked theme", mapBackground: "zoo_background", name: "forest", isActive: false, challenges: []),
+    ThemeModel(background: "locked theme", mapBackground: "zoo_background", name: "garden", isActive: false, challenges: []),
 ]
 
 let initAssessmentData: [StoryModel] = [

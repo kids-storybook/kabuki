@@ -26,7 +26,7 @@ class MapViewPageScene: SKScene {
         // Add background sound
         backgroundSound.run(SKAction.fadeIn(withDuration: 3))
         backgroundSound.autoplayLooped = true
-        //        addChild(backgroundSound)
+        addChild(backgroundSound)
         
         // Add background
         background = SKSpriteNode(imageNamed: self.theme?.mapBackground ?? "")
@@ -115,25 +115,27 @@ class MapViewPageScene: SKScene {
             if let name = node.name, name.contains("_challenge") {
                 node.run(SoundManager.sharedInstance.soundClickedButton)
                 node.run(SKAction.sequence(
-                    [SKAction.scale(to: 1.5, duration: 0),
-                     SKAction.scale(to: 1.0, duration: 0.1)
+                    [SKAction.scale(to: 1.0, duration: 0),
+                     SKAction.scale(to: 1.237, duration: 0.1)
                     ])
                 )
                 
                 if let scene = GKScene(fileNamed: "StartPageScene") {
-                    // Get the SKScene from the loaded GKScene
-                    if let sceneNode = scene.rootNode as! StartPageScene? {
-                        // Set the scale mode to scale to fit the window
-                        sceneNode.scaleMode = .aspectFill
-                        sceneNode.challengeName = name
-                        sceneNode.themeName = theme?.name ?? ""
-                        // Present the scene
-                        if let view = self.view {
-                            view.ignoresSiblingOrder = true
-                            view.showsFPS = true
-                            view.showsNodeCount = true
-                            view.showsDrawCount = true
-                            view.presentScene(sceneNode, transition: SKTransition.push(with: SKTransitionDirection.left, duration: 1.5))
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+                        // Get the SKScene from the loaded GKScene
+                        if let sceneNode = scene.rootNode as! StartPageScene? {
+                            // Set the scale mode to scale to fit the window
+                            sceneNode.scaleMode = .aspectFill
+                            sceneNode.challengeName = name
+                            sceneNode.themeName = self.theme?.name ?? ""
+                            // Present the scene
+                            if let view = self.view {
+                                view.ignoresSiblingOrder = true
+                                view.showsFPS = true
+                                view.showsNodeCount = true
+                                view.showsDrawCount = true
+                                view.presentScene(sceneNode, transition: SKTransition.fade(withDuration: 1.3))
+                            }
                         }
                     }
                 }

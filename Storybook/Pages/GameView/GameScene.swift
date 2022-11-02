@@ -76,10 +76,11 @@ class GameScene: SKScene {
         exitBtn = childNode(withName: "//exitButton") as? SKSpriteNode
     }
     
-    func goToScene(scene: SKScene, transitionDirection: SKTransitionDirection) {
-        let sceneTransition = SKTransition.push(with: transitionDirection, duration: 1.5)
-        scene.scaleMode = .aspectFill
-        self.view?.presentScene(scene, transition: sceneTransition)
+    func goToScene(scene: SKScene, transition: SKTransition) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+            scene.scaleMode = .aspectFill
+            self.view?.presentScene(scene, transition: transition)
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -87,10 +88,14 @@ class GameScene: SKScene {
         let touchLocation = touch.location(in: self)
         if let start = start, start.contains(touchLocation) {
             let location = touch.location(in: start)
-            let node = atPoint(location)
-            node.run(SoundManager.sharedInstance.soundClickedButton)
             if startBtn.contains(location) {
-                goToScene(scene: getNextScene()!, transitionDirection: SKTransitionDirection.left)
+                startBtn.run(SoundManager.sharedInstance.soundClickedButton)
+                startBtn.run(SKAction.sequence(
+                    [SKAction.scale(to: 0.9, duration: 0),
+                     SKAction.scale(to: 1.0, duration: 0.1)
+                    ])
+                )
+                goToScene(scene: getNextScene()!, transition: SKTransition.push(with: SKTransitionDirection.left, duration: 1.3))
             }
             
         } else if let footer = footer, footer.contains(touchLocation) {
@@ -98,11 +103,21 @@ class GameScene: SKScene {
             
             if nxtBtn.contains(location) {
                 nxtBtn.run(SoundManager.sharedInstance.soundClickedButton)
-                goToScene(scene: getNextScene()!, transitionDirection: SKTransitionDirection.left)
+                nxtBtn.run(SKAction.sequence(
+                    [SKAction.scale(to: 0.9, duration: 0),
+                     SKAction.scale(to: 1.0, duration: 0.1)
+                    ])
+                )
+                goToScene(scene: getNextScene()!, transition: SKTransition.push(with: SKTransitionDirection.left, duration: 1.3))
             }
             else if prevBtn.contains(location) {
                 prevBtn.run(SoundManager.sharedInstance.soundClickedButton)
-                goToScene(scene: getPreviousScene()!, transitionDirection: SKTransitionDirection.right)
+                prevBtn.run(SKAction.sequence(
+                    [SKAction.scale(to: 0.9, duration: 0),
+                     SKAction.scale(to: 1.0, duration: 0.1)
+                    ])
+                )
+                goToScene(scene: getPreviousScene()!, transition: SKTransition.push(with: SKTransitionDirection.right, duration: 1.3))
             }
             
         }
@@ -111,7 +126,12 @@ class GameScene: SKScene {
             
             if exitBtn.contains(location) {
                 exitBtn.run(SoundManager.sharedInstance.soundClickedButton)
-                goToScene(scene: exitScene()!, transitionDirection: SKTransitionDirection.right)
+                exitBtn.run(SKAction.sequence(
+                    [SKAction.scale(to: 0.9, duration: 0),
+                     SKAction.scale(to: 1.0, duration: 0.1)
+                    ])
+                )
+                goToScene(scene: exitScene()!, transition: SKTransition.fade(withDuration: 1.3))
             }
         }
         else {
@@ -169,9 +189,6 @@ class GameScene: SKScene {
             let activeCharacter = Character(imageName: imageName ?? "")
             if let spriteComponent = activeCharacter.component(ofType: SpriteComponent.self) {
                 spriteComponent.node.position = CGPoint(x: characters.characterYPosition , y: characters.characterXPosition)
-//                spriteComponent.node.size = CGSize(width: characters.characterWidth, height: characters.characterHeight)
-//                spriteComponent.node.setScale(0.55)
-                
             }
             character.append(activeCharacter)
             entityManager.add(activeCharacter)

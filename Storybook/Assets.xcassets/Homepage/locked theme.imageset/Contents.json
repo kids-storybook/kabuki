@@ -1,11 +1,11 @@
 {
   "images" : [
     {
+      "filename" : "locked theme.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "empty card1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
@@ -17,8 +17,5 @@
   "info" : {
     "author" : "xcode",
     "version" : 1
-  },
-  "properties" : {
-    "compression-type" : "gpu-optimized-smallest"
   }
 }

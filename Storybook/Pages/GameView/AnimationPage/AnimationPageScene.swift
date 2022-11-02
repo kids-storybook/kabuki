@@ -113,6 +113,7 @@ class AnimationPageScene: GameScene {
     }
     
     override func exitScene() -> SKScene? {
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "StopBackgroundSound"), object: self, userInfo:nil)
         let scene = SKScene(fileNamed: "MapViewPageScene") as! MapViewPageScene
         scene.theme = self.theme
         return scene
