@@ -20,8 +20,6 @@ class ShapeGameScene: GameScene {
     var activeShapes: [Shape] = []
     var solvedShapes: Set<String> = Set([])
     
-    let soundPayload: [String: Any] = ["fileToPlay" : "Mini Games-Lion", "isKeepToPlay": true ]
-    
     func setBackground() {
         let challenge = self.theme?.challenges?.filtered(using: NSPredicate(format: "challengeName == %@", self.challengeName ?? "")).array as! [Challenges]
         
@@ -32,6 +30,7 @@ class ShapeGameScene: GameScene {
         addChild(backgroundScene)
         
         // Add background sound
+        let soundPayload: [String: Any] = ["fileToPlay" : "Mini Games-\(self.challengeName ?? "")", "isKeepToPlay": true ]
         NotificationCenter.default.post(name: Notification.Name(rawValue: "PlayBackgroundSound"), object: self, userInfo:soundPayload)
     }
     

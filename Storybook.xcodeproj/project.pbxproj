@@ -43,8 +43,8 @@
 		E601FEAC29063F7E00810558 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = E601FEAB29063F7E00810558 /* Data.swift */; };
 		E601FEC8290686AE00810558 /* AnimationPageScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = E601FEC6290686AE00810558 /* AnimationPageScene.sks */; };
 		E601FEC9290686AE00810558 /* AnimationPageScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E601FEC7290686AE00810558 /* AnimationPageScene.swift */; };
-		E60A5AB82912ECF600A968DC /* Story Music-Lion.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E60A5AB62912ECF600A968DC /* Story Music-Lion.mp3 */; };
-		E60A5AB92912ECF600A968DC /* Mini Games-Lion.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E60A5AB72912ECF600A968DC /* Mini Games-Lion.mp3 */; };
+		E60A5AB82912ECF600A968DC /* Story Music-lion_challenge.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E60A5AB62912ECF600A968DC /* Story Music-lion_challenge.mp3 */; };
+		E60A5AB92912ECF600A968DC /* Mini Games-lion_challenge.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E60A5AB72912ECF600A968DC /* Mini Games-lion_challenge.mp3 */; };
 		E63DEA6828E2EB32000AC43C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63DEA6728E2EB32000AC43C /* AppDelegate.swift */; };
 		E63DEA6C28E2EB33000AC43C /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = E63DEA6B28E2EB33000AC43C /* Actions.sks */; };
 		E63DEA7028E2EB33000AC43C /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63DEA6F28E2EB33000AC43C /* GameViewController.swift */; };
@@ -133,8 +133,8 @@
 		E601FEAB29063F7E00810558 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		E601FEC6290686AE00810558 /* AnimationPageScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = AnimationPageScene.sks; sourceTree = "<group>"; };
 		E601FEC7290686AE00810558 /* AnimationPageScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationPageScene.swift; sourceTree = "<group>"; };
-		E60A5AB62912ECF600A968DC /* Story Music-Lion.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Story Music-Lion.mp3"; sourceTree = "<group>"; };
-		E60A5AB72912ECF600A968DC /* Mini Games-Lion.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mini Games-Lion.mp3"; sourceTree = "<group>"; };
+		E60A5AB62912ECF600A968DC /* Story Music-lion_challenge.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Story Music-lion_challenge.mp3"; sourceTree = "<group>"; };
+		E60A5AB72912ECF600A968DC /* Mini Games-lion_challenge.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mini Games-lion_challenge.mp3"; sourceTree = "<group>"; };
 		E63DEA6428E2EB32000AC43C /* Storybook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Storybook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E63DEA6728E2EB32000AC43C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E63DEA6B28E2EB33000AC43C /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
@@ -380,8 +380,8 @@
 		E6D4168A28E59FCE0030681F /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
-				E60A5AB72912ECF600A968DC /* Mini Games-Lion.mp3 */,
-				E60A5AB62912ECF600A968DC /* Story Music-Lion.mp3 */,
+				E60A5AB72912ECF600A968DC /* Mini Games-lion_challenge.mp3 */,
+				E60A5AB62912ECF600A968DC /* Story Music-lion_challenge.mp3 */,
 				E6E50CCF290280C70065BB71 /* Maps Music.mp3 */,
 				E6E50CCE290280C60065BB71 /* Opening Music.mp3 */,
 				E6E3368728ECA2FF00FE2BEE /* lioncry3.wav */,
@@ -565,11 +565,11 @@
 				E6E50CD2290280C70065BB71 /* Opening Music.mp3 in Resources */,
 				3662B02429029A8500956BDE /* Header.sks in Resources */,
 				E601FEC8290686AE00810558 /* AnimationPageScene.sks in Resources */,
-				E60A5AB92912ECF600A968DC /* Mini Games-Lion.mp3 in Resources */,
+				E60A5AB92912ECF600A968DC /* Mini Games-lion_challenge.mp3 in Resources */,
 				3644BD9E28FF02DA0027DDE5 /* Poppins-Regular.ttf in Resources */,
 				368546F428FFF3CE00E520B4 /* StartPageScene.sks in Resources */,
 				E6E50CD3290280C70065BB71 /* Maps Music.mp3 in Resources */,
-				E60A5AB82912ECF600A968DC /* Story Music-Lion.mp3 in Resources */,
+				E60A5AB82912ECF600A968DC /* Story Music-lion_challenge.mp3 in Resources */,
 				E63DEA6C28E2EB33000AC43C /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

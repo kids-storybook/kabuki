@@ -9,8 +9,6 @@ class StartPageScene: GameScene {
     var backgroundScene: SKSpriteNode!
     var titleImage: SKSpriteNode!
     
-    let soundPayload: [String: Any] = ["fileToPlay" : "Story Music-Lion", "isKeepToPlay": true ]
-    
     private func setupPlayer(){
         
         makeCharacter(imageName: self.story?.character)
@@ -25,6 +23,7 @@ class StartPageScene: GameScene {
         backgroundScene.size = self.frame.size
         
         // Add background sound
+        let soundPayload: [String: Any] = ["fileToPlay" : "Story Music-\(self.challengeName ?? "")", "isKeepToPlay": true ]
         NotificationCenter.default.post(name: Notification.Name(rawValue: "PlayBackgroundSound"), object: self, userInfo:soundPayload)
         
         addChild(titleImage)
