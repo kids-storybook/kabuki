@@ -141,12 +141,11 @@ class AnimationPageSceneTutorial: GameScene {
         scene.theme = self.theme
         scene.shapeOrder = 0
         scene.level = challenge?.level ?? AttributeLevel.easy.rawValue
-//        scene.totalGames = 3
         return scene
     }
     
     override func getPreviousScene() -> SKScene? {
-        let scene = SKScene(fileNamed: "AppreciationPage") as! AppreciationPage
+        let scene = SKScene(fileNamed: "AnimationPageScene") as! AnimationPageScene
         scene.idxScene = self.idxScene
         scene.challengeName = self.challengeName
         scene.theme = self.theme

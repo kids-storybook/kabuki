@@ -11,7 +11,6 @@ import UIKit
 
 class AnimationPageScene: GameScene {
     
-    var story: Stories?
     var animateShape: [AnimatedShapes]?
     var activeShapes: [AnimatedShape] = []
     var totalStories: Int?

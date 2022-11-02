@@ -4,7 +4,7 @@ import GameplayKit
 
 class StartPageScene: GameScene {
 
-    var story: Stories?
+    
     var totalStories: Int?
     var backgroundScene: SKSpriteNode!
     var titleImage: SKSpriteNode!

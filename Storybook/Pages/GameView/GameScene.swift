@@ -7,18 +7,19 @@
 
 import Foundation
 import SpriteKit
+import GameplayKit
 
 class GameScene: SKScene {
     var start: SKNode!
     var header: SKNode!
     var footer: SKNode!
-    var continueRetry: SKNode!
+    var continueretry: SKNode!
     var startBtn: SKSpriteNode!
     var nxtBtn: SKSpriteNode!
     var prevBtn: SKSpriteNode!
     var exitBtn: SKSpriteNode!
-    var retryButton: SKSpriteNode!
-    var continueButton: SKSpriteNode!
+    var retryBtn: SKSpriteNode!
+    var continueBtn: SKSpriteNode!
     var entityManager: EntityManager!
     
     // reusable variable for child
@@ -30,10 +31,8 @@ class GameScene: SKScene {
     var idxSceneAnimate: Int32 = 0
     var addCharacter: [Stories]?
     var character: [Character] = []
-    var stories: Stories?
-    
-    
-    
+    var story: Stories?
+
     // initialize core data context
     let context = Helper().getBackgroundContext()
     
@@ -84,6 +83,12 @@ class GameScene: SKScene {
             scene.scaleMode = .aspectFill
             self.view?.presentScene(scene, transition: transition)
         }
+    }
+    
+    func goToSceneFade(scene: SKScene) {
+        let sceneTransition = SKTransition.fade(withDuration: 1.5)
+        scene.scaleMode = .aspectFill
+        self.view?.presentScene(scene, transition: sceneTransition)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -137,6 +142,19 @@ class GameScene: SKScene {
                 goToScene(scene: exitScene()!, transition: SKTransition.fade(withDuration: 1.3))
             }
         }
+        else if let continueretry = continueretry, continueretry.contains(touchLocation) {
+            let location = touch.location(in: continueretry)
+            
+            if continueBtn.contains(location) {
+                continueBtn.run(SoundManager.sharedInstance.soundClickedButton)
+                goToSceneFade(scene: getNextScene()!)
+            }
+            else if retryBtn.contains(location) {
+                retryBtn.run(SoundManager.sharedInstance.soundClickedButton)
+                goToSceneFade(scene: getPreviousScene()!)
+            }
+            
+        }
         else {
             touchDown(at: touchLocation)
         }
@@ -164,8 +182,9 @@ class GameScene: SKScene {
         
         let character = Character(imageName: imageName ?? "")
         if let spriteComponent = character.component(ofType: SpriteComponent.self) {
-            spriteComponent.node.position = CGPoint(x: stories?.characterXPosition ?? 0.0, y: stories?.characterYPosition ?? 0.0)
+            spriteComponent.node.position = CGPoint(x: story?.characterXPosition ?? 0.0, y: story?.characterYPosition ?? 0.0)
             spriteComponent.node.zPosition = 10
+            print("Data \(String(describing: story?.characterXPosition)) , \(String(describing: story?.characterYPosition))")
         }
         
         entityManager.add(character)
@@ -176,7 +195,7 @@ class GameScene: SKScene {
         
         let character = Character(imageName: imageName ?? "")
         if let spriteComponent = character.component(ofType: SpriteComponent.self) {
-            spriteComponent.node.position = CGPoint(x: stories?.characterXPosition ?? 0.0, y: stories?.characterYPosition ?? 0.0)
+            spriteComponent.node.position = CGPoint(x: story?.characterXPosition ?? 0.0, y: story?.characterYPosition ?? 0.0)
             spriteComponent.node.zPosition = 10
         }
         
@@ -184,7 +203,6 @@ class GameScene: SKScene {
     }
     
     func setupCharacter(imageName: String?) {
-        
         //Create shapes
         for (_, characters) in (addCharacter ?? []).enumerated() {
             let activeCharacter = Character(imageName: imageName ?? "")
