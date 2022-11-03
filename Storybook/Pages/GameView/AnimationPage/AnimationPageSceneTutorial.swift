@@ -10,8 +10,6 @@ import SpriteKit
 import UIKit
 
 class AnimationPageSceneTutorial: GameScene {
-    
-    var story: Stories?
     var challenge: Challenges?
     var animateShape: [AnimatedShapes]?
     var activeShapes: [AnimatedShape] = []
@@ -52,7 +50,7 @@ class AnimationPageSceneTutorial: GameScene {
         bgOpacity.fadeInOut(start: 2.0)
         
         addChild(bgOpacity)
-
+        
     }
     
     func setupAnimatedShapes() {
@@ -141,7 +139,6 @@ class AnimationPageSceneTutorial: GameScene {
         scene.theme = self.theme
         scene.shapeOrder = 0
         scene.level = challenge?.level ?? AttributeLevel.easy.rawValue
-//        scene.totalGames = 3
         return scene
     }
     
