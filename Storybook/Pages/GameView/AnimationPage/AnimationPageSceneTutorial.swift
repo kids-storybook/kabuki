@@ -61,7 +61,7 @@ class AnimationPageSceneTutorial: GameScene {
             if let spriteComponent = activeShape.component(ofType: SpriteComponent.self) {
                 spriteComponent.node.position = CGPoint(x: shape.xCoordinateShape, y: shape.yCoordinateShape)
                 spriteComponent.node.animateUpDown(start: TimeInterval((idx+1)*2 + (idx*2)))
-                
+                spriteComponent.node.setScale(0.85)
             }
             activeShapes.append(activeShape)
             entityManager.add(activeShape)
