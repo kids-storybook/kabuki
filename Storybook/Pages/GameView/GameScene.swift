@@ -32,7 +32,7 @@ class GameScene: SKScene {
     var addCharacter: [Stories]?
     var character: [Character] = []
     var story: Stories?
-
+    
     // initialize core data context
     let context = Helper().getBackgroundContext()
     
@@ -83,12 +83,6 @@ class GameScene: SKScene {
             scene.scaleMode = .aspectFill
             self.view?.presentScene(scene, transition: transition)
         }
-    }
-    
-    func goToSceneFade(scene: SKScene) {
-        let sceneTransition = SKTransition.fade(withDuration: 1.5)
-        scene.scaleMode = .aspectFill
-        self.view?.presentScene(scene, transition: sceneTransition)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -147,11 +141,21 @@ class GameScene: SKScene {
             
             if continueBtn.contains(location) {
                 continueBtn.run(SoundManager.sharedInstance.soundClickedButton)
-                goToSceneFade(scene: getNextScene()!)
+                continueBtn.run(SKAction.sequence(
+                    [SKAction.scale(to: 0.9, duration: 0),
+                     SKAction.scale(to: 1.0, duration: 0.1)
+                    ])
+                )
+                goToScene(scene: getNextScene()!, transition: SKTransition.fade(withDuration: 1.3))
             }
             else if retryBtn.contains(location) {
                 retryBtn.run(SoundManager.sharedInstance.soundClickedButton)
-                goToSceneFade(scene: getPreviousScene()!)
+                retryBtn.run(SKAction.sequence(
+                    [SKAction.scale(to: 0.9, duration: 0),
+                     SKAction.scale(to: 1.0, duration: 0.1)
+                    ])
+                )
+                goToScene(scene: getPreviousScene()!, transition: SKTransition.fade(withDuration: 1.3))
             }
             
         }

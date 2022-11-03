@@ -63,20 +63,10 @@ class AppreciationPage: GameScene {
     }
     
     override func getPreviousScene() -> SKScene? {
-        
-        if idxScene > 0 {
-            let scene = SKScene(fileNamed: "AppreciationPage") as! AppreciationPage
-            scene.idxScene = self.idxScene - 1
-            scene.challengeName = self.challengeName
-            scene.theme = self.theme
-            return scene
-        }
-        
         let scene = SKScene(fileNamed: "StartPageScene") as! StartPageScene
         scene.challengeName = self.challengeName
         scene.theme = self.theme
+        scene.idxScene = 0
         return scene
-        
-        
     }
 }
