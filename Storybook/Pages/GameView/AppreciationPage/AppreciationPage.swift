@@ -3,15 +3,12 @@ import SpriteKit
 import GameplayKit
 
 class AppreciationPage: GameScene {
-
-    var totalStories: Int?
     var backgroundScene: SKSpriteNode!
     var titleImage: SKSpriteNode!
     
     private func setupPlayer(){
         
         makeCharacter(imageName: self.story?.character)
-//        setupCharacter(imageName: self.story?.character)
         backgroundScene = SKSpriteNode(imageNamed: self.story?.background ?? "")
         titleImage = SKSpriteNode(imageNamed: self.story?.title ?? "")
         
@@ -45,18 +42,12 @@ class AppreciationPage: GameScene {
             ])
             fetchRequest.fetchLimit = 1
             story = try context.fetch(fetchRequest)[0]
-//            print("Data \(story?.background)")
-            fetchRequest.predicate = NSPredicate(format: "challengeName == %@", (challengeName ?? "") + "_appreciation")
-            totalStories = try context.count(for: fetchRequest)
         } catch let error as NSError {
             print(error)
             print("error while fetching data in core data!")
         }
         
         self.setupPlayer()
-//        if self.theme == nil {
-//            self.initThemeData()
-//        }
     }
     
     override func getNextScene() -> SKScene? {

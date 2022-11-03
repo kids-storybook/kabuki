@@ -184,7 +184,6 @@ class GameScene: SKScene {
         if let spriteComponent = character.component(ofType: SpriteComponent.self) {
             spriteComponent.node.position = CGPoint(x: story?.characterXPosition ?? 0.0, y: story?.characterYPosition ?? 0.0)
             spriteComponent.node.zPosition = 10
-            print("Data \(String(describing: story?.characterXPosition)) , \(String(describing: story?.characterYPosition))")
         }
         
         entityManager.add(character)

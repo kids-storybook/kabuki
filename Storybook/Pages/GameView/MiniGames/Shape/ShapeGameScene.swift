@@ -230,9 +230,8 @@ class ShapeGameScene: GameScene {
                     self.entityManager.remove(entity)
                 }
             case AttributeLevel.hard.rawValue:
-                print("hard nih")
+                break
             default:
-                print("not detected")
                 break
             }
         }
@@ -254,7 +253,8 @@ class ShapeGameScene: GameScene {
                     self.goToScene(scene: scene, transition: SKTransition.fade(withDuration: 1.3))
                 } else {
                     NotificationCenter.default.post(name: Notification.Name(rawValue: "StopBackgroundSound"), object: self, userInfo:nil)
-                    let scene = SKScene(fileNamed: "MapViewPageScene") as! MapViewPageScene
+                    let scene = SKScene(fileNamed: "AppreciationPage") as! AppreciationPage
+                    scene.challengeName = self.challengeName
                     scene.theme = self.theme
                     self.goToScene(scene: scene, transition: SKTransition.fade(withDuration: 1.3))
                 }
