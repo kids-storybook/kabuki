@@ -51,7 +51,6 @@ class AnimationPageScene: GameScene {
             let activeShape = AnimatedShape(imageName: shape.shapeImage ?? "")
             if let spriteComponent = activeShape.component(ofType: SpriteComponent.self) {
                 spriteComponent.node.position = CGPoint(x: shape.xCoordinateShape, y: shape.yCoordinateShape)
-                spriteComponent.node.setScale(0.55)
                 
             }
             activeShapes.append(activeShape)
@@ -113,6 +112,7 @@ class AnimationPageScene: GameScene {
     }
     
     override func exitScene() -> SKScene? {
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "StopBackgroundSound"), object: self, userInfo:nil)
         let scene = SKScene(fileNamed: "MapViewPageScene") as! MapViewPageScene
         scene.theme = self.theme
         return scene

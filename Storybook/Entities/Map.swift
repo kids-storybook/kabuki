@@ -20,17 +20,6 @@ class Map: GKEntity {
         spriteComponent.node.position = mapPosition
         spriteComponent.node.zPosition = 0
         
-        // Add start button + label for each map
-        let startButton = SKSpriteNode(imageNamed: themeAssets.startButon ?? "")
-        startButton.position = CGPoint(x: frame.midX, y: spriteComponent.node.frame.minY - (spriteComponent.node.frame.minY*0.2))
-        startButton.zPosition = 1
-        spriteComponent.node.addChild(startButton)
-        
-        let labelMap = SKSpriteNode(imageNamed: themeAssets.label ?? "")
-        labelMap.position = CGPoint(x: frame.midX, y: spriteComponent.node.frame.maxY + (spriteComponent.node.frame.maxY*0.4))
-        labelMap.zPosition = 1
-        spriteComponent.node.addChild(labelMap)
-        
         addComponent(spriteComponent)
     }
     

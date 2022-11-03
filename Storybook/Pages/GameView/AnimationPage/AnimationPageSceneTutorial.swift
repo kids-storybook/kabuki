@@ -12,6 +12,7 @@ import UIKit
 class AnimationPageSceneTutorial: GameScene {
     
     var story: Stories?
+    var challenge: Challenges?
     var animateShape: [AnimatedShapes]?
     var activeShapes: [AnimatedShape] = []
     var totalStories: Int?
@@ -61,7 +62,6 @@ class AnimationPageSceneTutorial: GameScene {
             let activeShape = AnimatedShape(imageName: shape.shapeImage ?? "")
             if let spriteComponent = activeShape.component(ofType: SpriteComponent.self) {
                 spriteComponent.node.position = CGPoint(x: shape.xCoordinateShape, y: shape.yCoordinateShape)
-                spriteComponent.node.setScale(0.55)
                 spriteComponent.node.animateUpDown(start: TimeInterval((idx+1)*2 + (idx*2)))
                 
             }
@@ -117,14 +117,31 @@ class AnimationPageSceneTutorial: GameScene {
             print("error while fetching data in core data!")
         }
         
+        // Fetch AnimatedShapes Model
+        do {
+            let fetchRequest = Challenges.fetchRequest()
+            let challengeNamePredicate = NSPredicate(format: "challengeName == %@", (challengeName ?? ""))
+            fetchRequest.predicate = challengeNamePredicate
+            fetchRequest.fetchLimit = 1
+            
+            challenge = try context.fetch(fetchRequest)[0]
+        } catch let error as NSError {
+            print(error)
+            print("error while fetching data in core data!")
+        }
+        
         self.setupPlayer()
         self.setupAnimatedShapes()
     }
     
     override func getNextScene() -> SKScene? {
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "StopBackgroundSound"), object: self, userInfo:nil)
         let scene = SKScene(fileNamed: "ShapeGameScene") as! ShapeGameScene
         scene.challengeName = self.challengeName
         scene.theme = self.theme
+        scene.shapeOrder = 0
+        scene.level = challenge?.level ?? AttributeLevel.easy.rawValue
+//        scene.totalGames = 3
         return scene
     }
     
@@ -137,6 +154,7 @@ class AnimationPageSceneTutorial: GameScene {
     }
     
     override func exitScene() -> SKScene? {
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "StopBackgroundSound"), object: self, userInfo:nil)
         let scene = SKScene(fileNamed: "MapViewPageScene") as! MapViewPageScene
         scene.theme = self.theme
         return scene

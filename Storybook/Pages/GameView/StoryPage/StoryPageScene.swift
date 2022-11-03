@@ -64,6 +64,7 @@ class StoryPageScene: GameScene {
             scene.theme = self.theme
             return scene
         }
+        
         let scene = SKScene(fileNamed: "AnimationPageScene") as! AnimationPageScene
         scene.challengeName = self.challengeName
         scene.theme = self.theme
@@ -87,6 +88,7 @@ class StoryPageScene: GameScene {
     }
     
     override func exitScene() -> SKScene? {
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "StopBackgroundSound"), object: self, userInfo:nil)
         let scene = SKScene(fileNamed: "MapViewPageScene") as! MapViewPageScene
         scene.theme = self.theme
         return scene
