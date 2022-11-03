@@ -109,22 +109,23 @@ let initAssessmentData: [StoryModel] = [
 
 let initShapeData: [ShapeModel] = [
     ShapeModel(challengeName: "lion_challenge", background: "lion_triangle_1", order: 0),
-    ShapeModel(challengeName: "lion_challenge", background: "lion_triangle_2", order: 1),
+    ShapeModel(challengeName: "lion_challenge", background: "lion_circle_2", order: 1),
     ShapeModel(challengeName: "lion_challenge", background: "lion_triangle_3", order: 2),
     ShapeModel(challengeName: "lion_challenge", background: "lion_circle_1", order: 0),
-    ShapeModel(challengeName: "lion_challenge", background: "lion_circle_2", order: 1),
-    ShapeModel(challengeName: "lion_challenge", background: "lion_circle_3", order: 2),
+    ShapeModel(challengeName: "lion_challenge", background: "lion_triangle_2", order: 1),
+    ShapeModel(challengeName: "lion_challenge", background: "lion_square_3", order: 2),
     ShapeModel(challengeName: "lion_challenge", background: "lion_square_1", order: 0),
     ShapeModel(challengeName: "lion_challenge", background: "lion_square_2", order: 1),
-    ShapeModel(challengeName: "lion_challenge", background: "lion_square_3", order: 2),
+    ShapeModel(challengeName: "lion_challenge", background: "lion_circle_3", order: 2),
+    
     ShapeModel(challengeName: "elephant_challenge", background: "elephant_triangle_1", order: 0),
-    ShapeModel(challengeName: "elephant_challenge", background: "elephant_triangle_2", order: 0),
+    ShapeModel(challengeName: "elephant_challenge", background: "elephant_square_2", order: 0),
     ShapeModel(challengeName: "elephant_challenge", background: "elephant_triangle_3", order: 0),
     ShapeModel(challengeName: "elephant_challenge", background: "elephant_circle_1", order: 0),
     ShapeModel(challengeName: "elephant_challenge", background: "elephant_circle_2", order: 0),
-    ShapeModel(challengeName: "elephant_challenge", background: "elephant_circle_3", order: 0),
+    ShapeModel(challengeName: "elephant_challenge", background: "elephant_triangle_2", order: 0),
     ShapeModel(challengeName: "elephant_challenge", background: "elephant_square_1", order: 0),
-    ShapeModel(challengeName: "elephant_challenge", background: "elephant_square_2", order: 0),
+    ShapeModel(challengeName: "elephant_challenge", background: "elephant_circle_3", order: 0),
     ShapeModel(challengeName: "elephant_challenge", background: "elephant_square_3", order: 0),
 ]
 
