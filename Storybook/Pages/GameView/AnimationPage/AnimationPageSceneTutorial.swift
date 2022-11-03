@@ -12,6 +12,7 @@ import UIKit
 class AnimationPageSceneTutorial: GameScene {
     
     var story: Stories?
+    var challenge: Challenges?
     var animateShape: [AnimatedShapes]?
     var activeShapes: [AnimatedShape] = []
     var totalStories: Int?
@@ -116,6 +117,19 @@ class AnimationPageSceneTutorial: GameScene {
             print("error while fetching data in core data!")
         }
         
+        // Fetch AnimatedShapes Model
+        do {
+            let fetchRequest = Challenges.fetchRequest()
+            let challengeNamePredicate = NSPredicate(format: "challengeName == %@", (challengeName ?? ""))
+            fetchRequest.predicate = challengeNamePredicate
+            fetchRequest.fetchLimit = 1
+            
+            challenge = try context.fetch(fetchRequest)[0]
+        } catch let error as NSError {
+            print(error)
+            print("error while fetching data in core data!")
+        }
+        
         self.setupPlayer()
         self.setupAnimatedShapes()
     }
@@ -126,6 +140,8 @@ class AnimationPageSceneTutorial: GameScene {
         scene.challengeName = self.challengeName
         scene.theme = self.theme
         scene.shapeOrder = 0
+        scene.level = challenge?.level ?? AttributeLevel.easy.rawValue
+//        scene.totalGames = 3
         return scene
     }
     

@@ -14,6 +14,7 @@ class ShapeGameScene: GameScene {
     var shapes: [Shapes?]?
     var totalGames: Int?
     var shapeOrder: Int32?
+    var level: String?
     
     var backgroundScene: SKSpriteNode!
     var shapeTargets: [String:Shape] = [:]
@@ -95,9 +96,13 @@ class ShapeGameScene: GameScene {
             shapes = try context.fetch(fetchRequest)
             
             fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
-                challengeNamePredicate, orderPredicate
+                challengeNamePredicate
             ])
-            totalGames = try context.count(for: fetchRequest)
+            fetchRequest.returnsObjectsAsFaults = false
+            fetchRequest.propertiesToGroupBy = ["order"]
+            fetchRequest.propertiesToFetch = ["order"]
+            fetchRequest.resultType = .dictionaryResultType
+            totalGames = try context.fetch(fetchRequest).count
         } catch let error as NSError {
             print(error)
             print("error while fetching data in core data!")
@@ -124,6 +129,7 @@ class ShapeGameScene: GameScene {
             for node in touchedNodes.reversed() {
                 if node.name == "triangle" || node.name == "square" || node.name == "circle"
                 {
+                    node.run(SoundManager.sharedInstance.soundClickedButton)
                     self.currentNode = node
                 }
             }
@@ -152,6 +158,7 @@ class ShapeGameScene: GameScene {
             case "triangle":
                 if triangleBin.node.frame.contains(node.position){
                     node.position = triangleBin.node.position
+                    node.run(SoundManager.sharedInstance.soundClickedButton)
                     solvedShapes.insert(name)
                 }
                 else if squareBin.node.frame.contains(node.position) || circleBin.node.frame.contains(node.position){
@@ -171,6 +178,7 @@ class ShapeGameScene: GameScene {
             case "square":
                 if squareBin.node.frame.contains(node.position){
                     node.position = squareBin.node.position
+                    node.run(SoundManager.sharedInstance.soundClickedButton)
                     solvedShapes.insert(name)
                 }
                 else if triangleBin.node.frame.contains(node.position) || circleBin.node.frame.contains(node.position){
@@ -191,6 +199,7 @@ class ShapeGameScene: GameScene {
             case "circle":
                 if circleBin.node.frame.contains(node.position){
                     node.position = circleBin.node.position
+                    node.run(SoundManager.sharedInstance.soundClickedButton)
                     solvedShapes.insert(name)
                 }
                 else if triangleBin.node.frame.contains(node.position) || squareBin.node.frame.contains(node.position){
@@ -210,24 +219,52 @@ class ShapeGameScene: GameScene {
             default:
                 break
             }
-        }
-        if solvedShapes.count == shapes?.count {
-            for shape in activeShapes {
-                entityManager.remove(shape)
+            
+            switch level{
+            case AttributeLevel.easy.rawValue:
+                break
+            case AttributeLevel.medium.rawValue:
+                node.run(SKAction.fadeOut(withDuration: 1))
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    let entity = self.activeShapes.filter({$0.component(ofType: SpriteComponent.self)?.node.name == name})[0]
+                    self.entityManager.remove(entity)
+                }
+            case AttributeLevel.hard.rawValue:
+                print("hard nih")
+            default:
+                print("not detected")
+                break
             }
-            solvedShapes.removeAll()
-            
-            let scene = SKScene(fileNamed: "ShapeGameScene") as! ShapeGameScene
-            scene.challengeName = self.challengeName
-            scene.theme = self.theme
-            scene.shapeOrder = (self.shapeOrder ?? 0) + 1
-            
-            goToScene(scene: scene, transition: SKTransition.fade(withDuration: 1.3))
         }
-        self.currentNode = nil
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            if self.solvedShapes.count == self.shapes?.count {
+                for shape in self.activeShapes {
+                    self.entityManager.remove(shape)
+                }
+                self.solvedShapes.removeAll()
+                
+                if Int(self.shapeOrder ?? 0) + 1 < self.totalGames ?? 0 {
+                    let scene = SKScene(fileNamed: "ShapeGameScene") as! ShapeGameScene
+                    scene.challengeName = self.challengeName
+                    scene.theme = self.theme
+                    scene.shapeOrder = (self.shapeOrder ?? 0) + 1
+                    scene.totalGames = self.totalGames
+                    scene.level = self.level
+                    self.goToScene(scene: scene, transition: SKTransition.fade(withDuration: 1.3))
+                } else {
+                    NotificationCenter.default.post(name: Notification.Name(rawValue: "StopBackgroundSound"), object: self, userInfo:nil)
+                    let scene = SKScene(fileNamed: "MapViewPageScene") as! MapViewPageScene
+                    scene.theme = self.theme
+                    self.goToScene(scene: scene, transition: SKTransition.fade(withDuration: 1.3))
+                }
+            }
+            self.currentNode = nil
+        }
     }
     
     override func exitScene() -> SKScene? {
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "StopBackgroundSound"), object: self, userInfo:nil)
         let scene = SKScene(fileNamed: "MapViewPageScene") as! MapViewPageScene
         scene.theme = self.theme
         return scene
