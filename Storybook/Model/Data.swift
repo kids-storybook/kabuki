@@ -73,7 +73,7 @@ enum AttributeLevel: String {
 
 let initThemeData: [ThemeModel] = [
     ThemeModel(background: "mini zoo theme", mapBackground: "zoo_background", name: "zoo", isActive: true, challenges: [
-        ChallangeModel(background: "bright_elephant_cage", challengeName: "elephant_challenge", isActive: false, xCoordinate: -545.187, yCoordinate: 165.877, zPosition: 1.0, gameBackground: "lion_shape_background", level: AttributeLevel.medium),
+        ChallangeModel(background: "bright_elephant_cage", challengeName: "elephant_challenge", isActive: true, xCoordinate: -545.187, yCoordinate: 165.877, zPosition: 1.0, gameBackground: "elephant_shape_background", level: AttributeLevel.medium),
         ChallangeModel(background: "bright_gorilla_cage", challengeName: "gorilla_challenge", isActive: false, xCoordinate: 524.09, yCoordinate: 179.16, zPosition: 0.0, gameBackground: "lion_shape_background", level: AttributeLevel.easy),
         ChallangeModel(background: "bright_giraffe_cage", challengeName: "giraffe_challenge", isActive: false, xCoordinate: 445.219, yCoordinate: -183.736, zPosition: 1.0, gameBackground: "lion_shape_background", level: AttributeLevel.easy),
         ChallangeModel(background: "bright_panda_cage", challengeName: "panda_challenge", isActive: false, xCoordinate: -327.585, yCoordinate: 379.641, zPosition: 0.0, gameBackground: "lion_shape_background", level: AttributeLevel.easy),
@@ -102,30 +102,45 @@ let initAssessmentData: [StoryModel] = [
 ]
 
 let initShapeData: [ShapeModel] = [
-    ShapeModel(challengeName: "lion_challenge", background: "triangle_1", order: 0),
-    ShapeModel(challengeName: "lion_challenge", background: "triangle_2", order: 1),
-    ShapeModel(challengeName: "lion_challenge", background: "triangle_3", order: 2),
-    ShapeModel(challengeName: "lion_challenge", background: "circle_1", order: 0),
-    ShapeModel(challengeName: "lion_challenge", background: "circle_2", order: 1),
-    ShapeModel(challengeName: "lion_challenge", background: "circle_3", order: 2),
-    ShapeModel(challengeName: "lion_challenge", background: "square_1", order: 0),
-    ShapeModel(challengeName: "lion_challenge", background: "square_2", order: 1),
-    ShapeModel(challengeName: "lion_challenge", background: "square_3", order: 2),
+    ShapeModel(challengeName: "lion_challenge", background: "lion_triangle_1", order: 0),
+    ShapeModel(challengeName: "lion_challenge", background: "lion_triangle_2", order: 1),
+    ShapeModel(challengeName: "lion_challenge", background: "lion_triangle_3", order: 2),
+    ShapeModel(challengeName: "lion_challenge", background: "lion_circle_1", order: 0),
+    ShapeModel(challengeName: "lion_challenge", background: "lion_circle_2", order: 1),
+    ShapeModel(challengeName: "lion_challenge", background: "lion_circle_3", order: 2),
+    ShapeModel(challengeName: "lion_challenge", background: "lion_square_1", order: 0),
+    ShapeModel(challengeName: "lion_challenge", background: "lion_square_2", order: 1),
+    ShapeModel(challengeName: "lion_challenge", background: "lion_square_3", order: 2),
+    ShapeModel(challengeName: "elephant_challenge", background: "elephant_triangle_1", order: 0),
+    ShapeModel(challengeName: "elephant_challenge", background: "elephant_triangle_2", order: 0),
+    ShapeModel(challengeName: "elephant_challenge", background: "elephant_triangle_3", order: 0),
+    ShapeModel(challengeName: "elephant_challenge", background: "elephant_circle_1", order: 0),
+    ShapeModel(challengeName: "elephant_challenge", background: "elephant_circle_2", order: 0),
+    ShapeModel(challengeName: "elephant_challenge", background: "elephant_circle_3", order: 0),
+    ShapeModel(challengeName: "elephant_challenge", background: "elephant_square_1", order: 0),
+    ShapeModel(challengeName: "elephant_challenge", background: "elephant_square_2", order: 0),
+    ShapeModel(challengeName: "elephant_challenge", background: "elephant_square_3", order: 0),
 ]
 
 let initShapeTargetData: [ShapeTargetModel] = [
-    ShapeTargetModel(challengeName: "lion_challenge", background: "triangle",
+    ShapeTargetModel(challengeName: "lion_challenge", background: "lion_triangle_target",
                      xCoordinate: 417, yCoordinate: -288, zPosition: 0.0),
-    ShapeTargetModel(challengeName: "lion_challenge", background: "square",
+    ShapeTargetModel(challengeName: "lion_challenge", background: "lion_square_target",
                      xCoordinate: 412, yCoordinate: 18.5, zPosition: 0.0),
-    ShapeTargetModel(challengeName: "lion_challenge", background: "circle",
+    ShapeTargetModel(challengeName: "lion_challenge", background: "lion_circle_target",
+                     xCoordinate: 410.5, yCoordinate: 309, zPosition: 0.0),
+    ShapeTargetModel(challengeName: "elephant_challenge", background: "elephant_triangle_target",
+                     xCoordinate: 417, yCoordinate: -288, zPosition: 0.0),
+    ShapeTargetModel(challengeName: "elephant_challenge", background: "elephant_square_target",
+                     xCoordinate: 412, yCoordinate: 18.5, zPosition: 0.0),
+    ShapeTargetModel(challengeName: "elephant_challenge", background: "elephant_circle_target",
                      xCoordinate: 410.5, yCoordinate: 309, zPosition: 0.0),
 ]
 
 let initAnimationData: [AnimationModel] = [
-    AnimationModel(challengeName: "lion_challenge", shapeImage: "square_3", xCoordinateShape: -265, yCoordinateShape: -245, shapeName: "Persegi", xCoordinateFont: -263, yCoordinateFont: 0),
-    AnimationModel(challengeName: "lion_challenge", shapeImage: "triangle_1", xCoordinateShape: -25, yCoordinateShape: -250, shapeName: "Segitiga", xCoordinateFont: -23, yCoordinateFont: 0),
-    AnimationModel(challengeName: "lion_challenge", shapeImage: "circle_1", xCoordinateShape: 204, yCoordinateShape: -235, shapeName: "Lingkaran", xCoordinateFont: 196, yCoordinateFont: 0),
+    AnimationModel(challengeName: "lion_challenge", shapeImage: "lion_square_3", xCoordinateShape: -265, yCoordinateShape: -245, shapeName: "Persegi", xCoordinateFont: -263, yCoordinateFont: 0),
+    AnimationModel(challengeName: "lion_challenge", shapeImage: "lion_triangle_1", xCoordinateShape: -25, yCoordinateShape: -250, shapeName: "Segitiga", xCoordinateFont: -23, yCoordinateFont: 0),
+    AnimationModel(challengeName: "lion_challenge", shapeImage: "lion_circle_1", xCoordinateShape: 204, yCoordinateShape: -235, shapeName: "Lingkaran", xCoordinateFont: 196, yCoordinateFont: 0),
     
     AnimationModel(challengeName: "elephant_challenge", shapeImage: "square_grass", xCoordinateShape: -265, yCoordinateShape: -245, shapeName: "Persegi", xCoordinateFont: -263, yCoordinateFont: 0),
     AnimationModel(challengeName: "elephant_challenge", shapeImage: "triangle_grass", xCoordinateShape: -25, yCoordinateShape: -250, shapeName: "Segitiga", xCoordinateFont: -23, yCoordinateFont: 0),

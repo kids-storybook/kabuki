@@ -39,10 +39,13 @@ class ShapeGameScene: GameScene {
     func setupShapes() {
         //Create shapes
         for (idx, shape) in (shapes ?? []).enumerated() {
-            let activeShape = Shape(imageName: shape?.background ?? "", shapeName: shape?.background?.components(separatedBy: "_")[0] ?? "")
+            let activeShape = Shape(imageName: shape?.background ?? "", shapeName: shape?.background ?? "")
             if let spriteComponent = activeShape.component(ofType: SpriteComponent.self) {
-                let line = idx + 1 < 4 ? 0 : (idx+1 / 3) - 1
-                spriteComponent.node.position = CGPoint(x: frame.midX-CGFloat(idx*250), y: frame.midY - 200 + CGFloat((line*180)))
+                var idx_x = idx
+                if idx_x > 2 {
+                    idx_x = idx - 3 - ((idx/3 - 1) * 3)
+                }
+                spriteComponent.node.position = CGPoint(x: frame.midX-CGFloat(idx_x*250), y: frame.midY - 200 + CGFloat(((idx/3)*180)))
                 spriteComponent.node.zPosition = 2
             }
             activeShapes.append(activeShape)
@@ -54,15 +57,14 @@ class ShapeGameScene: GameScene {
     func setupTargets(){
         for target in initShapeTargetData {
             if target.challengeName == self.challengeName {
-                let shapeTarget = Shape(imageName: target.background ?? "", shapeName: "\(target.background ?? "")_target" )
+                let shapeTarget = Shape(imageName: target.background ?? "", shapeName: target.background ?? "" )
                 if let spriteComponent = shapeTarget.component(ofType: SpriteComponent.self) {
                     spriteComponent.node.position = CGPoint(x: target.xCoordinate ?? 0, y: target.yCoordinate ?? 0)
                     spriteComponent.node.setScale(0.582)
-                    spriteComponent.node.alpha = 0
                     spriteComponent.node.zPosition = target.zPosition ?? 0
                 }
                 entityManager.add(shapeTarget)
-                shapeTargets[target.background ?? ""] = shapeTarget
+                shapeTargets[(target.background ?? "").components(separatedBy: "_")[1]] = shapeTarget
             }
             continue
         }
@@ -83,6 +85,23 @@ class ShapeGameScene: GameScene {
                 SKAction.removeFromParent()
             ])
         )
+    }
+    
+    func handleShapeBehavior(node: SKNode, name: String){
+        switch level{
+        case AttributeLevel.easy.rawValue:
+            break
+        case AttributeLevel.medium.rawValue:
+            node.run(SKAction.fadeOut(withDuration: 1))
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                let entity = self.activeShapes.filter({$0.component(ofType: SpriteComponent.self)?.node.name == name})[0]
+                self.entityManager.remove(entity)
+            }
+        case AttributeLevel.hard.rawValue:
+            break
+        default:
+            break
+        }
     }
     
     func getAllShapeAssets() {
@@ -110,10 +129,9 @@ class ShapeGameScene: GameScene {
     }
     
     public override func didMove(to view: SKView) {
-        entityManager = EntityManager(scene: self)
         print("scene size: \(size)")
         
-        
+        entityManager = EntityManager(scene: self)
         getAllShapeAssets()
         setBackground()
         setupShapes()
@@ -127,7 +145,7 @@ class ShapeGameScene: GameScene {
             
             let touchedNodes = self.nodes(at: location)
             for node in touchedNodes.reversed() {
-                if node.name == "triangle" || node.name == "square" || node.name == "circle"
+                if node.name?.contains("triangle") ?? false || node.name?.contains("square") ?? false || node.name?.contains("circle") ?? false
                 {
                     node.run(SoundManager.sharedInstance.soundClickedButton)
                     self.currentNode = node
@@ -154,12 +172,12 @@ class ShapeGameScene: GameScene {
            let squareBin = shapeTargets["square"]?.component(ofType: SpriteComponent.self),
            let circleBin = shapeTargets["circle"]?.component(ofType: SpriteComponent.self),
            let name = node.name {
-            switch name{
-            case "triangle":
+            if name.contains("triangle"){
                 if triangleBin.node.frame.contains(node.position){
                     node.position = triangleBin.node.position
                     node.run(SoundManager.sharedInstance.soundClickedButton)
                     solvedShapes.insert(name)
+                    handleShapeBehavior(node:node, name:name)
                 }
                 else if squareBin.node.frame.contains(node.position) || circleBin.node.frame.contains(node.position){
                     wrongClick()
@@ -175,11 +193,13 @@ class ShapeGameScene: GameScene {
                 } else {
                     solvedShapes.remove(name)
                 }
-            case "square":
+            }
+            else if name.contains("square"){
                 if squareBin.node.frame.contains(node.position){
                     node.position = squareBin.node.position
                     node.run(SoundManager.sharedInstance.soundClickedButton)
                     solvedShapes.insert(name)
+                    handleShapeBehavior(node:node, name:name)
                 }
                 else if triangleBin.node.frame.contains(node.position) || circleBin.node.frame.contains(node.position){
                     node.run(
@@ -196,11 +216,13 @@ class ShapeGameScene: GameScene {
                 else {
                     solvedShapes.remove(name)
                 }
-            case "circle":
+            }
+            else if name.contains("circle"){
                 if circleBin.node.frame.contains(node.position){
                     node.position = circleBin.node.position
                     node.run(SoundManager.sharedInstance.soundClickedButton)
                     solvedShapes.insert(name)
+                    handleShapeBehavior(node:node, name:name)
                 }
                 else if triangleBin.node.frame.contains(node.position) || squareBin.node.frame.contains(node.position){
                     node.run(
@@ -216,23 +238,6 @@ class ShapeGameScene: GameScene {
                 } else {
                     solvedShapes.remove(name)
                 }
-            default:
-                break
-            }
-            
-            switch level{
-            case AttributeLevel.easy.rawValue:
-                break
-            case AttributeLevel.medium.rawValue:
-                node.run(SKAction.fadeOut(withDuration: 1))
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    let entity = self.activeShapes.filter({$0.component(ofType: SpriteComponent.self)?.node.name == name})[0]
-                    self.entityManager.remove(entity)
-                }
-            case AttributeLevel.hard.rawValue:
-                break
-            default:
-                break
             }
         }
         
