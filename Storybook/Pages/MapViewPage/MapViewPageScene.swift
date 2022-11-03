@@ -13,7 +13,9 @@ class MapViewPageScene: SKScene {
     let backgroundSound = SKAudioNode(fileNamed: "Maps Music.mp3")
     var background: SKSpriteNode!
     var activeChallenges: [Challenge] = []
-    var passiveChallenges: [Challenge] = []
+
+    var homeBtn: SKSpriteNode!
+    
     
     // Entity-component system
     var entityManager: EntityManager!
@@ -37,6 +39,7 @@ class MapViewPageScene: SKScene {
         addChild(background)
         
         showActiveCage()
+        showHomeButton()
     }
     
     func showActiveCage() {
@@ -56,6 +59,25 @@ class MapViewPageScene: SKScene {
         }
     }
     
+    func showHomeButton() {
+        homeBtn = SKSpriteNode(imageNamed: "homeButton")
+        homeBtn.position = CGPoint(x: CGRectGetMinX(self.frame) + 100, y: CGRectGetMaxY(self.frame) - 100)
+        addChild(homeBtn)
+    }
+    
+    func goToScene(scene: SKScene, transition: SKTransition) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+            scene.scaleMode = .aspectFill
+            self.view?.presentScene(scene, transition: transition)
+        }
+    }
+    
+    func exitScene() -> SKScene? {
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "StopBackgroundSound"), object: self, userInfo:nil)
+        let scene = SKScene(fileNamed: "HomepageScene") as! HomepageScene
+        return scene
+    }
+    
     override func willMove(from view: SKView) {
         backgroundSound.removeAllActions()
         backgroundSound.removeFromParent()
@@ -65,9 +87,6 @@ class MapViewPageScene: SKScene {
         background.removeAllChildren()
         
         for challenge in activeChallenges {
-            entityManager.remove(challenge)
-        }
-        for challenge in passiveChallenges {
             entityManager.remove(challenge)
         }
         
@@ -84,8 +103,19 @@ class MapViewPageScene: SKScene {
             if let name = node.name, name.contains("_challenge") {
                 print("aw, touches began for \(name)!")
             }
+            else if node == homeBtn {
+                homeBtn.run(SoundManager.sharedInstance.soundClickedButton)
+                homeBtn.run(SKAction.sequence(
+                    [SKAction.scale(to: 0.9, duration: 0),
+                     SKAction.scale(to: 1.0, duration: 0.1)
+                    ])
+                )
+                goToScene(scene: exitScene()!, transition: SKTransition.fade(withDuration: 1.3))
+            }
         }
     }
+    
+    
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesMoved(touches, with: event)

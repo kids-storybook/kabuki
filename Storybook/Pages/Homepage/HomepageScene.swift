@@ -16,6 +16,9 @@ class HomepageScene: SKScene {
     let background = SKSpriteNode(imageNamed: "background")
     var themes: [Themes?] = []
     
+    
+
+    
     // Entity-component system
     var entityManager: EntityManager!
     
