@@ -38,7 +38,7 @@ class AnimationPageSceneTutorial: GameScene {
                 textScene.fontColor = SKColor.white
                 textScene.position = CGPoint(x: 0, y: Int(Double(frame.height)/3.5)-idx*60)
                 textScene.zPosition = 100
-                textScene.addStroke(color: textBorder, width: 7.0)
+                textScene.addStroke(color: UIColor(named: story?.labelColor ?? "") ?? textBorder, width: 7.0)
                 addChild(textScene)
             }
         }
@@ -61,7 +61,7 @@ class AnimationPageSceneTutorial: GameScene {
             if let spriteComponent = activeShape.component(ofType: SpriteComponent.self) {
                 spriteComponent.node.position = CGPoint(x: shape.xCoordinateShape, y: shape.yCoordinateShape)
                 spriteComponent.node.animateUpDown(start: TimeInterval((idx+1)*2 + (idx*2)))
-                
+                spriteComponent.node.setScale(0.85)
             }
             activeShapes.append(activeShape)
             entityManager.add(activeShape)
@@ -73,8 +73,7 @@ class AnimationPageSceneTutorial: GameScene {
             label.textFadeInOut(start: TimeInterval((idx+1)*2 + (idx*2)))
             label.zPosition = 15
             label.fontSize = 80
-            label.fontColor = UIColor.red
-            label.addStroke(color: .white, width: 5.0)
+            label.fontColor = UIColor.white
             label.alpha = 0
             
             addChild(label)

@@ -9,20 +9,35 @@ import SpriteKit
 import Foundation
 
 
-class ShapeGameScene: GameScene {
+class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
     private var currentNode: SKNode?
     var shapes: [Shapes?]?
     var totalGames: Int?
     var shapeOrder: Int32?
     var level: String?
+    var nextChallenge: String?
     
     var backgroundScene: SKSpriteNode!
     var shapeTargets: [String:Shape] = [:]
     var activeShapes: [Shape] = []
     var solvedShapes: Set<String> = Set([])
     
+    //    func positionWithin(range: CGFloat, containerSize: CGFloat) -> CGFloat {
+    //        let partA = CGFloat(arc4random_uniform(100)) / 100.0
+    //        let partB = (containerSize * range + (containerSize * (1.0 - range) * 0.5))
+    //        return partA * partB
+    //    }
+    
+    func distanceFrom(posA: CGPoint, posB: CGPoint) -> CGFloat {
+        let aSquared = (posA.x - posB.x) * (posA.x - posB.x)
+        let bSquared = (posA.y - posB.y) * (posA.x - posB.y)
+        return sqrt(aSquared + bSquared)
+    }
+    
     func setBackground() {
         let challenge = self.theme?.challenges?.filtered(using: NSPredicate(format: "challengeName == %@", self.challengeName ?? "")).array as! [Challenges]
+        
+        nextChallenge = challenge[0].nextChallenge
         
         backgroundScene = SKSpriteNode(imageNamed: challenge[0].gameBackground ?? "")
         backgroundScene.position = CGPoint(x: 0, y: 0)
@@ -38,15 +53,54 @@ class ShapeGameScene: GameScene {
     
     func setupShapes() {
         //Create shapes
+        var idx_y = 0
         for (idx, shape) in (shapes ?? []).enumerated() {
             let activeShape = Shape(imageName: shape?.background ?? "", shapeName: shape?.background ?? "")
             if let spriteComponent = activeShape.component(ofType: SpriteComponent.self) {
                 var idx_x = idx
-                if idx_x > 2 {
-                    idx_x = idx - 3 - ((idx/3 - 1) * 3)
+                if idx_x > 3 {
+                    idx_x = idx - 4 - ((idx/4 - 1) * 4)
                 }
-                spriteComponent.node.position = CGPoint(x: frame.midX-CGFloat(idx_x*250), y: frame.midY - 200 + CGFloat(((idx/3)*180)))
+                
+                switch level{
+                case AttributeLevel.easy.rawValue:
+                    spriteComponent.node.position = CGPoint(x: frame.midX-CGFloat(idx_x*250), y: frame.midY - 200 + CGFloat(((idx/3)*180)))
+                case AttributeLevel.medium.rawValue:
+                    let mod = (shapes?.count ?? 0) % 4
+                    
+                    spriteComponent.node.position = CGPoint(x: frame.width / 4 - CGFloat(idx_x*250), y: frame.midY + 50 + CGFloat(((idx / 4)*180)))
+                    if mod == 1 {
+                        spriteComponent.node.position = CGPoint(x: frame.width / 4 - CGFloat(idx_x*250), y: frame.midY + 50 + CGFloat(((idx_y)*180)))
+                        if idx < 5 {
+                            spriteComponent.node.position = CGPoint(x: (frame.midX) + CGFloat((idx-2)*250), y: frame.midY + 50 + CGFloat(((idx/5)*180)))
+                        }
+                        idx_y = 1
+                        break
+                    }
+                    
+                    if idx >= (shapes?.count ?? 0) - mod && mod != 0{
+                        if mod == 3 {
+                            spriteComponent.node.position = CGPoint(x: (frame.midX) + CGFloat((idx_x-1)*250), y: frame.midY + 50 + CGFloat(((idx/4)*180)))
+                            break
+                        } else if mod == 2 {
+                            spriteComponent.node.position = CGPoint(x: (frame.midX) + CGFloat((Double(Double(idx_x)-0.5)*250)), y: frame.midY + 50 + CGFloat(((idx/4)*180)))
+                            break
+                        }
+                    }
+                    
+                case AttributeLevel.hard.rawValue:
+                    break
+                default:
+                    break
+                }
+                
                 spriteComponent.node.zPosition = 2
+                spriteComponent.node.physicsBody = SKPhysicsBody(circleOfRadius: spriteComponent.node.size.width/4)
+                spriteComponent.node.physicsBody?.affectedByGravity = false
+                spriteComponent.node.physicsBody?.friction = 0.0
+                spriteComponent.node.physicsBody?.angularDamping = 0.0
+                spriteComponent.node.physicsBody?.restitution = 1.1
+                spriteComponent.node.physicsBody?.allowsRotation = false
             }
             activeShapes.append(activeShape)
             entityManager.add(activeShape)
@@ -60,7 +114,7 @@ class ShapeGameScene: GameScene {
                 let shapeTarget = Shape(imageName: target.background ?? "", shapeName: target.background ?? "" )
                 if let spriteComponent = shapeTarget.component(ofType: SpriteComponent.self) {
                     spriteComponent.node.position = CGPoint(x: target.xCoordinate ?? 0, y: target.yCoordinate ?? 0)
-                    spriteComponent.node.setScale(0.582)
+                    spriteComponent.node.setScale(0.85)
                     spriteComponent.node.zPosition = target.zPosition ?? 0
                 }
                 entityManager.add(shapeTarget)
@@ -145,10 +199,12 @@ class ShapeGameScene: GameScene {
             
             let touchedNodes = self.nodes(at: location)
             for node in touchedNodes.reversed() {
-                if node.name?.contains("triangle") ?? false || node.name?.contains("square") ?? false || node.name?.contains("circle") ?? false
-                {
-                    node.run(SoundManager.sharedInstance.soundClickedButton)
-                    self.currentNode = node
+                if !(node.name?.contains("target") ?? true) {
+                    if node.name?.contains("triangle") ?? false || node.name?.contains("square") ?? false || node.name?.contains("circle") ?? false
+                    {
+                        node.run(SoundManager.sharedInstance.soundClickedButton)
+                        self.currentNode = node
+                    }
                 }
             }
         }
@@ -172,7 +228,7 @@ class ShapeGameScene: GameScene {
            let squareBin = shapeTargets["square"]?.component(ofType: SpriteComponent.self),
            let circleBin = shapeTargets["circle"]?.component(ofType: SpriteComponent.self),
            let name = node.name {
-            if name.contains("triangle"){
+            if name.contains("triangle") {
                 if triangleBin.node.frame.contains(node.position){
                     node.position = triangleBin.node.position
                     node.run(SoundManager.sharedInstance.soundClickedButton)
@@ -194,7 +250,7 @@ class ShapeGameScene: GameScene {
                     solvedShapes.remove(name)
                 }
             }
-            else if name.contains("square"){
+            else if name.contains("square") {
                 if squareBin.node.frame.contains(node.position){
                     node.position = squareBin.node.position
                     node.run(SoundManager.sharedInstance.soundClickedButton)
@@ -217,7 +273,7 @@ class ShapeGameScene: GameScene {
                     solvedShapes.remove(name)
                 }
             }
-            else if name.contains("circle"){
+            else if name.contains("circle") {
                 if circleBin.node.frame.contains(node.position){
                     node.position = circleBin.node.position
                     node.run(SoundManager.sharedInstance.soundClickedButton)
@@ -261,6 +317,7 @@ class ShapeGameScene: GameScene {
                     let scene = SKScene(fileNamed: "AppreciationPage") as! AppreciationPage
                     scene.challengeName = self.challengeName
                     scene.theme = self.theme
+                    scene.nextChallenge = self.nextChallenge
                     self.goToScene(scene: scene, transition: SKTransition.fade(withDuration: 1.3))
                 }
             }

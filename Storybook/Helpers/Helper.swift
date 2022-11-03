@@ -64,6 +64,7 @@ class Helper {
                 challenge.yCoordinate = c?.yCoordinate ?? 0.0
                 challenge.gameBackground = c?.gameBackground
                 challenge.level = c?.level?.rawValue
+                challenge.nextChallenge = c?.nextChallenge
                 challenges.append(challenge)
             }
             theme.addToChallenges(NSOrderedSet(array: challenges))
@@ -87,6 +88,7 @@ class Helper {
             story.title = data.title
             story.order = data.order
             story.labels = data.labels as? [String]
+            story.labelColor = data.labelColor?.rawValue
             story.background = data.background
             story.character = data.character
             story.characterXPosition = data.characterXPosition ?? 0.0
