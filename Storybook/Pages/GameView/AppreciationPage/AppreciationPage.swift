@@ -5,6 +5,7 @@ import GameplayKit
 class AppreciationPage: GameScene {
     var backgroundScene: SKSpriteNode!
     var titleImage: SKSpriteNode!
+    var nextChallenge: String?
     
     private func setupPlayer(){
         
@@ -42,6 +43,21 @@ class AppreciationPage: GameScene {
             ])
             fetchRequest.fetchLimit = 1
             story = try context.fetch(fetchRequest)[0]
+        } catch let error as NSError {
+            print(error)
+            print("error while fetching data in core data!")
+        }
+        
+        do {
+            let fetchRequest = Challenges.fetchRequest()
+            let challengeNamePredicate = NSPredicate(format: "challengeName == %@", (nextChallenge ?? "" ))
+            fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+                challengeNamePredicate
+            ])
+            fetchRequest.fetchLimit = 1
+            let challenge = try context.fetch(fetchRequest)[0]
+            challenge.isActive = true
+            try context.save()
         } catch let error as NSError {
             print(error)
             print("error while fetching data in core data!")

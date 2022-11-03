@@ -64,6 +64,7 @@ class Helper {
                 challenge.yCoordinate = c?.yCoordinate ?? 0.0
                 challenge.gameBackground = c?.gameBackground
                 challenge.level = c?.level?.rawValue
+                challenge.nextChallenge = c?.nextChallenge
                 challenges.append(challenge)
             }
             theme.addToChallenges(NSOrderedSet(array: challenges))

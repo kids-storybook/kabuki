@@ -15,6 +15,7 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
     var totalGames: Int?
     var shapeOrder: Int32?
     var level: String?
+    var nextChallenge: String?
     
     var backgroundScene: SKSpriteNode!
     var shapeTargets: [String:Shape] = [:]
@@ -35,6 +36,8 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
     
     func setBackground() {
         let challenge = self.theme?.challenges?.filtered(using: NSPredicate(format: "challengeName == %@", self.challengeName ?? "")).array as! [Challenges]
+        
+        nextChallenge = challenge[0].nextChallenge
         
         backgroundScene = SKSpriteNode(imageNamed: challenge[0].gameBackground ?? "")
         backgroundScene.position = CGPoint(x: 0, y: 0)
@@ -196,10 +199,12 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
             
             let touchedNodes = self.nodes(at: location)
             for node in touchedNodes.reversed() {
-                if node.name?.contains("triangle") ?? false || node.name?.contains("square") ?? false || node.name?.contains("circle") ?? false
-                {
-                    node.run(SoundManager.sharedInstance.soundClickedButton)
-                    self.currentNode = node
+                if !(node.name?.contains("target") ?? true) {
+                    if node.name?.contains("triangle") ?? false || node.name?.contains("square") ?? false || node.name?.contains("circle") ?? false
+                    {
+                        node.run(SoundManager.sharedInstance.soundClickedButton)
+                        self.currentNode = node
+                    }
                 }
             }
         }
@@ -223,7 +228,7 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
            let squareBin = shapeTargets["square"]?.component(ofType: SpriteComponent.self),
            let circleBin = shapeTargets["circle"]?.component(ofType: SpriteComponent.self),
            let name = node.name {
-            if name.contains("triangle") && !name.contains("target"){
+            if name.contains("triangle") {
                 if triangleBin.node.frame.contains(node.position){
                     node.position = triangleBin.node.position
                     node.run(SoundManager.sharedInstance.soundClickedButton)
@@ -245,7 +250,7 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
                     solvedShapes.remove(name)
                 }
             }
-            else if name.contains("square") && !name.contains("target"){
+            else if name.contains("square") {
                 if squareBin.node.frame.contains(node.position){
                     node.position = squareBin.node.position
                     node.run(SoundManager.sharedInstance.soundClickedButton)
@@ -268,7 +273,7 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
                     solvedShapes.remove(name)
                 }
             }
-            else if name.contains("circle") && !name.contains("target"){
+            else if name.contains("circle") {
                 if circleBin.node.frame.contains(node.position){
                     node.position = circleBin.node.position
                     node.run(SoundManager.sharedInstance.soundClickedButton)
@@ -312,6 +317,7 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
                     let scene = SKScene(fileNamed: "AppreciationPage") as! AppreciationPage
                     scene.challengeName = self.challengeName
                     scene.theme = self.theme
+                    scene.nextChallenge = self.nextChallenge
                     self.goToScene(scene: scene, transition: SKTransition.fade(withDuration: 1.3))
                 }
             }
