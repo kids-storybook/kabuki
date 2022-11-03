@@ -87,6 +87,7 @@ class Helper {
             story.title = data.title
             story.order = data.order
             story.labels = data.labels as? [String]
+            story.labelColor = data.labelColor?.rawValue
             story.background = data.background
             story.character = data.character
             story.characterXPosition = data.characterXPosition ?? 0.0

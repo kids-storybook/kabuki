@@ -22,6 +22,7 @@ struct StoryModel {
     var challengeName: String?
     var title: String?
     var labels: [NSString?]
+    var labelColor: StoryLabelColor?
     var order: Int32
     var background: String?
     var character: String?
@@ -71,6 +72,11 @@ enum AttributeLevel: String {
     case hard = "hard"
 }
 
+enum StoryLabelColor: String {
+    case green = "greenSingaLabel"
+    case brown = "brownGajahLabel"
+}
+
 let initThemeData: [ThemeModel] = [
     ThemeModel(background: "mini zoo theme", mapBackground: "zoo_background", name: "zoo", isActive: true, challenges: [
         ChallangeModel(background: "bright_elephant_cage", challengeName: "elephant_challenge", isActive: true, xCoordinate: -545.187, yCoordinate: 165.877, zPosition: 1.0, gameBackground: "elephant_shape_background", level: AttributeLevel.medium),
@@ -86,18 +92,18 @@ let initThemeData: [ThemeModel] = [
 ]
 
 let initAssessmentData: [StoryModel] = [
-    StoryModel(challengeName: "lion_challenge", title: "singaStoryTitle", labels: ["Lihatlah keluarga singa ini"], order: 0, background: "kandangSinga", character: "lions_1", characterXPosition: 0, characterYPosition: -50),
-    StoryModel(challengeName: "lion_challenge", title: "singaStoryTitle", labels: ["Ada Bapak singa, Ibu singa, dan", "anak singa"], order: 1, background: "kandangSinga", character: "lions_1", characterXPosition: 0, characterYPosition: -50),
-    StoryModel(challengeName: "lion_challenge_animate", title: "singaStoryTitle", labels: ["Ibu Singa memberikan anaknya", "berbagai bentuk mainan"], order: 0, background: "kandangSingaZoom", character: "lions_2", characterXPosition: -80, characterYPosition: -75),
-    StoryModel(challengeName: "lion_challenge_animate_2", title: "singaStoryTitle", labels: ["Ada yang berbentuk persegi,", "segitiga, dan lingkaran"], order: 0, background: "kandangSingaZoom", character: "lions_2", characterXPosition: -80, characterYPosition: -75),
-    StoryModel(challengeName: "lion_challenge_appreciation", title: "berhasilTitle", labels: ["appreciate"], order: 0, background: "kandangSinga", character: "lion_appreciation", characterXPosition: 30, characterYPosition: -120),
+    StoryModel(challengeName: "lion_challenge", title: "singaStoryTitle", labels: ["Lihatlah keluarga singa ini"], labelColor: StoryLabelColor.green, order: 0, background: "kandangSinga", character: "lions_1", characterXPosition: 0, characterYPosition: -50),
+    StoryModel(challengeName: "lion_challenge", title: "singaStoryTitle", labels: ["Ada Bapak singa, Ibu singa, dan", "anak singa"], labelColor: StoryLabelColor.green, order: 1, background: "kandangSinga", character: "lions_1", characterXPosition: 0, characterYPosition: -50),
+    StoryModel(challengeName: "lion_challenge_animate", title: "singaStoryTitle", labels: ["Ibu Singa memberikan anaknya", "berbagai bentuk mainan"], labelColor: StoryLabelColor.green, order: 0, background: "kandangSingaZoom", character: "lions_2", characterXPosition: -80, characterYPosition: -75),
+    StoryModel(challengeName: "lion_challenge_animate_2", title: "singaStoryTitle", labels: ["Ada yang berbentuk persegi,", "segitiga, dan lingkaran"], labelColor: StoryLabelColor.green, order: 0, background: "kandangSingaZoom", character: "lions_2", characterXPosition: -80, characterYPosition: -75),
+    StoryModel(challengeName: "lion_challenge_appreciation", title: "berhasilTitle", labels: ["appreciate"], labelColor: StoryLabelColor.green, order: 0, background: "kandangSinga", character: "lion_appreciation", characterXPosition: 30, characterYPosition: -120),
     
     
-    StoryModel(challengeName: "elephant_challenge", title: "gajahStoryTitle", labels: ["Lihatlah sekelompok gajah ini"], order: 0, background: "kandangGajah", character: "elephants_1", characterXPosition: 0, characterYPosition: 0),
-    StoryModel(challengeName: "elephant_challenge", title: "gajahStoryTitle", labels: ["Mereka sedang diberi makan", "oleh penjaga kebun binatang "], order: 1, background: "kandangGajah", character: "elephants_2", characterXPosition: 0, characterYPosition: 0),
-    StoryModel(challengeName: "elephant_challenge_animate", title: "gajahStoryTitle", labels: ["Gajah adalah pemakan tumbuhan"], order: 0, background: "kandangGajahZoom", character: "elephants_2", characterXPosition: 0, characterYPosition: 0),
-    StoryModel(challengeName: "elephant_challenge_animate_2", title: "gajahStoryTitle", labels: ["Ada makanan yang berbentuk", "persegi, segitiga, dan lingkaran"], order: 0, background: "kandangGajahZoom", character: "elephants_2", characterXPosition: 0, characterYPosition: 0),
-    StoryModel(challengeName: "elephant_challenge_appreciation", title: "berhasilTitle", labels: ["appreciate"], order: 0, background: "kandangGajahZoom", character: "elephant_appreciation", characterXPosition: -25, characterYPosition: -35)
+    StoryModel(challengeName: "elephant_challenge", title: "gajahStoryTitle", labels: ["Lihatlah sekelompok gajah ini"], labelColor: StoryLabelColor.brown, order: 0, background: "kandangGajah", character: "elephants_1", characterXPosition: 0, characterYPosition: 0),
+    StoryModel(challengeName: "elephant_challenge", title: "gajahStoryTitle", labels: ["Mereka sedang diberi makan", "oleh penjaga kebun binatang "], labelColor: StoryLabelColor.brown, order: 1, background: "kandangGajah", character: "elephants_2", characterXPosition: 0, characterYPosition: 0),
+    StoryModel(challengeName: "elephant_challenge_animate", title: "gajahStoryTitle", labels: ["Gajah adalah pemakan tumbuhan"], labelColor: StoryLabelColor.brown, order: 0, background: "kandangGajahZoom", character: "elephants_2", characterXPosition: 0, characterYPosition: 0),
+    StoryModel(challengeName: "elephant_challenge_animate_2", title: "gajahStoryTitle", labels: ["Ada makanan yang berbentuk", "persegi, segitiga, dan lingkaran"], labelColor: StoryLabelColor.brown, order: 0, background: "kandangGajahZoom", character: "elephants_2", characterXPosition: 0, characterYPosition: 0),
+    StoryModel(challengeName: "elephant_challenge_appreciation", title: "berhasilTitle", labels: ["appreciate"], labelColor: StoryLabelColor.brown, order: 0, background: "kandangGajahZoom", character: "elephant_appreciation", characterXPosition: -25, characterYPosition: -35)
     
 ]
 
