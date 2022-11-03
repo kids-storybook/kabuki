@@ -138,9 +138,9 @@ let initShapeTargetData: [ShapeTargetModel] = [
     ShapeTargetModel(challengeName: "elephant_challenge", background: "elephant_triangle_target",
                      xCoordinate: 417, yCoordinate: -288, zPosition: 0.0),
     ShapeTargetModel(challengeName: "elephant_challenge", background: "elephant_square_target",
-                     xCoordinate: 412, yCoordinate: 18.5, zPosition: 0.0),
+                     xCoordinate: 0, yCoordinate: -288, zPosition: 0.0),
     ShapeTargetModel(challengeName: "elephant_challenge", background: "elephant_circle_target",
-                     xCoordinate: 410.5, yCoordinate: 309, zPosition: 0.0),
+                     xCoordinate: -417, yCoordinate: -288, zPosition: 0.0),
 ]
 
 let initAnimationData: [AnimationModel] = [
