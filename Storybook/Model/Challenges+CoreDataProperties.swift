@@ -23,6 +23,7 @@ extension Challenges {
     @NSManaged public var xCoordinate: Double
     @NSManaged public var yCoordinate: Double
     @NSManaged public var zPosition: Double
+    @NSManaged public var level: String?
 
 }
 

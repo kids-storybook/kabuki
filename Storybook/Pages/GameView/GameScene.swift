@@ -7,15 +7,19 @@
 
 import Foundation
 import SpriteKit
+import GameplayKit
 
 class GameScene: SKScene {
     var start: SKNode!
     var header: SKNode!
     var footer: SKNode!
+    var continueretry: SKNode!
     var startBtn: SKSpriteNode!
     var nxtBtn: SKSpriteNode!
     var prevBtn: SKSpriteNode!
     var exitBtn: SKSpriteNode!
+    var retryBtn: SKSpriteNode!
+    var continueBtn: SKSpriteNode!
     var entityManager: EntityManager!
     
     // reusable variable for child
@@ -25,8 +29,9 @@ class GameScene: SKScene {
     var idxScene: Int32 = 0
     var idxScenePreAnimate: Int32 = 0
     var idxSceneAnimate: Int32 = 0
-    
-    
+    var addCharacter: [Stories]?
+    var character: [Character] = []
+    var story: Stories?
     
     // initialize core data context
     let context = Helper().getBackgroundContext()
@@ -73,10 +78,11 @@ class GameScene: SKScene {
         exitBtn = childNode(withName: "//exitButton") as? SKSpriteNode
     }
     
-    func goToScene(scene: SKScene, transitionDirection: SKTransitionDirection) {
-        let sceneTransition = SKTransition.push(with: transitionDirection, duration: 1.5)
-        scene.scaleMode = .aspectFill
-        self.view?.presentScene(scene, transition: sceneTransition)
+    func goToScene(scene: SKScene, transition: SKTransition) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+            scene.scaleMode = .aspectFill
+            self.view?.presentScene(scene, transition: transition)
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -84,10 +90,14 @@ class GameScene: SKScene {
         let touchLocation = touch.location(in: self)
         if let start = start, start.contains(touchLocation) {
             let location = touch.location(in: start)
-            let node = atPoint(location)
-            node.run(SoundManager.sharedInstance.soundClickedButton)
             if startBtn.contains(location) {
-                goToScene(scene: getNextScene()!, transitionDirection: SKTransitionDirection.left)
+                startBtn.run(SoundManager.sharedInstance.soundClickedButton)
+                startBtn.run(SKAction.sequence(
+                    [SKAction.scale(to: 0.9, duration: 0),
+                     SKAction.scale(to: 1.0, duration: 0.1)
+                    ])
+                )
+                goToScene(scene: getNextScene()!, transition: SKTransition.push(with: SKTransitionDirection.left, duration: 1.3))
             }
             
         } else if let footer = footer, footer.contains(touchLocation) {
@@ -95,11 +105,21 @@ class GameScene: SKScene {
             
             if nxtBtn.contains(location) {
                 nxtBtn.run(SoundManager.sharedInstance.soundClickedButton)
-                goToScene(scene: getNextScene()!, transitionDirection: SKTransitionDirection.left)
+                nxtBtn.run(SKAction.sequence(
+                    [SKAction.scale(to: 0.9, duration: 0),
+                     SKAction.scale(to: 1.0, duration: 0.1)
+                    ])
+                )
+                goToScene(scene: getNextScene()!, transition: SKTransition.push(with: SKTransitionDirection.left, duration: 1.3))
             }
             else if prevBtn.contains(location) {
                 prevBtn.run(SoundManager.sharedInstance.soundClickedButton)
-                goToScene(scene: getPreviousScene()!, transitionDirection: SKTransitionDirection.right)
+                prevBtn.run(SKAction.sequence(
+                    [SKAction.scale(to: 0.9, duration: 0),
+                     SKAction.scale(to: 1.0, duration: 0.1)
+                    ])
+                )
+                goToScene(scene: getPreviousScene()!, transition: SKTransition.push(with: SKTransitionDirection.right, duration: 1.3))
             }
             
         }
@@ -108,8 +128,36 @@ class GameScene: SKScene {
             
             if exitBtn.contains(location) {
                 exitBtn.run(SoundManager.sharedInstance.soundClickedButton)
-                goToScene(scene: exitScene()!, transitionDirection: SKTransitionDirection.right)
+                exitBtn.run(SKAction.sequence(
+                    [SKAction.scale(to: 0.9, duration: 0),
+                     SKAction.scale(to: 1.0, duration: 0.1)
+                    ])
+                )
+                goToScene(scene: exitScene()!, transition: SKTransition.fade(withDuration: 1.3))
             }
+        }
+        else if let continueretry = continueretry, continueretry.contains(touchLocation) {
+            let location = touch.location(in: continueretry)
+            
+            if continueBtn.contains(location) {
+                continueBtn.run(SoundManager.sharedInstance.soundClickedButton)
+                continueBtn.run(SKAction.sequence(
+                    [SKAction.scale(to: 0.9, duration: 0),
+                     SKAction.scale(to: 1.0, duration: 0.1)
+                    ])
+                )
+                goToScene(scene: getNextScene()!, transition: SKTransition.fade(withDuration: 1.3))
+            }
+            else if retryBtn.contains(location) {
+                retryBtn.run(SoundManager.sharedInstance.soundClickedButton)
+                retryBtn.run(SKAction.sequence(
+                    [SKAction.scale(to: 0.9, duration: 0),
+                     SKAction.scale(to: 1.0, duration: 0.1)
+                    ])
+                )
+                goToScene(scene: getPreviousScene()!, transition: SKTransition.fade(withDuration: 1.3))
+            }
+            
         }
         else {
             touchDown(at: touchLocation)
@@ -138,8 +186,7 @@ class GameScene: SKScene {
         
         let character = Character(imageName: imageName ?? "")
         if let spriteComponent = character.component(ofType: SpriteComponent.self) {
-            spriteComponent.node.position = CGPoint(x: -spriteComponent.node.frame.midX/2, y: spriteComponent.node.frame.midY/2-30)
-            spriteComponent.node.size = CGSize(width: 855, height: 516)
+            spriteComponent.node.position = CGPoint(x: story?.characterXPosition ?? 0.0, y: story?.characterYPosition ?? 0.0)
             spriteComponent.node.zPosition = 10
         }
         
@@ -151,12 +198,23 @@ class GameScene: SKScene {
         
         let character = Character(imageName: imageName ?? "")
         if let spriteComponent = character.component(ofType: SpriteComponent.self) {
-            spriteComponent.node.position = CGPoint(x: -spriteComponent.node.frame.midX/2-100, y: spriteComponent.node.frame.midY/2-50)
-            spriteComponent.node.size = CGSize(width: 1260, height: 516)
+            spriteComponent.node.position = CGPoint(x: story?.characterXPosition ?? 0.0, y: story?.characterYPosition ?? 0.0)
             spriteComponent.node.zPosition = 10
         }
         
         entityManager.add(character)
+    }
+    
+    func setupCharacter(imageName: String?) {
+        //Create shapes
+        for (_, characters) in (addCharacter ?? []).enumerated() {
+            let activeCharacter = Character(imageName: imageName ?? "")
+            if let spriteComponent = activeCharacter.component(ofType: SpriteComponent.self) {
+                spriteComponent.node.position = CGPoint(x: characters.characterYPosition , y: characters.characterXPosition)
+            }
+            character.append(activeCharacter)
+            entityManager.add(activeCharacter)
+        }
     }
     
 }

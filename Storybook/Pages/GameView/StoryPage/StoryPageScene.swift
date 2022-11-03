@@ -4,7 +4,6 @@ import GameplayKit
 
 class StoryPageScene: GameScene {
     
-    var story: Stories?
     var totalStories: Int?
     var backgroundScene: SKSpriteNode!
     
@@ -25,7 +24,7 @@ class StoryPageScene: GameScene {
                 textScene.text = label
                 textScene.fontSize = 50
                 textScene.fontColor = SKColor.white
-                textScene.position = CGPoint(x: 0, y: Int(frame.height)/3-idx*60)
+                textScene.position = CGPoint(x: 0, y: Int(Double(frame.height)/3.5)-idx*60)
                 textScene.zPosition = 100
                 textScene.addStroke(color: textBorder, width: 7.0)
                 addChild(textScene)
@@ -64,6 +63,7 @@ class StoryPageScene: GameScene {
             scene.theme = self.theme
             return scene
         }
+        
         let scene = SKScene(fileNamed: "AnimationPageScene") as! AnimationPageScene
         scene.challengeName = self.challengeName
         scene.theme = self.theme
@@ -87,6 +87,7 @@ class StoryPageScene: GameScene {
     }
     
     override func exitScene() -> SKScene? {
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "StopBackgroundSound"), object: self, userInfo:nil)
         let scene = SKScene(fileNamed: "MapViewPageScene") as! MapViewPageScene
         scene.theme = self.theme
         return scene

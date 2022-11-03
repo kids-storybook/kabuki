@@ -10,15 +10,11 @@ import SpriteKit
 import UIKit
 
 class AnimationPageSceneTutorial: GameScene {
-    
-    var story: Stories?
+    var challenge: Challenges?
     var animateShape: [AnimatedShapes]?
     var activeShapes: [AnimatedShape] = []
     var totalStories: Int?
     var backgroundScene: SKSpriteNode!
-    var box = SKSpriteNode(imageNamed: "square_3")
-    var cone = SKSpriteNode(imageNamed: "triangle_1")
-    var ball = SKSpriteNode(imageNamed: "circle_1")
     var bgOpacity = SKSpriteNode(imageNamed: "opacityBg")
     
     private func setupPlayer(){
@@ -40,7 +36,7 @@ class AnimationPageSceneTutorial: GameScene {
                 textScene.text = label
                 textScene.fontSize = 50
                 textScene.fontColor = SKColor.white
-                textScene.position = CGPoint(x: 0, y: Int(frame.height)/3-idx*60)
+                textScene.position = CGPoint(x: 0, y: Int(Double(frame.height)/3.5)-idx*60)
                 textScene.zPosition = 100
                 textScene.addStroke(color: textBorder, width: 7.0)
                 addChild(textScene)
@@ -51,14 +47,10 @@ class AnimationPageSceneTutorial: GameScene {
         bgOpacity.size = CGSize(width: frame.width, height: frame.width)
         bgOpacity.zPosition = 13
         bgOpacity.alpha = 0
-        
-        box.animateUpDown(start: 3.0)
-        cone.animateUpDown(start: 7.5)
-        ball.animateUpDown(start: 12.0)
-        bgOpacity.fadeInOut(start: 3.0)
+        bgOpacity.fadeInOut(start: 2.0)
         
         addChild(bgOpacity)
-
+        
     }
     
     func setupAnimatedShapes() {
@@ -68,16 +60,15 @@ class AnimationPageSceneTutorial: GameScene {
             let activeShape = AnimatedShape(imageName: shape.shapeImage ?? "")
             if let spriteComponent = activeShape.component(ofType: SpriteComponent.self) {
                 spriteComponent.node.position = CGPoint(x: shape.xCoordinateShape, y: shape.yCoordinateShape)
-                spriteComponent.node.setScale(0.55)
                 spriteComponent.node.animateUpDown(start: TimeInterval((idx+1)*2 + (idx*2)))
                 
             }
             activeShapes.append(activeShape)
             entityManager.add(activeShape)
             
-            let label = SKLabelNode(text: shape.shapeImage ?? "")
+            let label = SKLabelNode(text: shape.shapeName ?? "")
             
-            label.fontName = "Poppins-Bold"
+            label.fontName = "Poppins-Black"
             label.position = CGPoint(x: shape.xCoordinateFont, y: shape.yCoordinateFont)
             label.textFadeInOut(start: TimeInterval((idx+1)*2 + (idx*2)))
             label.zPosition = 15
@@ -124,14 +115,30 @@ class AnimationPageSceneTutorial: GameScene {
             print("error while fetching data in core data!")
         }
         
+        // Fetch AnimatedShapes Model
+        do {
+            let fetchRequest = Challenges.fetchRequest()
+            let challengeNamePredicate = NSPredicate(format: "challengeName == %@", (challengeName ?? ""))
+            fetchRequest.predicate = challengeNamePredicate
+            fetchRequest.fetchLimit = 1
+            
+            challenge = try context.fetch(fetchRequest)[0]
+        } catch let error as NSError {
+            print(error)
+            print("error while fetching data in core data!")
+        }
+        
         self.setupPlayer()
         self.setupAnimatedShapes()
     }
     
     override func getNextScene() -> SKScene? {
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "StopBackgroundSound"), object: self, userInfo:nil)
         let scene = SKScene(fileNamed: "ShapeGameScene") as! ShapeGameScene
         scene.challengeName = self.challengeName
         scene.theme = self.theme
+        scene.shapeOrder = 0
+        scene.level = challenge?.level ?? AttributeLevel.easy.rawValue
         return scene
     }
     
@@ -144,6 +151,7 @@ class AnimationPageSceneTutorial: GameScene {
     }
     
     override func exitScene() -> SKScene? {
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "StopBackgroundSound"), object: self, userInfo:nil)
         let scene = SKScene(fileNamed: "MapViewPageScene") as! MapViewPageScene
         scene.theme = self.theme
         return scene

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21279" systemVersion="21G115" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21512" systemVersion="22A380" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AnimatedShapes" representedClassName=".AnimatedShapes" syncable="YES">
         <attribute name="challengeName" optional="YES" attributeType="String"/>
         <attribute name="shapeImage" optional="YES" attributeType="String"/>
+        <attribute name="shapeName" optional="YES" attributeType="String"/>
         <attribute name="xCoordinateFont" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="xCoordinateShape" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="yCoordinateFont" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -13,6 +14,7 @@
         <attribute name="challengeName" optional="YES" attributeType="String"/>
         <attribute name="gameBackground" optional="YES" attributeType="String"/>
         <attribute name="isActive" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="level" optional="YES" attributeType="String"/>
         <attribute name="xCoordinate" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="yCoordinate" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="zPosition" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -26,16 +28,17 @@
         <attribute name="background" optional="YES" attributeType="String"/>
         <attribute name="challengeName" optional="YES" attributeType="String"/>
         <attribute name="character" optional="YES" attributeType="String"/>
+        <attribute name="characterXPosition" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="characterYPosition" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="labels" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="Array&lt;String&gt;"/>
         <attribute name="order" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
     </entity>
     <entity name="Themes" representedClassName="Themes" syncable="YES">
         <attribute name="background" optional="YES" attributeType="String"/>
         <attribute name="isActive" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="label" optional="YES" attributeType="String"/>
         <attribute name="mapBackground" optional="YES" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
-        <attribute name="startButon" optional="YES" attributeType="String"/>
         <relationship name="challenges" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Challenges"/>
     </entity>
 </model>
