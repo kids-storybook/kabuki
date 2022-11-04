@@ -125,17 +125,19 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
     }
     
     func wrongClick(){
-        let wrongPopUp = SKLabelNode(fontNamed: "Chalkduster")
-        wrongPopUp.text = "Oops, ayo geser ke tujuan yang benar!"
-        wrongPopUp.fontSize = 48
-        wrongPopUp.fontColor = SKColor.red
-        wrongPopUp.position = CGPoint(x: frame.midX, y: frame.height/10)
+        let wrongPopUp = SKLabelNode(fontNamed: "Poppins-Black")
+        wrongPopUp.text = "Ayo coba lagi!"
+        wrongPopUp.fontSize = 50
+        wrongPopUp.fontColor = SKColor.white
+        wrongPopUp.position = CGPoint(x: frame.midX, y: frame.height/4)
+        wrongPopUp.addStroke(color: UIColor.red, width: 5.0)
+        wrongPopUp.zPosition = 20
         
         addChild(wrongPopUp)
         
         wrongPopUp.run(
             SKAction.sequence([
-                SKAction.wait(forDuration: 1.0),
+                SKAction.wait(forDuration: 2.0),
                 SKAction.removeFromParent()
             ])
         )
