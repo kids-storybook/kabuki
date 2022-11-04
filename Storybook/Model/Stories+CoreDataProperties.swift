@@ -21,6 +21,7 @@ extension Stories {
     @NSManaged public var challengeName: String?
     @NSManaged public var character: String?
     @NSManaged public var labels: Array<String>?
+    @NSManaged public var labelColor: String?
     @NSManaged public var order: Int32
     @NSManaged public var characterXPosition: Double
     @NSManaged public var characterYPosition: Double

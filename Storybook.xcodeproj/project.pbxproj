@@ -22,6 +22,21 @@
 		3644BD9C28FF02D50027DDE5 /* Poppins-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3644BD9828FF023E0027DDE5 /* Poppins-Black.ttf */; };
 		3644BD9D28FF02D70027DDE5 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3644BD9A28FF025C0027DDE5 /* Poppins-Bold.ttf */; };
 		3644BD9E28FF02DA0027DDE5 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3644BD9B28FF025C0027DDE5 /* Poppins-Regular.ttf */; };
+		364DB15B2914FEA3006C53F4 /* Mini Games-elephant_challenge.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 364DB1592914FEA3006C53F4 /* Mini Games-elephant_challenge.mp3 */; };
+		364DB15C2914FEA3006C53F4 /* Mini Games-elephant_challenge.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 364DB1592914FEA3006C53F4 /* Mini Games-elephant_challenge.mp3 */; };
+		364DB15D2914FEA3006C53F4 /* Mini Games-elephant_challenge.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 364DB1592914FEA3006C53F4 /* Mini Games-elephant_challenge.mp3 */; };
+		364DB15E2914FEA3006C53F4 /* Story Music-elephant_challenge.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 364DB15A2914FEA3006C53F4 /* Story Music-elephant_challenge.mp3 */; };
+		364DB15F2914FEA3006C53F4 /* Story Music-elephant_challenge.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 364DB15A2914FEA3006C53F4 /* Story Music-elephant_challenge.mp3 */; };
+		364DB1602914FEA3006C53F4 /* Story Music-elephant_challenge.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 364DB15A2914FEA3006C53F4 /* Story Music-elephant_challenge.mp3 */; };
+		364DB1622915033E006C53F4 /* Lion-Rawr.wav in Resources */ = {isa = PBXBuildFile; fileRef = 364DB1612915033E006C53F4 /* Lion-Rawr.wav */; };
+		364DB1632915033E006C53F4 /* Lion-Rawr.wav in Resources */ = {isa = PBXBuildFile; fileRef = 364DB1612915033E006C53F4 /* Lion-Rawr.wav */; };
+		364DB1642915033E006C53F4 /* Lion-Rawr.wav in Resources */ = {isa = PBXBuildFile; fileRef = 364DB1612915033E006C53F4 /* Lion-Rawr.wav */; };
+		364DB1662915061C006C53F4 /* Elephant-Rawr.wav in Resources */ = {isa = PBXBuildFile; fileRef = 364DB1652915061C006C53F4 /* Elephant-Rawr.wav */; };
+		364DB1672915061C006C53F4 /* Elephant-Rawr.wav in Resources */ = {isa = PBXBuildFile; fileRef = 364DB1652915061C006C53F4 /* Elephant-Rawr.wav */; };
+		364DB1682915061C006C53F4 /* Elephant-Rawr.wav in Resources */ = {isa = PBXBuildFile; fileRef = 364DB1652915061C006C53F4 /* Elephant-Rawr.wav */; };
+		364DB16A291507C6006C53F4 /* button-click.wav in Resources */ = {isa = PBXBuildFile; fileRef = 364DB169291507C6006C53F4 /* button-click.wav */; };
+		364DB16B291507C6006C53F4 /* button-click.wav in Resources */ = {isa = PBXBuildFile; fileRef = 364DB169291507C6006C53F4 /* button-click.wav */; };
+		364DB16C291507C6006C53F4 /* button-click.wav in Resources */ = {isa = PBXBuildFile; fileRef = 364DB169291507C6006C53F4 /* button-click.wav */; };
 		3655A58B28F80EF600C97C09 /* Reference+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3655A58A28F80EF600C97C09 /* Reference+Extension.swift */; };
 		3662B02429029A8500956BDE /* Header.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3662B02329029A8500956BDE /* Header.sks */; };
 		368546F428FFF3CE00E520B4 /* StartPageScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 368546F328FFF3CE00E520B4 /* StartPageScene.sks */; };
@@ -45,8 +60,6 @@
 		E601FEAC29063F7E00810558 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = E601FEAB29063F7E00810558 /* Data.swift */; };
 		E601FEC8290686AE00810558 /* AnimationPageScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = E601FEC6290686AE00810558 /* AnimationPageScene.sks */; };
 		E601FEC9290686AE00810558 /* AnimationPageScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E601FEC7290686AE00810558 /* AnimationPageScene.swift */; };
-		E60300CD2913A37A0067E6AF /* Story Music-elephant_challenge.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E60300CB2913A37A0067E6AF /* Story Music-elephant_challenge.mp3 */; };
-		E60300CE2913A37A0067E6AF /* Mini Games-elephant_challenge.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E60300CC2913A37A0067E6AF /* Mini Games-elephant_challenge.mp3 */; };
 		E60A5AB82912ECF600A968DC /* Story Music-lion_challenge.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E60A5AB62912ECF600A968DC /* Story Music-lion_challenge.mp3 */; };
 		E60A5AB92912ECF600A968DC /* Mini Games-lion_challenge.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E60A5AB72912ECF600A968DC /* Mini Games-lion_challenge.mp3 */; };
 		E60A5ABB2912FCD500A968DC /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = E60A5ABA2912FCD500A968DC /* GameScene.sks */; };
@@ -61,7 +74,6 @@
 		E63DEA8E28E2EB34000AC43C /* StorybookUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63DEA8D28E2EB34000AC43C /* StorybookUITestsLaunchTests.swift */; };
 		E65F543C290A6E8D00FC6AA5 /* Shape.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65F543B290A6E8D00FC6AA5 /* Shape.swift */; };
 		E69FDAE128FEDF030059FD30 /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69FDAE028FEDF030059FD30 /* Challenge.swift */; };
-		E69FDAE428FFBE500059FD30 /* button-click.wav in Resources */ = {isa = PBXBuildFile; fileRef = E69FDAE328FFBE500059FD30 /* button-click.wav */; };
 		E6BBB41F28F4527D00D003F0 /* MapViewPageScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BBB41E28F4527D00D003F0 /* MapViewPageScene.swift */; };
 		E6BBB42128F4529200D003F0 /* MapViewPageScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = E6BBB42028F4529200D003F0 /* MapViewPageScene.sks */; };
 		E6D4168728E591720030681F /* ButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D4168628E591720030681F /* ButtonNode.swift */; };
@@ -116,6 +128,11 @@
 		3644BD9A28FF025C0027DDE5 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		3644BD9B28FF025C0027DDE5 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		3644BD9F28FF03640027DDE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		364DB1592914FEA3006C53F4 /* Mini Games-elephant_challenge.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mini Games-elephant_challenge.mp3"; sourceTree = "<group>"; };
+		364DB15A2914FEA3006C53F4 /* Story Music-elephant_challenge.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Story Music-elephant_challenge.mp3"; sourceTree = "<group>"; };
+		364DB1612915033E006C53F4 /* Lion-Rawr.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Lion-Rawr.wav"; sourceTree = "<group>"; };
+		364DB1652915061C006C53F4 /* Elephant-Rawr.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Elephant-Rawr.wav"; sourceTree = "<group>"; };
+		364DB169291507C6006C53F4 /* button-click.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "button-click.wav"; sourceTree = "<group>"; };
 		3655A58A28F80EF600C97C09 /* Reference+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reference+Extension.swift"; sourceTree = "<group>"; };
 		3662B02329029A8500956BDE /* Header.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Header.sks; sourceTree = "<group>"; };
 		368546F328FFF3CE00E520B4 /* StartPageScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StartPageScene.sks; sourceTree = "<group>"; };
@@ -140,8 +157,6 @@
 		E601FEAB29063F7E00810558 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		E601FEC6290686AE00810558 /* AnimationPageScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = AnimationPageScene.sks; sourceTree = "<group>"; };
 		E601FEC7290686AE00810558 /* AnimationPageScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationPageScene.swift; sourceTree = "<group>"; };
-		E60300CB2913A37A0067E6AF /* Story Music-elephant_challenge.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Story Music-elephant_challenge.mp3"; sourceTree = "<group>"; };
-		E60300CC2913A37A0067E6AF /* Mini Games-elephant_challenge.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mini Games-elephant_challenge.mp3"; sourceTree = "<group>"; };
 		E60A5AB62912ECF600A968DC /* Story Music-lion_challenge.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Story Music-lion_challenge.mp3"; sourceTree = "<group>"; };
 		E60A5AB72912ECF600A968DC /* Mini Games-lion_challenge.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mini Games-lion_challenge.mp3"; sourceTree = "<group>"; };
 		E60A5ABA2912FCD500A968DC /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -159,7 +174,6 @@
 		E63DEA8D28E2EB34000AC43C /* StorybookUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorybookUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		E65F543B290A6E8D00FC6AA5 /* Shape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shape.swift; sourceTree = "<group>"; };
 		E69FDAE028FEDF030059FD30 /* Challenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
-		E69FDAE328FFBE500059FD30 /* button-click.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "button-click.wav"; sourceTree = "<group>"; };
 		E6BBB41E28F4527D00D003F0 /* MapViewPageScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewPageScene.swift; sourceTree = "<group>"; };
 		E6BBB42028F4529200D003F0 /* MapViewPageScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MapViewPageScene.sks; sourceTree = "<group>"; };
 		E6D4168628E591720030681F /* ButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonNode.swift; sourceTree = "<group>"; };
@@ -401,15 +415,17 @@
 		E6D4168A28E59FCE0030681F /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
-				E60300CC2913A37A0067E6AF /* Mini Games-elephant_challenge.mp3 */,
-				E60300CB2913A37A0067E6AF /* Story Music-elephant_challenge.mp3 */,
+				364DB1592914FEA3006C53F4 /* Mini Games-elephant_challenge.mp3 */,
+				364DB15A2914FEA3006C53F4 /* Story Music-elephant_challenge.mp3 */,
 				E60A5AB72912ECF600A968DC /* Mini Games-lion_challenge.mp3 */,
 				E60A5AB62912ECF600A968DC /* Story Music-lion_challenge.mp3 */,
 				E6E50CCF290280C70065BB71 /* Maps Music.mp3 */,
 				E6E50CCE290280C60065BB71 /* Opening Music.mp3 */,
 				E6E3368728ECA2FF00FE2BEE /* lioncry3.wav */,
 				E6E3368628ECA2FF00FE2BEE /* lionlaugh4.wav */,
-				E69FDAE328FFBE500059FD30 /* button-click.wav */,
+				364DB169291507C6006C53F4 /* button-click.wav */,
+				364DB1612915033E006C53F4 /* Lion-Rawr.wav */,
+				364DB1652915061C006C53F4 /* Elephant-Rawr.wav */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -569,18 +585,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E69FDAE428FFBE500059FD30 /* button-click.wav in Resources */,
 				E60A5ABB2912FCD500A968DC /* GameScene.sks in Resources */,
 				E63DEA7328E2EB33000AC43C /* Main.storyboard in Resources */,
 				E63DEA7528E2EB34000AC43C /* Assets.xcassets in Resources */,
 				B2E1A8E62901682E00349559 /* ShapeGameScene.sks in Resources */,
 				E63DEA7828E2EB34000AC43C /* LaunchScreen.storyboard in Resources */,
 				36FD197428F46499002C25BF /* Footer.sks in Resources */,
+				364DB15B2914FEA3006C53F4 /* Mini Games-elephant_challenge.mp3 in Resources */,
+				364DB15E2914FEA3006C53F4 /* Story Music-elephant_challenge.mp3 in Resources */,
 				36EC630E28FFF85800176DA3 /* Start.sks in Resources */,
 				E6E3369228ECA2FF00FE2BEE /* lioncry3.wav in Resources */,
 				3644BD9D28FF02D70027DDE5 /* Poppins-Bold.ttf in Resources */,
+				364DB1622915033E006C53F4 /* Lion-Rawr.wav in Resources */,
 				360A8EF428F459CB00949260 /* StoryPageScene.sks in Resources */,
 				36F7DC752907B5D80045984E /* AnimationPageSceneTutorial.sks in Resources */,
+				364DB1662915061C006C53F4 /* Elephant-Rawr.wav in Resources */,
 				E6E3365228EC295700FE2BEE /* HomepageScene.sks in Resources */,
 				E6BBB42128F4529200D003F0 /* MapViewPageScene.sks in Resources */,
 				36CBBEF4291238FB00403E7E /* ContinueRetry.sks in Resources */,
@@ -589,15 +608,14 @@
 				36CBBEF22912355300403E7E /* AppreciationPage.sks in Resources */,
 				E6E50CD2290280C70065BB71 /* Opening Music.mp3 in Resources */,
 				3662B02429029A8500956BDE /* Header.sks in Resources */,
+				364DB16A291507C6006C53F4 /* button-click.wav in Resources */,
 				E601FEC8290686AE00810558 /* AnimationPageScene.sks in Resources */,
 				E60A5AB92912ECF600A968DC /* Mini Games-lion_challenge.mp3 in Resources */,
-				E60300CD2913A37A0067E6AF /* Story Music-elephant_challenge.mp3 in Resources */,
 				3644BD9E28FF02DA0027DDE5 /* Poppins-Regular.ttf in Resources */,
 				368546F428FFF3CE00E520B4 /* StartPageScene.sks in Resources */,
 				E6E50CD3290280C70065BB71 /* Maps Music.mp3 in Resources */,
 				E60A5AB82912ECF600A968DC /* Story Music-lion_challenge.mp3 in Resources */,
 				E63DEA6C28E2EB33000AC43C /* Actions.sks in Resources */,
-				E60300CE2913A37A0067E6AF /* Mini Games-elephant_challenge.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -605,6 +623,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				364DB1632915033E006C53F4 /* Lion-Rawr.wav in Resources */,
+				364DB16B291507C6006C53F4 /* button-click.wav in Resources */,
+				364DB15F2914FEA3006C53F4 /* Story Music-elephant_challenge.mp3 in Resources */,
+				364DB1672915061C006C53F4 /* Elephant-Rawr.wav in Resources */,
+				364DB15C2914FEA3006C53F4 /* Mini Games-elephant_challenge.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -612,6 +635,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				364DB1642915033E006C53F4 /* Lion-Rawr.wav in Resources */,
+				364DB16C291507C6006C53F4 /* button-click.wav in Resources */,
+				364DB1602914FEA3006C53F4 /* Story Music-elephant_challenge.mp3 in Resources */,
+				364DB1682915061C006C53F4 /* Elephant-Rawr.wav in Resources */,
+				364DB15D2914FEA3006C53F4 /* Mini Games-elephant_challenge.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

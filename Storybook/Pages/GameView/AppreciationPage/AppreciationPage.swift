@@ -5,6 +5,7 @@ import GameplayKit
 class AppreciationPage: GameScene {
     var backgroundScene: SKSpriteNode!
     var titleImage: SKSpriteNode!
+    var nextChallenge: String?
     
     private func setupPlayer(){
         
@@ -18,6 +19,7 @@ class AppreciationPage: GameScene {
         backgroundScene.position = CGPoint(x: 0, y: 0)
         backgroundScene.zPosition = -10
         backgroundScene.size = self.frame.size
+        backgroundScene.run(SoundManager.sharedInstance.soundAppreciation[self.challengeName ?? ""] ?? SKAction())
         
         addChild(titleImage)
         addChild(backgroundScene)
@@ -29,6 +31,7 @@ class AppreciationPage: GameScene {
         continueretry = childNode(withName: "continueretry")
         retryBtn = childNode(withName: "//retryButton") as? SKSpriteNode
         continueBtn = childNode(withName: "//continueButton") as? SKSpriteNode
+        
     }
     
     override func didMove(to view: SKView) {
@@ -42,6 +45,21 @@ class AppreciationPage: GameScene {
             ])
             fetchRequest.fetchLimit = 1
             story = try context.fetch(fetchRequest)[0]
+        } catch let error as NSError {
+            print(error)
+            print("error while fetching data in core data!")
+        }
+        
+        do {
+            let fetchRequest = Challenges.fetchRequest()
+            let challengeNamePredicate = NSPredicate(format: "challengeName == %@", (nextChallenge ?? "" ))
+            fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+                challengeNamePredicate
+            ])
+            fetchRequest.fetchLimit = 1
+            let challenge = try context.fetch(fetchRequest)[0]
+            challenge.isActive = true
+            try context.save()
         } catch let error as NSError {
             print(error)
             print("error while fetching data in core data!")

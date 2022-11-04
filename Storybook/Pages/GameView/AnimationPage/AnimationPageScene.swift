@@ -37,7 +37,7 @@ class AnimationPageScene: GameScene {
                 textScene.fontColor = SKColor.white
                 textScene.position = CGPoint(x: 0, y: Int(Double(frame.height)/3.5)-idx*60)
                 textScene.zPosition = 100
-                textScene.addStroke(color: textBorder, width: 7.0)
+                textScene.addStroke(color: UIColor(named: story?.labelColor ?? "") ?? textBorder, width: 7.0)
                 addChild(textScene)
             }
         }
@@ -50,7 +50,7 @@ class AnimationPageScene: GameScene {
             let activeShape = AnimatedShape(imageName: shape.shapeImage ?? "")
             if let spriteComponent = activeShape.component(ofType: SpriteComponent.self) {
                 spriteComponent.node.position = CGPoint(x: shape.xCoordinateShape, y: shape.yCoordinateShape)
-                
+                spriteComponent.node.setScale(0.85)
             }
             activeShapes.append(activeShape)
             entityManager.add(activeShape)

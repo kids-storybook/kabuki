@@ -26,7 +26,7 @@ class StoryPageScene: GameScene {
                 textScene.fontColor = SKColor.white
                 textScene.position = CGPoint(x: 0, y: Int(Double(frame.height)/3.5)-idx*60)
                 textScene.zPosition = 100
-                textScene.addStroke(color: textBorder, width: 7.0)
+                textScene.addStroke(color: UIColor(named: story?.labelColor ?? "") ?? textBorder, width: 7.0)
                 addChild(textScene)
             }
         }
