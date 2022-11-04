@@ -8,5 +8,7 @@
 		<string>Poppins-Bold.ttf</string>
 		<string>Poppins-Regular.ttf</string>
 	</array>
+	<key>UIRequiresFullScreen</key>
+	<true/>
 </dict>
 </plist>
