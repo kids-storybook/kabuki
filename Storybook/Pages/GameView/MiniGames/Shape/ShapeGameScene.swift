@@ -114,7 +114,7 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
                 let shapeTarget = Shape(imageName: target.background ?? "", shapeName: target.background ?? "" )
                 if let spriteComponent = shapeTarget.component(ofType: SpriteComponent.self) {
                     spriteComponent.node.position = CGPoint(x: target.xCoordinate ?? 0, y: target.yCoordinate ?? 0)
-                    spriteComponent.node.setScale(0.85)
+                    spriteComponent.node.setScale(0.58)
                     spriteComponent.node.zPosition = target.zPosition ?? 0
                 }
                 entityManager.add(shapeTarget)
