@@ -114,7 +114,7 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
                 let shapeTarget = Shape(imageName: target.background ?? "", shapeName: target.background ?? "" )
                 if let spriteComponent = shapeTarget.component(ofType: SpriteComponent.self) {
                     spriteComponent.node.position = CGPoint(x: target.xCoordinate ?? 0, y: target.yCoordinate ?? 0)
-                    spriteComponent.node.setScale(0.85)
+                    spriteComponent.node.setScale(0.58)
                     spriteComponent.node.zPosition = target.zPosition ?? 0
                 }
                 entityManager.add(shapeTarget)
@@ -125,17 +125,19 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
     }
     
     func wrongClick(){
-        let wrongPopUp = SKLabelNode(fontNamed: "Chalkduster")
-        wrongPopUp.text = "Oops, ayo geser ke tujuan yang benar!"
-        wrongPopUp.fontSize = 48
-        wrongPopUp.fontColor = SKColor.red
-        wrongPopUp.position = CGPoint(x: frame.midX, y: frame.height/10)
+        let wrongPopUp = SKLabelNode(fontNamed: "Poppins-Black")
+        wrongPopUp.text = "Ayo coba lagi!"
+        wrongPopUp.fontSize = 50
+        wrongPopUp.fontColor = SKColor.white
+        wrongPopUp.position = CGPoint(x: frame.midX, y: frame.height/4)
+        wrongPopUp.addStroke(color: UIColor.red, width: 5.0)
+        wrongPopUp.zPosition = 20
         
         addChild(wrongPopUp)
         
         wrongPopUp.run(
             SKAction.sequence([
-                SKAction.wait(forDuration: 1.0),
+                SKAction.wait(forDuration: 2.0),
                 SKAction.removeFromParent()
             ])
         )

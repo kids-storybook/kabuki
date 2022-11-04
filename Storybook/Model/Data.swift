@@ -147,7 +147,7 @@ let initShapeTargetData: [ShapeTargetModel] = [
 
 let initAnimationData: [AnimationModel] = [
     AnimationModel(challengeName: "lion_challenge", shapeImage: "lion_square_3", xCoordinateShape: -265, yCoordinateShape: -245, shapeName: "Persegi", xCoordinateFont: -263, yCoordinateFont: 0),
-    AnimationModel(challengeName: "lion_challenge", shapeImage: "lion_triangle_1", xCoordinateShape: -25, yCoordinateShape: -250, shapeName: "Segitiga", xCoordinateFont: -23, yCoordinateFont: 0),
+    AnimationModel(challengeName: "lion_challenge", shapeImage: "lion_triangle_1", xCoordinateShape: -25, yCoordinateShape: -232, shapeName: "Segitiga", xCoordinateFont: -23, yCoordinateFont: 0),
     AnimationModel(challengeName: "lion_challenge", shapeImage: "lion_circle_1", xCoordinateShape: 204, yCoordinateShape: -235, shapeName: "Lingkaran", xCoordinateFont: 196, yCoordinateFont: 0),
     
     AnimationModel(challengeName: "elephant_challenge", shapeImage: "square_grass", xCoordinateShape: -265, yCoordinateShape: -245, shapeName: "Persegi", xCoordinateFont: -263, yCoordinateFont: 0),

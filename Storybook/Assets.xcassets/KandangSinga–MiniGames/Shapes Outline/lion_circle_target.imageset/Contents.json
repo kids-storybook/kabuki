@@ -1,11 +1,11 @@
 {
   "images" : [
     {
+      "filename" : "Circle outline correct.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Circle outline correct.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

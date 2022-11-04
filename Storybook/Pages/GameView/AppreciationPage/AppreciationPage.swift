@@ -19,6 +19,7 @@ class AppreciationPage: GameScene {
         backgroundScene.position = CGPoint(x: 0, y: 0)
         backgroundScene.zPosition = -10
         backgroundScene.size = self.frame.size
+        backgroundScene.run(SoundManager.sharedInstance.soundAppreciation[self.challengeName ?? ""] ?? SKAction())
         
         addChild(titleImage)
         addChild(backgroundScene)
@@ -30,6 +31,7 @@ class AppreciationPage: GameScene {
         continueretry = childNode(withName: "continueretry")
         retryBtn = childNode(withName: "//retryButton") as? SKSpriteNode
         continueBtn = childNode(withName: "//continueButton") as? SKSpriteNode
+        
     }
     
     override func didMove(to view: SKView) {
