@@ -4,10 +4,27 @@ import GameplayKit
 
 class StartPageScene: GameScene {
 
-    
     var totalStories: Int?
     var backgroundScene: SKSpriteNode!
     var titleImage: SKSpriteNode!
+    
+    private var characterAtlas: SKTextureAtlas {
+        return SKTextureAtlas(named: "LionStoryAnimation")
+    }
+    
+    private var characterTexture: SKTexture {
+        return characterAtlas.textureNamed("LionStoryAnimation1")
+    }
+    
+    private var characterIdleTexture: [SKTexture] {
+        return [
+            characterAtlas.textureNamed("LionStoryAnimation1"),
+            characterAtlas.textureNamed("LionStoryAnimation2"),
+            characterAtlas.textureNamed("LionStoryAnimation3"),
+            characterAtlas.textureNamed("LionStoryAnimation4"),
+            characterAtlas.textureNamed("LionStoryAnimation5")
+        ]
+    }
     
     private func setupPlayer(){
         
@@ -26,9 +43,20 @@ class StartPageScene: GameScene {
         let soundPayload: [String: Any] = ["fileToPlay" : "Story Music-\(self.challengeName ?? "")", "isKeepToPlay": true ]
         NotificationCenter.default.post(name: Notification.Name(rawValue: "PlayBackgroundSound"), object: self, userInfo:soundPayload)
         
+        // Add animated character
+        characterAnimated = SKSpriteNode(texture: characterTexture, size: CGSize(width: frame.width, height: frame.height))
+        characterAnimated.position = CGPoint(x: frame.midX, y: frame.midY)
+        characterAnimated.zPosition = 20
+        
         addChild(titleImage)
         addChild(backgroundScene)
-        
+        addChild(characterAnimated)
+        print("Character Atlas : \(characterAtlas)")
+    }
+    
+    func startIdleAnimation() {
+        let idleAnimation = SKAction.animate(with: characterIdleTexture, timePerFrame: 0.2)
+        characterAnimated.run(SKAction.repeatForever(idleAnimation), withKey: "chracterIdleAnimation")
     }
     
     override func sceneDidLoad() {
@@ -56,6 +84,8 @@ class StartPageScene: GameScene {
         }
         
         self.setupPlayer()
+        self.startIdleAnimation()
+        
         if self.theme == nil {
             self.initThemeData()
         }
