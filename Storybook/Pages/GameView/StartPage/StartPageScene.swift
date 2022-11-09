@@ -7,28 +7,34 @@ class StartPageScene: GameScene {
     var totalStories: Int?
     var backgroundScene: SKSpriteNode!
     var titleImage: SKSpriteNode!
+    var characterFrames : [SKTexture] = []
     
     private var characterAtlas: SKTextureAtlas {
-        return SKTextureAtlas(named: "LionStoryAnimation")
+        return SKTextureAtlas(named: story?.characterAtlas ?? "")
     }
     
     private var characterTexture: SKTexture {
-        return characterAtlas.textureNamed("LionStoryAnimation1")
+        return characterAtlas.textureNamed("\(story?.characterAtlas ?? "")1")
     }
     
     private var characterIdleTexture: [SKTexture] {
-        return [
-            characterAtlas.textureNamed("LionStoryAnimation1"),
-            characterAtlas.textureNamed("LionStoryAnimation2"),
-            characterAtlas.textureNamed("LionStoryAnimation3"),
-            characterAtlas.textureNamed("LionStoryAnimation4"),
-            characterAtlas.textureNamed("LionStoryAnimation5")
-        ]
+        
+        var index: [SKTexture] = []
+        let numImages = characterAtlas.textureNames.count
+        
+        for i in 1...numImages {
+            let textureNames = characterAtlas.textureNamed("\(story?.characterAtlas ?? "")\(i)")
+            index.append(textureNames)
+        }
+        
+        characterFrames = index
+        return characterFrames
+        
     }
     
     private func setupPlayer(){
         
-        makeCharacter(imageName: self.story?.character)
+//        makeCharacter(imageName: self.story?.character)
         backgroundScene = SKSpriteNode(imageNamed: self.story?.background ?? "")
         titleImage = SKSpriteNode(imageNamed: self.story?.title ?? "")
         
@@ -44,7 +50,7 @@ class StartPageScene: GameScene {
         NotificationCenter.default.post(name: Notification.Name(rawValue: "PlayBackgroundSound"), object: self, userInfo:soundPayload)
         
         // Add animated character
-        characterAnimated = SKSpriteNode(texture: characterTexture, size: CGSize(width: frame.width, height: frame.height))
+        characterAnimated = SKSpriteNode(texture: characterTexture, size: CGSize(width: 913, height: 613))
         characterAnimated.position = CGPoint(x: frame.midX, y: frame.midY)
         characterAnimated.zPosition = 20
         

@@ -91,6 +91,7 @@ class Helper {
             story.labelColor = data.labelColor?.rawValue
             story.background = data.background
             story.character = data.character
+            story.characterAtlas = data.characterAtlas
             story.characterXPosition = data.characterXPosition ?? 0.0
             story.characterYPosition = data.characterYPosition ?? 0.0
             self.saveContext(saveContext: context)

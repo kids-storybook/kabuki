@@ -20,6 +20,7 @@ extension Stories {
     @NSManaged public var title: String?
     @NSManaged public var challengeName: String?
     @NSManaged public var character: String?
+    @NSManaged public var characterAtlas: String?
     @NSManaged public var labels: Array<String>?
     @NSManaged public var labelColor: String?
     @NSManaged public var order: Int32
