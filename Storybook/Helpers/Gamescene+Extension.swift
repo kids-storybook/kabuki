@@ -20,7 +20,6 @@ extension GameScene {
             spriteComponent.node.position = CGPoint(x: story?.characterXPosition ?? 0.0, y: story?.characterYPosition ?? 0.0)
             spriteComponent.node.zPosition = 10
         }
-        print(character)
         entityManager.add(character)
     }
     
@@ -31,6 +30,7 @@ extension GameScene {
         if let spriteComponent = character.component(ofType: SpriteComponent.self) {
             spriteComponent.node.position = CGPoint(x: story?.characterXPosition ?? 0.0, y: story?.characterYPosition ?? 0.0)
             spriteComponent.node.zPosition = 10
+            spriteComponent.node.setScale(1.05)
         }
         
         entityManager.add(character)
