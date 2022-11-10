@@ -39,10 +39,6 @@
 		364DB16C291507C6006C53F4 /* button-click.wav in Resources */ = {isa = PBXBuildFile; fileRef = 364DB169291507C6006C53F4 /* button-click.wav */; };
 		364FDDD5291AA766005CA0CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E63DEA7428E2EB34000AC43C /* Assets.xcassets */; };
 		364FDDD6291AA767005CA0CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E63DEA7428E2EB34000AC43C /* Assets.xcassets */; };
-		364FDDD8291AAAE1005CA0CA /* LionStoryAnimation.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 364FDDD7291AAAE1005CA0CA /* LionStoryAnimation.atlas */; };
-		364FDDDD291AABAF005CA0CA /* LionShapesAnimation.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 364FDDDA291AABAF005CA0CA /* LionShapesAnimation.atlas */; };
-		364FDDDE291AABAF005CA0CA /* LionMinigameAnimation.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 364FDDDB291AABAF005CA0CA /* LionMinigameAnimation.atlas */; };
-		364FDDDF291AABAF005CA0CA /* LionAppreciationAnimation.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 364FDDDC291AABAF005CA0CA /* LionAppreciationAnimation.atlas */; };
 		364FDDE3291B8386005CA0CA /* Gamescene+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364FDDE2291B8386005CA0CA /* Gamescene+Extension.swift */; };
 		3655A58B28F80EF600C97C09 /* Reference+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3655A58A28F80EF600C97C09 /* Reference+Extension.swift */; };
 		3662B02429029A8500956BDE /* Header.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3662B02329029A8500956BDE /* Header.sks */; };
@@ -51,7 +47,6 @@
 		36A6DFDE290FC6E900E72322 /* AnimatedShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A6DFDD290FC6E900E72322 /* AnimatedShape.swift */; };
 		36AF5FC12906F4F300C25714 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AF5FC02906F4F300C25714 /* UIColor+Extension.swift */; };
 		36AF5FC32906F6DA00C25714 /* SKLabelNode+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AF5FC22906F6DA00C25714 /* SKLabelNode+Extension.swift */; };
-		36B799D1291BA9DC009A6D92 /* GajahStoryAnimation.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 36B799D0291BA9DC009A6D92 /* GajahStoryAnimation.atlas */; };
 		36CAFF94290FB69F00AD54FD /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CAFF93290FB69F00AD54FD /* Character.swift */; };
 		36CBBEEF2912352B00403E7E /* AppreciationPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CBBEEE2912352B00403E7E /* AppreciationPage.swift */; };
 		36CBBEF22912355300403E7E /* AppreciationPage.sks in Resources */ = {isa = PBXBuildFile; fileRef = 36CBBEF12912355300403E7E /* AppreciationPage.sks */; };
@@ -141,10 +136,6 @@
 		364DB1612915033E006C53F4 /* Lion-Rawr.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Lion-Rawr.wav"; sourceTree = "<group>"; };
 		364DB1652915061C006C53F4 /* Elephant-Rawr.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Elephant-Rawr.wav"; sourceTree = "<group>"; };
 		364DB169291507C6006C53F4 /* button-click.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "button-click.wav"; sourceTree = "<group>"; };
-		364FDDD7291AAAE1005CA0CA /* LionStoryAnimation.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = LionStoryAnimation.atlas; sourceTree = "<group>"; };
-		364FDDDA291AABAF005CA0CA /* LionShapesAnimation.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = LionShapesAnimation.atlas; sourceTree = "<group>"; };
-		364FDDDB291AABAF005CA0CA /* LionMinigameAnimation.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = LionMinigameAnimation.atlas; sourceTree = "<group>"; };
-		364FDDDC291AABAF005CA0CA /* LionAppreciationAnimation.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = LionAppreciationAnimation.atlas; sourceTree = "<group>"; };
 		364FDDE2291B8386005CA0CA /* Gamescene+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gamescene+Extension.swift"; sourceTree = "<group>"; };
 		3655A58A28F80EF600C97C09 /* Reference+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reference+Extension.swift"; sourceTree = "<group>"; };
 		3662B02329029A8500956BDE /* Header.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Header.sks; sourceTree = "<group>"; };
@@ -154,7 +145,6 @@
 		36AF5FC02906F4F300C25714 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		36AF5FC22906F6DA00C25714 /* SKLabelNode+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKLabelNode+Extension.swift"; sourceTree = "<group>"; };
 		36AF5FC62906FBBC00C25714 /* Themes+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Themes+CoreDataClass.swift"; sourceTree = "<group>"; };
-		36B799D0291BA9DC009A6D92 /* GajahStoryAnimation.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = GajahStoryAnimation.atlas; sourceTree = "<group>"; };
 		36CAFF93290FB69F00AD54FD /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		36CBBEEE2912352B00403E7E /* AppreciationPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppreciationPage.swift; sourceTree = "<group>"; };
 		36CBBEF12912355300403E7E /* AppreciationPage.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = AppreciationPage.sks; sourceTree = "<group>"; };
@@ -258,15 +248,6 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		364FDDD9291AAB34005CA0CA /* Texture Atlas */ = {
-			isa = PBXGroup;
-			children = (
-				36B799CF291BA9C7009A6D92 /* Elephant */,
-				36B799CE291BA9BD009A6D92 /* Lion */,
-			);
-			path = "Texture Atlas";
-			sourceTree = "<group>";
-		};
 		368546F528FFF3D400E520B4 /* StartPage */ = {
 			isa = PBXGroup;
 			children = (
@@ -274,25 +255,6 @@
 				368546F628FFF3EC00E520B4 /* StartPageScene.swift */,
 			);
 			path = StartPage;
-			sourceTree = "<group>";
-		};
-		36B799CE291BA9BD009A6D92 /* Lion */ = {
-			isa = PBXGroup;
-			children = (
-				364FDDDC291AABAF005CA0CA /* LionAppreciationAnimation.atlas */,
-				364FDDDB291AABAF005CA0CA /* LionMinigameAnimation.atlas */,
-				364FDDDA291AABAF005CA0CA /* LionShapesAnimation.atlas */,
-				364FDDD7291AAAE1005CA0CA /* LionStoryAnimation.atlas */,
-			);
-			path = Lion;
-			sourceTree = "<group>";
-		};
-		36B799CF291BA9C7009A6D92 /* Elephant */ = {
-			isa = PBXGroup;
-			children = (
-				36B799D0291BA9DC009A6D92 /* GajahStoryAnimation.atlas */,
-			);
-			path = Elephant;
 			sourceTree = "<group>";
 		};
 		36CBBEF02912353200403E7E /* AppreciationPage */ = {
@@ -406,7 +368,6 @@
 				E63DEA6F28E2EB33000AC43C /* GameViewController.swift */,
 				E63DEA7128E2EB33000AC43C /* Main.storyboard */,
 				E63DEA7428E2EB34000AC43C /* Assets.xcassets */,
-				364FDDD9291AAB34005CA0CA /* Texture Atlas */,
 				E63DEA7628E2EB34000AC43C /* LaunchScreen.storyboard */,
 				3644BD9928FF024D0027DDE5 /* Fonts */,
 			);
@@ -635,7 +596,6 @@
 				B2E1A8E62901682E00349559 /* ShapeGameScene.sks in Resources */,
 				E63DEA7828E2EB34000AC43C /* LaunchScreen.storyboard in Resources */,
 				36FD197428F46499002C25BF /* Footer.sks in Resources */,
-				364FDDDF291AABAF005CA0CA /* LionAppreciationAnimation.atlas in Resources */,
 				364DB15B2914FEA3006C53F4 /* Mini Games-elephant_challenge.mp3 in Resources */,
 				364DB15E2914FEA3006C53F4 /* Story Music-elephant_challenge.mp3 in Resources */,
 				36EC630E28FFF85800176DA3 /* Start.sks in Resources */,
@@ -644,7 +604,6 @@
 				364DB1622915033E006C53F4 /* Lion-Rawr.wav in Resources */,
 				360A8EF428F459CB00949260 /* StoryPageScene.sks in Resources */,
 				36F7DC752907B5D80045984E /* AnimationPageSceneTutorial.sks in Resources */,
-				364FDDD8291AAAE1005CA0CA /* LionStoryAnimation.atlas in Resources */,
 				364DB1662915061C006C53F4 /* Elephant-Rawr.wav in Resources */,
 				E6E3365228EC295700FE2BEE /* HomepageScene.sks in Resources */,
 				E6BBB42128F4529200D003F0 /* MapViewPageScene.sks in Resources */,
@@ -653,16 +612,13 @@
 				E6E3369128ECA2FF00FE2BEE /* lionlaugh4.wav in Resources */,
 				36CBBEF22912355300403E7E /* AppreciationPage.sks in Resources */,
 				E6E50CD2290280C70065BB71 /* Opening Music.mp3 in Resources */,
-				36B799D1291BA9DC009A6D92 /* GajahStoryAnimation.atlas in Resources */,
 				3662B02429029A8500956BDE /* Header.sks in Resources */,
 				364DB16A291507C6006C53F4 /* button-click.wav in Resources */,
-				364FDDDD291AABAF005CA0CA /* LionShapesAnimation.atlas in Resources */,
 				E601FEC8290686AE00810558 /* AnimationPageScene.sks in Resources */,
 				E60A5AB92912ECF600A968DC /* Mini Games-lion_challenge.mp3 in Resources */,
 				3644BD9E28FF02DA0027DDE5 /* Poppins-Regular.ttf in Resources */,
 				368546F428FFF3CE00E520B4 /* StartPageScene.sks in Resources */,
 				E6E50CD3290280C70065BB71 /* Maps Music.mp3 in Resources */,
-				364FDDDE291AABAF005CA0CA /* LionMinigameAnimation.atlas in Resources */,
 				E60A5AB82912ECF600A968DC /* Story Music-lion_challenge.mp3 in Resources */,
 				E63DEA6C28E2EB33000AC43C /* Actions.sks in Resources */,
 			);

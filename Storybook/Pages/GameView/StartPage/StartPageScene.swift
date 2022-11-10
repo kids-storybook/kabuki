@@ -9,32 +9,9 @@ class StartPageScene: GameScene {
     var titleImage: SKSpriteNode!
     var characterFrames : [SKTexture] = []
     
-    private var characterAtlas: SKTextureAtlas {
-        return SKTextureAtlas(named: story?.characterAtlas ?? "")
-    }
-    
-    private var characterTexture: SKTexture {
-        return characterAtlas.textureNamed("\(story?.characterAtlas ?? "")1")
-    }
-    
-    private var characterIdleTexture: [SKTexture] {
-        
-        var index: [SKTexture] = []
-        let numImages = characterAtlas.textureNames.count
-        
-        for i in 1...numImages {
-            let textureNames = characterAtlas.textureNamed("\(story?.characterAtlas ?? "")\(i)")
-            index.append(textureNames)
-        }
-        
-        characterFrames = index
-        return characterFrames
-        
-    }
-    
     private func setupPlayer(){
         
-//        makeCharacter(imageName: self.story?.character)
+        makeCharacter(imageName: self.story?.characterAtlas)
         backgroundScene = SKSpriteNode(imageNamed: self.story?.background ?? "")
         titleImage = SKSpriteNode(imageNamed: self.story?.title ?? "")
         
@@ -49,21 +26,10 @@ class StartPageScene: GameScene {
         let soundPayload: [String: Any] = ["fileToPlay" : "Story Music-\(self.challengeName ?? "")", "isKeepToPlay": true ]
         NotificationCenter.default.post(name: Notification.Name(rawValue: "PlayBackgroundSound"), object: self, userInfo:soundPayload)
         
-        // Add animated character
-        characterAnimated = SKSpriteNode(texture: characterTexture, size: CGSize(width: 913, height: 613))
-        characterAnimated.position = CGPoint(x: frame.midX, y: frame.midY)
-        characterAnimated.zPosition = 20
-        
         addChild(titleImage)
         addChild(backgroundScene)
-        addChild(characterAnimated)
-        print("Character Atlas : \(characterAtlas)")
     }
     
-    func startIdleAnimation() {
-        let idleAnimation = SKAction.animate(with: characterIdleTexture, timePerFrame: 0.2)
-        characterAnimated.run(SKAction.repeatForever(idleAnimation), withKey: "chracterIdleAnimation")
-    }
     
     override func sceneDidLoad() {
         super.sceneDidLoad()
@@ -90,7 +56,6 @@ class StartPageScene: GameScene {
         }
         
         self.setupPlayer()
-        self.startIdleAnimation()
         
         if self.theme == nil {
             self.initThemeData()

@@ -20,7 +20,7 @@ extension GameScene {
             spriteComponent.node.position = CGPoint(x: story?.characterXPosition ?? 0.0, y: story?.characterYPosition ?? 0.0)
             spriteComponent.node.zPosition = 10
         }
-        
+        print(character)
         entityManager.add(character)
     }
     
