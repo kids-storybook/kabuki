@@ -40,9 +40,6 @@ class GameScene: SKScene {
     // make new color for text border
     let textBorder = UIColor(red: 137, green: 165, blue: 81)
     
-    // reusable animated character
-    var characterAnimated: SKSpriteNode!
-    
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         touchMoved(to: touch.location(in: self))

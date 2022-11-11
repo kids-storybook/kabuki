@@ -89,7 +89,7 @@ enum StoryLabelColor: String {
 
 let initThemeData: [ThemeModel] = [
     ThemeModel(background: "mini zoo theme", mapBackground: "zoo_background", name: "zoo", isActive: true, challenges: [
-        ChallangeModel(background: "bright_elephant_cage", challengeName: "elephant_challenge", isActive: false, xCoordinate: -545.187, yCoordinate: 165.877, zPosition: 1.0, gameBackground: "elephant_shape_background", level: AttributeLevel.medium, nextChallenge: "elephant_challenge"),
+        ChallangeModel(background: "bright_elephant_cage", challengeName: "elephant_challenge", isActive: true, xCoordinate: -545.187, yCoordinate: 165.877, zPosition: 1.0, gameBackground: "elephant_shape_background", level: AttributeLevel.medium, nextChallenge: "elephant_challenge"),
         ChallangeModel(background: "bright_gorilla_cage", challengeName: "gorilla_challenge", isActive: false, xCoordinate: 524.09, yCoordinate: 179.16, zPosition: 0.0, gameBackground: "lion_shape_background", level: AttributeLevel.easy, nextChallenge: "elephant_challenge"),
         ChallangeModel(background: "bright_giraffe_cage", challengeName: "giraffe_challenge", isActive: false, xCoordinate: 445.219, yCoordinate: -183.736, zPosition: 1.0, gameBackground: "lion_shape_background", level: AttributeLevel.easy, nextChallenge: "elephant_challenge"),
         ChallangeModel(background: "bright_panda_cage", challengeName: "panda_challenge", isActive: false, xCoordinate: -327.585, yCoordinate: 379.641, zPosition: 0.0, gameBackground: "lion_shape_background", level: AttributeLevel.easy, nextChallenge: "elephant_challenge"),
@@ -165,6 +165,6 @@ let initAnimationData: [AnimationModel] = [
 ]
 
 let initAnimatedGameCharacterData: [AnimatedGameModel] = [
-    AnimatedGameModel(challengeName: "lion_challenge", characterAtlas: "LionMinigameAnimation", characterXPosition: 0, characterYPosition: 0),
-    AnimatedGameModel(challengeName: "elephant_challenge", characterAtlas: "LionMinigameAnimation", characterXPosition: 0, characterYPosition: 0)
+    AnimatedGameModel(challengeName: "lion_challenge", characterAtlas: "LionMinigameAnimation", characterXPosition: -350, characterYPosition: 30),
+    AnimatedGameModel(challengeName: "elephant_challenge", characterAtlas: "ElephantShapesAnimation", characterXPosition: 500, characterYPosition: 55)
 ]

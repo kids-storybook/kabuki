@@ -23,8 +23,6 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
     var solvedShapes: Set<String> = Set([])
     
     func setBackground() {
-//        makeCharacterGame(imageName: self.animatedGame?.characterAtlas)
-        print("Animated Game Character Atlas : \(animatedGame?.characterAtlas ?? "")")
 
         let challenge = self.theme?.challenges?.filtered(using: NSPredicate(format: "challengeName == %@", self.challengeName ?? "")).array as! [Challenges]
         
