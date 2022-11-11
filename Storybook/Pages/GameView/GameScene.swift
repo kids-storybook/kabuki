@@ -32,6 +32,7 @@ class GameScene: SKScene {
     var addCharacter: [Stories]?
     var character: [Character] = []
     var story: Stories?
+    var animatedGame: AnimatedGame?
     
     // initialize core data context
     let context = Helper().getBackgroundContext()

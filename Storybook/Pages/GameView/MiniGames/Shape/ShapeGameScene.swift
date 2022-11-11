@@ -23,6 +23,9 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
     var solvedShapes: Set<String> = Set([])
     
     func setBackground() {
+//        makeCharacterGame(imageName: self.animatedGame?.characterAtlas)
+        print("Animated Game Character Atlas : \(animatedGame?.characterAtlas ?? "")")
+
         let challenge = self.theme?.challenges?.filtered(using: NSPredicate(format: "challengeName == %@", self.challengeName ?? "")).array as! [Challenges]
         
         nextChallenge = challenge[0].nextChallenge
@@ -172,11 +175,31 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
         }
     }
     
+    func getCharacterAssets() {
+        do {
+            let fetchRequest = AnimatedGame.fetchRequest()
+            let challengeNamePredicate = NSPredicate(format: "challengeName == %@", self.challengeName ?? "")
+            fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+                challengeNamePredicate
+            ])
+            fetchRequest.fetchLimit = 1
+            let results = try context.fetch(fetchRequest)
+            animatedGame = results[0]
+        } catch let error as NSError {
+            print(error)
+            print("error while fetching data in core data!")
+        }
+    }
+    
     public override func didMove(to view: SKView) {
         print("scene size: \(size)")
         
         entityManager = EntityManager(scene: self)
         getAllShapeAssets()
+        getCharacterAssets()
+        
+        makeCharacterGame(imageName: self.animatedGame?.characterAtlas)
+        
         setBackground()
         setupShapes()
         setupTargets()

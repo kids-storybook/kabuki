@@ -43,6 +43,13 @@ struct ChallangeModel {
     var nextChallenge: String?
 }
 
+struct AnimatedGameModel {
+    var challengeName: String?
+    var characterAtlas: String?
+    var characterXPosition: Double?
+    var characterYPosition: Double?
+}
+
 struct ShapeModel {
     var challengeName: String?
     var background: String?
@@ -155,4 +162,9 @@ let initAnimationData: [AnimationModel] = [
     AnimationModel(challengeName: "elephant_challenge", shapeImage: "square_grass", xCoordinateShape: -265, yCoordinateShape: -245, shapeName: "Persegi", xCoordinateFont: -263, yCoordinateFont: 0),
     AnimationModel(challengeName: "elephant_challenge", shapeImage: "triangle_grass", xCoordinateShape: -25, yCoordinateShape: -250, shapeName: "Segitiga", xCoordinateFont: -23, yCoordinateFont: 0),
     AnimationModel(challengeName: "elephant_challenge", shapeImage: "circle_grass", xCoordinateShape: 204, yCoordinateShape: -235, shapeName: "Lingkaran", xCoordinateFont: 196, yCoordinateFont: 0)
+]
+
+let initAnimatedGameCharacterData: [AnimatedGameModel] = [
+    AnimatedGameModel(challengeName: "lion_challenge", characterAtlas: "LionMinigameAnimation", characterXPosition: 0, characterYPosition: 0),
+    AnimatedGameModel(challengeName: "elephant_challenge", characterAtlas: "LionMinigameAnimation", characterXPosition: 0, characterYPosition: 0)
 ]

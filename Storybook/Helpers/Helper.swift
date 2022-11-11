@@ -139,6 +139,26 @@ class Helper {
             self.saveContext(saveContext: context)
         }
         
+        fetchRequest = AnimatedGame.fetchRequest()
+        deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        do {
+            try context.execute(deleteRequest)
+            try context.save()
+        } catch let error as NSError {
+            // TODO: handle the error
+            print(error)
+        }
+        
+        for data in initAnimatedGameCharacterData {
+            let animatedGame = AnimatedGame(context: context)
+            animatedGame.challengeName = data.challengeName
+            animatedGame.characterAtlas = data.characterAtlas
+            animatedGame.characterXPosition = data.characterXPosition ?? 0.0
+            animatedGame.characterYPosition = data.characterYPosition ?? 0.0
+            self.saveContext(saveContext: context)
+        }
+        
         do {
             let themes = try context.fetch(Themes.fetchRequest())
             for data in themes {

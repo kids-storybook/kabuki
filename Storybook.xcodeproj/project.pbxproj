@@ -9,16 +9,6 @@
 /* Begin PBXBuildFile section */
 		360A8EF128F4598C00949260 /* StoryPageScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360A8EF028F4598C00949260 /* StoryPageScene.swift */; };
 		360A8EF428F459CB00949260 /* StoryPageScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 360A8EF328F459CB00949260 /* StoryPageScene.sks */; };
-		363A1C5C290FCCC50007F580 /* Themes+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363A1C52290FCCC50007F580 /* Themes+CoreDataClass.swift */; };
-		363A1C5D290FCCC50007F580 /* Themes+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363A1C53290FCCC50007F580 /* Themes+CoreDataProperties.swift */; };
-		363A1C5E290FCCC50007F580 /* Shapes+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363A1C54290FCCC50007F580 /* Shapes+CoreDataClass.swift */; };
-		363A1C5F290FCCC50007F580 /* Shapes+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363A1C55290FCCC50007F580 /* Shapes+CoreDataProperties.swift */; };
-		363A1C60290FCCC50007F580 /* Challenges+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363A1C56290FCCC50007F580 /* Challenges+CoreDataClass.swift */; };
-		363A1C61290FCCC50007F580 /* Challenges+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363A1C57290FCCC50007F580 /* Challenges+CoreDataProperties.swift */; };
-		363A1C62290FCCC50007F580 /* Stories+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363A1C58290FCCC50007F580 /* Stories+CoreDataClass.swift */; };
-		363A1C63290FCCC50007F580 /* Stories+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363A1C59290FCCC50007F580 /* Stories+CoreDataProperties.swift */; };
-		363A1C64290FCCC50007F580 /* AnimatedShapes+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363A1C5A290FCCC50007F580 /* AnimatedShapes+CoreDataClass.swift */; };
-		363A1C65290FCCC50007F580 /* AnimatedShapes+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363A1C5B290FCCC50007F580 /* AnimatedShapes+CoreDataProperties.swift */; };
 		3644BD9C28FF02D50027DDE5 /* Poppins-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3644BD9828FF023E0027DDE5 /* Poppins-Black.ttf */; };
 		3644BD9D28FF02D70027DDE5 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3644BD9A28FF025C0027DDE5 /* Poppins-Bold.ttf */; };
 		3644BD9E28FF02DA0027DDE5 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3644BD9B28FF025C0027DDE5 /* Poppins-Regular.ttf */; };
@@ -41,6 +31,18 @@
 		364FDDD6291AA767005CA0CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E63DEA7428E2EB34000AC43C /* Assets.xcassets */; };
 		364FDDE3291B8386005CA0CA /* Gamescene+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364FDDE2291B8386005CA0CA /* Gamescene+Extension.swift */; };
 		3655A58B28F80EF600C97C09 /* Reference+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3655A58A28F80EF600C97C09 /* Reference+Extension.swift */; };
+		365CDA18291D3D1F00F12BBD /* Shapes+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365CDA0C291D3D1F00F12BBD /* Shapes+CoreDataClass.swift */; };
+		365CDA19291D3D1F00F12BBD /* Shapes+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365CDA0D291D3D1F00F12BBD /* Shapes+CoreDataProperties.swift */; };
+		365CDA1A291D3D1F00F12BBD /* Stories+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365CDA0E291D3D1F00F12BBD /* Stories+CoreDataClass.swift */; };
+		365CDA1B291D3D1F00F12BBD /* Stories+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365CDA0F291D3D1F00F12BBD /* Stories+CoreDataProperties.swift */; };
+		365CDA1C291D3D1F00F12BBD /* AnimatedShapes+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365CDA10291D3D1F00F12BBD /* AnimatedShapes+CoreDataClass.swift */; };
+		365CDA1D291D3D1F00F12BBD /* AnimatedShapes+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365CDA11291D3D1F00F12BBD /* AnimatedShapes+CoreDataProperties.swift */; };
+		365CDA1E291D3D1F00F12BBD /* AnimatedGame+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365CDA12291D3D1F00F12BBD /* AnimatedGame+CoreDataClass.swift */; };
+		365CDA1F291D3D1F00F12BBD /* AnimatedGame+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365CDA13291D3D1F00F12BBD /* AnimatedGame+CoreDataProperties.swift */; };
+		365CDA20291D3D1F00F12BBD /* Challenges+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365CDA14291D3D1F00F12BBD /* Challenges+CoreDataClass.swift */; };
+		365CDA21291D3D1F00F12BBD /* Challenges+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365CDA15291D3D1F00F12BBD /* Challenges+CoreDataProperties.swift */; };
+		365CDA22291D3D1F00F12BBD /* Themes+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365CDA16291D3D1F00F12BBD /* Themes+CoreDataClass.swift */; };
+		365CDA23291D3D1F00F12BBD /* Themes+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365CDA17291D3D1F00F12BBD /* Themes+CoreDataProperties.swift */; };
 		3662B02429029A8500956BDE /* Header.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3662B02329029A8500956BDE /* Header.sks */; };
 		368546F428FFF3CE00E520B4 /* StartPageScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 368546F328FFF3CE00E520B4 /* StartPageScene.sks */; };
 		368546F728FFF3EC00E520B4 /* StartPageScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368546F628FFF3EC00E520B4 /* StartPageScene.swift */; };
@@ -117,16 +119,6 @@
 /* Begin PBXFileReference section */
 		360A8EF028F4598C00949260 /* StoryPageScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryPageScene.swift; sourceTree = "<group>"; };
 		360A8EF328F459CB00949260 /* StoryPageScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StoryPageScene.sks; sourceTree = "<group>"; };
-		363A1C52290FCCC50007F580 /* Themes+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Themes+CoreDataClass.swift"; sourceTree = "<group>"; };
-		363A1C53290FCCC50007F580 /* Themes+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Themes+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		363A1C54290FCCC50007F580 /* Shapes+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Shapes+CoreDataClass.swift"; sourceTree = "<group>"; };
-		363A1C55290FCCC50007F580 /* Shapes+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Shapes+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		363A1C56290FCCC50007F580 /* Challenges+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Challenges+CoreDataClass.swift"; sourceTree = "<group>"; };
-		363A1C57290FCCC50007F580 /* Challenges+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Challenges+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		363A1C58290FCCC50007F580 /* Stories+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Stories+CoreDataClass.swift"; sourceTree = "<group>"; };
-		363A1C59290FCCC50007F580 /* Stories+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Stories+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		363A1C5A290FCCC50007F580 /* AnimatedShapes+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnimatedShapes+CoreDataClass.swift"; sourceTree = "<group>"; };
-		363A1C5B290FCCC50007F580 /* AnimatedShapes+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnimatedShapes+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3644BD9828FF023E0027DDE5 /* Poppins-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Black.ttf"; sourceTree = "<group>"; };
 		3644BD9A28FF025C0027DDE5 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		3644BD9B28FF025C0027DDE5 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
@@ -138,6 +130,18 @@
 		364DB169291507C6006C53F4 /* button-click.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "button-click.wav"; sourceTree = "<group>"; };
 		364FDDE2291B8386005CA0CA /* Gamescene+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gamescene+Extension.swift"; sourceTree = "<group>"; };
 		3655A58A28F80EF600C97C09 /* Reference+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reference+Extension.swift"; sourceTree = "<group>"; };
+		365CDA0C291D3D1F00F12BBD /* Shapes+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Shapes+CoreDataClass.swift"; sourceTree = "<group>"; };
+		365CDA0D291D3D1F00F12BBD /* Shapes+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Shapes+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		365CDA0E291D3D1F00F12BBD /* Stories+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Stories+CoreDataClass.swift"; sourceTree = "<group>"; };
+		365CDA0F291D3D1F00F12BBD /* Stories+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Stories+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		365CDA10291D3D1F00F12BBD /* AnimatedShapes+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnimatedShapes+CoreDataClass.swift"; sourceTree = "<group>"; };
+		365CDA11291D3D1F00F12BBD /* AnimatedShapes+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnimatedShapes+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		365CDA12291D3D1F00F12BBD /* AnimatedGame+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnimatedGame+CoreDataClass.swift"; sourceTree = "<group>"; };
+		365CDA13291D3D1F00F12BBD /* AnimatedGame+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnimatedGame+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		365CDA14291D3D1F00F12BBD /* Challenges+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Challenges+CoreDataClass.swift"; sourceTree = "<group>"; };
+		365CDA15291D3D1F00F12BBD /* Challenges+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Challenges+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		365CDA16291D3D1F00F12BBD /* Themes+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Themes+CoreDataClass.swift"; sourceTree = "<group>"; };
+		365CDA17291D3D1F00F12BBD /* Themes+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Themes+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3662B02329029A8500956BDE /* Header.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Header.sks; sourceTree = "<group>"; };
 		368546F328FFF3CE00E520B4 /* StartPageScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StartPageScene.sks; sourceTree = "<group>"; };
 		368546F628FFF3EC00E520B4 /* StartPageScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartPageScene.swift; sourceTree = "<group>"; };
@@ -297,16 +301,18 @@
 		E601FE8C29063EAE00810558 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				363A1C52290FCCC50007F580 /* Themes+CoreDataClass.swift */,
-				363A1C53290FCCC50007F580 /* Themes+CoreDataProperties.swift */,
-				363A1C54290FCCC50007F580 /* Shapes+CoreDataClass.swift */,
-				363A1C55290FCCC50007F580 /* Shapes+CoreDataProperties.swift */,
-				363A1C56290FCCC50007F580 /* Challenges+CoreDataClass.swift */,
-				363A1C57290FCCC50007F580 /* Challenges+CoreDataProperties.swift */,
-				363A1C58290FCCC50007F580 /* Stories+CoreDataClass.swift */,
-				363A1C59290FCCC50007F580 /* Stories+CoreDataProperties.swift */,
-				363A1C5A290FCCC50007F580 /* AnimatedShapes+CoreDataClass.swift */,
-				363A1C5B290FCCC50007F580 /* AnimatedShapes+CoreDataProperties.swift */,
+				365CDA0C291D3D1F00F12BBD /* Shapes+CoreDataClass.swift */,
+				365CDA0D291D3D1F00F12BBD /* Shapes+CoreDataProperties.swift */,
+				365CDA0E291D3D1F00F12BBD /* Stories+CoreDataClass.swift */,
+				365CDA0F291D3D1F00F12BBD /* Stories+CoreDataProperties.swift */,
+				365CDA10291D3D1F00F12BBD /* AnimatedShapes+CoreDataClass.swift */,
+				365CDA11291D3D1F00F12BBD /* AnimatedShapes+CoreDataProperties.swift */,
+				365CDA12291D3D1F00F12BBD /* AnimatedGame+CoreDataClass.swift */,
+				365CDA13291D3D1F00F12BBD /* AnimatedGame+CoreDataProperties.swift */,
+				365CDA14291D3D1F00F12BBD /* Challenges+CoreDataClass.swift */,
+				365CDA15291D3D1F00F12BBD /* Challenges+CoreDataProperties.swift */,
+				365CDA16291D3D1F00F12BBD /* Themes+CoreDataClass.swift */,
+				365CDA17291D3D1F00F12BBD /* Themes+CoreDataProperties.swift */,
 				E601FEAB29063F7E00810558 /* Data.swift */,
 			);
 			path = Model;
@@ -659,46 +665,48 @@
 			files = (
 				36FD197928F468D6002C25BF /* GameScene.swift in Sources */,
 				36CBBEEF2912352B00403E7E /* AppreciationPage.swift in Sources */,
+				365CDA1D291D3D1F00F12BBD /* AnimatedShapes+CoreDataProperties.swift in Sources */,
 				E6E3365C28EC3E5000FE2BEE /* ThemeComponent.swift in Sources */,
 				E6E3365A28EC3E1700FE2BEE /* Map.swift in Sources */,
 				E6E3366028EC494900FE2BEE /* SwiftySKScrollView.swift in Sources */,
 				E6BBB41F28F4527D00D003F0 /* MapViewPageScene.swift in Sources */,
+				365CDA23291D3D1F00F12BBD /* Themes+CoreDataProperties.swift in Sources */,
 				364FDDE3291B8386005CA0CA /* Gamescene+Extension.swift in Sources */,
-				363A1C5E290FCCC50007F580 /* Shapes+CoreDataClass.swift in Sources */,
+				365CDA22291D3D1F00F12BBD /* Themes+CoreDataClass.swift in Sources */,
 				E69FDAE128FEDF030059FD30 /* Challenge.swift in Sources */,
 				E6E3363228EC276500FE2BEE /* Constants.swift in Sources */,
+				365CDA1C291D3D1F00F12BBD /* AnimatedShapes+CoreDataClass.swift in Sources */,
 				36A6DFDE290FC6E900E72322 /* AnimatedShape.swift in Sources */,
 				E6E3365428EC297200FE2BEE /* HomepageScene.swift in Sources */,
 				36AF5FC12906F4F300C25714 /* UIColor+Extension.swift in Sources */,
 				E63DEA7028E2EB33000AC43C /* GameViewController.swift in Sources */,
 				360A8EF128F4598C00949260 /* StoryPageScene.swift in Sources */,
 				E63DEA6828E2EB32000AC43C /* AppDelegate.swift in Sources */,
+				365CDA21291D3D1F00F12BBD /* Challenges+CoreDataProperties.swift in Sources */,
 				36AF5FC32906F6DA00C25714 /* SKLabelNode+Extension.swift in Sources */,
 				36F7DC772907B67C0045984E /* AnimationPageSceneTutorial.swift in Sources */,
+				365CDA19291D3D1F00F12BBD /* Shapes+CoreDataProperties.swift in Sources */,
 				E601FEC9290686AE00810558 /* AnimationPageScene.swift in Sources */,
 				E6D4168728E591720030681F /* ButtonNode.swift in Sources */,
 				E6E3363028EC273D00FE2BEE /* Helper.swift in Sources */,
-				363A1C62290FCCC50007F580 /* Stories+CoreDataClass.swift in Sources */,
-				363A1C60290FCCC50007F580 /* Challenges+CoreDataClass.swift in Sources */,
-				363A1C5D290FCCC50007F580 /* Themes+CoreDataProperties.swift in Sources */,
 				E6E3366228EC49D700FE2BEE /* HomepageScene+Scrolling.swift in Sources */,
 				B2E1A8E229013FBB00349559 /* ShapeGameScene.swift in Sources */,
-				363A1C64290FCCC50007F580 /* AnimatedShapes+CoreDataClass.swift in Sources */,
+				365CDA1E291D3D1F00F12BBD /* AnimatedGame+CoreDataClass.swift in Sources */,
 				E6E3365628EC2A7600FE2BEE /* EntityManager.swift in Sources */,
 				E601FEAC29063F7E00810558 /* Data.swift in Sources */,
-				363A1C61290FCCC50007F580 /* Challenges+CoreDataProperties.swift in Sources */,
+				365CDA1A291D3D1F00F12BBD /* Stories+CoreDataClass.swift in Sources */,
 				36F0E082290A2D69000702C0 /* SKSpriteNode+Extension.swift in Sources */,
-				363A1C63290FCCC50007F580 /* Stories+CoreDataProperties.swift in Sources */,
 				E6E3365828EC2AA200FE2BEE /* SpriteComponent.swift in Sources */,
-				363A1C5F290FCCC50007F580 /* Shapes+CoreDataProperties.swift in Sources */,
 				368546F728FFF3EC00E520B4 /* StartPageScene.swift in Sources */,
+				365CDA1F291D3D1F00F12BBD /* AnimatedGame+CoreDataProperties.swift in Sources */,
 				E65F543C290A6E8D00FC6AA5 /* Shape.swift in Sources */,
+				365CDA18291D3D1F00F12BBD /* Shapes+CoreDataClass.swift in Sources */,
+				365CDA20291D3D1F00F12BBD /* Challenges+CoreDataClass.swift in Sources */,
 				3655A58B28F80EF600C97C09 /* Reference+Extension.swift in Sources */,
 				E601FE7E290634C700810558 /* storybook.xcdatamodeld in Sources */,
 				E6E3363428EC27C800FE2BEE /* SoundManager.swift in Sources */,
+				365CDA1B291D3D1F00F12BBD /* Stories+CoreDataProperties.swift in Sources */,
 				36CAFF94290FB69F00AD54FD /* Character.swift in Sources */,
-				363A1C5C290FCCC50007F580 /* Themes+CoreDataClass.swift in Sources */,
-				363A1C65290FCCC50007F580 /* AnimatedShapes+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

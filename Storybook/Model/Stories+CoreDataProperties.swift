@@ -2,7 +2,7 @@
 //  Stories+CoreDataProperties.swift
 //  Storybook
 //
-//  Created by Adam Ibnu fiadi on 31/10/22.
+//  Created by Adam Ibnu fiadi on 10/11/22.
 //
 //
 
@@ -17,15 +17,15 @@ extension Stories {
     }
 
     @NSManaged public var background: String?
-    @NSManaged public var title: String?
     @NSManaged public var challengeName: String?
     @NSManaged public var character: String?
     @NSManaged public var characterAtlas: String?
-    @NSManaged public var labels: Array<String>?
-    @NSManaged public var labelColor: String?
-    @NSManaged public var order: Int32
     @NSManaged public var characterXPosition: Double
     @NSManaged public var characterYPosition: Double
+    @NSManaged public var labelColor: String?
+    @NSManaged public var labels: Array<String>?
+    @NSManaged public var order: Int32
+    @NSManaged public var title: String?
 
 }
 
