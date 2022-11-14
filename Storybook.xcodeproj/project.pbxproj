@@ -870,6 +870,8 @@
 				DEVELOPMENT_TEAM = 7K7552J4N4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Storybook/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Kabuki;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -902,6 +904,8 @@
 				DEVELOPMENT_TEAM = 7K7552J4N4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Storybook/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Kabuki;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

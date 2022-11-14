@@ -16,6 +16,7 @@ class AnimationPageSceneTutorial: GameScene {
     var totalStories: Int?
     var backgroundScene: SKSpriteNode!
     var bgOpacity = SKSpriteNode(imageNamed: "opacityBg")
+    var activeLabels: [SKLabelNode]?
     
     private func setupPlayer(){
         
@@ -40,6 +41,7 @@ class AnimationPageSceneTutorial: GameScene {
                 textScene.zPosition = 100
                 textScene.addStroke(color: UIColor(named: story?.labelColor ?? "") ?? textBorder, width: 7.0)
                 addChild(textScene)
+                activeLabels?.append(textScene)
             }
         }
         
@@ -77,6 +79,7 @@ class AnimationPageSceneTutorial: GameScene {
             label.alpha = 0
             
             addChild(label)
+            activeLabels?.append(label)
         }
     }
     
@@ -154,6 +157,23 @@ class AnimationPageSceneTutorial: GameScene {
         let scene = SKScene(fileNamed: "MapViewPageScene") as! MapViewPageScene
         scene.theme = self.theme
         return scene
+    }
+    
+    override func willMove(from view: SKView) {
+        backgroundScene.removeFromParent()
+        backgroundScene.removeAllChildren()
+        
+        bgOpacity.removeFromParent()
+        bgOpacity.removeAllChildren()
+        
+        for shape in self.activeShapes {
+            entityManager.remove(shape)
+        }
+        
+        for label in (self.activeLabels ?? []) as [SKLabelNode] {
+            label.removeFromParent()
+            label.removeAllChildren()
+        }
     }
     
 }

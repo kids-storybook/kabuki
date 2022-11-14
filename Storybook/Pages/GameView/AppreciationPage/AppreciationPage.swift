@@ -87,4 +87,12 @@ class AppreciationPage: GameScene {
         scene.idxScene = 0
         return scene
     }
+    
+    override func willMove(from view: SKView) {
+        backgroundScene.removeFromParent()
+        backgroundScene.removeAllChildren()
+        
+        titleImage.removeFromParent()
+        titleImage.removeAllChildren()
+    }
 }

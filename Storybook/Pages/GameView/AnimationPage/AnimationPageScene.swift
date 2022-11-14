@@ -15,6 +15,7 @@ class AnimationPageScene: GameScene {
     var activeShapes: [AnimatedShape] = []
     var totalStories: Int?
     var backgroundScene: SKSpriteNode!
+    var activeLabels: [SKLabelNode]?
     
     private func setupPlayer(){
         
@@ -39,6 +40,7 @@ class AnimationPageScene: GameScene {
                 textScene.zPosition = 100
                 textScene.addStroke(color: UIColor(named: story?.labelColor ?? "") ?? textBorder, width: 7.0)
                 addChild(textScene)
+                activeLabels?.append(textScene)
             }
         }
     }
@@ -117,4 +119,17 @@ class AnimationPageScene: GameScene {
         return scene
     }
     
+    override func willMove(from view: SKView) {
+        backgroundScene.removeFromParent()
+        backgroundScene.removeAllChildren()
+        
+        for shape in self.activeShapes {
+            entityManager.remove(shape)
+        }
+        
+        for label in (self.activeLabels ?? []) as [SKLabelNode] {
+            label.removeFromParent()
+            label.removeAllChildren()
+        }
+    }
 }
