@@ -4,14 +4,14 @@ import GameplayKit
 
 class StartPageScene: GameScene {
 
-    
     var totalStories: Int?
     var backgroundScene: SKSpriteNode!
     var titleImage: SKSpriteNode!
+    var characterFrames : [SKTexture] = []
     
     private func setupPlayer(){
         
-        makeCharacter(imageName: self.story?.character)
+        makeCharacter(imageName: self.story?.characterAtlas)
         backgroundScene = SKSpriteNode(imageNamed: self.story?.background ?? "")
         titleImage = SKSpriteNode(imageNamed: self.story?.title ?? "")
         
@@ -28,8 +28,8 @@ class StartPageScene: GameScene {
         
         addChild(titleImage)
         addChild(backgroundScene)
-        
     }
+    
     
     override func sceneDidLoad() {
         super.sceneDidLoad()
@@ -56,6 +56,7 @@ class StartPageScene: GameScene {
         }
         
         self.setupPlayer()
+        
         if self.theme == nil {
             self.initThemeData()
         }

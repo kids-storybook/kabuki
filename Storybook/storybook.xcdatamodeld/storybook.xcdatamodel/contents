@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21512" systemVersion="22A380" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21279" systemVersion="21G115" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="AnimatedGame" representedClassName=".AnimatedGame" syncable="YES">
+        <attribute name="challengeName" optional="YES" attributeType="String"/>
+        <attribute name="characterAtlas" optional="YES" attributeType="String"/>
+        <attribute name="characterXPosition" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="characterYPosition" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+    </entity>
     <entity name="AnimatedShapes" representedClassName=".AnimatedShapes" syncable="YES">
         <attribute name="challengeName" optional="YES" attributeType="String"/>
         <attribute name="shapeImage" optional="YES" attributeType="String"/>
@@ -29,6 +35,7 @@
         <attribute name="background" optional="YES" attributeType="String"/>
         <attribute name="challengeName" optional="YES" attributeType="String"/>
         <attribute name="character" optional="YES" attributeType="String"/>
+        <attribute name="characterAtlas" optional="YES" attributeType="String"/>
         <attribute name="characterXPosition" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="characterYPosition" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="labelColor" optional="YES" attributeType="String"/>

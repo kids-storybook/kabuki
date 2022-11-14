@@ -19,8 +19,8 @@ class AnimationPageScene: GameScene {
     
     private func setupPlayer(){
         
-        makeCharacterTutorial(imageName: self.story?.character)
-        
+        makeCharacterTutorial(imageName: self.story?.characterAtlas)
+
         backgroundScene = SKSpriteNode(imageNamed: self.story?.background ?? "")
         backgroundScene.position = CGPoint(x: frame.midX, y: frame.midY)
         backgroundScene.zPosition = -10

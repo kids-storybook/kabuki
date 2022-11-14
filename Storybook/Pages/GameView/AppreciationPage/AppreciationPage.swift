@@ -9,7 +9,7 @@ class AppreciationPage: GameScene {
     
     private func setupPlayer(){
         
-        makeCharacter(imageName: self.story?.character)
+        makeCharacter(imageName: self.story?.characterAtlas)
         backgroundScene = SKSpriteNode(imageNamed: self.story?.background ?? "")
         titleImage = SKSpriteNode(imageNamed: self.story?.title ?? "")
         
