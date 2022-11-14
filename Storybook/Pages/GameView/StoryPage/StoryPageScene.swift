@@ -6,6 +6,7 @@ class StoryPageScene: GameScene {
     
     var totalStories: Int?
     var backgroundScene: SKSpriteNode!
+    var activeLabels: [SKLabelNode]?
     
     private func setupPlayer(){
         makeCharacter(imageName: self.story?.character ?? "")
@@ -28,6 +29,7 @@ class StoryPageScene: GameScene {
                 textScene.zPosition = 100
                 textScene.addStroke(color: UIColor(named: story?.labelColor ?? "") ?? textBorder, width: 7.0)
                 addChild(textScene)
+                activeLabels?.append(textScene)
             }
         }
         
@@ -91,5 +93,15 @@ class StoryPageScene: GameScene {
         let scene = SKScene(fileNamed: "MapViewPageScene") as! MapViewPageScene
         scene.theme = self.theme
         return scene
+    }
+    
+    override func willMove(from view: SKView) {
+        backgroundScene.removeFromParent()
+        backgroundScene.removeAllChildren()
+        
+        for label in (self.activeLabels ?? []) as [SKLabelNode] {
+            label.removeFromParent()
+            label.removeAllChildren()
+        }
     }
 }

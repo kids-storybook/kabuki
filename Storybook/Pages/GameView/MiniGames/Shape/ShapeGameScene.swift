@@ -22,18 +22,6 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
     var activeShapes: [Shape] = []
     var solvedShapes: Set<String> = Set([])
     
-    //    func positionWithin(range: CGFloat, containerSize: CGFloat) -> CGFloat {
-    //        let partA = CGFloat(arc4random_uniform(100)) / 100.0
-    //        let partB = (containerSize * range + (containerSize * (1.0 - range) * 0.5))
-    //        return partA * partB
-    //    }
-    
-    func distanceFrom(posA: CGPoint, posB: CGPoint) -> CGFloat {
-        let aSquared = (posA.x - posB.x) * (posA.x - posB.x)
-        let bSquared = (posA.y - posB.y) * (posA.x - posB.y)
-        return sqrt(aSquared + bSquared)
-    }
-    
     func setBackground() {
         let challenge = self.theme?.challenges?.filtered(using: NSPredicate(format: "challengeName == %@", self.challengeName ?? "")).array as! [Challenges]
         
@@ -299,8 +287,9 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
             }
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            if self.solvedShapes.count == self.shapes?.count {
+        
+        if self.solvedShapes.count == self.shapes?.count {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                 for shape in self.activeShapes {
                     self.entityManager.remove(shape)
                 }
@@ -327,10 +316,20 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
         }
     }
     
+    
     override func exitScene() -> SKScene? {
         NotificationCenter.default.post(name: Notification.Name(rawValue: "StopBackgroundSound"), object: self, userInfo:nil)
         let scene = SKScene(fileNamed: "MapViewPageScene") as! MapViewPageScene
         scene.theme = self.theme
         return scene
+    }
+    
+    override func willMove(from view: SKView) {
+        backgroundScene.removeFromParent()
+        backgroundScene.removeAllChildren()
+        
+        for shape in self.activeShapes {
+            entityManager.remove(shape)
+        }
     }
 }

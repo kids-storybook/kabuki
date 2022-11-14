@@ -74,4 +74,12 @@ class StartPageScene: GameScene {
         scene.theme = self.theme
         return scene
     }
+    
+    override func willMove(from view: SKView) {
+        backgroundScene.removeFromParent()
+        backgroundScene.removeAllChildren()
+        
+        titleImage.removeFromParent()
+        titleImage.removeAllChildren()
+    }
 }
