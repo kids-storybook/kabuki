@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import Mixpanel
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,7 +16,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+
+        Mixpanel.initialize(token: "3532f39257e96a31cb0cc923fa764a4f")
+        if let uuid = UserDefaults.standard.string(forKey: "uuid") {
+            Mixpanel.mainInstance().identify(distinctId: uuid)
+            Mixpanel.mainInstance().registerSuperProperties(["uud": uuid])
+            Mixpanel.mainInstance().people.set(properties: ["uuid": uuid])
+        }
         return true
     }
 
@@ -35,6 +42,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
+    
+    
     
     // MARK: - Core Data stack
     
