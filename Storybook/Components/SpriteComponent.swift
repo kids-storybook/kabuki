@@ -8,10 +8,6 @@
 import SpriteKit
 import GameplayKit
 
-//class EntityNode: SKSpriteNode {
-//  weak var entity: GKEntity!
-//}
-
 class SpriteComponent: GKComponent {
     //
     //  // A node that gives an entity a visual sprite
