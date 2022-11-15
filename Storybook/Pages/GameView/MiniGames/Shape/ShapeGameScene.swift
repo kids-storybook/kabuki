@@ -83,13 +83,7 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
                     break
                 }
                 
-                spriteComponent.node.zPosition = 2
-                spriteComponent.node.physicsBody = SKPhysicsBody(circleOfRadius: spriteComponent.node.size.width/4)
-                spriteComponent.node.physicsBody?.affectedByGravity = false
-                spriteComponent.node.physicsBody?.friction = 0.0
-                spriteComponent.node.physicsBody?.angularDamping = 0.0
-                spriteComponent.node.physicsBody?.restitution = 1.1
-                spriteComponent.node.physicsBody?.allowsRotation = false
+                spriteComponent.node.zPosition = 15
             }
             activeShapes.append(activeShape)
             entityManager.add(activeShape)
@@ -124,6 +118,7 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
         
         addChild(wrongPopUp)
         
+        wrongPopUp.run(SoundManager.sharedInstance.soundWrongAnswer)
         wrongPopUp.run(
             SKAction.sequence([
                 SKAction.wait(forDuration: 2.0),
@@ -242,7 +237,7 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
             if name.contains("triangle") {
                 if triangleBin.node.frame.contains(node.position){
                     node.position = triangleBin.node.position
-                    node.run(SoundManager.sharedInstance.soundClickedButton)
+                    node.run(SoundManager.sharedInstance.soundCorrectAnswer)
                     solvedShapes.insert(name)
                     handleShapeBehavior(node:node, name:name)
                 }
@@ -264,7 +259,7 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
             else if name.contains("square") {
                 if squareBin.node.frame.contains(node.position){
                     node.position = squareBin.node.position
-                    node.run(SoundManager.sharedInstance.soundClickedButton)
+                    node.run(SoundManager.sharedInstance.soundCorrectAnswer)
                     solvedShapes.insert(name)
                     handleShapeBehavior(node:node, name:name)
                 }
@@ -287,7 +282,7 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
             else if name.contains("circle") {
                 if circleBin.node.frame.contains(node.position){
                     node.position = circleBin.node.position
-                    node.run(SoundManager.sharedInstance.soundClickedButton)
+                    node.run(SoundManager.sharedInstance.soundCorrectAnswer)
                     solvedShapes.insert(name)
                     handleShapeBehavior(node:node, name:name)
                 }

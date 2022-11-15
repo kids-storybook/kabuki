@@ -163,7 +163,6 @@ class GameScene: SKScene {
             
         }
         else {
-            print("CLICKED BRP X Y")
             let node = touchedNodes[0]
             switch node.name{
             case "Persegi":

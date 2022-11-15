@@ -65,6 +65,7 @@ class StartPageScene: GameScene {
         let scene = SKScene(fileNamed: "StoryPageScene") as! StoryPageScene
         scene.challengeName = self.challengeName
         scene.theme = self.theme
+        scene.run(SoundManager.sharedInstance.soundOfAnimal[self.challengeName ?? ""] ?? SKAction())
         return scene
     }
     
