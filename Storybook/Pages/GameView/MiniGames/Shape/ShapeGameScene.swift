@@ -23,7 +23,7 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
     var solvedShapes: Set<String> = Set([])
     
     func setBackground() {
-
+        
         let challenge = self.theme?.challenges?.filtered(using: NSPredicate(format: "challengeName == %@", self.challengeName ?? "")).array as! [Challenges]
         
         nextChallenge = challenge[0].nextChallenge
@@ -44,7 +44,7 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
         //Create shapes
         var idx_y = 0
         for (idx, shape) in (shapes ?? []).enumerated() {
-            let activeShape = Shape(imageName: shape?.background ?? "", shapeName: shape?.background ?? "")
+            let activeShape = Shape(imageName: shape?.background ?? "", shapeName: shape?.background ?? "", sound: SoundManager.sharedInstance.soundOfAnimal[shape?.challengeName ?? ""] ?? SKAction())
             if let spriteComponent = activeShape.component(ofType: SpriteComponent.self) {
                 var idx_x = idx
                 if idx_x > 3 {
@@ -100,7 +100,7 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
     func setupTargets(){
         for target in initShapeTargetData {
             if target.challengeName == self.challengeName {
-                let shapeTarget = Shape(imageName: target.background ?? "", shapeName: target.background ?? "" )
+                let shapeTarget = Shape(imageName: target.background ?? "", shapeName: target.background ?? "", sound: SKAction())
                 if let spriteComponent = shapeTarget.component(ofType: SpriteComponent.self) {
                     spriteComponent.node.position = CGPoint(x: target.xCoordinate ?? 0, y: target.yCoordinate ?? 0)
                     spriteComponent.node.setScale(0.58)
@@ -196,7 +196,7 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
         getAllShapeAssets()
         getCharacterAssets()
         
-        makeCharacterGame(imageName: self.animatedGame?.characterAtlas)
+        makeCharacterGame(imageName: self.animatedGame?.characterAtlas, sound: SKAction())
         
         setBackground()
         setupShapes()

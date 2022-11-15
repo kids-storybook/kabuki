@@ -20,7 +20,7 @@ class AnimationPageSceneTutorial: GameScene {
     
     private func setupPlayer(){
         
-        makeCharacterTutorial(imageName: self.story?.characterAtlas)
+        makeCharacterTutorial(imageName: self.story?.characterAtlas, sound: SoundManager.sharedInstance.soundOfAnimal[self.challengeName ?? ""] ?? SKAction())
         
         backgroundScene = SKSpriteNode(imageNamed: self.story?.background ?? "")
         backgroundScene.position = CGPoint(x: frame.midX, y: frame.midY)
@@ -59,11 +59,12 @@ class AnimationPageSceneTutorial: GameScene {
         //Create shapes
         
         for (idx, shape) in (animateShape ?? []).enumerated() {
-            let activeShape = AnimatedShape(imageName: shape.shapeImage ?? "")
+            let activeShape = AnimatedShape(imageName: shape.shapeImage ?? "", sound: SoundManager.sharedInstance.soundOfShape[shape.shapeName ?? ""] ?? SKAction())
             if let spriteComponent = activeShape.component(ofType: SpriteComponent.self) {
                 spriteComponent.node.position = CGPoint(x: shape.xCoordinateShape, y: shape.yCoordinateShape)
                 spriteComponent.node.animateUpDown(start: TimeInterval((idx+1)*2 + (idx*2)))
                 spriteComponent.node.setScale(0.85)
+                spriteComponent.node.name = shape.shapeName
             }
             activeShapes.append(activeShape)
             entityManager.add(activeShape)

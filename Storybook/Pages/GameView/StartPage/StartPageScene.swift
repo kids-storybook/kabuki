@@ -3,15 +3,14 @@ import SpriteKit
 import GameplayKit
 
 class StartPageScene: GameScene {
-
+    
     var totalStories: Int?
     var backgroundScene: SKSpriteNode!
     var titleImage: SKSpriteNode!
-    var characterFrames : [SKTexture] = []
     
     private func setupPlayer(){
         
-        makeCharacter(imageName: self.story?.characterAtlas)
+        makeCharacter(imageName: self.story?.characterAtlas, sound: SoundManager.sharedInstance.soundOfAnimal[self.challengeName ?? ""] ?? SKAction())
         backgroundScene = SKSpriteNode(imageNamed: self.story?.background ?? "")
         titleImage = SKSpriteNode(imageNamed: self.story?.title ?? "")
         

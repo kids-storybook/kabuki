@@ -9,7 +9,7 @@ class StoryPageScene: GameScene {
     var activeLabels: [SKLabelNode]?
     
     private func setupPlayer(){
-        makeCharacter(imageName: self.story?.characterAtlas)
+        makeCharacter(imageName: self.story?.characterAtlas, sound: SoundManager.sharedInstance.soundOfAnimal[self.challengeName ?? ""] ?? SKAction())
         entityManager = EntityManager(scene: self)
         backgroundScene = SKSpriteNode(imageNamed: self.story?.background ?? "")
         

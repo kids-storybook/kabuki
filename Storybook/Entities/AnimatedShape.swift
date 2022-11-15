@@ -3,11 +3,11 @@ import SpriteKit
 import GameplayKit
 
 class AnimatedShape: GKEntity {
-    init(imageName: String) {
+    init(imageName: String, sound: SKAction) {
         super.init()
         
         let texture = SKTexture(imageNamed: imageName)
-        let spriteComponent = SpriteComponent(entity: self, texture: texture, size: texture.size())
+        let spriteComponent = SpriteComponent(entity: self, texture: texture, size: texture.size(), sound: sound)
         
         spriteComponent.node.zPosition = 15
         

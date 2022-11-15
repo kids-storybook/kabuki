@@ -30,7 +30,7 @@ class GameScene: SKScene {
     var idxScenePreAnimate: Int32 = 0
     var idxSceneAnimate: Int32 = 0
     var addCharacter: [Stories]?
-    var character: [Character] = []
+    var character: Character?
     var story: Stories?
     var animatedGame: AnimatedGame?
     
@@ -89,6 +89,8 @@ class GameScene: SKScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         let touchLocation = touch.location(in: self)
+        let touchedNodes = self.nodes(at: touchLocation)
+        
         if let start = start, start.contains(touchLocation) {
             let location = touch.location(in: start)
             if startBtn.contains(location) {
@@ -161,6 +163,20 @@ class GameScene: SKScene {
             
         }
         else {
+            print("CLICKED BRP X Y")
+            let node = touchedNodes[0]
+            switch node.name{
+            case "Persegi":
+                node.run(SoundManager.sharedInstance.soundOfShape["Persegi"] ?? SKAction())
+            case "Segitiga":
+                node.run(SoundManager.sharedInstance.soundOfShape["Segitiga"] ?? SKAction())
+            case "Lingkaran":
+                node.run(SoundManager.sharedInstance.soundOfShape["Lingkaran"] ?? SKAction())
+            default:
+                if let spriteComponent = character?.component(ofType: SpriteComponent.self), spriteComponent.node.contains(touchLocation) {
+                    spriteComponent.node.run(spriteComponent.sound)
+                }
+            }
             touchDown(at: touchLocation)
         }
     }

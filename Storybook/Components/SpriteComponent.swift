@@ -13,19 +13,21 @@ import GameplayKit
 //}
 
 class SpriteComponent: GKComponent {
-  //
-  //  // A node that gives an entity a visual sprite
-  //  let node: EntityNode
-  let node: SKSpriteNode
-
-  init(entity: GKEntity, texture: SKTexture, size: CGSize) {
-    node = SKSpriteNode(texture: texture,color: SKColor.white, size: size)
-    super.init()
-  }
-
-  required init?(coder aDecoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
-  
+    //
+    //  // A node that gives an entity a visual sprite
+    //  let node: EntityNode
+    let node: SKSpriteNode
+    let sound: SKAction
+    
+    init(entity: GKEntity, texture: SKTexture, size: CGSize, sound: SKAction) {
+        node = SKSpriteNode(texture: texture,color: SKColor.white, size: size)
+        self.sound = sound
+        super.init()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
 }
 

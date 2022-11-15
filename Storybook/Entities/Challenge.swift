@@ -14,7 +14,7 @@ class Challenge: GKEntity {
         super.init()
         
         let texture = SKTexture(imageNamed: imageName)
-        let spriteComponent = SpriteComponent(entity: self, texture: texture, size: texture.size())
+        let spriteComponent = SpriteComponent(entity: self, texture: texture, size: texture.size(), sound: SKAction())
         
         spriteComponent.node.name = challengeName
         spriteComponent.node.zPosition = 0
