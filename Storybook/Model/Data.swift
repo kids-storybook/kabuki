@@ -116,11 +116,11 @@ let initAssessmentData: [StoryModel] = [
     StoryModel(challengeName: "elephant_challenge_animate_2", title: "gajahStoryTitle", labels: ["Ada makanan yang berbentuk ", " persegi, segitiga dan lingkaran"], labelColor: StoryLabelColor.brown, order: 0, background: "kandangGajahZoom", character: "elephants_2", characterAtlas: "ElephantStoryAnimation", characterXPosition: 0, characterYPosition: 0),
     StoryModel(challengeName: "elephant_challenge_appreciation", title: "berhasilTitle", labels: ["appreciate"], labelColor: StoryLabelColor.brown, order: 0, background: "kandangGajahZoom", character: "elephant_appreciation", characterAtlas: "ElephantAppreciationAnimation", characterXPosition: -25, characterYPosition: -35),
     
-    StoryModel(challengeName: "panda_challenge", title: "pandaStoryTitle", labels: ["Lihat ada anak-anak Panda", "yang menggemaskan"], labelColor: StoryLabelColor.red, order: 0, background: "kandangPanda", character: "elephants_1", characterAtlas: "ElephantStoryAnimation", characterXPosition: 0, characterYPosition: 0),
-    StoryModel(challengeName: "panda_challenge", title: "pandaStoryTitle", labels: ["Mereka sedang bermain bersama"], labelColor: StoryLabelColor.red, order: 1, background: "kandangPanda", character: "elephants_2", characterAtlas: "ElephantStoryAnimation", characterXPosition: 0, characterYPosition: 0),
-    StoryModel(challengeName: "panda_challenge_animate", title: "pandaStoryTitle", labels: ["Panda sangat senang bermain", "susun benda"], labelColor: StoryLabelColor.red, order: 0, background: "kandangPandaZoom", character: "elephants_2", characterAtlas: "ElephantStoryAnimation", characterXPosition: 0, characterYPosition: 0),
-    StoryModel(challengeName: "panda_challenge_animate_2", title: "pandaStoryTitle", labels: ["Ada benda berbentuk", " persegi, segitiga dan lingkaran"], labelColor: StoryLabelColor.red, order: 0, background: "kandangPandaZoom", character: "elephants_2", characterAtlas: "ElephantStoryAnimation", characterXPosition: 0, characterYPosition: 0),
-    StoryModel(challengeName: "panda_challenge_appreciation", title: "pandaStoryTitle", labels: ["appreciate"], labelColor: StoryLabelColor.red, order: 0, background: "kandangPandaZoom", character: "elephant_appreciation", characterAtlas: "ElephantAppreciationAnimation", characterXPosition: -25, characterYPosition: -35)
+    StoryModel(challengeName: "panda_challenge", title: "pandaStoryTitle", labels: ["Lihat ada anak-anak Panda", "yang menggemaskan"], labelColor: StoryLabelColor.red, order: 0, background: "kandangPanda", character: "elephants_1", characterAtlas: "PandaStartAnimation", characterXPosition: 115, characterYPosition: -90),
+    StoryModel(challengeName: "panda_challenge", title: "pandaStoryTitle", labels: ["Mereka sedang bermain bersama"], labelColor: StoryLabelColor.red, order: 1, background: "kandangPanda", character: "elephants_2", characterAtlas: "PandaStartAnimation", characterXPosition: 115, characterYPosition: -90),
+    StoryModel(challengeName: "panda_challenge_animate", title: "pandaStoryTitle", labels: ["Panda sangat senang bermain", "susun benda"], labelColor: StoryLabelColor.red, order: 0, background: "kandangPandaZoom", character: "elephants_2", characterAtlas: "PandaShapesAnimation", characterXPosition: -270, characterYPosition: -100),
+    StoryModel(challengeName: "panda_challenge_animate_2", title: "pandaStoryTitle", labels: ["Ada benda berbentuk", " persegi, segitiga dan lingkaran"], labelColor: StoryLabelColor.red, order: 0, background: "kandangPandaZoom", character: "elephants_2", characterAtlas: "PandaShapesAnimation", characterXPosition: -270, characterYPosition: -100),
+    StoryModel(challengeName: "panda_challenge_appreciation", title: "pandaStoryTitle", labels: ["appreciate"], labelColor: StoryLabelColor.red, order: 0, background: "kandangPandaZoom", character: "elephant_appreciation", characterAtlas: "PandaAppreciationAnimation", characterXPosition: -25, characterYPosition: -35)
     
 ]
 
@@ -168,10 +168,15 @@ let initAnimationData: [AnimationModel] = [
     
     AnimationModel(challengeName: "elephant_challenge", shapeImage: "square_grass", xCoordinateShape: -265, yCoordinateShape: -245, shapeName: "Persegi", xCoordinateFont: -263, yCoordinateFont: 0),
     AnimationModel(challengeName: "elephant_challenge", shapeImage: "triangle_grass", xCoordinateShape: -25, yCoordinateShape: -250, shapeName: "Segitiga", xCoordinateFont: -23, yCoordinateFont: 0),
-    AnimationModel(challengeName: "elephant_challenge", shapeImage: "circle_grass", xCoordinateShape: 204, yCoordinateShape: -235, shapeName: "Lingkaran", xCoordinateFont: 196, yCoordinateFont: 0)
+    AnimationModel(challengeName: "elephant_challenge", shapeImage: "circle_grass", xCoordinateShape: 204, yCoordinateShape: -235, shapeName: "Lingkaran", xCoordinateFont: 196, yCoordinateFont: 0),
+    
+    AnimationModel(challengeName: "panda_challenge", shapeImage: "panda_square", xCoordinateShape: -195, yCoordinateShape: -245, shapeName: "Persegi", xCoordinateFont: -193, yCoordinateFont: 0),
+    AnimationModel(challengeName: "panda_challenge", shapeImage: "panda_triangle", xCoordinateShape: 75, yCoordinateShape: -250, shapeName: "Segitiga", xCoordinateFont: 77, yCoordinateFont: 0),
+    AnimationModel(challengeName: "panda_challenge", shapeImage: "panda_circle", xCoordinateShape: 322, yCoordinateShape: -235, shapeName: "Lingkaran", xCoordinateFont: 316, yCoordinateFont: 0)
 ]
 
 let initAnimatedGameCharacterData: [AnimatedGameModel] = [
     AnimatedGameModel(challengeName: "lion_challenge", characterAtlas: "LionMinigameAnimation", characterXPosition: -350, characterYPosition: 30),
-    AnimatedGameModel(challengeName: "elephant_challenge", characterAtlas: "ElephantShapesAnimation", characterXPosition: 500, characterYPosition: 55)
+    AnimatedGameModel(challengeName: "elephant_challenge", characterAtlas: "ElephantShapesAnimation", characterXPosition: 500, characterYPosition: 55),
+    AnimatedGameModel(challengeName: "panda_challenge", characterAtlas: "PandaMinigameAnimation", characterXPosition: -300, characterYPosition: 75)
 ]
