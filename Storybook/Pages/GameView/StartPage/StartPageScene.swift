@@ -11,7 +11,7 @@ class StartPageScene: GameScene {
     
     private func setupPlayer(){
         
-        makeCharacter(imageName: self.story?.characterAtlas, sound: SoundManager.sharedInstance.soundOfAnimal[self.challengeName ?? ""] ?? SKAction())
+        makeCharacter(imageName: self.story?.characterAtlas, sound: SKAction())
         backgroundScene = SKSpriteNode(imageNamed: self.story?.background ?? "")
         titleImage = SKSpriteNode(imageNamed: self.story?.title ?? "")
         
