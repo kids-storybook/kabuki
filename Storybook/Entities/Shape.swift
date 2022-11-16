@@ -10,11 +10,11 @@ import SpriteKit
 import GameplayKit
 
 class Shape: GKEntity {
-    init(imageName: String, shapeName: String) {
+    init(imageName: String, shapeName: String, sound: SKAction) {
         super.init()
         
         let texture = SKTexture(imageNamed: imageName)
-        let spriteComponent = SpriteComponent(entity: self, texture: texture, size: texture.size())
+        let spriteComponent = SpriteComponent(entity: self, texture: texture, size: texture.size(), sound: sound)
         
         spriteComponent.node.name = shapeName
         spriteComponent.node.zPosition = 0

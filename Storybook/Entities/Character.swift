@@ -4,7 +4,7 @@ import GameplayKit
 // 1
 class Character: GKEntity {
     
-    init(imageName: String) {
+    init(imageName: String, sound: SKAction) {
         super.init()
         
         var characterAtlas: SKTextureAtlas {
@@ -18,10 +18,10 @@ class Character: GKEntity {
         var characterIdleTexture: [SKTexture] {
             
             var index: [SKTexture] = []
-//            let numImages = characterAtlas.textureNames.count
+            let imagesName = characterAtlas.textureNames
             
-            for i in 0...4 {
-                let textureNames = characterAtlas.textureNamed("\(imageName)\(i)")
+            for name in imagesName {
+                let textureNames = characterAtlas.textureNamed(name)
                 index.append(textureNames)
                 print("index: \(index)")
             }
@@ -30,11 +30,12 @@ class Character: GKEntity {
         }
         
         // 2
-        let spriteComponent = SpriteComponent(entity: self, texture: characterTexture, size: characterTexture.size())
+        let spriteComponent = SpriteComponent(entity: self, texture: characterTexture, size: characterTexture.size(), sound:sound)
         addComponent(spriteComponent)
         
         let idleAnimation = SKAction.animate(with: characterIdleTexture, timePerFrame: 0.2)
         spriteComponent.node.run(SKAction.repeatForever(idleAnimation), withKey: "chracterIdleAnimation")
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

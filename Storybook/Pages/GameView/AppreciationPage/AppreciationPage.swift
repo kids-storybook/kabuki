@@ -9,7 +9,7 @@ class AppreciationPage: GameScene {
     
     private func setupPlayer(){
         
-        makeCharacter(imageName: self.story?.characterAtlas)
+        makeCharacter(imageName: self.story?.characterAtlas, sound: SoundManager.sharedInstance.soundOfAnimal[self.challengeName ?? ""] ?? SKAction())
         backgroundScene = SKSpriteNode(imageNamed: self.story?.background ?? "")
         titleImage = SKSpriteNode(imageNamed: self.story?.title ?? "")
         
@@ -19,7 +19,7 @@ class AppreciationPage: GameScene {
         backgroundScene.position = CGPoint(x: 0, y: 0)
         backgroundScene.zPosition = -10
         backgroundScene.size = self.frame.size
-        backgroundScene.run(SoundManager.sharedInstance.soundAppreciation[self.challengeName ?? ""] ?? SKAction())
+        backgroundScene.run(SoundManager.sharedInstance.soundOfAnimal[self.challengeName ?? ""] ?? SKAction())
         
         addChild(titleImage)
         addChild(backgroundScene)

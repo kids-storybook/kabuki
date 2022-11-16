@@ -23,7 +23,7 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
     var solvedShapes: Set<String> = Set([])
     
     func setBackground() {
-
+        
         let challenge = self.theme?.challenges?.filtered(using: NSPredicate(format: "challengeName == %@", self.challengeName ?? "")).array as! [Challenges]
         
         nextChallenge = challenge[0].nextChallenge
@@ -44,7 +44,7 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
         //Create shapes
         var idx_y = 0
         for (idx, shape) in (shapes ?? []).enumerated() {
-            let activeShape = Shape(imageName: shape?.background ?? "", shapeName: shape?.background ?? "")
+            let activeShape = Shape(imageName: shape?.background ?? "", shapeName: shape?.background ?? "", sound: SoundManager.sharedInstance.soundOfAnimal[shape?.challengeName ?? ""] ?? SKAction())
             if let spriteComponent = activeShape.component(ofType: SpriteComponent.self) {
                 var idx_x = idx
                 if idx_x > 3 {
@@ -83,13 +83,7 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
                     break
                 }
                 
-                spriteComponent.node.zPosition = 2
-                spriteComponent.node.physicsBody = SKPhysicsBody(circleOfRadius: spriteComponent.node.size.width/4)
-                spriteComponent.node.physicsBody?.affectedByGravity = false
-                spriteComponent.node.physicsBody?.friction = 0.0
-                spriteComponent.node.physicsBody?.angularDamping = 0.0
-                spriteComponent.node.physicsBody?.restitution = 1.1
-                spriteComponent.node.physicsBody?.allowsRotation = false
+                spriteComponent.node.zPosition = 15
             }
             activeShapes.append(activeShape)
             entityManager.add(activeShape)
@@ -100,7 +94,7 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
     func setupTargets(){
         for target in initShapeTargetData {
             if target.challengeName == self.challengeName {
-                let shapeTarget = Shape(imageName: target.background ?? "", shapeName: target.background ?? "" )
+                let shapeTarget = Shape(imageName: target.background ?? "", shapeName: target.background ?? "", sound: SKAction())
                 if let spriteComponent = shapeTarget.component(ofType: SpriteComponent.self) {
                     spriteComponent.node.position = CGPoint(x: target.xCoordinate ?? 0, y: target.yCoordinate ?? 0)
                     spriteComponent.node.setScale(0.58)
@@ -124,6 +118,7 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
         
         addChild(wrongPopUp)
         
+        wrongPopUp.run(SoundManager.sharedInstance.soundWrongAnswer)
         wrongPopUp.run(
             SKAction.sequence([
                 SKAction.wait(forDuration: 2.0),
@@ -196,7 +191,7 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
         getAllShapeAssets()
         getCharacterAssets()
         
-        makeCharacterGame(imageName: self.animatedGame?.characterAtlas)
+        makeCharacterGame(imageName: self.animatedGame?.characterAtlas, sound: SKAction())
         
         setBackground()
         setupShapes()
@@ -242,7 +237,7 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
             if name.contains("triangle") {
                 if triangleBin.node.frame.contains(node.position){
                     node.position = triangleBin.node.position
-                    node.run(SoundManager.sharedInstance.soundClickedButton)
+                    node.run(SoundManager.sharedInstance.soundCorrectAnswer)
                     solvedShapes.insert(name)
                     handleShapeBehavior(node:node, name:name)
                 }
@@ -264,7 +259,7 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
             else if name.contains("square") {
                 if squareBin.node.frame.contains(node.position){
                     node.position = squareBin.node.position
-                    node.run(SoundManager.sharedInstance.soundClickedButton)
+                    node.run(SoundManager.sharedInstance.soundCorrectAnswer)
                     solvedShapes.insert(name)
                     handleShapeBehavior(node:node, name:name)
                 }
@@ -287,7 +282,7 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
             else if name.contains("circle") {
                 if circleBin.node.frame.contains(node.position){
                     node.position = circleBin.node.position
-                    node.run(SoundManager.sharedInstance.soundClickedButton)
+                    node.run(SoundManager.sharedInstance.soundCorrectAnswer)
                     solvedShapes.insert(name)
                     handleShapeBehavior(node:node, name:name)
                 }
