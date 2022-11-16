@@ -78,7 +78,30 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
                     }
                     
                 case AttributeLevel.hard.rawValue:
-                    break
+                    let mod = (shapes?.count ?? 0) % 4
+                    
+                    spriteComponent.node.position = CGPoint(x: (frame.midX) - CGFloat(idx_x*200), y: frame.minY + 100 + CGFloat(((idx / 4)*180)))
+                    if shapes?.count ?? 0 > 8 && mod == 0{
+                        spriteComponent.node.position = CGPoint(x: (frame.midX) - CGFloat(idx_x*180), y: frame.minY + 100 + CGFloat(((idx / 4)*110)))
+                    }
+                    if mod == 1 {
+                        spriteComponent.node.position = CGPoint(x: (frame.midX) - CGFloat(idx_x*200), y: frame.minY + 100 + CGFloat(((idx_y)*180)))
+                        if idx < 5 {
+                            spriteComponent.node.position = CGPoint(x: (frame.midX) - CGFloat((idx-2)*200), y: frame.minY + 100 + CGFloat(((idx/5)*180)))
+                        }
+                        idx_y = 1
+                        break
+                    }
+                    
+                    if idx >= (shapes?.count ?? 0) - mod && mod != 0{
+                        if mod == 3 {
+                            spriteComponent.node.position = CGPoint(x: (frame.midX) - CGFloat(idx_x*250), y: frame.minY + 100 + CGFloat(((idx/4)*200)))
+                            break
+                        } else if mod == 2 {
+                            spriteComponent.node.position = CGPoint(x: (frame.midX) + CGFloat((Double(Double(idx_x)-0.5)*200)), y: frame.minY + 100 + CGFloat(((idx/4)*200)))
+                            break
+                        }
+                    }
                 default:
                     break
                 }
