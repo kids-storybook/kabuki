@@ -31,6 +31,9 @@
 		364FDDD6291AA767005CA0CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E63DEA7428E2EB34000AC43C /* Assets.xcassets */; };
 		364FDDE3291B8386005CA0CA /* Gamescene+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364FDDE2291B8386005CA0CA /* Gamescene+Extension.swift */; };
 		3655A58B28F80EF600C97C09 /* Reference+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3655A58A28F80EF600C97C09 /* Reference+Extension.swift */; };
+		3657361129238F7B00E173FE /* Panda-Rawr.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3657361029238F7B00E173FE /* Panda-Rawr.wav */; };
+		365736132923914F00E173FE /* Story Music-panda_challenge.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 365736122923914F00E173FE /* Story Music-panda_challenge.mp3 */; };
+		365736172923A00200E173FE /* Mini Games-panda_challenge.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 365736162923A00200E173FE /* Mini Games-panda_challenge.mp3 */; };
 		365CDA18291D3D1F00F12BBD /* Shapes+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365CDA0C291D3D1F00F12BBD /* Shapes+CoreDataClass.swift */; };
 		365CDA19291D3D1F00F12BBD /* Shapes+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365CDA0D291D3D1F00F12BBD /* Shapes+CoreDataProperties.swift */; };
 		365CDA1A291D3D1F00F12BBD /* Stories+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365CDA0E291D3D1F00F12BBD /* Stories+CoreDataClass.swift */; };
@@ -49,6 +52,7 @@
 		36A6DFDE290FC6E900E72322 /* AnimatedShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A6DFDD290FC6E900E72322 /* AnimatedShape.swift */; };
 		36AF5FC12906F4F300C25714 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AF5FC02906F4F300C25714 /* UIColor+Extension.swift */; };
 		36AF5FC32906F6DA00C25714 /* SKLabelNode+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AF5FC22906F6DA00C25714 /* SKLabelNode+Extension.swift */; };
+		36C19207292247F100CD0118 /* Mixpanel in Frameworks */ = {isa = PBXBuildFile; productRef = 36C19206292247F100CD0118 /* Mixpanel */; };
 		36CAFF94290FB69F00AD54FD /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CAFF93290FB69F00AD54FD /* Character.swift */; };
 		36CBBEEF2912352B00403E7E /* AppreciationPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CBBEEE2912352B00403E7E /* AppreciationPage.swift */; };
 		36CBBEF22912355300403E7E /* AppreciationPage.sks in Resources */ = {isa = PBXBuildFile; fileRef = 36CBBEF12912355300403E7E /* AppreciationPage.sks */; };
@@ -66,7 +70,6 @@
 		E601FEC8290686AE00810558 /* AnimationPageScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = E601FEC6290686AE00810558 /* AnimationPageScene.sks */; };
 		E601FEC9290686AE00810558 /* AnimationPageScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E601FEC7290686AE00810558 /* AnimationPageScene.swift */; };
 		E60A5AB82912ECF600A968DC /* Story Music-lion_challenge.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E60A5AB62912ECF600A968DC /* Story Music-lion_challenge.mp3 */; };
-		E60A5AB92912ECF600A968DC /* Mini Games-lion_challenge.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E60A5AB72912ECF600A968DC /* Mini Games-lion_challenge.mp3 */; };
 		E60A5ABB2912FCD500A968DC /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = E60A5ABA2912FCD500A968DC /* GameScene.sks */; };
 		E63DEA6828E2EB32000AC43C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63DEA6728E2EB32000AC43C /* AppDelegate.swift */; };
 		E63DEA6C28E2EB33000AC43C /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = E63DEA6B28E2EB33000AC43C /* Actions.sks */; };
@@ -100,6 +103,7 @@
 		E6E3366228EC49D700FE2BEE /* HomepageScene+Scrolling.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E3366128EC49D700FE2BEE /* HomepageScene+Scrolling.swift */; };
 		E6E3369128ECA2FF00FE2BEE /* lionlaugh4.wav in Resources */ = {isa = PBXBuildFile; fileRef = E6E3368628ECA2FF00FE2BEE /* lionlaugh4.wav */; };
 		E6E3369228ECA2FF00FE2BEE /* lioncry3.wav in Resources */ = {isa = PBXBuildFile; fileRef = E6E3368728ECA2FF00FE2BEE /* lioncry3.wav */; };
+		E6E495C72924E20800001804 /* Mini Games-lion_challenge.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E6E495C62924E20800001804 /* Mini Games-lion_challenge.mp3 */; };
 		E6E50CD2290280C70065BB71 /* Opening Music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E6E50CCE290280C60065BB71 /* Opening Music.mp3 */; };
 		E6E50CD3290280C70065BB71 /* Maps Music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E6E50CCF290280C70065BB71 /* Maps Music.mp3 */; };
 /* End PBXBuildFile section */
@@ -135,6 +139,9 @@
 		364DB169291507C6006C53F4 /* button-click.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "button-click.wav"; sourceTree = "<group>"; };
 		364FDDE2291B8386005CA0CA /* Gamescene+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gamescene+Extension.swift"; sourceTree = "<group>"; };
 		3655A58A28F80EF600C97C09 /* Reference+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reference+Extension.swift"; sourceTree = "<group>"; };
+		3657361029238F7B00E173FE /* Panda-Rawr.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Panda-Rawr.wav"; sourceTree = "<group>"; };
+		365736122923914F00E173FE /* Story Music-panda_challenge.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Story Music-panda_challenge.mp3"; sourceTree = "<group>"; };
+		365736162923A00200E173FE /* Mini Games-panda_challenge.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mini Games-panda_challenge.mp3"; sourceTree = "<group>"; };
 		365CDA0C291D3D1F00F12BBD /* Shapes+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Shapes+CoreDataClass.swift"; sourceTree = "<group>"; };
 		365CDA0D291D3D1F00F12BBD /* Shapes+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Shapes+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		365CDA0E291D3D1F00F12BBD /* Stories+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Stories+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -170,7 +177,6 @@
 		E601FEC6290686AE00810558 /* AnimationPageScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = AnimationPageScene.sks; sourceTree = "<group>"; };
 		E601FEC7290686AE00810558 /* AnimationPageScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationPageScene.swift; sourceTree = "<group>"; };
 		E60A5AB62912ECF600A968DC /* Story Music-lion_challenge.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Story Music-lion_challenge.mp3"; sourceTree = "<group>"; };
-		E60A5AB72912ECF600A968DC /* Mini Games-lion_challenge.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mini Games-lion_challenge.mp3"; sourceTree = "<group>"; };
 		E60A5ABA2912FCD500A968DC /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		E63DEA6428E2EB32000AC43C /* Storybook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Storybook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E63DEA6728E2EB32000AC43C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -207,6 +213,7 @@
 		E6E3366128EC49D700FE2BEE /* HomepageScene+Scrolling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomepageScene+Scrolling.swift"; sourceTree = "<group>"; };
 		E6E3368628ECA2FF00FE2BEE /* lionlaugh4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = lionlaugh4.wav; sourceTree = "<group>"; };
 		E6E3368728ECA2FF00FE2BEE /* lioncry3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = lioncry3.wav; sourceTree = "<group>"; };
+		E6E495C62924E20800001804 /* Mini Games-lion_challenge.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mini Games-lion_challenge.mp3"; sourceTree = "<group>"; };
 		E6E50CCE290280C60065BB71 /* Opening Music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Opening Music.mp3"; sourceTree = "<group>"; };
 		E6E50CCF290280C70065BB71 /* Maps Music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Maps Music.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -216,6 +223,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36C19207292247F100CD0118 /* Mixpanel in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,10 +434,12 @@
 		E6D4168A28E59FCE0030681F /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				E6E495C62924E20800001804 /* Mini Games-lion_challenge.mp3 */,
 				364DB1592914FEA3006C53F4 /* Mini Games-elephant_challenge.mp3 */,
 				364DB15A2914FEA3006C53F4 /* Story Music-elephant_challenge.mp3 */,
-				E60A5AB72912ECF600A968DC /* Mini Games-lion_challenge.mp3 */,
+				365736162923A00200E173FE /* Mini Games-panda_challenge.mp3 */,
 				E60A5AB62912ECF600A968DC /* Story Music-lion_challenge.mp3 */,
+				365736122923914F00E173FE /* Story Music-panda_challenge.mp3 */,
 				E6E50CCF290280C70065BB71 /* Maps Music.mp3 */,
 				E6E50CCE290280C60065BB71 /* Opening Music.mp3 */,
 				E6E3368728ECA2FF00FE2BEE /* lioncry3.wav */,
@@ -441,6 +451,7 @@
 				E6E3368628ECA2FF00FE2BEE /* lionlaugh4.wav */,
 				364DB169291507C6006C53F4 /* button-click.wav */,
 				364DB1612915033E006C53F4 /* Lion-Rawr.wav */,
+				3657361029238F7B00E173FE /* Panda-Rawr.wav */,
 				364DB1652915061C006C53F4 /* Elephant-Rawr.wav */,
 			);
 			path = Sounds;
@@ -513,6 +524,9 @@
 			dependencies = (
 			);
 			name = Storybook;
+			packageProductDependencies = (
+				36C19206292247F100CD0118 /* Mixpanel */,
+			);
 			productName = Storybook;
 			productReference = E63DEA6428E2EB32000AC43C /* Storybook.app */;
 			productType = "com.apple.product-type.application";
@@ -585,6 +599,9 @@
 				Base,
 			);
 			mainGroup = E63DEA5B28E2EB32000AC43C;
+			packageReferences = (
+				36C19205292247F100CD0118 /* XCRemoteSwiftPackageReference "mixpanel-swift" */,
+			);
 			productRefGroup = E63DEA6528E2EB32000AC43C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -602,9 +619,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				E60A5ABB2912FCD500A968DC /* GameScene.sks in Resources */,
+				365736172923A00200E173FE /* Mini Games-panda_challenge.mp3 in Resources */,
 				E63DEA7328E2EB33000AC43C /* Main.storyboard in Resources */,
 				E63DEA7528E2EB34000AC43C /* Assets.xcassets in Resources */,
 				E66AAA232923CC14000B604A /* VO-Lingkaran.mp3 in Resources */,
+				365736132923914F00E173FE /* Story Music-panda_challenge.mp3 in Resources */,
+				E6E495C72924E20800001804 /* Mini Games-lion_challenge.mp3 in Resources */,
 				B2E1A8E62901682E00349559 /* ShapeGameScene.sks in Resources */,
 				E63DEA7828E2EB34000AC43C /* LaunchScreen.storyboard in Resources */,
 				36FD197428F46499002C25BF /* Footer.sks in Resources */,
@@ -626,10 +646,10 @@
 				36CBBEF22912355300403E7E /* AppreciationPage.sks in Resources */,
 				E6E50CD2290280C70065BB71 /* Opening Music.mp3 in Resources */,
 				3662B02429029A8500956BDE /* Header.sks in Resources */,
+				3657361129238F7B00E173FE /* Panda-Rawr.wav in Resources */,
 				364DB16A291507C6006C53F4 /* button-click.wav in Resources */,
 				E66AAA222923CC14000B604A /* VO-Segitiga.mp3 in Resources */,
 				E601FEC8290686AE00810558 /* AnimationPageScene.sks in Resources */,
-				E60A5AB92912ECF600A968DC /* Mini Games-lion_challenge.mp3 in Resources */,
 				E66AAA272923F949000B604A /* Wrong-Answer.wav in Resources */,
 				E66AAA242923CC14000B604A /* VO-Persegi.mp3 in Resources */,
 				3644BD9E28FF02DA0027DDE5 /* Poppins-Regular.ttf in Resources */,
@@ -1082,6 +1102,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		36C19205292247F100CD0118 /* XCRemoteSwiftPackageReference "mixpanel-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mixpanel/mixpanel-swift";
+			requirement = {
+				kind = exactVersion;
+				version = 2.8.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		36C19206292247F100CD0118 /* Mixpanel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 36C19205292247F100CD0118 /* XCRemoteSwiftPackageReference "mixpanel-swift" */;
+			productName = Mixpanel;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		E601FE7C290634C700810558 /* storybook.xcdatamodeld */ = {

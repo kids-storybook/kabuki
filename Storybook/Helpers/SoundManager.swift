@@ -19,7 +19,7 @@ class SoundManager {
     let soundOfAnimal = [
         "lion_challenge" : SKAction.playSoundFileNamed("Lion-Rawr.wav", waitForCompletion: false),
         "elephant_challenge" : SKAction.playSoundFileNamed("Elephant-Rawr.wav", waitForCompletion: false),
-        "panda_challenge": SKAction.playSoundFileNamed("Elephant-Rawr.wav", waitForCompletion: false)
+        "panda_challenge" : SKAction.playSoundFileNamed("Panda-Rawr.wav", waitForCompletion: false)
     ]
     let soundCorrectAnswer = SKAction.playSoundFileNamed("Correct-Answer.wav", waitForCompletion: false)
     let soundWrongAnswer = SKAction.playSoundFileNamed("Wrong-Answer.wav", waitForCompletion: false)

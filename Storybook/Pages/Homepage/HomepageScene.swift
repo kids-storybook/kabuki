@@ -7,6 +7,7 @@
 
 import SpriteKit
 import GameplayKit
+import Mixpanel
 
 
 class HomepageScene: SKScene {
@@ -79,6 +80,7 @@ class HomepageScene: SKScene {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
+        
         /* Called when a touch begins */
         for touch in touches {
             let location = touch.location(in: self)

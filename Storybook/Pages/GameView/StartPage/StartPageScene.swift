@@ -1,6 +1,7 @@
 import Foundation
 import SpriteKit
 import GameplayKit
+import Mixpanel
 
 class StartPageScene: GameScene {
     
@@ -62,6 +63,7 @@ class StartPageScene: GameScene {
     }
     
     override func getNextScene() -> SKScene? {
+        Mixpanel.mainInstance().track(event: "get_story_scene", properties: ["story_name" : story?.challengeName ?? "lion_challenge"])
         let scene = SKScene(fileNamed: "StoryPageScene") as! StoryPageScene
         scene.challengeName = self.challengeName
         scene.theme = self.theme
