@@ -18,7 +18,7 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
     var nextChallenge: String?
     
     var backgroundScene: SKSpriteNode!
-    var shapeTargets: [String:Shape] = [:]
+    var shapeTargets: [String:SpriteComponent] = [:]
     var activeShapes: [Shape] = []
     var solvedShapes: Set<String> = Set([])
     
@@ -122,9 +122,9 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
                     spriteComponent.node.position = CGPoint(x: target.xCoordinate ?? 0, y: target.yCoordinate ?? 0)
                     spriteComponent.node.setScale(0.58)
                     spriteComponent.node.zPosition = target.zPosition ?? 0
+                    shapeTargets[(target.background ?? "").components(separatedBy: "_")[1]] = spriteComponent
                 }
                 entityManager.add(shapeTarget)
-                shapeTargets[(target.background ?? "").components(separatedBy: "_")[1]] = shapeTarget
             }
             continue
         }
@@ -251,20 +251,22 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
     }
     
     
-    public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let node = self.currentNode,
-           let triangleBin = shapeTargets["triangle"]?.component(ofType: SpriteComponent.self),
-           let squareBin = shapeTargets["square"]?.component(ofType: SpriteComponent.self),
-           let circleBin = shapeTargets["circle"]?.component(ofType: SpriteComponent.self),
-           let name = node.name {
-            if name.contains("triangle") {
-                if triangleBin.node.frame.contains(node.position){
-                    node.position = triangleBin.node.position
-                    node.run(SoundManager.sharedInstance.soundCorrectAnswer)
-                    solvedShapes.insert(name)
-                    handleShapeBehavior(node:node, name:name)
-                }
-                else if squareBin.node.frame.contains(node.position) || circleBin.node.frame.contains(node.position){
+    func handleShapeAnswer(node: SKNode){
+        let name = (node.name ?? "").components(separatedBy: "_")[1]
+        let target = shapeTargets[name]
+        if target?.node.frame.contains(node.position) ?? false {
+            node.position = target?.node.position ?? CGPoint()
+            node.run(SoundManager.sharedInstance.soundCorrectAnswer)
+            solvedShapes.insert(node.name ?? "")
+            handleShapeBehavior(node:node, name:node.name ?? "")
+            return
+        }
+        
+        var isAnswerWrong = false
+        
+        for shape in shapeTargets {
+            if shape.key != name {
+                if shape.value.node.frame.contains(node.position) {
                     wrongClick()
                     node.run(
                         SKAction.sequence([
@@ -274,58 +276,23 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
                         ])
                     )
                     node.position = CGPoint(x: frame.midX, y: frame.midY - 200)
-                    solvedShapes.remove(name)
-                } else {
-                    solvedShapes.remove(name)
-                }
-            }
-            else if name.contains("square") {
-                if squareBin.node.frame.contains(node.position){
-                    node.position = squareBin.node.position
-                    node.run(SoundManager.sharedInstance.soundCorrectAnswer)
-                    solvedShapes.insert(name)
-                    handleShapeBehavior(node:node, name:name)
-                }
-                else if triangleBin.node.frame.contains(node.position) || circleBin.node.frame.contains(node.position){
-                    node.run(
-                        SKAction.sequence([
-                            SKAction.scale(by: 0.5, duration: 0.15),
-                            SKAction.wait(forDuration: 0.02),
-                            SKAction.scale(by: 2, duration: 0.15)
-                        ])
-                    )
-                    wrongClick()
-                    node.position = CGPoint(x: frame.midX-500, y: frame.midY - 200)
-                    solvedShapes.remove(name)
-                }
-                else {
-                    solvedShapes.remove(name)
-                }
-            }
-            else if name.contains("circle") {
-                if circleBin.node.frame.contains(node.position){
-                    node.position = circleBin.node.position
-                    node.run(SoundManager.sharedInstance.soundCorrectAnswer)
-                    solvedShapes.insert(name)
-                    handleShapeBehavior(node:node, name:name)
-                }
-                else if triangleBin.node.frame.contains(node.position) || squareBin.node.frame.contains(node.position){
-                    node.run(
-                        SKAction.sequence([
-                            SKAction.scale(by: 0.5, duration: 0.15),
-                            SKAction.wait(forDuration: 0.02),
-                            SKAction.scale(by: 2, duration: 0.15)
-                        ])
-                    )
-                    wrongClick()
-                    node.position = CGPoint(x: frame.midX-250, y: frame.midY - 200)
-                    solvedShapes.remove(name)
-                } else {
-                    solvedShapes.remove(name)
+                    solvedShapes.remove(node.name ?? "")
+                    isAnswerWrong = true
+                    break
                 }
             }
         }
         
+        if !isAnswerWrong {
+            solvedShapes.remove(node.name ?? "")
+        }
+    }
+    
+    
+    public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let node = self.currentNode {
+            self.handleShapeAnswer(node: node)
+        }
         
         if self.solvedShapes.count == self.shapes?.count {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
