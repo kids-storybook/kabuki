@@ -328,8 +328,9 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
                     self.goToScene(scene: scene, transition: SKTransition.fade(withDuration: 1.3))
                 }
             }
-            self.currentNode = nil
         }
+        
+        self.currentNode = nil
     }
     
     
