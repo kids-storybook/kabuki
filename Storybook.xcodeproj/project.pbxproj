@@ -47,6 +47,7 @@
 		365CDA22291D3D1F00F12BBD /* Themes+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365CDA16291D3D1F00F12BBD /* Themes+CoreDataClass.swift */; };
 		365CDA23291D3D1F00F12BBD /* Themes+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365CDA17291D3D1F00F12BBD /* Themes+CoreDataProperties.swift */; };
 		3662B02429029A8500956BDE /* Header.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3662B02329029A8500956BDE /* Header.sks */; };
+		3681C1CA292633F800151D9C /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3681C1C9292633F800151D9C /* SplashScreen.swift */; };
 		368546F428FFF3CE00E520B4 /* StartPageScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 368546F328FFF3CE00E520B4 /* StartPageScene.sks */; };
 		368546F728FFF3EC00E520B4 /* StartPageScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368546F628FFF3EC00E520B4 /* StartPageScene.swift */; };
 		36A6DFDE290FC6E900E72322 /* AnimatedShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A6DFDD290FC6E900E72322 /* AnimatedShape.swift */; };
@@ -57,6 +58,7 @@
 		36CBBEEF2912352B00403E7E /* AppreciationPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CBBEEE2912352B00403E7E /* AppreciationPage.swift */; };
 		36CBBEF22912355300403E7E /* AppreciationPage.sks in Resources */ = {isa = PBXBuildFile; fileRef = 36CBBEF12912355300403E7E /* AppreciationPage.sks */; };
 		36CBBEF4291238FB00403E7E /* ContinueRetry.sks in Resources */ = {isa = PBXBuildFile; fileRef = 36CBBEF3291238FB00403E7E /* ContinueRetry.sks */; };
+		36E218A329262C2E009A411D /* SplashScreen.sks in Resources */ = {isa = PBXBuildFile; fileRef = 36E218A229262C2E009A411D /* SplashScreen.sks */; };
 		36EC630E28FFF85800176DA3 /* Start.sks in Resources */ = {isa = PBXBuildFile; fileRef = 36EC630D28FFF85800176DA3 /* Start.sks */; };
 		36F0E082290A2D69000702C0 /* SKSpriteNode+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F0E081290A2D69000702C0 /* SKSpriteNode+Extension.swift */; };
 		36F7DC752907B5D80045984E /* AnimationPageSceneTutorial.sks in Resources */ = {isa = PBXBuildFile; fileRef = 36F7DC742907B5D80045984E /* AnimationPageSceneTutorial.sks */; };
@@ -155,6 +157,7 @@
 		365CDA16291D3D1F00F12BBD /* Themes+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Themes+CoreDataClass.swift"; sourceTree = "<group>"; };
 		365CDA17291D3D1F00F12BBD /* Themes+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Themes+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3662B02329029A8500956BDE /* Header.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Header.sks; sourceTree = "<group>"; };
+		3681C1C9292633F800151D9C /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		368546F328FFF3CE00E520B4 /* StartPageScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StartPageScene.sks; sourceTree = "<group>"; };
 		368546F628FFF3EC00E520B4 /* StartPageScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartPageScene.swift; sourceTree = "<group>"; };
 		36A6DFDD290FC6E900E72322 /* AnimatedShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedShape.swift; sourceTree = "<group>"; };
@@ -164,6 +167,7 @@
 		36CBBEEE2912352B00403E7E /* AppreciationPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppreciationPage.swift; sourceTree = "<group>"; };
 		36CBBEF12912355300403E7E /* AppreciationPage.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = AppreciationPage.sks; sourceTree = "<group>"; };
 		36CBBEF3291238FB00403E7E /* ContinueRetry.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ContinueRetry.sks; sourceTree = "<group>"; };
+		36E218A229262C2E009A411D /* SplashScreen.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SplashScreen.sks; sourceTree = "<group>"; };
 		36EC630D28FFF85800176DA3 /* Start.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Start.sks; sourceTree = "<group>"; };
 		36F0E081290A2D69000702C0 /* SKSpriteNode+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKSpriteNode+Extension.swift"; sourceTree = "<group>"; };
 		36F7DC742907B5D80045984E /* AnimationPageSceneTutorial.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = AnimationPageSceneTutorial.sks; sourceTree = "<group>"; };
@@ -383,6 +387,8 @@
 				E63DEA7128E2EB33000AC43C /* Main.storyboard */,
 				E63DEA7428E2EB34000AC43C /* Assets.xcassets */,
 				E63DEA7628E2EB34000AC43C /* LaunchScreen.storyboard */,
+				36E218A229262C2E009A411D /* SplashScreen.sks */,
+				3681C1C9292633F800151D9C /* SplashScreen.swift */,
 				3644BD9928FF024D0027DDE5 /* Fonts */,
 			);
 			path = Storybook;
@@ -636,6 +642,7 @@
 				3644BD9D28FF02D70027DDE5 /* Poppins-Bold.ttf in Resources */,
 				364DB1622915033E006C53F4 /* Lion-Rawr.wav in Resources */,
 				360A8EF428F459CB00949260 /* StoryPageScene.sks in Resources */,
+				36E218A329262C2E009A411D /* SplashScreen.sks in Resources */,
 				36F7DC752907B5D80045984E /* AnimationPageSceneTutorial.sks in Resources */,
 				364DB1662915061C006C53F4 /* Elephant-Rawr.wav in Resources */,
 				E6E3365228EC295700FE2BEE /* HomepageScene.sks in Resources */,
@@ -693,6 +700,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3681C1CA292633F800151D9C /* SplashScreen.swift in Sources */,
 				36FD197928F468D6002C25BF /* GameScene.swift in Sources */,
 				36CBBEEF2912352B00403E7E /* AppreciationPage.swift in Sources */,
 				365CDA1D291D3D1F00F12BBD /* AnimatedShapes+CoreDataProperties.swift in Sources */,
@@ -919,8 +927,9 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Kabuki;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -953,8 +962,9 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Kabuki;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
