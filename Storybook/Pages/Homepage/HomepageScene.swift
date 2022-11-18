@@ -37,8 +37,6 @@ class HomepageScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
-        print("scene size: \(size)")
-        
         // Create entity manager
         entityManager = EntityManager(scene: self)
         
@@ -77,15 +75,6 @@ class HomepageScene: SKScene {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
-        
-        /* Called when a touch begins */
-        for touch in touches {
-            let location = touch.location(in: self)
-            let node = atPoint(location)
-            if let name = node.name, let _ = themes.filter({$0?.name == name})[0] {
-                print("aw, touches began!")
-            }
-        }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -124,9 +113,6 @@ class HomepageScene: SKScene {
                             }
                         }
                     }
-                    print("Let's move to \(name)~")
-                } else {
-                    print("Oops! This map isn't active yet, please stay tune ;)")
                 }
             }
         }

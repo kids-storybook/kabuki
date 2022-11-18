@@ -33,7 +33,6 @@ class Helper {
     
     func initializeDB (context: NSManagedObjectContext) {
         context.automaticallyMergesChangesFromParent = true
-        //        context.perform {
         var fetchRequest: NSFetchRequest<NSFetchRequestResult> = Themes.fetchRequest()
         var deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         
@@ -178,6 +177,5 @@ class Helper {
             print(error)
             print("error while fetching data in core data!")
         }
-        //        }
     }
 }

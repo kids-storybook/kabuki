@@ -349,7 +349,6 @@
 				365CDA15291D3D1F00F12BBD /* Challenges+CoreDataProperties.swift */,
 				365CDA16291D3D1F00F12BBD /* Themes+CoreDataClass.swift */,
 				365CDA17291D3D1F00F12BBD /* Themes+CoreDataProperties.swift */,
-				E601FEAB29063F7E00810558 /* Model.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -369,6 +368,7 @@
 			isa = PBXGroup;
 			children = (
 				E637981D292778CC0044407A /* ChallengeModel.swift */,
+				E601FEAB29063F7E00810558 /* Model.swift */,
 				E637981F2927A6F30044407A /* StoryModel.swift */,
 				E63798212927A76F0044407A /* ThemeModel.swift */,
 				E63798232927A81A0044407A /* ShapeModel.swift */,

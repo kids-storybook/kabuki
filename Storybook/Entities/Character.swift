@@ -23,7 +23,6 @@ class Character: GKEntity {
             for name in imagesName {
                 let textureNames = characterAtlas.textureNamed(name)
                 index.append(textureNames)
-                print("index: \(index)")
             }
             return index
             

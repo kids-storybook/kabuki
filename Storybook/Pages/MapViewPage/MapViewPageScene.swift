@@ -21,7 +21,6 @@ class MapViewPageScene: SKScene {
     var entityManager: EntityManager!
     
     override func didMove(to view: SKView) {
-        print("scene size: \(size)")
         // Create entity manager
         entityManager = EntityManager(scene: self)
         
@@ -100,10 +99,8 @@ class MapViewPageScene: SKScene {
         for touch in touches {
             let location = touch.location(in: self)
             let node = atPoint(location)
-            if let name = node.name, name.contains("_challenge") {
-                print("aw, touches began for \(name)!")
-            }
-            else if node == homeBtn {
+            
+            if node == homeBtn {
                 homeBtn.run(SoundManager.sharedInstance.soundClickedButton)
                 homeBtn.run(SKAction.sequence(
                     [SKAction.scale(to: 0.9, duration: 0),
@@ -145,9 +142,9 @@ class MapViewPageScene: SKScene {
                             // Present the scene
                             if let view = self.view {
                                 view.ignoresSiblingOrder = true
-                                view.showsFPS = true
-                                view.showsNodeCount = true
-                                view.showsDrawCount = true
+                                view.showsFPS = false
+                                view.showsNodeCount = false
+                                view.showsDrawCount = false
                                 view.presentScene(sceneNode, transition: SKTransition.fade(withDuration: 1.3))
                             }
                         }
