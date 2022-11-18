@@ -50,8 +50,12 @@ class StoryPageScene: GameScene {
             fetchRequest.predicate = NSPredicate(format: "challengeName == %@", challengeName ?? "")
             totalStories = try context.count(for: fetchRequest)
         } catch let error as NSError {
-            print(error)
-            print("error while fetching data in core data!")
+            DispatchQueue.main.async {
+                let ac = UIAlertController(title: error.localizedDescription, message: "Oops, there is error while fetching data.", preferredStyle: .actionSheet)
+                ac.addAction(UIAlertAction(title: "exit", style: .cancel){(action) in exit(0)})
+                
+                self.view?.window?.rootViewController!.present(ac, animated: true, completion: nil)
+            }
         }
         
         self.setupPlayer()

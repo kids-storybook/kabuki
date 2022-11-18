@@ -157,25 +157,5 @@ class Helper {
             character.characterYPosition = data.characterYPosition ?? 0.0
             self.saveContext(saveContext: context)
         }
-        
-        do {
-            let themes = try context.fetch(Themes.fetchRequest())
-            for data in themes {
-                print(data.name ?? "")
-            }
-            
-            let stories = try context.fetch(Stories.fetchRequest())
-            for data in stories {
-                print(data.labels ?? [])
-            }
-            
-            let challenges = try context.fetch(Challenges.fetchRequest())
-            for data in challenges {
-                print(data.challengeName ?? "")
-            }
-        } catch let error as NSError {
-            print(error)
-            print("error while fetching data in core data!")
-        }
     }
 }
