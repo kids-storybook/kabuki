@@ -9,9 +9,7 @@ import SpriteKit
 import GameplayKit
 
 class SpriteComponent: GKComponent {
-    //
-    //  // A node that gives an entity a visual sprite
-    //  let node: EntityNode
+    // A node that gives an entity a visual sprite
     let node: SKSpriteNode
     let sound: SKAction
     

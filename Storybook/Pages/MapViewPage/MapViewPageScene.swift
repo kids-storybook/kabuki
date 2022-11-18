@@ -13,7 +13,7 @@ class MapViewPageScene: SKScene {
     let backgroundSound = SKAudioNode(fileNamed: "Maps Music.mp3")
     var background: SKSpriteNode!
     var activeChallenges: [Challenge] = []
-
+    
     var homeBtn: SKSpriteNode!
     
     
