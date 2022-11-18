@@ -94,7 +94,7 @@ let initThemeData: [ThemeModel] = [
         ChallangeModel(
             background: "bright_elephant_cage",
             challengeName: "elephant_challenge",
-            isActive: true,
+            isActive: false,
             xCoordinate: -545.187,
             yCoordinate: 165.877,
             zPosition: 1.0,
@@ -124,7 +124,7 @@ let initThemeData: [ThemeModel] = [
         ChallangeModel(
             background: "bright_panda_cage",
             challengeName: "panda_challenge",
-            isActive: true,
+            isActive: false,
             xCoordinate: -217.127,
             yCoordinate: 419.343,
             zPosition: 1.0,
