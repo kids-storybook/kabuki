@@ -18,7 +18,7 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
     var nextChallenge: String?
     
     var backgroundScene: SKSpriteNode!
-    var shapeTargets: [String:SpriteComponent] = [:]
+    var shapeTargets: [String:[SpriteComponent]] = [:]
     var activeShapes: [Shape] = []
     var solvedShapes: Set<String> = Set([])
     
@@ -44,7 +44,8 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
         //Create shapes
         var idx_y = 0
         for (idx, shape) in (shapes ?? []).enumerated() {
-            let activeShape = Shape(imageName: shape?.background ?? "", shapeName: shape?.background ?? "", sound: SoundManager.sharedInstance.soundOfAnimal[shape?.challengeName ?? ""] ?? SKAction())
+            let name = (shape?.background ?? "")
+            let activeShape = Shape(imageName: name, shapeName: name, sound: SoundManager.sharedInstance.soundOfAnimal[shape?.challengeName ?? ""] ?? SKAction())
             if let spriteComponent = activeShape.component(ofType: SpriteComponent.self) {
                 var idx_x = idx
                 if idx_x > 3 {
@@ -106,7 +107,7 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
                     break
                 }
                 
-                spriteComponent.node.zPosition = 15
+                spriteComponent.node.zPosition = 10
             }
             activeShapes.append(activeShape)
             entityManager.add(activeShape)
@@ -115,14 +116,35 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
     
     
     func setupTargets(){
-        for target in initShapeTargetData {
+        var order: Int32 = 0
+        if level == AttributeLevel.hard.rawValue {
+            order = self.shapeOrder ?? 0
+        }
+        
+        for target in initShapeTargetData.filter({$0.order == order}) {
             if target.challengeName == self.challengeName {
-                let shapeTarget = Shape(imageName: target.background ?? "", shapeName: target.background ?? "", sound: SKAction())
+                let name = (target.background ?? "")
+                
+                let shapeTarget = Shape(imageName: target.background ?? "", shapeName: name, sound: SKAction())
                 if let spriteComponent = shapeTarget.component(ofType: SpriteComponent.self) {
                     spriteComponent.node.position = CGPoint(x: target.xCoordinate ?? 0, y: target.yCoordinate ?? 0)
-                    spriteComponent.node.setScale(0.58)
+                    switch level {
+                    case AttributeLevel.easy.rawValue:
+                        spriteComponent.node.setScale(0.58)
+                    case AttributeLevel.medium.rawValue:
+                        spriteComponent.node.setScale(0.58)
+                    default:
+                        spriteComponent.node.setScale(1)
+                    }
+                    
                     spriteComponent.node.zPosition = target.zPosition ?? 0
-                    shapeTargets[(target.background ?? "").components(separatedBy: "_")[1]] = spriteComponent
+                    let arrOfShapes = shapeTargets[name.components(separatedBy: "_")[1]]
+                    
+                    if arrOfShapes?.count ?? 0 > 0 {
+                        shapeTargets[name.components(separatedBy: "_")[1]]?.append(spriteComponent)
+                    } else {
+                        shapeTargets[name.components(separatedBy: "_")[1]] = [spriteComponent]
+                    }
                 }
                 entityManager.add(shapeTarget)
             }
@@ -233,6 +255,7 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
                     {
                         node.run(SoundManager.sharedInstance.soundClickedButton)
                         self.currentNode = node
+                        self.currentNode?.zPosition = 20
                     }
                 }
             }
@@ -252,38 +275,45 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
     
     
     func handleShapeAnswer(node: SKNode){
-        let name = (node.name ?? "").components(separatedBy: "_")[1]
-        let target = shapeTargets[name]
-        if target?.node.frame.contains(node.position) ?? false {
-            node.position = target?.node.position ?? CGPoint()
-            node.run(SoundManager.sharedInstance.soundCorrectAnswer)
-            solvedShapes.insert(node.name ?? "")
-            handleShapeBehavior(node:node, name:node.name ?? "")
-            return
+        let name = (node.name ?? "")
+        let targets = shapeTargets[name.components(separatedBy: "_")[1]]
+        for target in targets ?? [] {
+            if target.node.frame.contains(node.position) {
+                node.position = target.node.position
+                node.zPosition = target.node.zPosition
+                node.run(SoundManager.sharedInstance.soundCorrectAnswer)
+                solvedShapes.insert(node.name ?? "")
+                handleShapeBehavior(node:node, name:node.name ?? "")
+                return
+            }
         }
         
         var isAnswerWrong = false
         
         for shape in shapeTargets {
             if shape.key != name {
-                if shape.value.node.frame.contains(node.position) {
-                    wrongClick()
-                    node.run(
-                        SKAction.sequence([
-                            SKAction.scale(by: 0.5, duration: 0.15),
-                            SKAction.wait(forDuration: 0.01),
-                            SKAction.scale(by: 2, duration: 0.15)
-                        ])
-                    )
-                    node.position = CGPoint(x: frame.midX, y: frame.midY - 200)
-                    solvedShapes.remove(node.name ?? "")
-                    isAnswerWrong = true
-                    break
+                for s in shape.value {
+                    if s.node.frame.contains(node.position) {
+                        wrongClick()
+                        node.run(
+                            SKAction.sequence([
+                                SKAction.scale(by: 0.5, duration: 0.15),
+                                SKAction.wait(forDuration: 0.01),
+                                SKAction.scale(by: 2, duration: 0.15)
+                            ])
+                        )
+                        node.position = CGPoint(x: frame.midX, y: frame.midY - 200)
+                        node.zPosition = 10
+                        solvedShapes.remove(node.name ?? "")
+                        isAnswerWrong = true
+                        break
+                    }
                 }
             }
         }
         
         if !isAnswerWrong {
+            node.zPosition = 10
             solvedShapes.remove(node.name ?? "")
         }
     }
