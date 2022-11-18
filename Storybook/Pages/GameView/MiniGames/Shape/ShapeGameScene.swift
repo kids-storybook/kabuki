@@ -18,7 +18,7 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
     var nextChallenge: String?
     
     var backgroundScene: SKSpriteNode!
-    var shapeTargets: [String:[SpriteComponent]] = [:]
+    var targets: [String:[SpriteComponent]] = [:]
     var activeShapes: [Shape] = []
     var solvedShapes: Set<String> = Set([])
     
@@ -121,7 +121,7 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
             order = self.shapeOrder ?? 0
         }
         
-        for target in initShapeTargetData.filter({$0.order == order}) {
+        for target in shapeTargets.filter({$0.order == order}) {
             if target.challengeName == self.challengeName {
                 let name = (target.background ?? "")
                 
@@ -138,12 +138,12 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
                     }
                     
                     spriteComponent.node.zPosition = target.zPosition ?? 0
-                    let arrOfShapes = shapeTargets[name.components(separatedBy: "_")[1]]
+                    let arrOfShapes = targets[name.components(separatedBy: "_")[1]]
                     
                     if arrOfShapes?.count ?? 0 > 0 {
-                        shapeTargets[name.components(separatedBy: "_")[1]]?.append(spriteComponent)
+                        targets[name.components(separatedBy: "_")[1]]?.append(spriteComponent)
                     } else {
-                        shapeTargets[name.components(separatedBy: "_")[1]] = [spriteComponent]
+                        targets[name.components(separatedBy: "_")[1]] = [spriteComponent]
                     }
                 }
                 entityManager.add(shapeTarget)
@@ -229,9 +229,51 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
         }
     }
     
-    public override func didMove(to view: SKView) {
-        print("scene size: \(size)")
+    func handleShapeAnswer(node: SKNode){
+        let name = (node.name ?? "")
+        let arrOfTargets = targets[name.components(separatedBy: "_")[1]]
+        for target in arrOfTargets ?? [] {
+            if target.node.frame.contains(node.position) {
+                node.position = target.node.position
+                node.zPosition = target.node.zPosition
+                node.run(SoundManager.sharedInstance.soundCorrectAnswer)
+                solvedShapes.insert(node.name ?? "")
+                handleShapeBehavior(node:node, name:node.name ?? "")
+                return
+            }
+        }
         
+        var isAnswerWrong = false
+        
+        for shape in targets {
+            if shape.key != name {
+                for s in shape.value {
+                    if s.node.frame.contains(node.position) {
+                        wrongClick()
+                        node.run(
+                            SKAction.sequence([
+                                SKAction.scale(by: 0.5, duration: 0.15),
+                                SKAction.wait(forDuration: 0.01),
+                                SKAction.scale(by: 2, duration: 0.15)
+                            ])
+                        )
+                        node.position = CGPoint(x: frame.midX, y: frame.midY - 200)
+                        node.zPosition = 10
+                        solvedShapes.remove(node.name ?? "")
+                        isAnswerWrong = true
+                        break
+                    }
+                }
+            }
+        }
+        
+        if !isAnswerWrong {
+            node.zPosition = 10
+            solvedShapes.remove(node.name ?? "")
+        }
+    }
+    
+    public override func didMove(to view: SKView) {
         entityManager = EntityManager(scene: self)
         getAllShapeAssets()
         getCharacterAssets()
@@ -273,52 +315,6 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
         self.currentNode = nil
     }
     
-    
-    func handleShapeAnswer(node: SKNode){
-        let name = (node.name ?? "")
-        let targets = shapeTargets[name.components(separatedBy: "_")[1]]
-        for target in targets ?? [] {
-            if target.node.frame.contains(node.position) {
-                node.position = target.node.position
-                node.zPosition = target.node.zPosition
-                node.run(SoundManager.sharedInstance.soundCorrectAnswer)
-                solvedShapes.insert(node.name ?? "")
-                handleShapeBehavior(node:node, name:node.name ?? "")
-                return
-            }
-        }
-        
-        var isAnswerWrong = false
-        
-        for shape in shapeTargets {
-            if shape.key != name {
-                for s in shape.value {
-                    if s.node.frame.contains(node.position) {
-                        wrongClick()
-                        node.run(
-                            SKAction.sequence([
-                                SKAction.scale(by: 0.5, duration: 0.15),
-                                SKAction.wait(forDuration: 0.01),
-                                SKAction.scale(by: 2, duration: 0.15)
-                            ])
-                        )
-                        node.position = CGPoint(x: frame.midX, y: frame.midY - 200)
-                        node.zPosition = 10
-                        solvedShapes.remove(node.name ?? "")
-                        isAnswerWrong = true
-                        break
-                    }
-                }
-            }
-        }
-        
-        if !isAnswerWrong {
-            node.zPosition = 10
-            solvedShapes.remove(node.name ?? "")
-        }
-    }
-    
-    
     public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let node = self.currentNode {
             self.handleShapeAnswer(node: node)
@@ -352,7 +348,6 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
         
         self.currentNode = nil
     }
-    
     
     override func exitScene() -> SKScene? {
         NotificationCenter.default.post(name: Notification.Name(rawValue: "StopBackgroundSound"), object: self, userInfo:nil)
