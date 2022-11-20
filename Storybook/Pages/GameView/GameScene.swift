@@ -21,7 +21,7 @@ class GameScene: SKScene, Alertable {
     var retryBtn: SKSpriteNode!
     var continueBtn: SKSpriteNode!
     var entityManager: EntityManager!
-    
+
     // reusable variable for child
     var themeName: String?
     var theme: Themes?
@@ -32,30 +32,30 @@ class GameScene: SKScene, Alertable {
     var addCharacter: [Stories]?
     var character: Character?
     var story: Stories?
-    var animatedGame: AnimatedGame?
-    
+    var characters: Characters?
+
     // initialize core data context
     let context = Helper().getBackgroundContext()
-    
+
     // make new color for text border
     let textBorder = UIColor(red: 137, green: 165, blue: 81)
-    
+
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         touchMoved(to: touch.location(in: self))
     }
-    
+
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         touchUp(at: touch.location(in: self))
     }
-    
+
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         touchUp(at: touch.location(in: self))
     }
-    
-    // MARK:- Stub methods - override these in sub classes
+
+    // MARK: - Stub methods - override these in sub classes
     func touchDown(at point: CGPoint) {}
     func touchMoved(to point: CGPoint) {}
     func touchUp(at point: CGPoint) {}
@@ -65,11 +65,11 @@ class GameScene: SKScene, Alertable {
     func getPreviousScene() -> SKScene? {
         return nil
     }
-    
+
     func exitScene() -> SKScene? {
         return nil
     }
-    
+
     override func sceneDidLoad() {
         super.sceneDidLoad()
         header = childNode(withName: "header")
@@ -78,63 +78,58 @@ class GameScene: SKScene, Alertable {
         prevBtn = childNode(withName: "//previousButton") as? SKSpriteNode
         exitBtn = childNode(withName: "//exitButton") as? SKSpriteNode
     }
-    
+
     func goToScene(scene: SKScene, transition: SKTransition) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
             scene.scaleMode = .aspectFill
             self.view?.presentScene(scene, transition: transition)
         }
     }
-    
+
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         let touchLocation = touch.location(in: self)
         let touchedNodes = self.nodes(at: touchLocation)
-        
+
         if let start = start, start.contains(touchLocation) {
             let location = touch.location(in: start)
             if startBtn.contains(location) {
                 startBtn.buttonEffect(soundEffect: Audio.EffectFiles.clickedButton)
                 goToScene(scene: getNextScene()!, transition: SKTransition.push(with: SKTransitionDirection.left, duration: 1.3))
             }
-            
+
         } else if let footer = footer, footer.contains(touchLocation) {
             let location = touch.location(in: footer)
-            
+
             if nxtBtn.contains(location) {
                 nxtBtn.buttonEffect(soundEffect: Audio.EffectFiles.clickedButton)
                 goToScene(scene: getNextScene()!, transition: SKTransition.push(with: SKTransitionDirection.left, duration: 1.3))
-            }
-            else if prevBtn.contains(location) {
+            } else if prevBtn.contains(location) {
                 prevBtn.buttonEffect(soundEffect: Audio.EffectFiles.clickedButton)
                 goToScene(scene: getPreviousScene()!, transition: SKTransition.push(with: SKTransitionDirection.right, duration: 1.3))
             }
-            
-        }
-        else if header.contains(touchLocation) {
+
+        } else if header.contains(touchLocation) {
             let location = touch.location(in: header)
-            
+
             if exitBtn.contains(location) {
                 exitBtn.buttonEffect(soundEffect: Audio.EffectFiles.clickedButton)
                 goToScene(scene: exitScene()!, transition: SKTransition.fade(withDuration: 1.3))
             }
-        }
-        else if let continueretry = continueretry, continueretry.contains(touchLocation) {
+        } else if let continueretry = continueretry, continueretry.contains(touchLocation) {
             let location = touch.location(in: continueretry)
-            
+
             if continueBtn.contains(location) {
                 continueBtn.buttonEffect(soundEffect: Audio.EffectFiles.clickedButton)
                 goToScene(scene: getNextScene()!, transition: SKTransition.fade(withDuration: 1.3))
-            }
-            else if retryBtn.contains(location) {
+            } else if retryBtn.contains(location) {
                 retryBtn.buttonEffect(soundEffect: Audio.EffectFiles.clickedButton)
                 goToScene(scene: getPreviousScene()!, transition: SKTransition.fade(withDuration: 1.3))
             }
-            
-        }
-        else {
+
+        } else {
             let node = touchedNodes[0]
-            switch node.name{
+            switch node.name {
             case "Persegi":
                 AudioPlayerImpl.sharedInstance.play(effect: Audio.EffectFiles.shape[node.name ?? ""] ?? Audio.EffectFiles.clickedButton)
             case "Segitiga":
@@ -149,8 +144,8 @@ class GameScene: SKScene, Alertable {
             touchDown(at: touchLocation)
         }
     }
-    
-    func initThemeData(){
+
+    func initThemeData() {
         do {
             let fetchRequest = Themes.fetchRequest()
             fetchRequest.predicate = NSPredicate(format: "name == %@", self.themeName ?? "")
@@ -160,9 +155,9 @@ class GameScene: SKScene, Alertable {
             showAlert(withTitle: "Oops, there is error while fetching data.", message: error.localizedDescription)
         }
     }
-    
+
     override func didMove(to view: SKView) {
-        
+
     }
-    
+
 }

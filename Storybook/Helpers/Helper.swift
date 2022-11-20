@@ -9,13 +9,12 @@ import Foundation
 import CoreData
 import UIKit
 
-
 class Helper {
     var container: NSPersistentContainer!
     
     init() {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        container = appDelegate.persistentContainer
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        container = appDelegate?.persistentContainer
     }
     
     func getBackgroundContext () -> NSManagedObjectContext {
@@ -31,19 +30,7 @@ class Helper {
         }
     }
     
-    func initializeDB (context: NSManagedObjectContext) {
-        context.automaticallyMergesChangesFromParent = true
-        var fetchRequest: NSFetchRequest<NSFetchRequestResult> = Themes.fetchRequest()
-        var deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-        
-        do {
-            try context.execute(deleteRequest)
-            try context.save()
-        } catch let error as NSError {
-            // TODO: handle the error
-            print(error)
-        }
-        
+    func seedingThemes(context: NSManagedObjectContext) {
         for data in themes {
             let theme = Themes(context: context)
             theme.background = data.background
@@ -51,36 +38,32 @@ class Helper {
             theme.name = data.name
             theme.isActive = data.isActive ?? false
             
-            var challenges: [Challenges] = []
+            let challenges: [Challenges] = seedingChallenges(context: context, data: data)
             
-            for c in data.challenges ?? []{
-                let challenge = Challenges(context: context)
-                challenge.isActive = c?.isActive ?? false
-                challenge.background = c?.background
-                challenge.zPosition = c?.zPosition ?? 0.0
-                challenge.challengeName = c?.challengeName
-                challenge.xCoordinate = c?.xCoordinate ?? 0.0
-                challenge.yCoordinate = c?.yCoordinate ?? 0.0
-                challenge.gameBackground = c?.gameBackground
-                challenge.level = c?.level?.rawValue
-                challenge.nextChallenge = c?.nextChallenge
-                challenges.append(challenge)
-            }
             theme.addToChallenges(NSOrderedSet(array: challenges))
             self.saveContext(saveContext: context)
         }
-        
-        fetchRequest = Stories.fetchRequest()
-        deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-        
-        do {
-            try context.execute(deleteRequest)
-            try context.save()
-        } catch let error as NSError {
-            // TODO: handle the error
-            print(error)
+    }
+    
+    func seedingChallenges(context: NSManagedObjectContext, data: ThemeModel) -> [Challenges] {
+        var challenges: [Challenges] = []
+        for challengeModel in data.challenges ?? [] {
+            let challenge = Challenges(context: context)
+            challenge.isActive = challengeModel?.isActive ?? false
+            challenge.background = challengeModel?.background
+            challenge.zPosition = challengeModel?.zPosition ?? 0.0
+            challenge.challengeName = challengeModel?.challengeName
+            challenge.xCoordinate = challengeModel?.xCoordinate ?? 0.0
+            challenge.yCoordinate = challengeModel?.yCoordinate ?? 0.0
+            challenge.gameBackground = challengeModel?.gameBackground
+            challenge.level = challengeModel?.level?.rawValue
+            challenge.nextChallenge = challengeModel?.nextChallenge
+            challenges.append(challenge)
         }
-        
+        return challenges
+    }
+    
+    func seedingStories(context: NSManagedObjectContext) {
         for data in stories {
             let story = Stories(context: context)
             story.challengeName = data.challengeName
@@ -95,18 +78,9 @@ class Helper {
             story.characterYPosition = data.characterYPosition ?? 0.0
             self.saveContext(saveContext: context)
         }
-        
-        fetchRequest = Shapes.fetchRequest()
-        deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-        
-        do {
-            try context.execute(deleteRequest)
-            try context.save()
-        } catch let error as NSError {
-            // TODO: handle the error
-            print(error)
-        }
-        
+    }
+    
+    func seedingShapes(context: NSManagedObjectContext) {
         for data in shapes {
             let shape = Shapes(context: context)
             shape.challengeName = data.challengeName
@@ -114,18 +88,9 @@ class Helper {
             shape.background = data.background
             self.saveContext(saveContext: context)
         }
-        
-        fetchRequest = AnimatedShapes.fetchRequest()
-        deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-        
-        do {
-            try context.execute(deleteRequest)
-            try context.save()
-        } catch let error as NSError {
-            // TODO: handle the error
-            print(error)
-        }
-        
+    }
+    
+    func seedingAnimatedShapes(context: NSManagedObjectContext) {
         for data in shapeAnimations {
             let shapeAnimation = AnimatedShapes(context: context)
             shapeAnimation.challengeName = data.challengeName
@@ -137,25 +102,77 @@ class Helper {
             shapeAnimation.yCoordinateFont = data.yCoordinateFont ?? 0.0
             self.saveContext(saveContext: context)
         }
-        
-        fetchRequest = AnimatedGame.fetchRequest()
-        deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-        
-        do {
-            try context.execute(deleteRequest)
-            try context.save()
-        } catch let error as NSError {
-            // TODO: handle the error
-            print(error)
-        }
-        
+    }
+    
+    func seedingCharacters(context: NSManagedObjectContext) {
         for data in characters {
-            let character = AnimatedGame(context: context)
+            let character = Characters(context: context)
             character.challengeName = data.challengeName
             character.characterAtlas = data.characterAtlas
             character.characterXPosition = data.characterXPosition ?? 0.0
             character.characterYPosition = data.characterYPosition ?? 0.0
             self.saveContext(saveContext: context)
         }
+    }
+    
+    func initializeDB (context: NSManagedObjectContext) {
+        context.automaticallyMergesChangesFromParent = true
+        
+        var fetchRequest: NSFetchRequest<NSFetchRequestResult> = Themes.fetchRequest()
+        var deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        do {
+            try context.execute(deleteRequest)
+            try context.save()
+        } catch let error as NSError {
+            print(error)
+        }
+        
+        fetchRequest = Stories.fetchRequest()
+        deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        do {
+            try context.execute(deleteRequest)
+            try context.save()
+        } catch let error as NSError {
+            print(error)
+        }
+        
+        fetchRequest = Shapes.fetchRequest()
+        deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        do {
+            try context.execute(deleteRequest)
+            try context.save()
+        } catch let error as NSError {
+            print(error)
+        }
+        
+        fetchRequest = AnimatedShapes.fetchRequest()
+        deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        do {
+            try context.execute(deleteRequest)
+            try context.save()
+        } catch let error as NSError {
+            print(error)
+        }
+        
+        fetchRequest = Characters.fetchRequest()
+        deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        do {
+            try context.execute(deleteRequest)
+            try context.save()
+        } catch let error as NSError {
+            print(error)
+        }
+        
+        self.seedingThemes(context: context)
+        self.seedingStories(context: context)
+        self.seedingShapes(context: context)
+        self.seedingAnimatedShapes(context: context)
+        self.seedingCharacters(context: context)
+        
     }
 }

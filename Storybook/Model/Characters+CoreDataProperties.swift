@@ -1,5 +1,5 @@
 //
-//  AnimatedGame+CoreDataProperties.swift
+//  Characters+CoreDataProperties.swift
 //  Storybook
 //
 //  Created by Adam Ibnu fiadi on 10/11/22.
@@ -9,11 +9,10 @@
 import Foundation
 import CoreData
 
+extension Characters {
 
-extension AnimatedGame {
-
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<AnimatedGame> {
-        return NSFetchRequest<AnimatedGame>(entityName: "AnimatedGame")
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<Characters> {
+        return NSFetchRequest<Characters>(entityName: "Characters")
     }
 
     @NSManaged public var challengeName: String?
@@ -23,6 +22,6 @@ extension AnimatedGame {
 
 }
 
-extension AnimatedGame : Identifiable {
+extension Characters: Identifiable {
 
 }

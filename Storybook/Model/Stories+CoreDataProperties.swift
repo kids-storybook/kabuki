@@ -9,7 +9,6 @@
 import Foundation
 import CoreData
 
-
 extension Stories {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Stories> {
@@ -23,12 +22,12 @@ extension Stories {
     @NSManaged public var characterXPosition: Double
     @NSManaged public var characterYPosition: Double
     @NSManaged public var labelColor: String?
-    @NSManaged public var labels: Array<String>?
+    @NSManaged public var labels: [String]?
     @NSManaged public var order: Int32
     @NSManaged public var title: String?
 
 }
 
-extension Stories : Identifiable {
+extension Stories: Identifiable {
 
 }

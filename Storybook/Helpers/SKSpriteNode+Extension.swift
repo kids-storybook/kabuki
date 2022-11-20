@@ -9,7 +9,7 @@ import Foundation
 import SpriteKit
 
 extension SKSpriteNode {
-    
+
     func animateUpDown(start: TimeInterval) {
         let startTime = SKAction.wait(forDuration: start)
         let animate = SKAction.move(by: CGVector(dx: 0, dy: 100), duration: 1.5)
@@ -18,7 +18,7 @@ extension SKSpriteNode {
         let sequence = SKAction.sequence([startTime, animate, bridgeTime, animate2])
         self.run(sequence)
     }
-    
+
     func fadeInOut(start: TimeInterval) {
         let fadeStartTime = SKAction.wait(forDuration: start)
         let fadeIn = SKAction.fadeIn(withDuration: 1)
@@ -27,8 +27,8 @@ extension SKSpriteNode {
         let sequence2 = SKAction.sequence([fadeStartTime, fadeIn, fadeTime, fadeOut])
         self.run(sequence2)
     }
-    
-    func buttonEffect(soundEffect: Effect){
+
+    func buttonEffect(soundEffect: Effect) {
         AudioPlayerImpl.sharedInstance.play(effect: soundEffect)
         self.run(
             SKAction.sequence([
@@ -37,6 +37,5 @@ extension SKSpriteNode {
             ])
         )
     }
-    
-}
 
+}

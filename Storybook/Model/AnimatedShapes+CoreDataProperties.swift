@@ -9,7 +9,6 @@
 import Foundation
 import CoreData
 
-
 extension AnimatedShapes {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<AnimatedShapes> {
@@ -26,6 +25,6 @@ extension AnimatedShapes {
 
 }
 
-extension AnimatedShapes : Identifiable {
+extension AnimatedShapes: Identifiable {
 
 }

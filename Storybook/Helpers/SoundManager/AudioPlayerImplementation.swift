@@ -9,24 +9,24 @@ import Foundation
 import AVKit
 
 class AudioPlayerImpl {
-    
+
     private var currentMusicPlayer: AVAudioPlayer?
     private var currentEffectPlayer: AVAudioPlayer?
-    var musicVolume: Float = 1.0 {
+    var musicVolume: Float = 0.1 {
         didSet { currentMusicPlayer?.volume = musicVolume }
     }
-    var effectsVolume: Float = 1.0
-    
+    var effectsVolume: Float = 0.1
+
     static let sharedInstance = AudioPlayerImpl()
-    
+
 }
 
 extension AudioPlayerImpl: AudioPlayer {
-    
+
     func isMusicPlaying() -> Bool {
         return currentMusicPlayer != nil
     }
-    
+
     func play(music: Music) {
         currentMusicPlayer?.stop()
         guard let newPlayer = try? AVAudioPlayer(soundFile: music) else { return }
@@ -35,18 +35,18 @@ extension AudioPlayerImpl: AudioPlayer {
         newPlayer.play()
         currentMusicPlayer = newPlayer
     }
-    
+
     func stop() {
-        if (currentMusicPlayer != nil){
+        if currentMusicPlayer != nil {
             currentMusicPlayer?.stop()
             currentMusicPlayer = nil
         }
     }
-    
+
     func pause(music: Music) {
         currentMusicPlayer?.pause()
     }
-    
+
     func play(effect: Effect) {
         guard let effectPlayer = try? AVAudioPlayer(soundFile: effect) else { return }
         effectPlayer.volume = effectsVolume

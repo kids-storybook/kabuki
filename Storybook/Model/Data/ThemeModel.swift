@@ -15,14 +15,14 @@ struct ThemeModel {
     var startButton: String?
     var isActive: Bool?
     var challenges: [ChallengeModel?]?
-    
+
     func feedingThemes() -> [ThemeModel] {
         let themes = [
             ThemeModel(background: "mini zoo theme", mapBackground: "zoo_background", name: "zoo", isActive: true, challenges: ChallengeModel().feedingZooChallenges()),
             ThemeModel(background: "locked theme", mapBackground: "zoo_background", name: "forest", isActive: false, challenges: []),
-            ThemeModel(background: "locked theme", mapBackground: "zoo_background", name: "garden", isActive: false, challenges: []),
+            ThemeModel(background: "locked theme", mapBackground: "zoo_background", name: "garden", isActive: false, challenges: [])
         ]
-        
+
         return themes
     }
 }

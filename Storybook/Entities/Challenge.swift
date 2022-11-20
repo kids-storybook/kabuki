@@ -12,19 +12,17 @@ import GameplayKit
 class Challenge: GKEntity {
     init(imageName: String, challengeName: String) {
         super.init()
-        
+
         let texture = SKTexture(imageNamed: imageName)
         let spriteComponent = SpriteComponent(entity: self, texture: texture, size: texture.size(), sound: nil)
-        
+
         spriteComponent.node.name = challengeName
         spriteComponent.node.zPosition = 0
-        
+
         addComponent(spriteComponent)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
-
-

@@ -9,7 +9,6 @@
 import Foundation
 import CoreData
 
-
 extension Shapes {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Shapes> {
@@ -22,6 +21,6 @@ extension Shapes {
 
 }
 
-extension Shapes : Identifiable {
+extension Shapes: Identifiable {
 
 }

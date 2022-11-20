@@ -14,7 +14,7 @@ struct ShapeTargetModel {
     var yCoordinate: Double?
     var zPosition: Double?
     var order: Int32?
-    
+
     func feedingShapeTargets() -> [ShapeTargetModel] {
         let shapeTargets = [
             ShapeTargetModel(challengeName: "lion_challenge", background: "lion_triangle_target",
@@ -23,14 +23,14 @@ struct ShapeTargetModel {
                              xCoordinate: 412, yCoordinate: 18.5, zPosition: 10.0, order: 0),
             ShapeTargetModel(challengeName: "lion_challenge", background: "lion_circle_target",
                              xCoordinate: 410.5, yCoordinate: 309, zPosition: 10.0, order: 0),
-            
+
             ShapeTargetModel(challengeName: "elephant_challenge", background: "elephant_triangle_target",
                              xCoordinate: 417, yCoordinate: -288, zPosition: 10.0, order: 0),
             ShapeTargetModel(challengeName: "elephant_challenge", background: "elephant_square_target",
                              xCoordinate: 0, yCoordinate: -288, zPosition: 10.0, order: 0),
             ShapeTargetModel(challengeName: "elephant_challenge", background: "elephant_circle_target",
                              xCoordinate: -417, yCoordinate: -288, zPosition: 10.0, order: 0),
-            
+
             ShapeTargetModel(challengeName: "panda_challenge", background: "panda_trianglebigup_target",
                              xCoordinate: 373.86, yCoordinate: 87.5, zPosition: 10.0, order: 0),
             ShapeTargetModel(challengeName: "panda_challenge", background: "panda_trianglesmalldown_target",
@@ -45,7 +45,7 @@ struct ShapeTargetModel {
                              xCoordinate: 374.859, yCoordinate: -88.5, zPosition: 10.0, order: 0),
             ShapeTargetModel(challengeName: "panda_challenge", background: "panda_square_target_2",
                              xCoordinate: 503.859, yCoordinate: -88.5, zPosition: 10.0, order: 0),
-            
+
             ShapeTargetModel(challengeName: "panda_challenge", background: "panda_circle_target",
                              xCoordinate: 302.199, yCoordinate: -84.5, zPosition: 20.0, order: 1),
             ShapeTargetModel(challengeName: "panda_challenge", background: "panda_circle_target_2",
@@ -69,9 +69,9 @@ struct ShapeTargetModel {
             ShapeTargetModel(challengeName: "panda_challenge", background: "panda_triangleup_target",
                              xCoordinate: 349.86, yCoordinate: 60.579, zPosition: 10.0, order: 1),
             ShapeTargetModel(challengeName: "panda_challenge", background: "panda_triangleup_target_2",
-                             xCoordinate: 450.346, yCoordinate: 60.579, zPosition: 10.0, order: 1),
+                             xCoordinate: 450.346, yCoordinate: 60.579, zPosition: 10.0, order: 1)
         ]
-        
+
         return shapeTargets
     }
 }

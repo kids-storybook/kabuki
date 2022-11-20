@@ -9,7 +9,6 @@
 import Foundation
 import CoreData
 
-
 extension Themes {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Themes> {
@@ -59,6 +58,6 @@ extension Themes {
 
 }
 
-extension Themes : Identifiable {
+extension Themes: Identifiable {
 
 }

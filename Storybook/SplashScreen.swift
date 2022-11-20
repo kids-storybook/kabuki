@@ -8,20 +8,20 @@
 import Foundation
 import SpriteKit
 
-class SplashScreen : SKScene {
-    
+class SplashScreen: SKScene {
+
     var splashscreen: SKNode!
     var background: SKSpriteNode!
-    
+
     override func sceneDidLoad() {
         splashscreen = childNode(withName: "SplashScreen")
         background = childNode(withName: "background") as? SKSpriteNode
     }
-    
+
     override func didMove(to view: SKView) {
         background.zPosition = 10
-        
+
         addChild(background)
     }
-    
+
 }

@@ -40,8 +40,8 @@
 		365CDA1B291D3D1F00F12BBD /* Stories+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365CDA0F291D3D1F00F12BBD /* Stories+CoreDataProperties.swift */; };
 		365CDA1C291D3D1F00F12BBD /* AnimatedShapes+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365CDA10291D3D1F00F12BBD /* AnimatedShapes+CoreDataClass.swift */; };
 		365CDA1D291D3D1F00F12BBD /* AnimatedShapes+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365CDA11291D3D1F00F12BBD /* AnimatedShapes+CoreDataProperties.swift */; };
-		365CDA1E291D3D1F00F12BBD /* AnimatedGame+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365CDA12291D3D1F00F12BBD /* AnimatedGame+CoreDataClass.swift */; };
-		365CDA1F291D3D1F00F12BBD /* AnimatedGame+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365CDA13291D3D1F00F12BBD /* AnimatedGame+CoreDataProperties.swift */; };
+		365CDA1E291D3D1F00F12BBD /* Characters+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365CDA12291D3D1F00F12BBD /* Characters+CoreDataClass.swift */; };
+		365CDA1F291D3D1F00F12BBD /* Characters+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365CDA13291D3D1F00F12BBD /* Characters+CoreDataProperties.swift */; };
 		365CDA20291D3D1F00F12BBD /* Challenges+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365CDA14291D3D1F00F12BBD /* Challenges+CoreDataClass.swift */; };
 		365CDA21291D3D1F00F12BBD /* Challenges+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365CDA15291D3D1F00F12BBD /* Challenges+CoreDataProperties.swift */; };
 		365CDA22291D3D1F00F12BBD /* Themes+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365CDA16291D3D1F00F12BBD /* Themes+CoreDataClass.swift */; };
@@ -163,8 +163,8 @@
 		365CDA0F291D3D1F00F12BBD /* Stories+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Stories+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		365CDA10291D3D1F00F12BBD /* AnimatedShapes+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnimatedShapes+CoreDataClass.swift"; sourceTree = "<group>"; };
 		365CDA11291D3D1F00F12BBD /* AnimatedShapes+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnimatedShapes+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		365CDA12291D3D1F00F12BBD /* AnimatedGame+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnimatedGame+CoreDataClass.swift"; sourceTree = "<group>"; };
-		365CDA13291D3D1F00F12BBD /* AnimatedGame+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnimatedGame+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		365CDA12291D3D1F00F12BBD /* Characters+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Characters+CoreDataClass.swift"; sourceTree = "<group>"; };
+		365CDA13291D3D1F00F12BBD /* Characters+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Characters+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		365CDA14291D3D1F00F12BBD /* Challenges+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Challenges+CoreDataClass.swift"; sourceTree = "<group>"; };
 		365CDA15291D3D1F00F12BBD /* Challenges+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Challenges+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		365CDA16291D3D1F00F12BBD /* Themes+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Themes+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -355,8 +355,8 @@
 				365CDA0F291D3D1F00F12BBD /* Stories+CoreDataProperties.swift */,
 				365CDA10291D3D1F00F12BBD /* AnimatedShapes+CoreDataClass.swift */,
 				365CDA11291D3D1F00F12BBD /* AnimatedShapes+CoreDataProperties.swift */,
-				365CDA12291D3D1F00F12BBD /* AnimatedGame+CoreDataClass.swift */,
-				365CDA13291D3D1F00F12BBD /* AnimatedGame+CoreDataProperties.swift */,
+				365CDA12291D3D1F00F12BBD /* Characters+CoreDataClass.swift */,
+				365CDA13291D3D1F00F12BBD /* Characters+CoreDataProperties.swift */,
 				365CDA14291D3D1F00F12BBD /* Challenges+CoreDataClass.swift */,
 				365CDA15291D3D1F00F12BBD /* Challenges+CoreDataProperties.swift */,
 				365CDA16291D3D1F00F12BBD /* Themes+CoreDataClass.swift */,
@@ -579,6 +579,7 @@
 				E63DEA6028E2EB32000AC43C /* Sources */,
 				E63DEA6128E2EB32000AC43C /* Frameworks */,
 				E63DEA6228E2EB32000AC43C /* Resources */,
+				E637983A292A38230044407A /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -750,6 +751,26 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		E637983A292A38230044407A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E63DEA6028E2EB32000AC43C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -791,7 +812,7 @@
 				E63798202927A6F30044407A /* StoryModel.swift in Sources */,
 				E637982A2927A9790044407A /* CharacterModel.swift in Sources */,
 				B2E1A8E229013FBB00349559 /* ShapeGameScene.swift in Sources */,
-				365CDA1E291D3D1F00F12BBD /* AnimatedGame+CoreDataClass.swift in Sources */,
+				365CDA1E291D3D1F00F12BBD /* Characters+CoreDataClass.swift in Sources */,
 				E6E3365628EC2A7600FE2BEE /* EntityManager.swift in Sources */,
 				E601FEAC29063F7E00810558 /* Model.swift in Sources */,
 				365CDA1A291D3D1F00F12BBD /* Stories+CoreDataClass.swift in Sources */,
@@ -800,7 +821,7 @@
 				E6E3365828EC2AA200FE2BEE /* SpriteComponent.swift in Sources */,
 				E63798332929F9F20044407A /* AVAudioPlayerExtension.swift in Sources */,
 				368546F728FFF3EC00E520B4 /* StartPageScene.swift in Sources */,
-				365CDA1F291D3D1F00F12BBD /* AnimatedGame+CoreDataProperties.swift in Sources */,
+				365CDA1F291D3D1F00F12BBD /* Characters+CoreDataProperties.swift in Sources */,
 				E65F543C290A6E8D00FC6AA5 /* Shape.swift in Sources */,
 				365CDA18291D3D1F00F12BBD /* Shapes+CoreDataClass.swift in Sources */,
 				E63798352929FA030044407A /* AudioFiles.swift in Sources */,

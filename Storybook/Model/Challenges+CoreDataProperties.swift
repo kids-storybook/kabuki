@@ -9,7 +9,6 @@
 import Foundation
 import CoreData
 
-
 extension Challenges {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Challenges> {
@@ -28,6 +27,6 @@ extension Challenges {
 
 }
 
-extension Challenges : Identifiable {
+extension Challenges: Identifiable {
 
 }
