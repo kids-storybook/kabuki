@@ -18,9 +18,14 @@ class AudioPlayerImpl {
     var effectsVolume: Float = 1.0
     
     static let sharedInstance = AudioPlayerImpl()
+    
 }
 
 extension AudioPlayerImpl: AudioPlayer {
+    
+    func isMusicPlaying() -> Bool {
+        return currentMusicPlayer != nil
+    }
     
     func play(music: Music) {
         currentMusicPlayer?.stop()

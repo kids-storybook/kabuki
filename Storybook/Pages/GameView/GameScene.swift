@@ -81,7 +81,7 @@ class GameScene: SKScene, Alertable {
     
     func goToScene(scene: SKScene, transition: SKTransition) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
-            scene.scaleMode = .aspectFit
+            scene.scaleMode = .aspectFill
             self.view?.presentScene(scene, transition: transition)
         }
     }
@@ -94,8 +94,7 @@ class GameScene: SKScene, Alertable {
         if let start = start, start.contains(touchLocation) {
             let location = touch.location(in: start)
             if startBtn.contains(location) {
-                AudioPlayerImpl.sharedInstance.play(effect: Audio.EffectFiles.clickedButton)
-                startBtn.buttonEffect()
+                startBtn.buttonEffect(soundEffect: Audio.EffectFiles.clickedButton)
                 goToScene(scene: getNextScene()!, transition: SKTransition.push(with: SKTransitionDirection.left, duration: 1.3))
             }
             
@@ -103,13 +102,11 @@ class GameScene: SKScene, Alertable {
             let location = touch.location(in: footer)
             
             if nxtBtn.contains(location) {
-                AudioPlayerImpl.sharedInstance.play(effect: Audio.EffectFiles.clickedButton)
-                nxtBtn.buttonEffect()
+                nxtBtn.buttonEffect(soundEffect: Audio.EffectFiles.clickedButton)
                 goToScene(scene: getNextScene()!, transition: SKTransition.push(with: SKTransitionDirection.left, duration: 1.3))
             }
             else if prevBtn.contains(location) {
-                AudioPlayerImpl.sharedInstance.play(effect: Audio.EffectFiles.clickedButton)
-                prevBtn.buttonEffect()
+                prevBtn.buttonEffect(soundEffect: Audio.EffectFiles.clickedButton)
                 goToScene(scene: getPreviousScene()!, transition: SKTransition.push(with: SKTransitionDirection.right, duration: 1.3))
             }
             
@@ -118,8 +115,7 @@ class GameScene: SKScene, Alertable {
             let location = touch.location(in: header)
             
             if exitBtn.contains(location) {
-                AudioPlayerImpl.sharedInstance.play(effect: Audio.EffectFiles.clickedButton)
-                exitBtn.buttonEffect()
+                exitBtn.buttonEffect(soundEffect: Audio.EffectFiles.clickedButton)
                 goToScene(scene: exitScene()!, transition: SKTransition.fade(withDuration: 1.3))
             }
         }
@@ -127,13 +123,11 @@ class GameScene: SKScene, Alertable {
             let location = touch.location(in: continueretry)
             
             if continueBtn.contains(location) {
-                AudioPlayerImpl.sharedInstance.play(effect: Audio.EffectFiles.clickedButton)
-                continueBtn.buttonEffect()
+                continueBtn.buttonEffect(soundEffect: Audio.EffectFiles.clickedButton)
                 goToScene(scene: getNextScene()!, transition: SKTransition.fade(withDuration: 1.3))
             }
             else if retryBtn.contains(location) {
-                AudioPlayerImpl.sharedInstance.play(effect: Audio.EffectFiles.clickedButton)
-                retryBtn.buttonEffect()
+                retryBtn.buttonEffect(soundEffect: Audio.EffectFiles.clickedButton)
                 goToScene(scene: getPreviousScene()!, transition: SKTransition.fade(withDuration: 1.3))
             }
             

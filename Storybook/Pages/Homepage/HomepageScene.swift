@@ -79,7 +79,6 @@ class HomepageScene: SKScene, Alertable {
             let location = touch.location(in: self)
             let node = atPoint(location)
             if let name = node.name, let theme = themes.filter({$0?.name == name})[0] {
-                AudioPlayerImpl.sharedInstance.stop()
                 AudioPlayerImpl.sharedInstance.play(effect: Audio.EffectFiles.clickedButton)
                 node.run(SKAction.sequence(
                     [SKAction.scale(to: 0.9, duration: 0),
@@ -88,12 +87,13 @@ class HomepageScene: SKScene, Alertable {
                 )
                 
                 if theme.isActive {
+                    AudioPlayerImpl.sharedInstance.stop()
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
                         if let scene = GKScene(fileNamed: "MapViewPageScene") {
                             // Get the SKScene from the loaded GKScene
                             if let sceneNode = scene.rootNode as! MapViewPageScene? {
                                 // Set the scale mode to scale to fit the window
-                                sceneNode.scaleMode = .aspectFit
+                                sceneNode.scaleMode = .aspectFill
                                 sceneNode.theme = theme
                                 
                                 // Present the scene

@@ -28,7 +28,8 @@ extension SKSpriteNode {
         self.run(sequence2)
     }
     
-    func buttonEffect(){
+    func buttonEffect(soundEffect: Effect){
+        AudioPlayerImpl.sharedInstance.play(effect: soundEffect)
         self.run(
             SKAction.sequence([
                 SKAction.scale(to: 0.9, duration: 0),

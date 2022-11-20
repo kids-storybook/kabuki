@@ -10,8 +10,8 @@ import GameplayKit
 
 class MapViewPageScene: SKScene {
     var theme: Themes?
-    var background: SKSpriteNode!
-    var activeChallenges: [Challenge] = []
+    var backgroundScene: Background?
+    var activeChallenges: [String:Challenge] = [:]
     var homeBtn: SKSpriteNode!
     
     // Entity-component system
@@ -22,12 +22,12 @@ class MapViewPageScene: SKScene {
         entityManager = EntityManager(scene: self)
         
         // Add background
-        background = SKSpriteNode(imageNamed: self.theme?.mapBackground ?? "")
-        background.position = CGPoint(x: 0, y: 0)
-        background.xScale = 1.237
-        background.yScale = 1.237
-        background.zPosition = -1
-        addChild(background)
+        backgroundScene = Background(imageName: self.theme?.mapBackground ?? "")
+        if let background = backgroundScene {
+            let spriteComponent = background.component(ofType: SpriteComponent.self)
+            spriteComponent?.node.size = self.frame.size
+            entityManager.add(background)
+        }
         
         // Add background sound
         if let music = Audio.MusicFiles.map[self.theme?.name ?? ""] {
@@ -40,17 +40,17 @@ class MapViewPageScene: SKScene {
     
     func showActiveCage() {
         for challenge in theme?.challenges?.array as! [Challenges] {
+            var backgroundName = challenge.background ?? ""
             if !(challenge.isActive) {
-                continue
+                backgroundName = backgroundName.replacingOccurrences(of: "bright", with: "dark")
             }
-            let activeChallenge = Challenge(imageName: challenge.background ?? "", challengeName: challenge.challengeName ?? "")
+            let activeChallenge = Challenge(imageName: backgroundName, challengeName: challenge.challengeName ?? "")
             if let spriteComponent = activeChallenge.component(ofType: SpriteComponent.self) {
                 spriteComponent.node.position = CGPoint(x: challenge.xCoordinate, y: challenge.yCoordinate)
-                spriteComponent.node.xScale = 1.237
-                spriteComponent.node.yScale = 1.237
                 spriteComponent.node.zPosition = challenge.zPosition
             }
-            activeChallenges.append(activeChallenge)
+            
+            activeChallenges[challenge.challengeName ?? ""] = activeChallenge
             entityManager.add(activeChallenge)
         }
     }
@@ -74,11 +74,12 @@ class MapViewPageScene: SKScene {
     }
     
     override func willMove(from view: SKView) {
-        background.removeFromParent()
-        background.removeAllChildren()
+        if let background = backgroundScene {
+            entityManager.remove(background)
+        }
         
         for challenge in activeChallenges {
-            entityManager.remove(challenge)
+            entityManager.remove(challenge.value)
         }
         
     }
@@ -93,15 +94,12 @@ class MapViewPageScene: SKScene {
             let node = atPoint(location)
             
             if node == homeBtn {
-                AudioPlayerImpl.sharedInstance.play(effect: Audio.EffectFiles.clickedButton)
                 AudioPlayerImpl.sharedInstance.stop()
-                homeBtn.buttonEffect()
+                homeBtn.buttonEffect(soundEffect: Audio.EffectFiles.clickedButton)
                 goToScene(scene: exitScene()!, transition: SKTransition.fade(withDuration: 1.3))
             }
         }
     }
-    
-    
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesMoved(touches, with: event)
@@ -113,15 +111,20 @@ class MapViewPageScene: SKScene {
             let location = touch.location(in: self)
             let node = atPoint(location)
             if let name = node.name, name.contains("_challenge") {
-                AudioPlayerImpl.sharedInstance.play(effect: Audio.EffectFiles.clickedButton)
-                AudioPlayerImpl.sharedInstance.stop()
-                node.run(SKAction.sequence(
-                    [SKAction.scale(to: 1.0, duration: 0),
-                     SKAction.scale(to: 1.237, duration: 0.1)
-                    ])
-                )
+                let challenge = self.activeChallenges[name]
+                
+                let challengeNode = challenge?.component(ofType: SpriteComponent.self)
+                challengeNode?.node.buttonEffect(soundEffect: Audio.EffectFiles.clickedButton)
+                
+                let selectedChallenge = self.theme?.challenges?.filtered(using: NSPredicate(format: "challengeName == %@", name)).array[0] as! Challenges
+                
+                if !selectedChallenge.isActive{
+                    return
+                }
+                
                 
                 if let scene = GKScene(fileNamed: "StartPageScene") {
+                    AudioPlayerImpl.sharedInstance.stop()
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
                         // Get the SKScene from the loaded GKScene
                         if let sceneNode = scene.rootNode as! StartPageScene? {

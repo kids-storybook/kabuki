@@ -86,6 +86,7 @@
 		E63798332929F9F20044407A /* AVAudioPlayerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63798322929F9F20044407A /* AVAudioPlayerExtension.swift */; };
 		E63798352929FA030044407A /* AudioFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63798342929FA030044407A /* AudioFiles.swift */; };
 		E63798372929FA2F0044407A /* AudioPlayerImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63798362929FA2F0044407A /* AudioPlayerImplementation.swift */; };
+		E6379839292A2B6E0044407A /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6379838292A2B6E0044407A /* Background.swift */; };
 		E63DEA6828E2EB32000AC43C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63DEA6728E2EB32000AC43C /* AppDelegate.swift */; };
 		E63DEA6C28E2EB33000AC43C /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = E63DEA6B28E2EB33000AC43C /* Actions.sks */; };
 		E63DEA7028E2EB33000AC43C /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63DEA6F28E2EB33000AC43C /* GameViewController.swift */; };
@@ -207,6 +208,7 @@
 		E63798322929F9F20044407A /* AVAudioPlayerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAudioPlayerExtension.swift; sourceTree = "<group>"; };
 		E63798342929FA030044407A /* AudioFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFiles.swift; sourceTree = "<group>"; };
 		E63798362929FA2F0044407A /* AudioPlayerImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerImplementation.swift; sourceTree = "<group>"; };
+		E6379838292A2B6E0044407A /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		E63DEA6428E2EB32000AC43C /* Storybook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Storybook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E63DEA6728E2EB32000AC43C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E63DEA6B28E2EB33000AC43C /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
@@ -524,6 +526,7 @@
 				36CAFF93290FB69F00AD54FD /* Character.swift */,
 				E65F543B290A6E8D00FC6AA5 /* Shape.swift */,
 				36A6DFDD290FC6E900E72322 /* AnimatedShape.swift */,
+				E6379838292A2B6E0044407A /* Background.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -801,6 +804,7 @@
 				E65F543C290A6E8D00FC6AA5 /* Shape.swift in Sources */,
 				365CDA18291D3D1F00F12BBD /* Shapes+CoreDataClass.swift in Sources */,
 				E63798352929FA030044407A /* AudioFiles.swift in Sources */,
+				E6379839292A2B6E0044407A /* Background.swift in Sources */,
 				365CDA20291D3D1F00F12BBD /* Challenges+CoreDataClass.swift in Sources */,
 				3655A58B28F80EF600C97C09 /* Reference+Extension.swift in Sources */,
 				E63798312929F9DA0044407A /* SoundFile.swift in Sources */,

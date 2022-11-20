@@ -14,19 +14,20 @@ class AnimationPageScene: GameScene {
     var animateShape: [AnimatedShapes]?
     var activeShapes: [AnimatedShape] = []
     var totalStories: Int?
-    var backgroundScene: SKSpriteNode!
+    var backgroundScene: Background?
     var activeLabels: [SKLabelNode]?
     
     private func setupPlayer(){
         
         makeCharacterTutorial(imageName: self.story?.characterAtlas, sound: Audio.EffectFiles.animal[self.challengeName ?? ""])
         
-        backgroundScene = SKSpriteNode(imageNamed: self.story?.background ?? "")
-        backgroundScene.position = CGPoint(x: frame.midX, y: frame.midY)
-        backgroundScene.zPosition = -10
-        backgroundScene.size = self.frame.size
-        
-        addChild(backgroundScene)
+        // Add background
+        backgroundScene = Background(imageName: self.story?.background ?? "")
+        if let background = backgroundScene {
+            let spriteComponent = background.component(ofType: SpriteComponent.self)
+            spriteComponent?.node.size = self.frame.size
+            entityManager.add(background)
+        }
         
         let rawLabels = story?.labels as? [String]
         
@@ -119,8 +120,9 @@ class AnimationPageScene: GameScene {
     }
     
     override func willMove(from view: SKView) {
-        backgroundScene.removeFromParent()
-        backgroundScene.removeAllChildren()
+        if let background = backgroundScene {
+            entityManager.remove(background)
+        }
         
         for shape in self.activeShapes {
             entityManager.remove(shape)

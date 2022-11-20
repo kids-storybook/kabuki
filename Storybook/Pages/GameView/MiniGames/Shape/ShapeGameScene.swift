@@ -17,7 +17,7 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
     var level: String?
     var nextChallenge: String?
     
-    var backgroundScene: SKSpriteNode!
+    var backgroundScene: Background?
     var targets: [String:[SpriteComponent]] = [:]
     var activeShapes: [Shape] = []
     var solvedShapes: Set<String> = Set([])
@@ -27,16 +27,20 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
         let challenge = self.theme?.challenges?.filtered(using: NSPredicate(format: "challengeName == %@", self.challengeName ?? "")).array as! [Challenges]
         
         nextChallenge = challenge[0].nextChallenge
-        
-        backgroundScene = SKSpriteNode(imageNamed: challenge[0].gameBackground ?? "")
-        backgroundScene.position = CGPoint(x: 0, y: 0)
-        backgroundScene.zPosition = -10
-        backgroundScene.size = self.frame.size
-        addChild(backgroundScene)
-        
+
+        // Add background
+        backgroundScene = Background(imageName: challenge[0].gameBackground ?? "")
+        if let background = backgroundScene {
+            let spriteComponent = background.component(ofType: SpriteComponent.self)
+            spriteComponent?.node.size = self.frame.size
+            entityManager.add(background)
+        }
+
         // Add background sound
-        if let music = Audio.MusicFiles.shapeGame[self.challengeName ?? ""] {
-            AudioPlayerImpl.sharedInstance.play(music: music)
+        if !AudioPlayerImpl.sharedInstance.isMusicPlaying() {
+            if let music = Audio.MusicFiles.shapeGame[self.challengeName ?? ""] {
+                AudioPlayerImpl.sharedInstance.play(music: music)
+            }
         }
     }
     
@@ -356,8 +360,9 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
     }
     
     override func willMove(from view: SKView) {
-        backgroundScene.removeFromParent()
-        backgroundScene.removeAllChildren()
+        if let background = backgroundScene {
+            entityManager.remove(background)
+        }
         
         for shape in self.activeShapes {
             entityManager.remove(shape)
