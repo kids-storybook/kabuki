@@ -8,9 +8,9 @@
 import Foundation
 
 enum AttributeLevel: String {
-    case easy = "easy"
-    case medium = "medium"
-    case hard = "hard"
+    case EASY = "easy"
+    case MEDIUM = "medium"
+    case HARD = "hard"
 }
 
 let themes: [ThemeModel] = ThemeModel().feedingThemes()

@@ -61,7 +61,7 @@ class StartPageScene: GameScene {
         self.setupPlayer()
 
         if self.theme == nil {
-            self.initThemeData()
+            self.fetchTheme()
         }
     }
 

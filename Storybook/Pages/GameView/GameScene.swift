@@ -95,18 +95,25 @@ class GameScene: SKScene, Alertable {
             let location = touch.location(in: start)
             if startBtn.contains(location) {
                 startBtn.buttonEffect(soundEffect: Audio.EffectFiles.clickedButton)
-                goToScene(scene: getNextScene()!, transition: SKTransition.push(with: SKTransitionDirection.left, duration: 1.3))
+                goToScene(
+                    scene: getNextScene()!,
+                    transition: SKTransition.push(with: SKTransitionDirection.left, duration: 1.3)
+                )
             }
-
         } else if let footer = footer, footer.contains(touchLocation) {
             let location = touch.location(in: footer)
-
             if nxtBtn.contains(location) {
                 nxtBtn.buttonEffect(soundEffect: Audio.EffectFiles.clickedButton)
-                goToScene(scene: getNextScene()!, transition: SKTransition.push(with: SKTransitionDirection.left, duration: 1.3))
+                goToScene(
+                    scene: getNextScene()!,
+                    transition: SKTransition.push(with: SKTransitionDirection.left, duration: 1.3)
+                )
             } else if prevBtn.contains(location) {
                 prevBtn.buttonEffect(soundEffect: Audio.EffectFiles.clickedButton)
-                goToScene(scene: getPreviousScene()!, transition: SKTransition.push(with: SKTransitionDirection.right, duration: 1.3))
+                goToScene(
+                    scene: getPreviousScene()!,
+                    transition: SKTransition.push(with: SKTransitionDirection.right, duration: 1.3)
+                )
             }
 
         } else if header.contains(touchLocation) {
@@ -114,38 +121,55 @@ class GameScene: SKScene, Alertable {
 
             if exitBtn.contains(location) {
                 exitBtn.buttonEffect(soundEffect: Audio.EffectFiles.clickedButton)
-                goToScene(scene: exitScene()!, transition: SKTransition.fade(withDuration: 1.3))
+                goToScene(scene: exitScene()!,
+                          transition: SKTransition.fade(withDuration: 1.3)
+                )
             }
         } else if let continueretry = continueretry, continueretry.contains(touchLocation) {
             let location = touch.location(in: continueretry)
 
             if continueBtn.contains(location) {
                 continueBtn.buttonEffect(soundEffect: Audio.EffectFiles.clickedButton)
-                goToScene(scene: getNextScene()!, transition: SKTransition.fade(withDuration: 1.3))
+                goToScene(
+                    scene: getNextScene()!,
+                    transition: SKTransition.fade(withDuration: 1.3)
+                )
             } else if retryBtn.contains(location) {
                 retryBtn.buttonEffect(soundEffect: Audio.EffectFiles.clickedButton)
-                goToScene(scene: getPreviousScene()!, transition: SKTransition.fade(withDuration: 1.3))
+                goToScene(
+                    scene: getPreviousScene()!,
+                    transition: SKTransition.fade(withDuration: 1.3)
+                )
             }
 
         } else {
             let node = touchedNodes[0]
             switch node.name {
             case "Persegi":
-                AudioPlayerImpl.sharedInstance.play(effect: Audio.EffectFiles.shape[node.name ?? ""] ?? Audio.EffectFiles.clickedButton)
+                AudioPlayerImpl.sharedInstance.play(
+                    effect: Audio.EffectFiles.shape[node.name ?? ""] ?? Audio.EffectFiles.clickedButton
+                )
             case "Segitiga":
-                AudioPlayerImpl.sharedInstance.play(effect: Audio.EffectFiles.shape[node.name ?? ""] ?? Audio.EffectFiles.clickedButton)
+                AudioPlayerImpl.sharedInstance.play(
+                    effect: Audio.EffectFiles.shape[node.name ?? ""] ?? Audio.EffectFiles.clickedButton
+                )
             case "Lingkaran":
-                AudioPlayerImpl.sharedInstance.play(effect: Audio.EffectFiles.shape[node.name ?? ""] ?? Audio.EffectFiles.clickedButton)
+                AudioPlayerImpl.sharedInstance.play(
+                    effect: Audio.EffectFiles.shape[node.name ?? ""] ?? Audio.EffectFiles.clickedButton
+                )
             default:
-                if let spriteComponent = character?.component(ofType: SpriteComponent.self), spriteComponent.node.contains(touchLocation) {
-                    AudioPlayerImpl.sharedInstance.play(effect: spriteComponent.sound ?? Audio.EffectFiles.clickedButton)
+                if let spriteComponent = character?.component(ofType: SpriteComponent.self),
+                    spriteComponent.node.contains(touchLocation) {
+                    AudioPlayerImpl.sharedInstance.play(
+                        effect: spriteComponent.sound ?? Audio.EffectFiles.clickedButton
+                    )
                 }
             }
             touchDown(at: touchLocation)
         }
     }
 
-    func initThemeData() {
+    func fetchTheme() {
         do {
             let fetchRequest = Themes.fetchRequest()
             fetchRequest.predicate = NSPredicate(format: "name == %@", self.themeName ?? "")

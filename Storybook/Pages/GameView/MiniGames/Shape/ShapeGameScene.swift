@@ -23,7 +23,9 @@ class ShapeGameScene: GameScene {
 
     func setBackground() {
 
-        let challenge = self.theme?.challenges?.filtered(using: NSPredicate(format: "challengeName == %@", self.challengeName ?? "")).array as? [Challenges]
+        let challenge = self.theme?.challenges?.filtered(using: NSPredicate(
+            format: "challengeName == %@", self.challengeName ?? "")
+        ).array as? [Challenges]
 
         nextChallenge = challenge?[0].nextChallenge
 
@@ -43,12 +45,19 @@ class ShapeGameScene: GameScene {
         }
     }
 
+    func setupEasyShapes(spriteComponent: SpriteComponent, idxX: Int, idx: Int) {
+        spriteComponent.node.position = CGPoint(
+            x: frame.midX-CGFloat(idxX*250),
+            y: frame.midY - 200 + CGFloat(((idx/3)*180))
+        )
+    }
+
     func setupShapes() {
-        // Create shapes
         var idxY = 0
         for (idx, shape) in (shapes ?? []).enumerated() {
             let name = (shape?.background ?? "")
-            let activeShape = Shape(imageName: name, shapeName: name, sound: Audio.EffectFiles.animal[shape?.challengeName ?? ""])
+            let activeShape = Shape(imageName: name, shapeName: name,
+                                    sound: Audio.EffectFiles.animal[shape?.challengeName ?? ""])
             if let spriteComponent = activeShape.component(ofType: SpriteComponent.self) {
                 var idxX = idx
                 if idxX > 3 {
@@ -56,16 +65,25 @@ class ShapeGameScene: GameScene {
                 }
 
                 switch level {
-                case AttributeLevel.easy.rawValue:
-                    spriteComponent.node.position = CGPoint(x: frame.midX-CGFloat(idxX*250), y: frame.midY - 200 + CGFloat(((idx/3)*180)))
-                case AttributeLevel.medium.rawValue:
+                case AttributeLevel.EASY.rawValue:
+                    setupEasyShapes(spriteComponent: spriteComponent, idxX: idxX, idx: idx)
+                case AttributeLevel.MEDIUM.rawValue:
                     let mod = (shapes?.count ?? 0) % 4
 
-                    spriteComponent.node.position = CGPoint(x: frame.width / 4 - CGFloat(idxX*250), y: frame.midY + 50 + CGFloat(((idx / 4)*180)))
+                    spriteComponent.node.position = CGPoint(
+                        x: frame.width / 4 - CGFloat(idxX*250),
+                        y: frame.midY + 50 + CGFloat(((idx / 4)*180))
+                    )
                     if mod == 1 {
-                        spriteComponent.node.position = CGPoint(x: frame.width / 4 - CGFloat(idxX*250), y: frame.midY + 50 + CGFloat(((idxY)*180)))
+                        spriteComponent.node.position = CGPoint(
+                            x: frame.width / 4 - CGFloat(idxX*250),
+                            y: frame.midY + 50 + CGFloat(((idxY)*180))
+                        )
                         if idx < 5 {
-                            spriteComponent.node.position = CGPoint(x: (frame.midX) + CGFloat((idx-2)*250), y: frame.midY + 50 + CGFloat(((idx/5)*180)))
+                            spriteComponent.node.position = CGPoint(
+                                x: (frame.midX) + CGFloat((idx-2)*250),
+                                y: frame.midY + 50 + CGFloat(((idx/5)*180))
+                            )
                         }
                         idxY = 1
                         break
@@ -73,25 +91,39 @@ class ShapeGameScene: GameScene {
 
                     if idx >= (shapes?.count ?? 0) - mod && mod != 0 {
                         if mod == 3 {
-                            spriteComponent.node.position = CGPoint(x: (frame.midX) + CGFloat((idxX-1)*250), y: frame.midY + 50 + CGFloat(((idx/4)*180)))
+                            spriteComponent.node.position = CGPoint(
+                                x: (frame.midX) + CGFloat((idxX-1)*250),
+                                y: frame.midY + 50 + CGFloat(((idx/4)*180))
+                            )
                             break
                         } else if mod == 2 {
-                            spriteComponent.node.position = CGPoint(x: (frame.midX) + CGFloat((Double(Double(idxX)-0.5)*250)), y: frame.midY + 50 + CGFloat(((idx/4)*180)))
+                            spriteComponent.node.position = CGPoint(
+                                x: (frame.midX) + CGFloat((Double(Double(idxX)-0.5)*250)),
+                                y: frame.midY + 50 + CGFloat(((idx/4)*180))
+                            )
                             break
                         }
                     }
 
-                case AttributeLevel.hard.rawValue:
+                case AttributeLevel.HARD.rawValue:
                     let mod = (shapes?.count ?? 0) % 4
 
-                    spriteComponent.node.position = CGPoint(x: (frame.midX) - CGFloat(idxX*200), y: frame.minY + 100 + CGFloat(((idx / 4)*180)))
+                    spriteComponent.node.position = CGPoint(
+                        x: (frame.midX) - CGFloat(idxX*200),
+                        y: frame.minY + 100 + CGFloat(((idx / 4)*180)))
                     if shapes?.count ?? 0 > 8 && mod == 0 {
-                        spriteComponent.node.position = CGPoint(x: (frame.midX) - CGFloat(idxX*180), y: frame.minY + 100 + CGFloat(((idx / 4)*110)))
+                        spriteComponent.node.position = CGPoint(
+                            x: (frame.midX) - CGFloat(idxX*180),
+                            y: frame.minY + 100 + CGFloat(((idx / 4)*110)))
                     }
                     if mod == 1 {
-                        spriteComponent.node.position = CGPoint(x: (frame.midX) - CGFloat(idxX*200), y: frame.minY + 100 + CGFloat(((idxY)*180)))
+                        spriteComponent.node.position = CGPoint(
+                            x: (frame.midX) - CGFloat(idxX*200),
+                            y: frame.minY + 100 + CGFloat(((idxY)*180)))
                         if idx < 5 {
-                            spriteComponent.node.position = CGPoint(x: (frame.midX) - CGFloat((idx-2)*200), y: frame.minY + 100 + CGFloat(((idx/5)*180)))
+                            spriteComponent.node.position = CGPoint(
+                                x: (frame.midX) - CGFloat((idx-2)*200),
+                                y: frame.minY + 100 + CGFloat(((idx/5)*180)))
                         }
                         idxY = 1
                         break
@@ -99,10 +131,14 @@ class ShapeGameScene: GameScene {
 
                     if idx >= (shapes?.count ?? 0) - mod && mod != 0 {
                         if mod == 3 {
-                            spriteComponent.node.position = CGPoint(x: (frame.midX) - CGFloat(idxX*250), y: frame.minY + 100 + CGFloat(((idx/4)*200)))
+                            spriteComponent.node.position = CGPoint(
+                                x: (frame.midX) - CGFloat(idxX*250),
+                                y: frame.minY + 100 + CGFloat(((idx/4)*200)))
                             break
                         } else if mod == 2 {
-                            spriteComponent.node.position = CGPoint(x: (frame.midX) + CGFloat((Double(Double(idxX)-0.5)*200)), y: frame.minY + 100 + CGFloat(((idx/4)*200)))
+                            spriteComponent.node.position = CGPoint(
+                                x: (frame.midX) + CGFloat((Double(Double(idxX)-0.5)*200)),
+                                y: frame.minY + 100 + CGFloat(((idx/4)*200)))
                             break
                         }
                     }
@@ -119,21 +155,22 @@ class ShapeGameScene: GameScene {
 
     func setupTargets() {
         var order: Int32 = 0
-        if level == AttributeLevel.hard.rawValue {
+        if level == AttributeLevel.HARD.rawValue {
             order = self.shapeOrder ?? 0
         }
 
         for target in shapeTargets.filter({$0.order == order}) {
             if target.challengeName == self.challengeName {
                 let name = (target.background ?? "")
-
                 let shapeTarget = Shape(imageName: target.background ?? "", shapeName: name, sound: nil)
                 if let spriteComponent = shapeTarget.component(ofType: SpriteComponent.self) {
-                    spriteComponent.node.position = CGPoint(x: target.xCoordinate ?? 0, y: target.yCoordinate ?? 0)
+                    spriteComponent.node.position = CGPoint(
+                        x: target.xCoordinate ?? 0,
+                        y: target.yCoordinate ?? 0)
                     switch level {
-                    case AttributeLevel.easy.rawValue:
+                    case AttributeLevel.EASY.rawValue:
                         spriteComponent.node.setScale(0.58)
-                    case AttributeLevel.medium.rawValue:
+                    case AttributeLevel.MEDIUM.rawValue:
                         spriteComponent.node.setScale(0.58)
                     default:
                         spriteComponent.node.setScale(1)
@@ -159,7 +196,9 @@ class ShapeGameScene: GameScene {
         wrongPopUp.text = "Ayo coba lagi!"
         wrongPopUp.fontSize = 50
         wrongPopUp.fontColor = SKColor.white
-        wrongPopUp.position = CGPoint(x: frame.midX, y: frame.height/4)
+        wrongPopUp.position = CGPoint(
+            x: frame.midX,
+            y: frame.height/4)
         wrongPopUp.addStroke(color: UIColor.red, width: 5.0)
         wrongPopUp.zPosition = 20
 
@@ -176,15 +215,17 @@ class ShapeGameScene: GameScene {
 
     func handleShapeBehavior(node: SKNode, name: String) {
         switch level {
-        case AttributeLevel.easy.rawValue:
+        case AttributeLevel.EASY.rawValue:
             break
-        case AttributeLevel.medium.rawValue:
+        case AttributeLevel.MEDIUM.rawValue:
             node.run(SKAction.fadeOut(withDuration: 1))
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                let entity = self.activeShapes.filter({$0.component(ofType: SpriteComponent.self)?.node.name == name})[0]
+                let entity = self.activeShapes.filter({
+                    $0.component(ofType: SpriteComponent.self)?.node.name == name
+                })[0]
                 self.entityManager.remove(entity)
             }
-        case AttributeLevel.hard.rawValue:
+        case AttributeLevel.HARD.rawValue:
             break
         default:
             break
@@ -232,38 +273,35 @@ class ShapeGameScene: GameScene {
     func handleShapeAnswer(node: SKNode) {
         let name = (node.name ?? "")
         let arrOfTargets = targets[name.components(separatedBy: "_")[1]]
-        for target in arrOfTargets ?? [] {
-            if target.node.frame.contains(node.position) {
-                node.position = target.node.position
-                node.zPosition = target.node.zPosition
-                AudioPlayerImpl.sharedInstance.play(effect: Audio.EffectFiles.correctAnswer)
-                solvedShapes.insert(node.name ?? "")
-                handleShapeBehavior(node: node, name: node.name ?? "")
-                return
-            }
+        for target in arrOfTargets ?? [] where target.node.frame.contains(node.position) {
+            node.position = target.node.position
+            node.zPosition = target.node.zPosition
+            AudioPlayerImpl.sharedInstance.play(effect: Audio.EffectFiles.correctAnswer)
+            solvedShapes.insert(node.name ?? "")
+            handleShapeBehavior(node: node, name: node.name ?? "")
+            return
+
         }
 
         var isAnswerWrong = false
 
-        for shapes in targets {
-            if shapes.key != name {
-                for shape in shapes.value {
-                    if shape.node.frame.contains(node.position) {
-                        wrongClick()
-                        node.run(
-                            SKAction.sequence([
-                                SKAction.scale(by: 0.5, duration: 0.15),
-                                SKAction.wait(forDuration: 0.01),
-                                SKAction.scale(by: 2, duration: 0.15)
-                            ])
-                        )
-                        node.position = CGPoint(x: frame.midX, y: frame.midY - 200)
-                        node.zPosition = 10
-                        solvedShapes.remove(node.name ?? "")
-                        isAnswerWrong = true
-                        break
-                    }
-                }
+        for shapes in targets where shapes.key != name {
+            for shape in shapes.value where shape.node.frame.contains(node.position) {
+                wrongClick()
+                node.run(
+                    SKAction.sequence([
+                        SKAction.scale(by: 0.5, duration: 0.15),
+                        SKAction.wait(forDuration: 0.01),
+                        SKAction.scale(by: 2, duration: 0.15)
+                    ])
+                )
+                node.position = CGPoint(
+                    x: frame.midX,
+                    y: frame.midY - 200)
+                node.zPosition = 10
+                solvedShapes.remove(node.name ?? "")
+                isAnswerWrong = true
+                break
             }
         }
 
@@ -277,9 +315,7 @@ class ShapeGameScene: GameScene {
         entityManager = EntityManager(scene: self)
         getAllShapeAssets()
         getCharacterAssets()
-
         makeCharacterGame(imageName: self.characters?.characterAtlas, sound: nil)
-
         setBackground()
         setupShapes()
         setupTargets()
@@ -289,15 +325,15 @@ class ShapeGameScene: GameScene {
         super.touchesBegan(touches, with: event)
         if let touch = touches.first {
             let location = touch.location(in: self)
-
             let touchedNodes = self.nodes(at: location)
-            for node in touchedNodes.reversed() {
-                if !(node.name?.contains("target") ?? true) {
-                    if node.name?.contains("triangle") ?? false || node.name?.contains("square") ?? false || node.name?.contains("circle") ?? false {
-                        AudioPlayerImpl.sharedInstance.play(effect: Audio.EffectFiles.clickedButton)
-                        self.currentNode = node
-                        self.currentNode?.zPosition = 20
-                    }
+
+            for node in touchedNodes.reversed() where !(node.name?.contains("target") ?? true) {
+                if node.name?.contains("triangle") ?? false ||
+                    node.name?.contains("square") ?? false ||
+                    node.name?.contains("circle") ?? false {
+                    AudioPlayerImpl.sharedInstance.play(effect: Audio.EffectFiles.clickedButton)
+                    self.currentNode = node
+                    self.currentNode?.zPosition = 20
                 }
             }
         }
@@ -318,14 +354,12 @@ class ShapeGameScene: GameScene {
         if let node = self.currentNode {
             self.handleShapeAnswer(node: node)
         }
-
         if self.solvedShapes.count == self.shapes?.count {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                 for shape in self.activeShapes {
                     self.entityManager.remove(shape)
                 }
                 self.solvedShapes.removeAll()
-
                 if Int(self.shapeOrder ?? 0) + 1 < self.totalGames ?? 0 {
                     let scene = SKScene(fileNamed: "ShapeGameScene") as? ShapeGameScene
                     scene?.challengeName = self.challengeName
@@ -344,7 +378,6 @@ class ShapeGameScene: GameScene {
                 }
             }
         }
-
         self.currentNode = nil
     }
 

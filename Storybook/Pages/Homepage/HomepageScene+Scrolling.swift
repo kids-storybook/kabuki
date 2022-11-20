@@ -9,11 +9,13 @@ import SpriteKit
 
 extension HomepageScene {
     func prepareHorizontalScrolling() {
-        // Attention, actually I dont really understand about scaling things in here especially contentSizeWidthScale variable.
+        // Attention, actually I dont really understand about scaling
+        // things in here especially contentSizeWidthScale variable.
         // Please don't change anything from here except u already ask me first. -Jay
 
         // Set up scrollView
-        scrollView = SwiftySKScrollView(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height), moveableNode: moveableNode, direction: .horizontal)
+        scrollView = SwiftySKScrollView(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height),
+                                        moveableNode: moveableNode, direction: .horizontal)
 
         guard let scrollView = scrollView else { return }
 
@@ -21,16 +23,24 @@ extension HomepageScene {
         if themes.count > 4 {
             contentSizeWidthScale = CGFloat(themes.count-1)
         }
-        scrollView.contentSize = CGSize(width: scrollView.frame.width * contentSizeWidthScale, height: scrollView.frame.height) // * 3 makes it three times as wide as screen
+        scrollView.contentSize = CGSize(
+            width: scrollView.frame.width * contentSizeWidthScale,
+            height: scrollView.frame.height) // * 3 makes it three times as wide as screen
         view?.addSubview(scrollView)
 
         // Set scrollView to first page
-        scrollView.setContentOffset(CGPoint(x: scrollView.frame.width * CGFloat(contentSizeWidthScale-1), y: 0), animated: true)
+        scrollView.setContentOffset(CGPoint(
+            x: scrollView.frame.width * CGFloat(contentSizeWidthScale-1),
+            y: 0), animated: true
+        )
 
-        var spriteMapPosition = CGPoint(x: frame.midX - (scrollView.frame.width * CGFloat(contentSizeWidthScale-1)), y: frame.midY)
+        var spriteMapPosition = CGPoint(
+            x: frame.midX - (scrollView.frame.width * CGFloat(contentSizeWidthScale-1)),
+            y: frame.midY
+        )
 
         // ScrollView Sprites for each content in scrollView
-        for (_, item) in themes.enumerated() {
+        for item in themes {
             if let themeAssets = item {
                 let container = SKNode()
 
@@ -45,7 +55,10 @@ extension HomepageScene {
                 let tempPosition = spriteMapPosition
 
                 if let spriteComponent = spriteMap.component(ofType: SpriteComponent.self) {
-                    spriteMapPosition = CGPoint(x: spriteMapPosition.x + (spriteComponent.node.size.width*1.2), y: spriteMapPosition.y)
+                    spriteMapPosition = CGPoint(
+                        x: spriteMapPosition.x + (spriteComponent.node.size.width*1.2),
+                        y: spriteMapPosition.y
+                    )
                     container.addChild(spriteComponent.node)
                 }
 

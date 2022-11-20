@@ -15,22 +15,32 @@ struct ShapeTargetModel {
     var zPosition: Double?
     var order: Int32?
 
-    func feedingShapeTargets() -> [ShapeTargetModel] {
-        let shapeTargets = [
+    func feedingLionShapeTargets() -> [ShapeTargetModel] {
+        let targets = [
             ShapeTargetModel(challengeName: "lion_challenge", background: "lion_triangle_target",
                              xCoordinate: 417, yCoordinate: -288, zPosition: 10.0, order: 0),
             ShapeTargetModel(challengeName: "lion_challenge", background: "lion_square_target",
                              xCoordinate: 412, yCoordinate: 18.5, zPosition: 10.0, order: 0),
             ShapeTargetModel(challengeName: "lion_challenge", background: "lion_circle_target",
-                             xCoordinate: 410.5, yCoordinate: 309, zPosition: 10.0, order: 0),
+                             xCoordinate: 410.5, yCoordinate: 309, zPosition: 10.0, order: 0)
+        ]
+        return targets
+    }
 
+    func feedingElephantShapeTargets() -> [ShapeTargetModel] {
+        let targets = [
             ShapeTargetModel(challengeName: "elephant_challenge", background: "elephant_triangle_target",
                              xCoordinate: 417, yCoordinate: -288, zPosition: 10.0, order: 0),
             ShapeTargetModel(challengeName: "elephant_challenge", background: "elephant_square_target",
                              xCoordinate: 0, yCoordinate: -288, zPosition: 10.0, order: 0),
             ShapeTargetModel(challengeName: "elephant_challenge", background: "elephant_circle_target",
-                             xCoordinate: -417, yCoordinate: -288, zPosition: 10.0, order: 0),
+                             xCoordinate: -417, yCoordinate: -288, zPosition: 10.0, order: 0)
+        ]
+        return targets
+    }
 
+    func feedingPandaShapeTargets() -> [ShapeTargetModel] {
+        let targets = [
             ShapeTargetModel(challengeName: "panda_challenge", background: "panda_trianglebigup_target",
                              xCoordinate: 373.86, yCoordinate: 87.5, zPosition: 10.0, order: 0),
             ShapeTargetModel(challengeName: "panda_challenge", background: "panda_trianglesmalldown_target",
@@ -71,7 +81,15 @@ struct ShapeTargetModel {
             ShapeTargetModel(challengeName: "panda_challenge", background: "panda_triangleup_target_2",
                              xCoordinate: 450.346, yCoordinate: 60.579, zPosition: 10.0, order: 1)
         ]
+        return targets
+    }
 
-        return shapeTargets
+    func feedingShapeTargets() -> [ShapeTargetModel] {
+        var targets: [ShapeTargetModel] = []
+        targets += feedingLionShapeTargets()
+        targets += feedingElephantShapeTargets()
+        targets += feedingPandaShapeTargets()
+
+        return targets
     }
 }

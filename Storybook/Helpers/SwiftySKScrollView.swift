@@ -54,8 +54,10 @@ public class SwiftySKScrollView: UIScrollView {
     /// Initialization
     ///
     /// - parameter frame: The frame of the UIScrollView.
-    /// - parameter moveableNode: The moveable node that will contain all the sprites to be scrolled by the UIScrollView.
+    /// - parameter moveableNode: The moveable node that will contain
+    /// all the sprites to be scrolled by the UIScrollView.
     /// - parameter direction: The scroll direction of the UIScrollView.
+
     public init(frame: CGRect, moveableNode: SKNode, direction: ScrollDirection) {
         self.moveableNode = moveableNode
         self.direction = direction

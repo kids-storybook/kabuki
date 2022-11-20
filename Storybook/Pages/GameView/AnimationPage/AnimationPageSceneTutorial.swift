@@ -147,7 +147,7 @@ class AnimationPageSceneTutorial: GameScene {
         scene?.challengeName = self.challengeName
         scene?.theme = self.theme
         scene?.shapeOrder = 0
-        scene?.level = challenge?.level ?? AttributeLevel.easy.rawValue
+        scene?.level = challenge?.level ?? AttributeLevel.EASY.rawValue
         return scene
     }
 

@@ -11,16 +11,16 @@ import UIKit
 
 class Helper {
     var container: NSPersistentContainer!
-    
+
     init() {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         container = appDelegate?.persistentContainer
     }
-    
+
     func getBackgroundContext () -> NSManagedObjectContext {
         return container.viewContext
     }
-    
+
     func saveContext(saveContext: NSManagedObjectContext?) {
         guard let context = saveContext else { return }
         do {
@@ -29,7 +29,7 @@ class Helper {
             print("Error saving managed object context: \(error)")
         }
     }
-    
+
     func seedingThemes(context: NSManagedObjectContext) {
         for data in themes {
             let theme = Themes(context: context)
@@ -37,14 +37,14 @@ class Helper {
             theme.mapBackground = data.mapBackground
             theme.name = data.name
             theme.isActive = data.isActive ?? false
-            
+
             let challenges: [Challenges] = seedingChallenges(context: context, data: data)
-            
+
             theme.addToChallenges(NSOrderedSet(array: challenges))
             self.saveContext(saveContext: context)
         }
     }
-    
+
     func seedingChallenges(context: NSManagedObjectContext, data: ThemeModel) -> [Challenges] {
         var challenges: [Challenges] = []
         for challengeModel in data.challenges ?? [] {
@@ -62,7 +62,7 @@ class Helper {
         }
         return challenges
     }
-    
+
     func seedingStories(context: NSManagedObjectContext) {
         for data in stories {
             let story = Stories(context: context)
@@ -79,7 +79,7 @@ class Helper {
             self.saveContext(saveContext: context)
         }
     }
-    
+
     func seedingShapes(context: NSManagedObjectContext) {
         for data in shapes {
             let shape = Shapes(context: context)
@@ -89,7 +89,7 @@ class Helper {
             self.saveContext(saveContext: context)
         }
     }
-    
+
     func seedingAnimatedShapes(context: NSManagedObjectContext) {
         for data in shapeAnimations {
             let shapeAnimation = AnimatedShapes(context: context)
@@ -103,7 +103,7 @@ class Helper {
             self.saveContext(saveContext: context)
         }
     }
-    
+
     func seedingCharacters(context: NSManagedObjectContext) {
         for data in characters {
             let character = Characters(context: context)
@@ -114,65 +114,32 @@ class Helper {
             self.saveContext(saveContext: context)
         }
     }
-    
+
+    func resetAllRecords(entity: String, context: NSManagedObjectContext) {
+        let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
+        do {
+            try context.execute(deleteRequest)
+            try context.save()
+        } catch let error as NSError {
+            print(error)
+        }
+    }
+
     func initializeDB (context: NSManagedObjectContext) {
         context.automaticallyMergesChangesFromParent = true
-        
-        var fetchRequest: NSFetchRequest<NSFetchRequestResult> = Themes.fetchRequest()
-        var deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-        
-        do {
-            try context.execute(deleteRequest)
-            try context.save()
-        } catch let error as NSError {
-            print(error)
-        }
-        
-        fetchRequest = Stories.fetchRequest()
-        deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-        
-        do {
-            try context.execute(deleteRequest)
-            try context.save()
-        } catch let error as NSError {
-            print(error)
-        }
-        
-        fetchRequest = Shapes.fetchRequest()
-        deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-        
-        do {
-            try context.execute(deleteRequest)
-            try context.save()
-        } catch let error as NSError {
-            print(error)
-        }
-        
-        fetchRequest = AnimatedShapes.fetchRequest()
-        deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-        
-        do {
-            try context.execute(deleteRequest)
-            try context.save()
-        } catch let error as NSError {
-            print(error)
-        }
-        
-        fetchRequest = Characters.fetchRequest()
-        deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-        
-        do {
-            try context.execute(deleteRequest)
-            try context.save()
-        } catch let error as NSError {
-            print(error)
-        }
-        
+
+        resetAllRecords(entity: "Themes", context: context)
+        resetAllRecords(entity: "Stories", context: context)
+        resetAllRecords(entity: "Shapes", context: context)
+        resetAllRecords(entity: "AnimatedShapes", context: context)
+        resetAllRecords(entity: "Characters", context: context)
+
         self.seedingThemes(context: context)
         self.seedingStories(context: context)
         self.seedingShapes(context: context)
         self.seedingAnimatedShapes(context: context)
         self.seedingCharacters(context: context)
-        
+
     }
 }

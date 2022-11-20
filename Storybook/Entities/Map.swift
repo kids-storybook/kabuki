@@ -10,7 +10,7 @@ import SpriteKit
 import GameplayKit
 
 class Map: GKEntity {
-    init(themeAssets: Themes, mapName: String,         mapPosition: CGPoint, frame: CGRect) {
+    init(themeAssets: Themes, mapName: String, mapPosition: CGPoint, frame: CGRect) {
         super.init()
 
         let texture = SKTexture(imageNamed: themeAssets.background ?? "")
