@@ -4,7 +4,7 @@ import GameplayKit
 // 1
 class Character: GKEntity {
     
-    init(imageName: String, sound: SKAction) {
+    init(imageName: String, sound: Effect?) {
         super.init()
         
         var characterAtlas: SKTextureAtlas {
@@ -23,7 +23,6 @@ class Character: GKEntity {
             for name in imagesName {
                 let textureNames = characterAtlas.textureNamed(name)
                 index.append(textureNames)
-                print("index: \(index)")
             }
             return index
             

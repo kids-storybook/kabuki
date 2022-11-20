@@ -1,23 +1,23 @@
 //
-//  Challenge.swift
+//  Background.swift
 //  Storybook
 //
-//  Created by zy on 18/10/22.
+//  Created by zy on 20/11/22.
 //
 
 import Foundation
 import SpriteKit
 import GameplayKit
 
-class Challenge: GKEntity {
-    init(imageName: String, challengeName: String) {
+class Background: GKEntity {
+    init(imageName: String) {
         super.init()
         
         let texture = SKTexture(imageNamed: imageName)
         let spriteComponent = SpriteComponent(entity: self, texture: texture, size: texture.size(), sound: nil)
         
-        spriteComponent.node.name = challengeName
-        spriteComponent.node.zPosition = 0
+        spriteComponent.node.zPosition = -10
+        spriteComponent.node.position = CGPoint(x: 0, y: 0)
         
         addComponent(spriteComponent)
     }
@@ -26,5 +26,3 @@ class Challenge: GKEntity {
         fatalError("init(coder:) has not been implemented")
     }
 }
-
-

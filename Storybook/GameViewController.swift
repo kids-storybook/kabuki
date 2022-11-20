@@ -16,10 +16,6 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(GameViewController.playBackgroundSound(_:)), name: NSNotification.Name(rawValue: "PlayBackgroundSound"), object: nil)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(GameViewController.stopBackgroundSound(_:)), name: NSNotification.Name(rawValue: "StopBackgroundSound"), object: nil)
-        
         let helper = Helper()
         let context = helper.getBackgroundContext()
         helper.initializeDB(context: context)
@@ -36,56 +32,14 @@ class GameViewController: UIViewController {
                 // Present the scene
                 if let view = self.view as! SKView? {
                     view.ignoresSiblingOrder = true
-                    view.showsFPS = true
-                    view.showsNodeCount = true
-                    view.showsDrawCount = true
+                    view.showsFPS = false
+                    view.showsNodeCount = false
+                    view.showsDrawCount = false
                     view.presentScene(sceneNode)
                 }
             }
         }
     }
-    
-    @objc func playBackgroundSound(_ notification: Notification) {
-        let name = (notification as NSNotification).userInfo!["fileToPlay"] as! String
-        let isKeepToPlay = (notification as NSNotification).userInfo!["isKeepToPlay"] as! Bool
-        
-        if (bgSoundPlayer != nil){
-            if (isKeepToPlay) {
-                return
-            }
-            bgSoundPlayer!.stop()
-            bgSoundPlayer = nil
-        }
-        
-        if (name != ""){
-            let fileURL:URL = Bundle.main.url(forResource:name, withExtension: "mp3")!
-
-            do {
-                bgSoundPlayer = try AVAudioPlayer(contentsOf: fileURL)
-            } catch _{
-                bgSoundPlayer = nil
-            }
-            
-            bgSoundPlayer!.numberOfLoops = -1
-            bgSoundPlayer!.prepareToPlay()
-            bgSoundPlayer!.play()
-        }
-    }
-    
-    @objc func stopBackgroundSound(_ notification: Notification) {
-        if (bgSoundPlayer != nil){
-            bgSoundPlayer!.stop()
-            bgSoundPlayer = nil
-        }
-    }
-    
-    //    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-    //        if UIDevice.current.userInterfaceIdiom == .phone {
-    //            return .allButUpsideDown
-    //        } else {
-    //            return .all
-    //        }
-    //    }
     
     override var shouldAutorotate: Bool {
         true

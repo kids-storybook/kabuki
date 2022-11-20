@@ -68,11 +68,25 @@
 		B2E1A8E229013FBB00349559 /* ShapeGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E1A8E129013FBB00349559 /* ShapeGameScene.swift */; };
 		B2E1A8E62901682E00349559 /* ShapeGameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = B2E1A8E52901682E00349559 /* ShapeGameScene.sks */; };
 		E601FE7E290634C700810558 /* storybook.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E601FE7C290634C700810558 /* storybook.xcdatamodeld */; };
-		E601FEAC29063F7E00810558 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = E601FEAB29063F7E00810558 /* Data.swift */; };
+		E601FEAC29063F7E00810558 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = E601FEAB29063F7E00810558 /* Model.swift */; };
 		E601FEC8290686AE00810558 /* AnimationPageScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = E601FEC6290686AE00810558 /* AnimationPageScene.sks */; };
 		E601FEC9290686AE00810558 /* AnimationPageScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E601FEC7290686AE00810558 /* AnimationPageScene.swift */; };
 		E60A5AB82912ECF600A968DC /* Story Music-lion_challenge.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E60A5AB62912ECF600A968DC /* Story Music-lion_challenge.mp3 */; };
 		E60A5ABB2912FCD500A968DC /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = E60A5ABA2912FCD500A968DC /* GameScene.sks */; };
+		E637981E292778CC0044407A /* ChallengeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E637981D292778CC0044407A /* ChallengeModel.swift */; };
+		E63798202927A6F30044407A /* StoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E637981F2927A6F30044407A /* StoryModel.swift */; };
+		E63798222927A76F0044407A /* ThemeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63798212927A76F0044407A /* ThemeModel.swift */; };
+		E63798242927A81A0044407A /* ShapeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63798232927A81A0044407A /* ShapeModel.swift */; };
+		E63798262927A88B0044407A /* ShapeTargetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63798252927A88B0044407A /* ShapeTargetModel.swift */; };
+		E63798282927A92B0044407A /* ShapeAnimationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63798272927A92B0044407A /* ShapeAnimationModel.swift */; };
+		E637982A2927A9790044407A /* CharacterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63798292927A9790044407A /* CharacterModel.swift */; };
+		E637982C2929D03F0044407A /* Alertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E637982B2929D03F0044407A /* Alertable.swift */; };
+		E637982F2929F9BE0044407A /* AudioPlayerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E637982E2929F9BE0044407A /* AudioPlayerProtocol.swift */; };
+		E63798312929F9DA0044407A /* SoundFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63798302929F9DA0044407A /* SoundFile.swift */; };
+		E63798332929F9F20044407A /* AVAudioPlayerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63798322929F9F20044407A /* AVAudioPlayerExtension.swift */; };
+		E63798352929FA030044407A /* AudioFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63798342929FA030044407A /* AudioFiles.swift */; };
+		E63798372929FA2F0044407A /* AudioPlayerImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63798362929FA2F0044407A /* AudioPlayerImplementation.swift */; };
+		E6379839292A2B6E0044407A /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6379838292A2B6E0044407A /* Background.swift */; };
 		E63DEA6828E2EB32000AC43C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63DEA6728E2EB32000AC43C /* AppDelegate.swift */; };
 		E63DEA6C28E2EB33000AC43C /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = E63DEA6B28E2EB33000AC43C /* Actions.sks */; };
 		E63DEA7028E2EB33000AC43C /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63DEA6F28E2EB33000AC43C /* GameViewController.swift */; };
@@ -94,7 +108,6 @@
 		E6D4168728E591720030681F /* ButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D4168628E591720030681F /* ButtonNode.swift */; };
 		E6E3363028EC273D00FE2BEE /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E3362F28EC273D00FE2BEE /* Helper.swift */; };
 		E6E3363228EC276500FE2BEE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E3363128EC276500FE2BEE /* Constants.swift */; };
-		E6E3363428EC27C800FE2BEE /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E3363328EC27C800FE2BEE /* SoundManager.swift */; };
 		E6E3365228EC295700FE2BEE /* HomepageScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = E6E3365128EC295700FE2BEE /* HomepageScene.sks */; };
 		E6E3365428EC297200FE2BEE /* HomepageScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E3365328EC297200FE2BEE /* HomepageScene.swift */; };
 		E6E3365628EC2A7600FE2BEE /* EntityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E3365528EC2A7600FE2BEE /* EntityManager.swift */; };
@@ -107,7 +120,7 @@
 		E6E3369228ECA2FF00FE2BEE /* lioncry3.wav in Resources */ = {isa = PBXBuildFile; fileRef = E6E3368728ECA2FF00FE2BEE /* lioncry3.wav */; };
 		E6E495C72924E20800001804 /* Mini Games-lion_challenge.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E6E495C62924E20800001804 /* Mini Games-lion_challenge.mp3 */; };
 		E6E50CD2290280C70065BB71 /* Opening Music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E6E50CCE290280C60065BB71 /* Opening Music.mp3 */; };
-		E6E50CD3290280C70065BB71 /* Maps Music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E6E50CCF290280C70065BB71 /* Maps Music.mp3 */; };
+		E6E50CD3290280C70065BB71 /* Maps Music-zoo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E6E50CCF290280C70065BB71 /* Maps Music-zoo.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -177,11 +190,25 @@
 		B2E1A8E129013FBB00349559 /* ShapeGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeGameScene.swift; sourceTree = "<group>"; };
 		B2E1A8E52901682E00349559 /* ShapeGameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ShapeGameScene.sks; sourceTree = "<group>"; };
 		E601FE7D290634C700810558 /* storybook.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = storybook.xcdatamodel; sourceTree = "<group>"; };
-		E601FEAB29063F7E00810558 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		E601FEAB29063F7E00810558 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		E601FEC6290686AE00810558 /* AnimationPageScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = AnimationPageScene.sks; sourceTree = "<group>"; };
 		E601FEC7290686AE00810558 /* AnimationPageScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationPageScene.swift; sourceTree = "<group>"; };
 		E60A5AB62912ECF600A968DC /* Story Music-lion_challenge.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Story Music-lion_challenge.mp3"; sourceTree = "<group>"; };
 		E60A5ABA2912FCD500A968DC /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		E637981D292778CC0044407A /* ChallengeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeModel.swift; sourceTree = "<group>"; };
+		E637981F2927A6F30044407A /* StoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryModel.swift; sourceTree = "<group>"; };
+		E63798212927A76F0044407A /* ThemeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeModel.swift; sourceTree = "<group>"; };
+		E63798232927A81A0044407A /* ShapeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeModel.swift; sourceTree = "<group>"; };
+		E63798252927A88B0044407A /* ShapeTargetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeTargetModel.swift; sourceTree = "<group>"; };
+		E63798272927A92B0044407A /* ShapeAnimationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeAnimationModel.swift; sourceTree = "<group>"; };
+		E63798292927A9790044407A /* CharacterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterModel.swift; sourceTree = "<group>"; };
+		E637982B2929D03F0044407A /* Alertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alertable.swift; sourceTree = "<group>"; };
+		E637982E2929F9BE0044407A /* AudioPlayerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerProtocol.swift; sourceTree = "<group>"; };
+		E63798302929F9DA0044407A /* SoundFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundFile.swift; sourceTree = "<group>"; };
+		E63798322929F9F20044407A /* AVAudioPlayerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAudioPlayerExtension.swift; sourceTree = "<group>"; };
+		E63798342929FA030044407A /* AudioFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFiles.swift; sourceTree = "<group>"; };
+		E63798362929FA2F0044407A /* AudioPlayerImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerImplementation.swift; sourceTree = "<group>"; };
+		E6379838292A2B6E0044407A /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		E63DEA6428E2EB32000AC43C /* Storybook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Storybook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E63DEA6728E2EB32000AC43C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E63DEA6B28E2EB33000AC43C /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
@@ -206,7 +233,6 @@
 		E6D4168628E591720030681F /* ButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonNode.swift; sourceTree = "<group>"; };
 		E6E3362F28EC273D00FE2BEE /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		E6E3363128EC276500FE2BEE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		E6E3363328EC27C800FE2BEE /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		E6E3365128EC295700FE2BEE /* HomepageScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = HomepageScene.sks; sourceTree = "<group>"; };
 		E6E3365328EC297200FE2BEE /* HomepageScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomepageScene.swift; sourceTree = "<group>"; };
 		E6E3365528EC2A7600FE2BEE /* EntityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityManager.swift; sourceTree = "<group>"; };
@@ -219,7 +245,7 @@
 		E6E3368728ECA2FF00FE2BEE /* lioncry3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = lioncry3.wav; sourceTree = "<group>"; };
 		E6E495C62924E20800001804 /* Mini Games-lion_challenge.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mini Games-lion_challenge.mp3"; sourceTree = "<group>"; };
 		E6E50CCE290280C60065BB71 /* Opening Music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Opening Music.mp3"; sourceTree = "<group>"; };
-		E6E50CCF290280C70065BB71 /* Maps Music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Maps Music.mp3"; sourceTree = "<group>"; };
+		E6E50CCF290280C70065BB71 /* Maps Music-zoo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Maps Music-zoo.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -322,6 +348,7 @@
 		E601FE8C29063EAE00810558 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E637981C292778B80044407A /* Data */,
 				365CDA0C291D3D1F00F12BBD /* Shapes+CoreDataClass.swift */,
 				365CDA0D291D3D1F00F12BBD /* Shapes+CoreDataProperties.swift */,
 				365CDA0E291D3D1F00F12BBD /* Stories+CoreDataClass.swift */,
@@ -334,7 +361,6 @@
 				365CDA15291D3D1F00F12BBD /* Challenges+CoreDataProperties.swift */,
 				365CDA16291D3D1F00F12BBD /* Themes+CoreDataClass.swift */,
 				365CDA17291D3D1F00F12BBD /* Themes+CoreDataProperties.swift */,
-				E601FEAB29063F7E00810558 /* Data.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -348,6 +374,33 @@
 				E601FEC7290686AE00810558 /* AnimationPageScene.swift */,
 			);
 			path = AnimationPage;
+			sourceTree = "<group>";
+		};
+		E637981C292778B80044407A /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				E637981D292778CC0044407A /* ChallengeModel.swift */,
+				E601FEAB29063F7E00810558 /* Model.swift */,
+				E637981F2927A6F30044407A /* StoryModel.swift */,
+				E63798212927A76F0044407A /* ThemeModel.swift */,
+				E63798232927A81A0044407A /* ShapeModel.swift */,
+				E63798252927A88B0044407A /* ShapeTargetModel.swift */,
+				E63798272927A92B0044407A /* ShapeAnimationModel.swift */,
+				E63798292927A9790044407A /* CharacterModel.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		E637982D2929F9AD0044407A /* SoundManager */ = {
+			isa = PBXGroup;
+			children = (
+				E637982E2929F9BE0044407A /* AudioPlayerProtocol.swift */,
+				E63798302929F9DA0044407A /* SoundFile.swift */,
+				E63798322929F9F20044407A /* AVAudioPlayerExtension.swift */,
+				E63798342929FA030044407A /* AudioFiles.swift */,
+				E63798362929FA2F0044407A /* AudioPlayerImplementation.swift */,
+			);
+			path = SoundManager;
 			sourceTree = "<group>";
 		};
 		E63DEA5B28E2EB32000AC43C = {
@@ -414,6 +467,7 @@
 		E68484E628E682C6003C9CF3 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				E637982D2929F9AD0044407A /* SoundManager */,
 				E6D4168628E591720030681F /* ButtonNode.swift */,
 				3655A58A28F80EF600C97C09 /* Reference+Extension.swift */,
 				36AF5FC02906F4F300C25714 /* UIColor+Extension.swift */,
@@ -421,9 +475,9 @@
 				36F0E081290A2D69000702C0 /* SKSpriteNode+Extension.swift */,
 				E6E3362F28EC273D00FE2BEE /* Helper.swift */,
 				E6E3363128EC276500FE2BEE /* Constants.swift */,
-				E6E3363328EC27C800FE2BEE /* SoundManager.swift */,
 				E6E3365F28EC494900FE2BEE /* SwiftySKScrollView.swift */,
 				364FDDE2291B8386005CA0CA /* Gamescene+Extension.swift */,
+				E637982B2929D03F0044407A /* Alertable.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -446,7 +500,7 @@
 				365736162923A00200E173FE /* Mini Games-panda_challenge.mp3 */,
 				E60A5AB62912ECF600A968DC /* Story Music-lion_challenge.mp3 */,
 				365736122923914F00E173FE /* Story Music-panda_challenge.mp3 */,
-				E6E50CCF290280C70065BB71 /* Maps Music.mp3 */,
+				E6E50CCF290280C70065BB71 /* Maps Music-zoo.mp3 */,
 				E6E50CCE290280C60065BB71 /* Opening Music.mp3 */,
 				E6E3368728ECA2FF00FE2BEE /* lioncry3.wav */,
 				E66AAA202923CC14000B604A /* VO-Lingkaran.mp3 */,
@@ -472,6 +526,7 @@
 				36CAFF93290FB69F00AD54FD /* Character.swift */,
 				E65F543B290A6E8D00FC6AA5 /* Shape.swift */,
 				36A6DFDD290FC6E900E72322 /* AnimatedShape.swift */,
+				E6379838292A2B6E0044407A /* Background.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -661,7 +716,7 @@
 				E66AAA242923CC14000B604A /* VO-Persegi.mp3 in Resources */,
 				3644BD9E28FF02DA0027DDE5 /* Poppins-Regular.ttf in Resources */,
 				368546F428FFF3CE00E520B4 /* StartPageScene.sks in Resources */,
-				E6E50CD3290280C70065BB71 /* Maps Music.mp3 in Resources */,
+				E6E50CD3290280C70065BB71 /* Maps Music-zoo.mp3 in Resources */,
 				E60A5AB82912ECF600A968DC /* Story Music-lion_challenge.mp3 in Resources */,
 				E63DEA6C28E2EB33000AC43C /* Actions.sks in Resources */,
 			);
@@ -709,6 +764,7 @@
 				E6E3366028EC494900FE2BEE /* SwiftySKScrollView.swift in Sources */,
 				E6BBB41F28F4527D00D003F0 /* MapViewPageScene.swift in Sources */,
 				365CDA23291D3D1F00F12BBD /* Themes+CoreDataProperties.swift in Sources */,
+				E63798222927A76F0044407A /* ThemeModel.swift in Sources */,
 				364FDDE3291B8386005CA0CA /* Gamescene+Extension.swift in Sources */,
 				365CDA22291D3D1F00F12BBD /* Themes+CoreDataClass.swift in Sources */,
 				E69FDAE128FEDF030059FD30 /* Challenge.swift in Sources */,
@@ -718,33 +774,45 @@
 				E6E3365428EC297200FE2BEE /* HomepageScene.swift in Sources */,
 				36AF5FC12906F4F300C25714 /* UIColor+Extension.swift in Sources */,
 				E63DEA7028E2EB33000AC43C /* GameViewController.swift in Sources */,
+				E637982C2929D03F0044407A /* Alertable.swift in Sources */,
 				360A8EF128F4598C00949260 /* StoryPageScene.swift in Sources */,
 				E63DEA6828E2EB32000AC43C /* AppDelegate.swift in Sources */,
 				365CDA21291D3D1F00F12BBD /* Challenges+CoreDataProperties.swift in Sources */,
+				E63798372929FA2F0044407A /* AudioPlayerImplementation.swift in Sources */,
 				36AF5FC32906F6DA00C25714 /* SKLabelNode+Extension.swift in Sources */,
 				36F7DC772907B67C0045984E /* AnimationPageSceneTutorial.swift in Sources */,
+				E63798242927A81A0044407A /* ShapeModel.swift in Sources */,
 				365CDA19291D3D1F00F12BBD /* Shapes+CoreDataProperties.swift in Sources */,
 				E601FEC9290686AE00810558 /* AnimationPageScene.swift in Sources */,
 				E6D4168728E591720030681F /* ButtonNode.swift in Sources */,
+				E63798262927A88B0044407A /* ShapeTargetModel.swift in Sources */,
 				E6E3363028EC273D00FE2BEE /* Helper.swift in Sources */,
 				E6E3366228EC49D700FE2BEE /* HomepageScene+Scrolling.swift in Sources */,
+				E63798202927A6F30044407A /* StoryModel.swift in Sources */,
+				E637982A2927A9790044407A /* CharacterModel.swift in Sources */,
 				B2E1A8E229013FBB00349559 /* ShapeGameScene.swift in Sources */,
 				365CDA1E291D3D1F00F12BBD /* AnimatedGame+CoreDataClass.swift in Sources */,
 				E6E3365628EC2A7600FE2BEE /* EntityManager.swift in Sources */,
-				E601FEAC29063F7E00810558 /* Data.swift in Sources */,
+				E601FEAC29063F7E00810558 /* Model.swift in Sources */,
 				365CDA1A291D3D1F00F12BBD /* Stories+CoreDataClass.swift in Sources */,
+				E637982F2929F9BE0044407A /* AudioPlayerProtocol.swift in Sources */,
 				36F0E082290A2D69000702C0 /* SKSpriteNode+Extension.swift in Sources */,
 				E6E3365828EC2AA200FE2BEE /* SpriteComponent.swift in Sources */,
+				E63798332929F9F20044407A /* AVAudioPlayerExtension.swift in Sources */,
 				368546F728FFF3EC00E520B4 /* StartPageScene.swift in Sources */,
 				365CDA1F291D3D1F00F12BBD /* AnimatedGame+CoreDataProperties.swift in Sources */,
 				E65F543C290A6E8D00FC6AA5 /* Shape.swift in Sources */,
 				365CDA18291D3D1F00F12BBD /* Shapes+CoreDataClass.swift in Sources */,
+				E63798352929FA030044407A /* AudioFiles.swift in Sources */,
+				E6379839292A2B6E0044407A /* Background.swift in Sources */,
 				365CDA20291D3D1F00F12BBD /* Challenges+CoreDataClass.swift in Sources */,
 				3655A58B28F80EF600C97C09 /* Reference+Extension.swift in Sources */,
+				E63798312929F9DA0044407A /* SoundFile.swift in Sources */,
 				E601FE7E290634C700810558 /* storybook.xcdatamodeld in Sources */,
-				E6E3363428EC27C800FE2BEE /* SoundManager.swift in Sources */,
 				365CDA1B291D3D1F00F12BBD /* Stories+CoreDataProperties.swift in Sources */,
 				36CAFF94290FB69F00AD54FD /* Character.swift in Sources */,
+				E63798282927A92B0044407A /* ShapeAnimationModel.swift in Sources */,
+				E637981E292778CC0044407A /* ChallengeModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

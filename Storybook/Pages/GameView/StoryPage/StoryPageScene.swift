@@ -5,17 +5,20 @@ import GameplayKit
 class StoryPageScene: GameScene {
     
     var totalStories: Int?
-    var backgroundScene: SKSpriteNode!
+    var backgroundScene: Background?
     var activeLabels: [SKLabelNode]?
     
     private func setupPlayer(){
-        makeCharacter(imageName: self.story?.characterAtlas, sound: SoundManager.sharedInstance.soundOfAnimal[self.challengeName ?? ""] ?? SKAction())
+        makeCharacter(imageName: self.story?.characterAtlas, sound: Audio.EffectFiles.animal[self.challengeName ?? ""])
         entityManager = EntityManager(scene: self)
-        backgroundScene = SKSpriteNode(imageNamed: self.story?.background ?? "")
-        
-        backgroundScene.position = CGPoint(x: frame.midX, y: frame.midY)
-        backgroundScene.zPosition = -10
-        backgroundScene.size = self.frame.size
+
+        // Add background
+        backgroundScene = Background(imageName: self.story?.background ?? "")
+        if let background = backgroundScene {
+            let spriteComponent = background.component(ofType: SpriteComponent.self)
+            spriteComponent?.node.size = self.frame.size
+            entityManager.add(background)
+        }
         
         let rawLabels = story?.labels as? [String]
         
@@ -33,8 +36,6 @@ class StoryPageScene: GameScene {
             }
         }
         
-        addChild(backgroundScene)
-        
     }
     
     override func didMove(to view: SKView) {
@@ -50,8 +51,7 @@ class StoryPageScene: GameScene {
             fetchRequest.predicate = NSPredicate(format: "challengeName == %@", challengeName ?? "")
             totalStories = try context.count(for: fetchRequest)
         } catch let error as NSError {
-            print(error)
-            print("error while fetching data in core data!")
+            showAlert(withTitle: "Oops, there is error while fetching data.", message: error.localizedDescription)
         }
         
         self.setupPlayer()
@@ -89,15 +89,16 @@ class StoryPageScene: GameScene {
     }
     
     override func exitScene() -> SKScene? {
-        NotificationCenter.default.post(name: Notification.Name(rawValue: "StopBackgroundSound"), object: self, userInfo:nil)
+        AudioPlayerImpl.sharedInstance.stop()
         let scene = SKScene(fileNamed: "MapViewPageScene") as! MapViewPageScene
         scene.theme = self.theme
         return scene
     }
     
     override func willMove(from view: SKView) {
-        backgroundScene.removeFromParent()
-        backgroundScene.removeAllChildren()
+        if let background = backgroundScene {
+            entityManager.remove(background)
+        }
         
         for label in (self.activeLabels ?? []) as [SKLabelNode] {
             label.removeFromParent()

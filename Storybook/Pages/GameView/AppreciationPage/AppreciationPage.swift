@@ -3,26 +3,29 @@ import SpriteKit
 import GameplayKit
 
 class AppreciationPage: GameScene {
-    var backgroundScene: SKSpriteNode!
+    var backgroundScene: Background?
     var titleImage: SKSpriteNode!
     var nextChallenge: String?
     
     private func setupPlayer(){
         
-        makeCharacter(imageName: self.story?.characterAtlas, sound: SoundManager.sharedInstance.soundOfAnimal[self.challengeName ?? ""] ?? SKAction())
-        backgroundScene = SKSpriteNode(imageNamed: self.story?.background ?? "")
-        titleImage = SKSpriteNode(imageNamed: self.story?.title ?? "")
+        makeCharacter(imageName: self.story?.characterAtlas, sound: Audio.EffectFiles.animal[self.challengeName ?? ""])
         
+        titleImage = SKSpriteNode(imageNamed: self.story?.title ?? "")
         titleImage.position = CGPoint(x: frame.midX, y: frame.midY/2+240)
         titleImage.zPosition = 15
         
-        backgroundScene.position = CGPoint(x: 0, y: 0)
-        backgroundScene.zPosition = -10
-        backgroundScene.size = self.frame.size
-        backgroundScene.run(SoundManager.sharedInstance.soundOfAnimal[self.challengeName ?? ""] ?? SKAction())
+        // Add background
+        backgroundScene = Background(imageName: self.story?.background ?? "")
+        if let background = backgroundScene {
+            let spriteComponent = background.component(ofType: SpriteComponent.self)
+            spriteComponent?.node.size = self.frame.size
+            entityManager.add(background)
+        }
+        
+        AudioPlayerImpl.sharedInstance.play(effect: Audio.EffectFiles.animal[self.challengeName ?? ""] ?? Audio.EffectFiles.clickedButton)
         
         addChild(titleImage)
-        addChild(backgroundScene)
         
     }
     
@@ -46,8 +49,7 @@ class AppreciationPage: GameScene {
             fetchRequest.fetchLimit = 1
             story = try context.fetch(fetchRequest)[0]
         } catch let error as NSError {
-            print(error)
-            print("error while fetching data in core data!")
+            showAlert(withTitle: "Oops, there is error while fetching data.", message: error.localizedDescription)
         }
         
         do {
@@ -61,8 +63,7 @@ class AppreciationPage: GameScene {
             challenge.isActive = true
             try context.save()
         } catch let error as NSError {
-            print(error)
-            print("error while fetching data in core data!")
+            showAlert(withTitle: "Oops, there is error while fetching data.", message: error.localizedDescription)
         }
         
         self.setupPlayer()
@@ -89,8 +90,9 @@ class AppreciationPage: GameScene {
     }
     
     override func willMove(from view: SKView) {
-        backgroundScene.removeFromParent()
-        backgroundScene.removeAllChildren()
+        if let background = backgroundScene {
+            entityManager.remove(background)
+        }
         
         titleImage.removeFromParent()
         titleImage.removeAllChildren()

@@ -11,7 +11,7 @@ import GameplayKit
 
 extension GameScene {
     
-    func makeCharacter(imageName: String?, sound: SKAction) {
+    func makeCharacter(imageName: String?, sound: Effect?) {
         
         entityManager = EntityManager(scene: self)
         
@@ -23,7 +23,7 @@ extension GameScene {
         entityManager.add(character!)
     }
     
-    func makeCharacterTutorial(imageName: String?, sound: SKAction) {
+    func makeCharacterTutorial(imageName: String?, sound: Effect?) {
         entityManager = EntityManager(scene: self)
         
         character = Character(imageName: imageName ?? "", sound: sound)
@@ -36,7 +36,7 @@ extension GameScene {
         entityManager.add(character!)
     }
     
-    func makeCharacterGame(imageName: String?, sound: SKAction) {
+    func makeCharacterGame(imageName: String?, sound: Effect?) {
         entityManager = EntityManager(scene: self)
         
         character = Character(imageName: imageName ?? "", sound: sound)

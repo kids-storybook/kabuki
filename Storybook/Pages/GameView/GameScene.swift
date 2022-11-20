@@ -9,7 +9,7 @@ import Foundation
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, Alertable {
     var start: SKNode!
     var header: SKNode!
     var footer: SKNode!
@@ -94,12 +94,7 @@ class GameScene: SKScene {
         if let start = start, start.contains(touchLocation) {
             let location = touch.location(in: start)
             if startBtn.contains(location) {
-                startBtn.run(SoundManager.sharedInstance.soundClickedButton)
-                startBtn.run(SKAction.sequence(
-                    [SKAction.scale(to: 0.9, duration: 0),
-                     SKAction.scale(to: 1.0, duration: 0.1)
-                    ])
-                )
+                startBtn.buttonEffect(soundEffect: Audio.EffectFiles.clickedButton)
                 goToScene(scene: getNextScene()!, transition: SKTransition.push(with: SKTransitionDirection.left, duration: 1.3))
             }
             
@@ -107,21 +102,11 @@ class GameScene: SKScene {
             let location = touch.location(in: footer)
             
             if nxtBtn.contains(location) {
-                nxtBtn.run(SoundManager.sharedInstance.soundClickedButton)
-                nxtBtn.run(SKAction.sequence(
-                    [SKAction.scale(to: 0.9, duration: 0),
-                     SKAction.scale(to: 1.0, duration: 0.1)
-                    ])
-                )
+                nxtBtn.buttonEffect(soundEffect: Audio.EffectFiles.clickedButton)
                 goToScene(scene: getNextScene()!, transition: SKTransition.push(with: SKTransitionDirection.left, duration: 1.3))
             }
             else if prevBtn.contains(location) {
-                prevBtn.run(SoundManager.sharedInstance.soundClickedButton)
-                prevBtn.run(SKAction.sequence(
-                    [SKAction.scale(to: 0.9, duration: 0),
-                     SKAction.scale(to: 1.0, duration: 0.1)
-                    ])
-                )
+                prevBtn.buttonEffect(soundEffect: Audio.EffectFiles.clickedButton)
                 goToScene(scene: getPreviousScene()!, transition: SKTransition.push(with: SKTransitionDirection.right, duration: 1.3))
             }
             
@@ -130,12 +115,7 @@ class GameScene: SKScene {
             let location = touch.location(in: header)
             
             if exitBtn.contains(location) {
-                exitBtn.run(SoundManager.sharedInstance.soundClickedButton)
-                exitBtn.run(SKAction.sequence(
-                    [SKAction.scale(to: 0.9, duration: 0),
-                     SKAction.scale(to: 1.0, duration: 0.1)
-                    ])
-                )
+                exitBtn.buttonEffect(soundEffect: Audio.EffectFiles.clickedButton)
                 goToScene(scene: exitScene()!, transition: SKTransition.fade(withDuration: 1.3))
             }
         }
@@ -143,21 +123,11 @@ class GameScene: SKScene {
             let location = touch.location(in: continueretry)
             
             if continueBtn.contains(location) {
-                continueBtn.run(SoundManager.sharedInstance.soundClickedButton)
-                continueBtn.run(SKAction.sequence(
-                    [SKAction.scale(to: 0.9, duration: 0),
-                     SKAction.scale(to: 1.0, duration: 0.1)
-                    ])
-                )
+                continueBtn.buttonEffect(soundEffect: Audio.EffectFiles.clickedButton)
                 goToScene(scene: getNextScene()!, transition: SKTransition.fade(withDuration: 1.3))
             }
             else if retryBtn.contains(location) {
-                retryBtn.run(SoundManager.sharedInstance.soundClickedButton)
-                retryBtn.run(SKAction.sequence(
-                    [SKAction.scale(to: 0.9, duration: 0),
-                     SKAction.scale(to: 1.0, duration: 0.1)
-                    ])
-                )
+                retryBtn.buttonEffect(soundEffect: Audio.EffectFiles.clickedButton)
                 goToScene(scene: getPreviousScene()!, transition: SKTransition.fade(withDuration: 1.3))
             }
             
@@ -166,14 +136,14 @@ class GameScene: SKScene {
             let node = touchedNodes[0]
             switch node.name{
             case "Persegi":
-                node.run(SoundManager.sharedInstance.soundOfShape["Persegi"] ?? SKAction())
+                AudioPlayerImpl.sharedInstance.play(effect: Audio.EffectFiles.shape[node.name ?? ""] ?? Audio.EffectFiles.clickedButton)
             case "Segitiga":
-                node.run(SoundManager.sharedInstance.soundOfShape["Segitiga"] ?? SKAction())
+                AudioPlayerImpl.sharedInstance.play(effect: Audio.EffectFiles.shape[node.name ?? ""] ?? Audio.EffectFiles.clickedButton)
             case "Lingkaran":
-                node.run(SoundManager.sharedInstance.soundOfShape["Lingkaran"] ?? SKAction())
+                AudioPlayerImpl.sharedInstance.play(effect: Audio.EffectFiles.shape[node.name ?? ""] ?? Audio.EffectFiles.clickedButton)
             default:
                 if let spriteComponent = character?.component(ofType: SpriteComponent.self), spriteComponent.node.contains(touchLocation) {
-                    spriteComponent.node.run(spriteComponent.sound)
+                    AudioPlayerImpl.sharedInstance.play(effect: spriteComponent.sound ?? Audio.EffectFiles.clickedButton)
                 }
             }
             touchDown(at: touchLocation)
@@ -187,8 +157,7 @@ class GameScene: SKScene {
             fetchRequest.fetchLimit = 1
             theme = try context.fetch(fetchRequest)[0]
         } catch let error as NSError {
-            print(error)
-            print("error while fetching data in core data!")
+            showAlert(withTitle: "Oops, there is error while fetching data.", message: error.localizedDescription)
         }
     }
     

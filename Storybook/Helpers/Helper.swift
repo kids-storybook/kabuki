@@ -33,7 +33,6 @@ class Helper {
     
     func initializeDB (context: NSManagedObjectContext) {
         context.automaticallyMergesChangesFromParent = true
-        //        context.perform {
         var fetchRequest: NSFetchRequest<NSFetchRequestResult> = Themes.fetchRequest()
         var deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         
@@ -45,7 +44,7 @@ class Helper {
             print(error)
         }
         
-        for data in initThemeData {
+        for data in themes {
             let theme = Themes(context: context)
             theme.background = data.background
             theme.mapBackground = data.mapBackground
@@ -54,7 +53,7 @@ class Helper {
             
             var challenges: [Challenges] = []
             
-            for c in data.challenges{
+            for c in data.challenges ?? []{
                 let challenge = Challenges(context: context)
                 challenge.isActive = c?.isActive ?? false
                 challenge.background = c?.background
@@ -82,11 +81,11 @@ class Helper {
             print(error)
         }
         
-        for data in initAssessmentData {
+        for data in stories {
             let story = Stories(context: context)
             story.challengeName = data.challengeName
             story.title = data.title
-            story.order = data.order
+            story.order = data.order ?? 0
             story.labels = data.labels as? [String]
             story.labelColor = data.labelColor?.rawValue
             story.background = data.background
@@ -108,10 +107,10 @@ class Helper {
             print(error)
         }
         
-        for data in initShapeData {
+        for data in shapes {
             let shape = Shapes(context: context)
             shape.challengeName = data.challengeName
-            shape.order = data.order
+            shape.order = data.order ?? 0
             shape.background = data.background
             self.saveContext(saveContext: context)
         }
@@ -127,15 +126,15 @@ class Helper {
             print(error)
         }
         
-        for data in initAnimationData {
-            let animatedShape = AnimatedShapes(context: context)
-            animatedShape.challengeName = data.challengeName
-            animatedShape.shapeImage = data.shapeImage
-            animatedShape.xCoordinateShape = data.xCoordinateShape ?? 0.0
-            animatedShape.yCoordinateShape = data.yCoordinateShape ?? 0.0
-            animatedShape.shapeName = data.shapeName
-            animatedShape.xCoordinateFont = data.xCoordinateFont ?? 0.0
-            animatedShape.yCoordinateFont = data.yCoordinateFont ?? 0.0
+        for data in shapeAnimations {
+            let shapeAnimation = AnimatedShapes(context: context)
+            shapeAnimation.challengeName = data.challengeName
+            shapeAnimation.shapeImage = data.shapeImage
+            shapeAnimation.xCoordinateShape = data.xCoordinateShape ?? 0.0
+            shapeAnimation.yCoordinateShape = data.yCoordinateShape ?? 0.0
+            shapeAnimation.shapeName = data.shapeName
+            shapeAnimation.xCoordinateFont = data.xCoordinateFont ?? 0.0
+            shapeAnimation.yCoordinateFont = data.yCoordinateFont ?? 0.0
             self.saveContext(saveContext: context)
         }
         
@@ -150,34 +149,13 @@ class Helper {
             print(error)
         }
         
-        for data in initAnimatedGameCharacterData {
-            let animatedGame = AnimatedGame(context: context)
-            animatedGame.challengeName = data.challengeName
-            animatedGame.characterAtlas = data.characterAtlas
-            animatedGame.characterXPosition = data.characterXPosition ?? 0.0
-            animatedGame.characterYPosition = data.characterYPosition ?? 0.0
+        for data in characters {
+            let character = AnimatedGame(context: context)
+            character.challengeName = data.challengeName
+            character.characterAtlas = data.characterAtlas
+            character.characterXPosition = data.characterXPosition ?? 0.0
+            character.characterYPosition = data.characterYPosition ?? 0.0
             self.saveContext(saveContext: context)
         }
-        
-        do {
-            let themes = try context.fetch(Themes.fetchRequest())
-            for data in themes {
-                print(data.name ?? "")
-            }
-            
-            let stories = try context.fetch(Stories.fetchRequest())
-            for data in stories {
-                print(data.labels ?? [])
-            }
-            
-            let challenges = try context.fetch(Challenges.fetchRequest())
-            for data in challenges {
-                print(data.challengeName ?? "")
-            }
-        } catch let error as NSError {
-            print(error)
-            print("error while fetching data in core data!")
-        }
-        //        }
     }
 }

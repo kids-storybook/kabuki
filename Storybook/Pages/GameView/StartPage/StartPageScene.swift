@@ -6,28 +6,33 @@ import Mixpanel
 class StartPageScene: GameScene {
     
     var totalStories: Int?
-    var backgroundScene: SKSpriteNode!
+    var backgroundScene: Background?
     var titleImage: SKSpriteNode!
     
     private func setupPlayer(){
         
-        makeCharacter(imageName: self.story?.characterAtlas, sound: SKAction())
-        backgroundScene = SKSpriteNode(imageNamed: self.story?.background ?? "")
-        titleImage = SKSpriteNode(imageNamed: self.story?.title ?? "")
+        makeCharacter(imageName: self.story?.characterAtlas, sound: nil)
         
+        titleImage = SKSpriteNode(imageNamed: self.story?.title ?? "")
         titleImage.position = CGPoint(x: frame.midX, y: frame.midY/2+240)
         titleImage.zPosition = 15
         
-        backgroundScene.position = CGPoint(x: 0, y: 0)
-        backgroundScene.zPosition = -10
-        backgroundScene.size = self.frame.size
+        // Add background
+        backgroundScene = Background(imageName: self.story?.background ?? "")
+        if let background = backgroundScene {
+            let spriteComponent = background.component(ofType: SpriteComponent.self)
+            spriteComponent?.node.size = self.frame.size
+            entityManager.add(background)
+        }
         
         // Add background sound
-        let soundPayload: [String: Any] = ["fileToPlay" : "Story Music-\(self.challengeName ?? "")", "isKeepToPlay": true ]
-        NotificationCenter.default.post(name: Notification.Name(rawValue: "PlayBackgroundSound"), object: self, userInfo:soundPayload)
+        if !AudioPlayerImpl.sharedInstance.isMusicPlaying() {
+            if let music = Audio.MusicFiles.story[self.challengeName ?? ""] {
+                AudioPlayerImpl.sharedInstance.play(music: music)
+            }
+        }
         
         addChild(titleImage)
-        addChild(backgroundScene)
     }
     
     
@@ -51,8 +56,7 @@ class StartPageScene: GameScene {
             fetchRequest.predicate = NSPredicate(format: "challengeName == %@", challengeName ?? "")
             totalStories = try context.count(for: fetchRequest)
         } catch let error as NSError {
-            print(error)
-            print("error while fetching data in core data!")
+            showAlert(withTitle: "Oops, there is error while fetching data.", message: error.localizedDescription)
         }
         
         self.setupPlayer()
@@ -63,24 +67,25 @@ class StartPageScene: GameScene {
     }
     
     override func getNextScene() -> SKScene? {
+        AudioPlayerImpl.sharedInstance.play(effect: Audio.EffectFiles.animal[self.challengeName ?? ""] ?? Audio.EffectFiles.clickedButton)
         Mixpanel.mainInstance().track(event: "get_story_scene", properties: ["story_name" : story?.challengeName ?? "lion_challenge"])
         let scene = SKScene(fileNamed: "StoryPageScene") as! StoryPageScene
         scene.challengeName = self.challengeName
         scene.theme = self.theme
-        scene.run(SoundManager.sharedInstance.soundOfAnimal[self.challengeName ?? ""] ?? SKAction())
         return scene
     }
     
     override func exitScene() -> SKScene? {
-        NotificationCenter.default.post(name: Notification.Name(rawValue: "StopBackgroundSound"), object: self, userInfo:nil)
+        AudioPlayerImpl.sharedInstance.stop()
         let scene = SKScene(fileNamed: "MapViewPageScene") as! MapViewPageScene
         scene.theme = self.theme
         return scene
     }
     
     override func willMove(from view: SKView) {
-        backgroundScene.removeFromParent()
-        backgroundScene.removeAllChildren()
+        if let background = backgroundScene {
+            entityManager.remove(background)
+        }
         
         titleImage.removeFromParent()
         titleImage.removeAllChildren()
