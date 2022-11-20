@@ -3,7 +3,7 @@ import SpriteKit
 import GameplayKit
 
 class AnimatedShape: GKEntity {
-    init(imageName: String, sound: SKAction) {
+    init(imageName: String, sound: Effect?) {
         super.init()
         
         let texture = SKTexture(imageNamed: imageName)

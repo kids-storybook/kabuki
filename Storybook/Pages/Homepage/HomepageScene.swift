@@ -10,10 +10,9 @@ import GameplayKit
 import Mixpanel
 
 
-class HomepageScene: SKScene {
+class HomepageScene: SKScene, Alertable {
     var scrollView: SwiftySKScrollView?
     let moveableNode = SKNode()
-    let backgroundSound = SKAudioNode(fileNamed: "Opening Music.mp3")
     let background = SKSpriteNode(imageNamed: "background")
     var themes: [Themes?] = []
     
@@ -31,12 +30,7 @@ class HomepageScene: SKScene {
             let fetchRequest = Themes.fetchRequest()
             themes = try context.fetch(fetchRequest)
         } catch let error as NSError {
-            DispatchQueue.main.async {
-                let ac = UIAlertController(title: error.localizedDescription, message: "Oops, there is error while fetching data.", preferredStyle: .actionSheet)
-                ac.addAction(UIAlertAction(title: "exit", style: .cancel){(action) in exit(0)})
-                
-                self.view?.window?.rootViewController!.present(ac, animated: true, completion: nil)
-            }
+            showAlert(withTitle: "Oops, there is error while fetching data.", message: error.localizedDescription)
         }
     }
     
@@ -45,9 +39,7 @@ class HomepageScene: SKScene {
         entityManager = EntityManager(scene: self)
         
         // Add background sound
-        backgroundSound.run(SKAction.fadeIn(withDuration: 3))
-        backgroundSound.autoplayLooped = true
-        addChild(backgroundSound)
+        AudioPlayerImpl.sharedInstance.play(music: Audio.MusicFiles.homepage)
         
         // Add background
         background.position = CGPoint(x: 0, y: 0)
@@ -66,10 +58,6 @@ class HomepageScene: SKScene {
         moveableNode.removeAllActions()
         moveableNode.removeFromParent()
         moveableNode.removeAllChildren()
-        
-        backgroundSound.removeAllActions()
-        backgroundSound.removeFromParent()
-        backgroundSound.removeAllChildren()
         
         background.removeFromParent()
         background.removeAllChildren()
@@ -91,7 +79,8 @@ class HomepageScene: SKScene {
             let location = touch.location(in: self)
             let node = atPoint(location)
             if let name = node.name, let theme = themes.filter({$0?.name == name})[0] {
-                node.run(SoundManager.sharedInstance.soundClickedButton)
+                AudioPlayerImpl.sharedInstance.stop()
+                AudioPlayerImpl.sharedInstance.play(effect: Audio.EffectFiles.clickedButton)
                 node.run(SKAction.sequence(
                     [SKAction.scale(to: 0.9, duration: 0),
                      SKAction.scale(to: 1.0, duration: 0.1)
@@ -111,8 +100,9 @@ class HomepageScene: SKScene {
                                 if let view = self.view {
                                     view.presentScene(sceneNode, transition: SKTransition.fade(withDuration: 1.3))
                                     view.ignoresSiblingOrder = true
-                                    view.showsFPS = true
-                                    view.showsNodeCount = true
+                                    view.showsFPS = false
+                                    view.showsNodeCount = false
+                                    view.showsDrawCount = false
                                 }
                             }
                         }

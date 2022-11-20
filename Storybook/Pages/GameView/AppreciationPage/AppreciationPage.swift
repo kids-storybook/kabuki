@@ -9,7 +9,7 @@ class AppreciationPage: GameScene {
     
     private func setupPlayer(){
         
-        makeCharacter(imageName: self.story?.characterAtlas, sound: SoundManager.sharedInstance.soundOfAnimal[self.challengeName ?? ""] ?? SKAction())
+        makeCharacter(imageName: self.story?.characterAtlas, sound: Audio.EffectFiles.animal[self.challengeName ?? ""])
         backgroundScene = SKSpriteNode(imageNamed: self.story?.background ?? "")
         titleImage = SKSpriteNode(imageNamed: self.story?.title ?? "")
         
@@ -19,7 +19,7 @@ class AppreciationPage: GameScene {
         backgroundScene.position = CGPoint(x: 0, y: 0)
         backgroundScene.zPosition = -10
         backgroundScene.size = self.frame.size
-        backgroundScene.run(SoundManager.sharedInstance.soundOfAnimal[self.challengeName ?? ""] ?? SKAction())
+        AudioPlayerImpl.sharedInstance.play(effect: Audio.EffectFiles.animal[self.challengeName ?? ""] ?? Audio.EffectFiles.clickedButton)
         
         addChild(titleImage)
         addChild(backgroundScene)
@@ -46,12 +46,7 @@ class AppreciationPage: GameScene {
             fetchRequest.fetchLimit = 1
             story = try context.fetch(fetchRequest)[0]
         } catch let error as NSError {
-            DispatchQueue.main.async {
-                let ac = UIAlertController(title: error.localizedDescription, message: "Oops, there is error while fetching data.", preferredStyle: .actionSheet)
-                ac.addAction(UIAlertAction(title: "exit", style: .cancel){(action) in exit(0)})
-                
-                self.view?.window?.rootViewController!.present(ac, animated: true, completion: nil)
-            }
+            showAlert(withTitle: "Oops, there is error while fetching data.", message: error.localizedDescription)
         }
         
         do {
@@ -65,12 +60,7 @@ class AppreciationPage: GameScene {
             challenge.isActive = true
             try context.save()
         } catch let error as NSError {
-            DispatchQueue.main.async {
-                let ac = UIAlertController(title: error.localizedDescription, message: "Oops, there is error while fetching data.", preferredStyle: .actionSheet)
-                ac.addAction(UIAlertAction(title: "exit", style: .cancel){(action) in exit(0)})
-                
-                self.view?.window?.rootViewController!.present(ac, animated: true, completion: nil)
-            }
+            showAlert(withTitle: "Oops, there is error while fetching data.", message: error.localizedDescription)
         }
         
         self.setupPlayer()

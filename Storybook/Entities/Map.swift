@@ -14,7 +14,7 @@ class Map: GKEntity {
         super.init()
         
         let texture = SKTexture(imageNamed: themeAssets.background ?? "")
-        let spriteComponent = SpriteComponent(entity: self, texture: texture, size: texture.size(), sound: SKAction())
+        let spriteComponent = SpriteComponent(entity: self, texture: texture, size: texture.size(), sound: nil)
         
         spriteComponent.node.name = mapName
         spriteComponent.node.position = mapPosition

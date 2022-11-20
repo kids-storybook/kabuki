@@ -9,7 +9,7 @@ class StoryPageScene: GameScene {
     var activeLabels: [SKLabelNode]?
     
     private func setupPlayer(){
-        makeCharacter(imageName: self.story?.characterAtlas, sound: SoundManager.sharedInstance.soundOfAnimal[self.challengeName ?? ""] ?? SKAction())
+        makeCharacter(imageName: self.story?.characterAtlas, sound: Audio.EffectFiles.animal[self.challengeName ?? ""])
         entityManager = EntityManager(scene: self)
         backgroundScene = SKSpriteNode(imageNamed: self.story?.background ?? "")
         
@@ -50,12 +50,7 @@ class StoryPageScene: GameScene {
             fetchRequest.predicate = NSPredicate(format: "challengeName == %@", challengeName ?? "")
             totalStories = try context.count(for: fetchRequest)
         } catch let error as NSError {
-            DispatchQueue.main.async {
-                let ac = UIAlertController(title: error.localizedDescription, message: "Oops, there is error while fetching data.", preferredStyle: .actionSheet)
-                ac.addAction(UIAlertAction(title: "exit", style: .cancel){(action) in exit(0)})
-                
-                self.view?.window?.rootViewController!.present(ac, animated: true, completion: nil)
-            }
+            showAlert(withTitle: "Oops, there is error while fetching data.", message: error.localizedDescription)
         }
         
         self.setupPlayer()
@@ -93,7 +88,7 @@ class StoryPageScene: GameScene {
     }
     
     override func exitScene() -> SKScene? {
-        NotificationCenter.default.post(name: Notification.Name(rawValue: "StopBackgroundSound"), object: self, userInfo:nil)
+        AudioPlayerImpl.sharedInstance.stop()
         let scene = SKScene(fileNamed: "MapViewPageScene") as! MapViewPageScene
         scene.theme = self.theme
         return scene

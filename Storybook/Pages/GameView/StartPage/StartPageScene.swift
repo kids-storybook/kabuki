@@ -11,7 +11,7 @@ class StartPageScene: GameScene {
     
     private func setupPlayer(){
         
-        makeCharacter(imageName: self.story?.characterAtlas, sound: SKAction())
+        makeCharacter(imageName: self.story?.characterAtlas, sound: nil)
         backgroundScene = SKSpriteNode(imageNamed: self.story?.background ?? "")
         titleImage = SKSpriteNode(imageNamed: self.story?.title ?? "")
         
@@ -23,8 +23,9 @@ class StartPageScene: GameScene {
         backgroundScene.size = self.frame.size
         
         // Add background sound
-        let soundPayload: [String: Any] = ["fileToPlay" : "Story Music-\(self.challengeName ?? "")", "isKeepToPlay": true ]
-        NotificationCenter.default.post(name: Notification.Name(rawValue: "PlayBackgroundSound"), object: self, userInfo:soundPayload)
+        if let music = Audio.MusicFiles.story[self.challengeName ?? ""] {
+            AudioPlayerImpl.sharedInstance.play(music: music)
+        }
         
         addChild(titleImage)
         addChild(backgroundScene)
@@ -51,12 +52,7 @@ class StartPageScene: GameScene {
             fetchRequest.predicate = NSPredicate(format: "challengeName == %@", challengeName ?? "")
             totalStories = try context.count(for: fetchRequest)
         } catch let error as NSError {
-            DispatchQueue.main.async {
-                let ac = UIAlertController(title: error.localizedDescription, message: "Oops, there is error while fetching data.", preferredStyle: .actionSheet)
-                ac.addAction(UIAlertAction(title: "exit", style: .cancel){(action) in exit(0)})
-                
-                self.view?.window?.rootViewController!.present(ac, animated: true, completion: nil)
-            }
+            showAlert(withTitle: "Oops, there is error while fetching data.", message: error.localizedDescription)
         }
         
         self.setupPlayer()
@@ -71,12 +67,12 @@ class StartPageScene: GameScene {
         let scene = SKScene(fileNamed: "StoryPageScene") as! StoryPageScene
         scene.challengeName = self.challengeName
         scene.theme = self.theme
-        scene.run(SoundManager.sharedInstance.soundOfAnimal[self.challengeName ?? ""] ?? SKAction())
+        AudioPlayerImpl.sharedInstance.play(effect: Audio.EffectFiles.animal[self.challengeName ?? ""] ?? Audio.EffectFiles.clickedButton)
         return scene
     }
     
     override func exitScene() -> SKScene? {
-        NotificationCenter.default.post(name: Notification.Name(rawValue: "StopBackgroundSound"), object: self, userInfo:nil)
+        AudioPlayerImpl.sharedInstance.stop()
         let scene = SKScene(fileNamed: "MapViewPageScene") as! MapViewPageScene
         scene.theme = self.theme
         return scene

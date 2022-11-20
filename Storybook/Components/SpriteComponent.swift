@@ -11,9 +11,9 @@ import GameplayKit
 class SpriteComponent: GKComponent {
     // A node that gives an entity a visual sprite
     let node: SKSpriteNode
-    let sound: SKAction
+    let sound: Effect?
     
-    init(entity: GKEntity, texture: SKTexture, size: CGSize, sound: SKAction) {
+    init(entity: GKEntity, texture: SKTexture, size: CGSize, sound: Effect?) {
         node = SKSpriteNode(texture: texture,color: SKColor.white, size: size)
         self.sound = sound
         super.init()

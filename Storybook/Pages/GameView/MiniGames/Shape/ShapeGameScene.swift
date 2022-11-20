@@ -35,8 +35,9 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
         addChild(backgroundScene)
         
         // Add background sound
-        let soundPayload: [String: Any] = ["fileToPlay" : "Mini Games-\(self.challengeName ?? "")", "isKeepToPlay": true ]
-        NotificationCenter.default.post(name: Notification.Name(rawValue: "PlayBackgroundSound"), object: self, userInfo:soundPayload)
+        if let music = Audio.MusicFiles.shapeGame[self.challengeName ?? ""] {
+            AudioPlayerImpl.sharedInstance.play(music: music)
+        }
     }
     
     
@@ -45,7 +46,7 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
         var idx_y = 0
         for (idx, shape) in (shapes ?? []).enumerated() {
             let name = (shape?.background ?? "")
-            let activeShape = Shape(imageName: name, shapeName: name, sound: SoundManager.sharedInstance.soundOfAnimal[shape?.challengeName ?? ""] ?? SKAction())
+            let activeShape = Shape(imageName: name, shapeName: name, sound: Audio.EffectFiles.animal[shape?.challengeName ?? ""])
             if let spriteComponent = activeShape.component(ofType: SpriteComponent.self) {
                 var idx_x = idx
                 if idx_x > 3 {
@@ -125,7 +126,7 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
             if target.challengeName == self.challengeName {
                 let name = (target.background ?? "")
                 
-                let shapeTarget = Shape(imageName: target.background ?? "", shapeName: name, sound: SKAction())
+                let shapeTarget = Shape(imageName: target.background ?? "", shapeName: name, sound: nil)
                 if let spriteComponent = shapeTarget.component(ofType: SpriteComponent.self) {
                     spriteComponent.node.position = CGPoint(x: target.xCoordinate ?? 0, y: target.yCoordinate ?? 0)
                     switch level {
@@ -163,7 +164,7 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
         
         addChild(wrongPopUp)
         
-        wrongPopUp.run(SoundManager.sharedInstance.soundWrongAnswer)
+        AudioPlayerImpl.sharedInstance.play(effect: Audio.EffectFiles.wrongAnswer)
         wrongPopUp.run(
             SKAction.sequence([
                 SKAction.wait(forDuration: 2.0),
@@ -208,12 +209,7 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
             fetchRequest.resultType = .dictionaryResultType
             totalGames = try context.fetch(fetchRequest).count
         } catch let error as NSError {
-            DispatchQueue.main.async {
-                let ac = UIAlertController(title: error.localizedDescription, message: "Oops, there is error while fetching data.", preferredStyle: .actionSheet)
-                ac.addAction(UIAlertAction(title: "exit", style: .cancel){(action) in exit(0)})
-                
-                self.view?.window?.rootViewController!.present(ac, animated: true, completion: nil)
-            }
+            showAlert(withTitle: "Oops, there is error while fetching data.", message: error.localizedDescription)
         }
     }
     
@@ -228,12 +224,7 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
             let results = try context.fetch(fetchRequest)
             animatedGame = results[0]
         } catch let error as NSError {
-            DispatchQueue.main.async {
-                let ac = UIAlertController(title: error.localizedDescription, message: "Oops, there is error while fetching data.", preferredStyle: .actionSheet)
-                ac.addAction(UIAlertAction(title: "exit", style: .cancel){(action) in exit(0)})
-                
-                self.view?.window?.rootViewController!.present(ac, animated: true, completion: nil)
-            }
+            showAlert(withTitle: "Oops, there is error while fetching data.", message: error.localizedDescription)
         }
     }
     
@@ -244,7 +235,7 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
             if target.node.frame.contains(node.position) {
                 node.position = target.node.position
                 node.zPosition = target.node.zPosition
-                node.run(SoundManager.sharedInstance.soundCorrectAnswer)
+                AudioPlayerImpl.sharedInstance.play(effect: Audio.EffectFiles.correctAnswer)
                 solvedShapes.insert(node.name ?? "")
                 handleShapeBehavior(node:node, name:node.name ?? "")
                 return
@@ -286,7 +277,7 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
         getAllShapeAssets()
         getCharacterAssets()
         
-        makeCharacterGame(imageName: self.animatedGame?.characterAtlas, sound: SKAction())
+        makeCharacterGame(imageName: self.animatedGame?.characterAtlas, sound: nil)
         
         setBackground()
         setupShapes()
@@ -303,7 +294,7 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
                 if !(node.name?.contains("target") ?? true) {
                     if node.name?.contains("triangle") ?? false || node.name?.contains("square") ?? false || node.name?.contains("circle") ?? false
                     {
-                        node.run(SoundManager.sharedInstance.soundClickedButton)
+                        AudioPlayerImpl.sharedInstance.play(effect: Audio.EffectFiles.clickedButton)
                         self.currentNode = node
                         self.currentNode?.zPosition = 20
                     }
@@ -344,7 +335,7 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
                     scene.level = self.level
                     self.goToScene(scene: scene, transition: SKTransition.fade(withDuration: 1.3))
                 } else {
-                    NotificationCenter.default.post(name: Notification.Name(rawValue: "StopBackgroundSound"), object: self, userInfo:nil)
+                    AudioPlayerImpl.sharedInstance.stop()
                     let scene = SKScene(fileNamed: "AppreciationPage") as! AppreciationPage
                     scene.challengeName = self.challengeName
                     scene.theme = self.theme
@@ -358,7 +349,7 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
     }
     
     override func exitScene() -> SKScene? {
-        NotificationCenter.default.post(name: Notification.Name(rawValue: "StopBackgroundSound"), object: self, userInfo:nil)
+        AudioPlayerImpl.sharedInstance.stop()
         let scene = SKScene(fileNamed: "MapViewPageScene") as! MapViewPageScene
         scene.theme = self.theme
         return scene

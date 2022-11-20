@@ -4,7 +4,7 @@ import GameplayKit
 // 1
 class Character: GKEntity {
     
-    init(imageName: String, sound: SKAction) {
+    init(imageName: String, sound: Effect?) {
         super.init()
         
         var characterAtlas: SKTextureAtlas {

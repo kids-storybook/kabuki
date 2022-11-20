@@ -10,12 +10,9 @@ import GameplayKit
 
 class MapViewPageScene: SKScene {
     var theme: Themes?
-    let backgroundSound = SKAudioNode(fileNamed: "Maps Music.mp3")
     var background: SKSpriteNode!
     var activeChallenges: [Challenge] = []
-    
     var homeBtn: SKSpriteNode!
-    
     
     // Entity-component system
     var entityManager: EntityManager!
@@ -24,11 +21,6 @@ class MapViewPageScene: SKScene {
         // Create entity manager
         entityManager = EntityManager(scene: self)
         
-        // Add background sound
-        backgroundSound.run(SKAction.fadeIn(withDuration: 3))
-        backgroundSound.autoplayLooped = true
-        addChild(backgroundSound)
-        
         // Add background
         background = SKSpriteNode(imageNamed: self.theme?.mapBackground ?? "")
         background.position = CGPoint(x: 0, y: 0)
@@ -36,6 +28,11 @@ class MapViewPageScene: SKScene {
         background.yScale = 1.237
         background.zPosition = -1
         addChild(background)
+        
+        // Add background sound
+        if let music = Audio.MusicFiles.map[self.theme?.name ?? ""] {
+            AudioPlayerImpl.sharedInstance.play(music: music)
+        }
         
         showActiveCage()
         showHomeButton()
@@ -72,16 +69,11 @@ class MapViewPageScene: SKScene {
     }
     
     func exitScene() -> SKScene? {
-        NotificationCenter.default.post(name: Notification.Name(rawValue: "StopBackgroundSound"), object: self, userInfo:nil)
         let scene = SKScene(fileNamed: "HomepageScene") as! HomepageScene
         return scene
     }
     
     override func willMove(from view: SKView) {
-        backgroundSound.removeAllActions()
-        backgroundSound.removeFromParent()
-        backgroundSound.removeAllChildren()
-        
         background.removeFromParent()
         background.removeAllChildren()
         
@@ -101,12 +93,9 @@ class MapViewPageScene: SKScene {
             let node = atPoint(location)
             
             if node == homeBtn {
-                homeBtn.run(SoundManager.sharedInstance.soundClickedButton)
-                homeBtn.run(SKAction.sequence(
-                    [SKAction.scale(to: 0.9, duration: 0),
-                     SKAction.scale(to: 1.0, duration: 0.1)
-                    ])
-                )
+                AudioPlayerImpl.sharedInstance.play(effect: Audio.EffectFiles.clickedButton)
+                AudioPlayerImpl.sharedInstance.stop()
+                homeBtn.buttonEffect()
                 goToScene(scene: exitScene()!, transition: SKTransition.fade(withDuration: 1.3))
             }
         }
@@ -124,7 +113,8 @@ class MapViewPageScene: SKScene {
             let location = touch.location(in: self)
             let node = atPoint(location)
             if let name = node.name, name.contains("_challenge") {
-                node.run(SoundManager.sharedInstance.soundClickedButton)
+                AudioPlayerImpl.sharedInstance.play(effect: Audio.EffectFiles.clickedButton)
+                AudioPlayerImpl.sharedInstance.stop()
                 node.run(SKAction.sequence(
                     [SKAction.scale(to: 1.0, duration: 0),
                      SKAction.scale(to: 1.237, duration: 0.1)

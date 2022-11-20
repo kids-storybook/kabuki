@@ -10,7 +10,7 @@ import SpriteKit
 import GameplayKit
 
 class Shape: GKEntity {
-    init(imageName: String, shapeName: String, sound: SKAction) {
+    init(imageName: String, shapeName: String, sound: Effect?) {
         super.init()
         
         let texture = SKTexture(imageNamed: imageName)

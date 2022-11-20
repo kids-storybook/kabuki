@@ -19,7 +19,7 @@ class AnimationPageScene: GameScene {
     
     private func setupPlayer(){
         
-        makeCharacterTutorial(imageName: self.story?.characterAtlas, sound: SoundManager.sharedInstance.soundOfAnimal[self.challengeName ?? ""] ?? SKAction())
+        makeCharacterTutorial(imageName: self.story?.characterAtlas, sound: Audio.EffectFiles.animal[self.challengeName ?? ""])
         
         backgroundScene = SKSpriteNode(imageNamed: self.story?.background ?? "")
         backgroundScene.position = CGPoint(x: frame.midX, y: frame.midY)
@@ -49,7 +49,7 @@ class AnimationPageScene: GameScene {
         
         //Create shapes
         for (_, shape) in (animateShape ?? []).enumerated() {
-            let activeShape = AnimatedShape(imageName: shape.shapeImage ?? "", sound: SoundManager.sharedInstance.soundOfShape[shape.shapeName ?? ""] ?? SKAction())
+            let activeShape = AnimatedShape(imageName: shape.shapeImage ?? "", sound: Audio.EffectFiles.shape[shape.shapeName ?? ""])
             if let spriteComponent = activeShape.component(ofType: SpriteComponent.self) {
                 spriteComponent.node.position = CGPoint(x: shape.xCoordinateShape, y: shape.yCoordinateShape)
                 spriteComponent.node.setScale(0.85)
@@ -78,12 +78,7 @@ class AnimationPageScene: GameScene {
             
             totalStories = try context.count(for: fetchRequest)
         } catch let error as NSError {
-            DispatchQueue.main.async {
-                let ac = UIAlertController(title: error.localizedDescription, message: "Oops, there is error while fetching data.", preferredStyle: .actionSheet)
-                ac.addAction(UIAlertAction(title: "exit", style: .cancel){(action) in exit(0)})
-                
-                self.view?.window?.rootViewController!.present(ac, animated: true, completion: nil)
-            }
+            showAlert(withTitle: "Oops, there is error while fetching data.", message: error.localizedDescription)
         }
         
         // Fetch AnimatedShapes Model
@@ -94,12 +89,7 @@ class AnimationPageScene: GameScene {
             
             animateShape = try context.fetch(fetchRequest)
         } catch let error as NSError {
-            DispatchQueue.main.async {
-                let ac = UIAlertController(title: error.localizedDescription, message: "Oops, there is error while fetching data.", preferredStyle: .actionSheet)
-                ac.addAction(UIAlertAction(title: "exit", style: .cancel){(action) in exit(0)})
-                
-                self.view?.window?.rootViewController!.present(ac, animated: true, completion: nil)
-            }
+            showAlert(withTitle: "Oops, there is error while fetching data.", message: error.localizedDescription)
         }
         
         self.setupPlayer()
@@ -122,7 +112,7 @@ class AnimationPageScene: GameScene {
     }
     
     override func exitScene() -> SKScene? {
-        NotificationCenter.default.post(name: Notification.Name(rawValue: "StopBackgroundSound"), object: self, userInfo:nil)
+        AudioPlayerImpl.sharedInstance.stop()
         let scene = SKScene(fileNamed: "MapViewPageScene") as! MapViewPageScene
         scene.theme = self.theme
         return scene

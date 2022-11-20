@@ -28,5 +28,14 @@ extension SKSpriteNode {
         self.run(sequence2)
     }
     
+    func buttonEffect(){
+        self.run(
+            SKAction.sequence([
+                SKAction.scale(to: 0.9, duration: 0),
+                SKAction.scale(to: 1.0, duration: 0.1)
+            ])
+        )
+    }
+    
 }
 
