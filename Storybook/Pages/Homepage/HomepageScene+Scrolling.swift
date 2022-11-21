@@ -30,8 +30,8 @@ extension HomepageScene {
 
         // Set scrollView to first page
         scrollView.setContentOffset(CGPoint(
-            x: scrollView.frame.width * CGFloat(contentSizeWidthScale-1),
-            y: 0), animated: true
+                                        x: scrollView.frame.width * CGFloat(contentSizeWidthScale-1),
+                                        y: 0), animated: true
         )
 
         var spriteMapPosition = CGPoint(

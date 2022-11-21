@@ -159,7 +159,7 @@ class GameScene: SKScene, Alertable {
                 )
             default:
                 if let spriteComponent = character?.component(ofType: SpriteComponent.self),
-                    spriteComponent.node.contains(touchLocation) {
+                   spriteComponent.node.contains(touchLocation) {
                     AudioPlayerImpl.sharedInstance.play(
                         effect: spriteComponent.sound ?? Audio.EffectFiles.clickedButton
                     )

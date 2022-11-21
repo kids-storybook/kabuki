@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "elephant_square_target.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -9,7 +10,6 @@
       "scale" : "2x"
     },
     {
-      "filename" : "square_elephant_target.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
