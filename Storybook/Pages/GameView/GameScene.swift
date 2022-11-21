@@ -8,6 +8,8 @@
 import Foundation
 import SpriteKit
 import GameplayKit
+import Mixpanel
+
 
 class GameScene: SKScene, Alertable {
     var start: SKNode!
@@ -104,12 +106,21 @@ class GameScene: SKScene, Alertable {
             let location = touch.location(in: footer)
             if nxtBtn.contains(location) {
                 nxtBtn.buttonEffect(soundEffect: Audio.EffectFiles.clickedButton)
+                Mixpanel.mainInstance().track(
+                    event: "Next Button Clicked",
+                    properties: ["story_name": story?.challengeName ?? ""]
+                )
                 goToScene(
                     scene: getNextScene()!,
                     transition: SKTransition.push(with: SKTransitionDirection.left, duration: 1.3)
+                    
                 )
             } else if prevBtn.contains(location) {
                 prevBtn.buttonEffect(soundEffect: Audio.EffectFiles.clickedButton)
+                Mixpanel.mainInstance().track(
+                    event: "Prev Button Clicked",
+                    properties: ["story_name": story?.challengeName ?? ""]
+                )
                 goToScene(
                     scene: getPreviousScene()!,
                     transition: SKTransition.push(with: SKTransitionDirection.right, duration: 1.3)
@@ -121,6 +132,10 @@ class GameScene: SKScene, Alertable {
 
             if exitBtn.contains(location) {
                 exitBtn.buttonEffect(soundEffect: Audio.EffectFiles.clickedButton)
+                Mixpanel.mainInstance().track(
+                    event: "Exit Button Clicked",
+                    properties: ["story_name": story?.challengeName ?? ""]
+                )
                 goToScene(scene: exitScene()!,
                           transition: SKTransition.fade(withDuration: 1.3)
                 )
@@ -130,12 +145,20 @@ class GameScene: SKScene, Alertable {
 
             if continueBtn.contains(location) {
                 continueBtn.buttonEffect(soundEffect: Audio.EffectFiles.clickedButton)
+                Mixpanel.mainInstance().track(
+                    event: "Continue Button Clicked",
+                    properties: ["story_name": story?.challengeName ?? ""]
+                )
                 goToScene(
                     scene: getNextScene()!,
                     transition: SKTransition.fade(withDuration: 1.3)
                 )
             } else if retryBtn.contains(location) {
                 retryBtn.buttonEffect(soundEffect: Audio.EffectFiles.clickedButton)
+                Mixpanel.mainInstance().track(
+                    event: "Retry Button Clicked",
+                    properties: ["story_name": story?.challengeName ?? ""]
+                )
                 goToScene(
                     scene: getPreviousScene()!,
                     transition: SKTransition.fade(withDuration: 1.3)
