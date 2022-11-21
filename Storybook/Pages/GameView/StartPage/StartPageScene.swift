@@ -71,7 +71,7 @@ class StartPageScene: GameScene {
         )
         Mixpanel.mainInstance().track(
             event: "get_story_scene",
-            properties: ["story_name": story?.challengeName ?? "lion_challenge"]
+            properties: ["story_name": story?.challengeName ?? ""]
         )
         let scene = SKScene(fileNamed: "StoryPageScene") as? StoryPageScene
         scene?.challengeName = self.challengeName
