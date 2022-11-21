@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             Mixpanel.mainInstance().registerSuperProperties(["uud": uuid])
             Mixpanel.mainInstance().people.set(properties: ["uuid": uuid])
         }
+        Mixpanel.mainInstance().track(event: "App Launched")
         Thread.sleep(forTimeInterval: 2.0)
         return true
     }

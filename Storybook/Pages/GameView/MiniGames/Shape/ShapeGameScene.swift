@@ -7,6 +7,7 @@
 
 import SpriteKit
 import Foundation
+import Mixpanel
 
 class ShapeGameScene: GameScene {
     private var currentNode: SKNode?
@@ -269,6 +270,10 @@ class ShapeGameScene: GameScene {
                 } else {
                     AudioPlayerImpl.sharedInstance.stop()
                     let scene = SKScene(fileNamed: "AppreciationPage") as? AppreciationPage
+                    Mixpanel.mainInstance().track(
+                        event: "Finished Challenge",
+                        properties: ["story_name": self.challengeName ?? ""]
+                    )
                     scene?.challengeName = self.challengeName
                     scene?.theme = self.theme
                     scene?.nextChallenge = self.nextChallenge
