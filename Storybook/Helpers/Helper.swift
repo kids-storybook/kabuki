@@ -86,6 +86,8 @@ class Helper {
             shape.challengeName = data.challengeName
             shape.order = data.order ?? 0
             shape.background = data.background
+            shape.xCoordinate = data.xCoordinate ?? 0.0
+            shape.yCoordinate = data.yCoordinate ?? 0.0
             self.saveContext(saveContext: context)
         }
     }

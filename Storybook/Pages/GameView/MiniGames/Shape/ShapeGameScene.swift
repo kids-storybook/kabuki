@@ -46,107 +46,13 @@ class ShapeGameScene: GameScene {
         }
     }
 
-    func setupEasyShapes(spriteComponent: SpriteComponent, idxX: Int, idx: Int) {
-        spriteComponent.node.position = CGPoint(
-            x: frame.midX-CGFloat(idxX*250),
-            y: frame.midY - 200 + CGFloat(((idx/3)*180))
-        )
-    }
-
     func setupShapes() {
-        var idxY = 0
-        for (idx, shape) in (shapes ?? []).enumerated() {
+        for shape in (shapes ?? []) {
             let name = (shape?.background ?? "")
             let activeShape = Shape(imageName: name, shapeName: name,
                                     sound: Audio.EffectFiles.animal[shape?.challengeName ?? ""])
             if let spriteComponent = activeShape.component(ofType: SpriteComponent.self) {
-                var idxX = idx
-                if idxX > 3 {
-                    idxX = idx - 4 - ((idx/4 - 1) * 4)
-                }
-
-                switch level {
-                case AttributeLevel.EASY.rawValue:
-                    setupEasyShapes(spriteComponent: spriteComponent, idxX: idxX, idx: idx)
-                case AttributeLevel.MEDIUM.rawValue:
-                    let mod = (shapes?.count ?? 0) % 4
-
-                    spriteComponent.node.position = CGPoint(
-                        x: frame.width / 4 - CGFloat(idxX*250),
-                        y: frame.midY + 50 + CGFloat(((idx / 4)*180))
-                    )
-                    if mod == 1 {
-                        spriteComponent.node.position = CGPoint(
-                            x: frame.width / 4 - CGFloat(idxX*250),
-                            y: frame.midY + 50 + CGFloat(((idxY)*180))
-                        )
-                        if idx < 5 {
-                            spriteComponent.node.position = CGPoint(
-                                x: (frame.midX) + CGFloat((idx-2)*250),
-                                y: frame.midY + 50 + CGFloat(((idx/5)*180))
-                            )
-                        }
-                        idxY = 1
-                        break
-                    }
-
-                    if idx >= (shapes?.count ?? 0) - mod && mod != 0 {
-                        if mod == 3 {
-                            spriteComponent.node.position = CGPoint(
-                                x: (frame.midX) + CGFloat((idxX-1)*250),
-                                y: frame.midY + 50 + CGFloat(((idx/4)*180))
-                            )
-                            break
-                        } else if mod == 2 {
-                            spriteComponent.node.position = CGPoint(
-                                x: (frame.midX) + CGFloat((Double(Double(idxX)-0.5)*250)),
-                                y: frame.midY + 50 + CGFloat(((idx/4)*180))
-                            )
-                            break
-                        }
-                    }
-
-                case AttributeLevel.HARD.rawValue:
-                    let mod = (shapes?.count ?? 0) % 4
-
-                    spriteComponent.node.position = CGPoint(
-                        x: (frame.midX) - CGFloat(idxX*200),
-                        y: frame.minY + 100 + CGFloat(((idx / 4)*180)))
-                    if shapes?.count ?? 0 > 8 && mod == 0 {
-                        spriteComponent.node.position = CGPoint(
-                            x: (frame.midX) - CGFloat(idxX*180),
-                            y: frame.minY + 100 + CGFloat(((idx / 4)*110)))
-                    }
-                    if mod == 1 {
-                        spriteComponent.node.position = CGPoint(
-                            x: (frame.midX) - CGFloat(idxX*200),
-                            y: frame.minY + 100 + CGFloat(((idxY)*180)))
-                        if idx < 5 {
-                            spriteComponent.node.position = CGPoint(
-                                x: (frame.midX) - CGFloat((idx-2)*200),
-                                y: frame.minY + 100 + CGFloat(((idx/5)*180)))
-                        }
-                        idxY = 1
-                        break
-                    }
-
-                    if idx >= (shapes?.count ?? 0) - mod && mod != 0 {
-                        if mod == 3 {
-                            spriteComponent.node.position = CGPoint(
-                                x: (frame.midX) - CGFloat(idxX*250),
-                                y: frame.minY + 100 + CGFloat(((idx/4)*200)))
-                            break
-                        } else if mod == 2 {
-                            spriteComponent.node.position = CGPoint(
-                                x: (frame.midX) + CGFloat((Double(Double(idxX)-0.5)*200)),
-                                y: frame.minY + 100 + CGFloat(((idx/4)*200)))
-                            break
-                        }
-                    }
-                default:
-                    break
-                }
-
+                spriteComponent.node.position = CGPoint(x: shape?.xCoordinate ?? 0.0, y: shape?.yCoordinate ?? 0.0)
                 spriteComponent.node.zPosition = 10
             }
             activeShapes.append(activeShape)
@@ -168,15 +74,7 @@ class ShapeGameScene: GameScene {
                     spriteComponent.node.position = CGPoint(
                         x: target.xCoordinate ?? 0,
                         y: target.yCoordinate ?? 0)
-                    switch level {
-                    case AttributeLevel.EASY.rawValue:
-                        spriteComponent.node.setScale(0.58)
-                    case AttributeLevel.MEDIUM.rawValue:
-                        spriteComponent.node.setScale(0.58)
-                    default:
-                        spriteComponent.node.setScale(1)
-                    }
-
+                    spriteComponent.node.setScale(1)
                     spriteComponent.node.zPosition = target.zPosition ?? 0
                     let arrOfShapes = targets[name.components(separatedBy: "_")[1]]
 

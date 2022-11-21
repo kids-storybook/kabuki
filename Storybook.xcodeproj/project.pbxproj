@@ -97,9 +97,6 @@
 		E63DEA8C28E2EB34000AC43C /* StorybookUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63DEA8B28E2EB34000AC43C /* StorybookUITests.swift */; };
 		E63DEA8E28E2EB34000AC43C /* StorybookUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63DEA8D28E2EB34000AC43C /* StorybookUITestsLaunchTests.swift */; };
 		E65F543C290A6E8D00FC6AA5 /* Shape.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65F543B290A6E8D00FC6AA5 /* Shape.swift */; };
-		E66AAA222923CC14000B604A /* VO-Segitiga.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E66AAA1F2923CC14000B604A /* VO-Segitiga.mp3 */; };
-		E66AAA232923CC14000B604A /* VO-Lingkaran.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E66AAA202923CC14000B604A /* VO-Lingkaran.mp3 */; };
-		E66AAA242923CC14000B604A /* VO-Persegi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E66AAA212923CC14000B604A /* VO-Persegi.mp3 */; };
 		E66AAA272923F949000B604A /* Wrong-Answer.wav in Resources */ = {isa = PBXBuildFile; fileRef = E66AAA252923F949000B604A /* Wrong-Answer.wav */; };
 		E66AAA282923F949000B604A /* Correct-Answer.wav in Resources */ = {isa = PBXBuildFile; fileRef = E66AAA262923F949000B604A /* Correct-Answer.wav */; };
 		E69FDAE128FEDF030059FD30 /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69FDAE028FEDF030059FD30 /* Challenge.swift */; };
@@ -121,6 +118,9 @@
 		E6E495C72924E20800001804 /* Mini Games-lion_challenge.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E6E495C62924E20800001804 /* Mini Games-lion_challenge.mp3 */; };
 		E6E50CD2290280C70065BB71 /* Opening Music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E6E50CCE290280C60065BB71 /* Opening Music.mp3 */; };
 		E6E50CD3290280C70065BB71 /* Maps Music-zoo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E6E50CCF290280C70065BB71 /* Maps Music-zoo.mp3 */; };
+		E6F53347292B7EDC00EA1505 /* VO-Segitiga.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E6F53344292B7EDB00EA1505 /* VO-Segitiga.mp3 */; };
+		E6F53348292B7EDC00EA1505 /* VO-Lingkaran.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E6F53345292B7EDB00EA1505 /* VO-Lingkaran.mp3 */; };
+		E6F53349292B7EDC00EA1505 /* VO-Persegi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E6F53346292B7EDC00EA1505 /* VO-Persegi.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -222,9 +222,6 @@
 		E63DEA8B28E2EB34000AC43C /* StorybookUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorybookUITests.swift; sourceTree = "<group>"; };
 		E63DEA8D28E2EB34000AC43C /* StorybookUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorybookUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		E65F543B290A6E8D00FC6AA5 /* Shape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shape.swift; sourceTree = "<group>"; };
-		E66AAA1F2923CC14000B604A /* VO-Segitiga.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "VO-Segitiga.mp3"; sourceTree = "<group>"; };
-		E66AAA202923CC14000B604A /* VO-Lingkaran.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "VO-Lingkaran.mp3"; sourceTree = "<group>"; };
-		E66AAA212923CC14000B604A /* VO-Persegi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "VO-Persegi.mp3"; sourceTree = "<group>"; };
 		E66AAA252923F949000B604A /* Wrong-Answer.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Wrong-Answer.wav"; sourceTree = "<group>"; };
 		E66AAA262923F949000B604A /* Correct-Answer.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Correct-Answer.wav"; sourceTree = "<group>"; };
 		E69FDAE028FEDF030059FD30 /* Challenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
@@ -246,6 +243,9 @@
 		E6E495C62924E20800001804 /* Mini Games-lion_challenge.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mini Games-lion_challenge.mp3"; sourceTree = "<group>"; };
 		E6E50CCE290280C60065BB71 /* Opening Music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Opening Music.mp3"; sourceTree = "<group>"; };
 		E6E50CCF290280C70065BB71 /* Maps Music-zoo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Maps Music-zoo.mp3"; sourceTree = "<group>"; };
+		E6F53344292B7EDB00EA1505 /* VO-Segitiga.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "VO-Segitiga.mp3"; sourceTree = "<group>"; };
+		E6F53345292B7EDB00EA1505 /* VO-Lingkaran.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "VO-Lingkaran.mp3"; sourceTree = "<group>"; };
+		E6F53346292B7EDC00EA1505 /* VO-Persegi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "VO-Persegi.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -502,12 +502,12 @@
 				365736122923914F00E173FE /* Story Music-panda_challenge.mp3 */,
 				E6E50CCF290280C70065BB71 /* Maps Music-zoo.mp3 */,
 				E6E50CCE290280C60065BB71 /* Opening Music.mp3 */,
+				E6F53345292B7EDB00EA1505 /* VO-Lingkaran.mp3 */,
+				E6F53346292B7EDC00EA1505 /* VO-Persegi.mp3 */,
+				E6F53344292B7EDB00EA1505 /* VO-Segitiga.mp3 */,
 				E6E3368728ECA2FF00FE2BEE /* lioncry3.wav */,
-				E66AAA202923CC14000B604A /* VO-Lingkaran.mp3 */,
 				E66AAA262923F949000B604A /* Correct-Answer.wav */,
 				E66AAA252923F949000B604A /* Wrong-Answer.wav */,
-				E66AAA212923CC14000B604A /* VO-Persegi.mp3 */,
-				E66AAA1F2923CC14000B604A /* VO-Segitiga.mp3 */,
 				E6E3368628ECA2FF00FE2BEE /* lionlaugh4.wav */,
 				364DB169291507C6006C53F4 /* button-click.wav */,
 				364DB1612915033E006C53F4 /* Lion-Rawr.wav */,
@@ -684,7 +684,6 @@
 				365736172923A00200E173FE /* Mini Games-panda_challenge.mp3 in Resources */,
 				E63DEA7328E2EB33000AC43C /* Main.storyboard in Resources */,
 				E63DEA7528E2EB34000AC43C /* Assets.xcassets in Resources */,
-				E66AAA232923CC14000B604A /* VO-Lingkaran.mp3 in Resources */,
 				365736132923914F00E173FE /* Story Music-panda_challenge.mp3 in Resources */,
 				E6E495C72924E20800001804 /* Mini Games-lion_challenge.mp3 in Resources */,
 				B2E1A8E62901682E00349559 /* ShapeGameScene.sks in Resources */,
@@ -693,9 +692,12 @@
 				364DB15B2914FEA3006C53F4 /* Mini Games-elephant_challenge.mp3 in Resources */,
 				364DB15E2914FEA3006C53F4 /* Story Music-elephant_challenge.mp3 in Resources */,
 				E66AAA282923F949000B604A /* Correct-Answer.wav in Resources */,
+				E6F53347292B7EDC00EA1505 /* VO-Segitiga.mp3 in Resources */,
+				E6F53349292B7EDC00EA1505 /* VO-Persegi.mp3 in Resources */,
 				36EC630E28FFF85800176DA3 /* Start.sks in Resources */,
 				E6E3369228ECA2FF00FE2BEE /* lioncry3.wav in Resources */,
 				3644BD9D28FF02D70027DDE5 /* Poppins-Bold.ttf in Resources */,
+				E6F53348292B7EDC00EA1505 /* VO-Lingkaran.mp3 in Resources */,
 				364DB1622915033E006C53F4 /* Lion-Rawr.wav in Resources */,
 				360A8EF428F459CB00949260 /* StoryPageScene.sks in Resources */,
 				36E218A329262C2E009A411D /* SplashScreen.sks in Resources */,
@@ -711,10 +713,8 @@
 				3662B02429029A8500956BDE /* Header.sks in Resources */,
 				3657361129238F7B00E173FE /* Panda-Rawr.wav in Resources */,
 				364DB16A291507C6006C53F4 /* button-click.wav in Resources */,
-				E66AAA222923CC14000B604A /* VO-Segitiga.mp3 in Resources */,
 				E601FEC8290686AE00810558 /* AnimationPageScene.sks in Resources */,
 				E66AAA272923F949000B604A /* Wrong-Answer.wav in Resources */,
-				E66AAA242923CC14000B604A /* VO-Persegi.mp3 in Resources */,
 				3644BD9E28FF02DA0027DDE5 /* Poppins-Regular.ttf in Resources */,
 				368546F428FFF3CE00E520B4 /* StartPageScene.sks in Resources */,
 				E6E50CD3290280C70065BB71 /* Maps Music-zoo.mp3 in Resources */,

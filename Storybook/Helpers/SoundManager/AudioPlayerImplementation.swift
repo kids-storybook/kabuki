@@ -12,10 +12,10 @@ class AudioPlayerImpl {
 
     private var currentMusicPlayer: AVAudioPlayer?
     private var currentEffectPlayer: AVAudioPlayer?
-    var musicVolume: Float = 0.1 {
+    var musicVolume: Float = 0.8 {
         didSet { currentMusicPlayer?.volume = musicVolume }
     }
-    var effectsVolume: Float = 0.1
+    var effectsVolume: Float = 0.8
 
     static let sharedInstance = AudioPlayerImpl()
 
