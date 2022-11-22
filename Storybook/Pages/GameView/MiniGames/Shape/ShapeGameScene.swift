@@ -7,134 +7,103 @@
 
 import SpriteKit
 import Foundation
+import Mixpanel
 
-
-class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
+class ShapeGameScene: GameScene {
     private var currentNode: SKNode?
     var shapes: [Shapes?]?
     var totalGames: Int?
     var shapeOrder: Int32?
     var level: String?
     var nextChallenge: String?
-    
-    var backgroundScene: SKSpriteNode!
-    var shapeTargets: [String:Shape] = [:]
+
+    var backgroundScene: Background?
+    var targets: [String: [SpriteComponent]] = [:]
     var activeShapes: [Shape] = []
     var solvedShapes: Set<String> = Set([])
-    
-    //    func positionWithin(range: CGFloat, containerSize: CGFloat) -> CGFloat {
-    //        let partA = CGFloat(arc4random_uniform(100)) / 100.0
-    //        let partB = (containerSize * range + (containerSize * (1.0 - range) * 0.5))
-    //        return partA * partB
-    //    }
-    
-    func distanceFrom(posA: CGPoint, posB: CGPoint) -> CGFloat {
-        let aSquared = (posA.x - posB.x) * (posA.x - posB.x)
-        let bSquared = (posA.y - posB.y) * (posA.x - posB.y)
-        return sqrt(aSquared + bSquared)
-    }
-    
+
     func setBackground() {
-        let challenge = self.theme?.challenges?.filtered(using: NSPredicate(format: "challengeName == %@", self.challengeName ?? "")).array as! [Challenges]
-        
-        nextChallenge = challenge[0].nextChallenge
-        
-        backgroundScene = SKSpriteNode(imageNamed: challenge[0].gameBackground ?? "")
-        backgroundScene.position = CGPoint(x: 0, y: 0)
-        backgroundScene.zPosition = -10
-        backgroundScene.size = self.frame.size
-        addChild(backgroundScene)
-        
+
+        let challenge = self.theme?.challenges?.filtered(using: NSPredicate(
+            format: "challengeName == %@", self.challengeName ?? "")
+        ).array as? [Challenges]
+
+        nextChallenge = challenge?[0].nextChallenge
+
+        // Add background
+        backgroundScene = Background(imageName: challenge?[0].gameBackground ?? "")
+        if let background = backgroundScene {
+            let spriteComponent = background.component(ofType: SpriteComponent.self)
+            spriteComponent?.node.size = self.frame.size
+            entityManager.add(background)
+        }
+
         // Add background sound
-        let soundPayload: [String: Any] = ["fileToPlay" : "Mini Games-\(self.challengeName ?? "")", "isKeepToPlay": true ]
-        NotificationCenter.default.post(name: Notification.Name(rawValue: "PlayBackgroundSound"), object: self, userInfo:soundPayload)
+        if !AudioPlayerImpl.sharedInstance.isMusicPlaying() {
+            if let music = Audio.MusicFiles.shapeGame[self.challengeName ?? ""] {
+                AudioPlayerImpl.sharedInstance.play(music: music)
+            }
+        }
     }
-    
-    
+
     func setupShapes() {
-        //Create shapes
-        var idx_y = 0
-        for (idx, shape) in (shapes ?? []).enumerated() {
-            let activeShape = Shape(imageName: shape?.background ?? "", shapeName: shape?.background ?? "")
+        for shape in (shapes ?? []) {
+            let name = (shape?.background ?? "")
+            let activeShape = Shape(imageName: name, shapeName: name,
+                                    sound: Audio.EffectFiles.animal[shape?.challengeName ?? ""])
             if let spriteComponent = activeShape.component(ofType: SpriteComponent.self) {
-                var idx_x = idx
-                if idx_x > 3 {
-                    idx_x = idx - 4 - ((idx/4 - 1) * 4)
-                }
-                
-                switch level{
-                case AttributeLevel.easy.rawValue:
-                    spriteComponent.node.position = CGPoint(x: frame.midX-CGFloat(idx_x*250), y: frame.midY - 200 + CGFloat(((idx/3)*180)))
-                case AttributeLevel.medium.rawValue:
-                    let mod = (shapes?.count ?? 0) % 4
-                    
-                    spriteComponent.node.position = CGPoint(x: frame.width / 4 - CGFloat(idx_x*250), y: frame.midY + 50 + CGFloat(((idx / 4)*180)))
-                    if mod == 1 {
-                        spriteComponent.node.position = CGPoint(x: frame.width / 4 - CGFloat(idx_x*250), y: frame.midY + 50 + CGFloat(((idx_y)*180)))
-                        if idx < 5 {
-                            spriteComponent.node.position = CGPoint(x: (frame.midX) + CGFloat((idx-2)*250), y: frame.midY + 50 + CGFloat(((idx/5)*180)))
-                        }
-                        idx_y = 1
-                        break
-                    }
-                    
-                    if idx >= (shapes?.count ?? 0) - mod && mod != 0{
-                        if mod == 3 {
-                            spriteComponent.node.position = CGPoint(x: (frame.midX) + CGFloat((idx_x-1)*250), y: frame.midY + 50 + CGFloat(((idx/4)*180)))
-                            break
-                        } else if mod == 2 {
-                            spriteComponent.node.position = CGPoint(x: (frame.midX) + CGFloat((Double(Double(idx_x)-0.5)*250)), y: frame.midY + 50 + CGFloat(((idx/4)*180)))
-                            break
-                        }
-                    }
-                    
-                case AttributeLevel.hard.rawValue:
-                    break
-                default:
-                    break
-                }
-                
-                spriteComponent.node.zPosition = 2
-                spriteComponent.node.physicsBody = SKPhysicsBody(circleOfRadius: spriteComponent.node.size.width/4)
-                spriteComponent.node.physicsBody?.affectedByGravity = false
-                spriteComponent.node.physicsBody?.friction = 0.0
-                spriteComponent.node.physicsBody?.angularDamping = 0.0
-                spriteComponent.node.physicsBody?.restitution = 1.1
-                spriteComponent.node.physicsBody?.allowsRotation = false
+                spriteComponent.node.position = CGPoint(x: shape?.xCoordinate ?? 0.0, y: shape?.yCoordinate ?? 0.0)
+                spriteComponent.node.zPosition = 10
             }
             activeShapes.append(activeShape)
             entityManager.add(activeShape)
         }
     }
-    
-    
-    func setupTargets(){
-        for target in initShapeTargetData {
+
+    func setupTargets() {
+        var order: Int32 = 0
+        if level == AttributeLevel.HARD.rawValue {
+            order = self.shapeOrder ?? 0
+        }
+
+        for target in shapeTargets.filter({$0.order == order}) {
             if target.challengeName == self.challengeName {
-                let shapeTarget = Shape(imageName: target.background ?? "", shapeName: target.background ?? "" )
+                let name = (target.background ?? "")
+                let shapeTarget = Shape(imageName: target.background ?? "", shapeName: name, sound: nil)
                 if let spriteComponent = shapeTarget.component(ofType: SpriteComponent.self) {
-                    spriteComponent.node.position = CGPoint(x: target.xCoordinate ?? 0, y: target.yCoordinate ?? 0)
-                    spriteComponent.node.setScale(0.58)
+                    spriteComponent.node.position = CGPoint(
+                        x: target.xCoordinate ?? 0,
+                        y: target.yCoordinate ?? 0)
+                    spriteComponent.node.setScale(1)
                     spriteComponent.node.zPosition = target.zPosition ?? 0
+                    let arrOfShapes = targets[name.components(separatedBy: "_")[1]]
+
+                    if arrOfShapes?.count ?? 0 > 0 {
+                        targets[name.components(separatedBy: "_")[1]]?.append(spriteComponent)
+                    } else {
+                        targets[name.components(separatedBy: "_")[1]] = [spriteComponent]
+                    }
                 }
                 entityManager.add(shapeTarget)
-                shapeTargets[(target.background ?? "").components(separatedBy: "_")[1]] = shapeTarget
             }
             continue
         }
     }
-    
-    func wrongClick(){
+
+    func wrongClick() {
         let wrongPopUp = SKLabelNode(fontNamed: "Poppins-Black")
         wrongPopUp.text = "Ayo coba lagi!"
         wrongPopUp.fontSize = 50
         wrongPopUp.fontColor = SKColor.white
-        wrongPopUp.position = CGPoint(x: frame.midX, y: frame.height/4)
+        wrongPopUp.position = CGPoint(
+            x: frame.midX,
+            y: frame.height/4)
         wrongPopUp.addStroke(color: UIColor.red, width: 5.0)
         wrongPopUp.zPosition = 20
-        
+
         addChild(wrongPopUp)
-        
+
+        AudioPlayerImpl.sharedInstance.play(effect: Audio.EffectFiles.wrongAnswer)
         wrongPopUp.run(
             SKAction.sequence([
                 SKAction.wait(forDuration: 2.0),
@@ -142,24 +111,26 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
             ])
         )
     }
-    
-    func handleShapeBehavior(node: SKNode, name: String){
-        switch level{
-        case AttributeLevel.easy.rawValue:
+
+    func handleShapeBehavior(node: SKNode, name: String) {
+        switch level {
+        case AttributeLevel.EASY.rawValue:
             break
-        case AttributeLevel.medium.rawValue:
+        case AttributeLevel.MEDIUM.rawValue:
             node.run(SKAction.fadeOut(withDuration: 1))
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                let entity = self.activeShapes.filter({$0.component(ofType: SpriteComponent.self)?.node.name == name})[0]
+                let entity = self.activeShapes.filter({
+                    $0.component(ofType: SpriteComponent.self)?.node.name == name
+                })[0]
                 self.entityManager.remove(entity)
             }
-        case AttributeLevel.hard.rawValue:
+        case AttributeLevel.HARD.rawValue:
             break
         default:
             break
         }
     }
-    
+
     func getAllShapeAssets() {
         do {
             let fetchRequest = Shapes.fetchRequest()
@@ -169,7 +140,7 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
                 challengeNamePredicate, orderPredicate
             ])
             shapes = try context.fetch(fetchRequest)
-            
+
             fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
                 challengeNamePredicate
             ])
@@ -179,158 +150,154 @@ class ShapeGameScene: GameScene, SKPhysicsContactDelegate {
             fetchRequest.resultType = .dictionaryResultType
             totalGames = try context.fetch(fetchRequest).count
         } catch let error as NSError {
-            print(error)
-            print("error while fetching data in core data!")
+            showAlert(withTitle: "Oops, there is error while fetching data.", message: error.localizedDescription)
         }
     }
-    
+
+    func getCharacterAssets() {
+        do {
+            let fetchRequest = Characters.fetchRequest()
+            let challengeNamePredicate = NSPredicate(format: "challengeName == %@", self.challengeName ?? "")
+            fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+                challengeNamePredicate
+            ])
+            fetchRequest.fetchLimit = 1
+            let results = try context.fetch(fetchRequest)
+            characters = results[0]
+        } catch let error as NSError {
+            showAlert(withTitle: "Oops, there is error while fetching data.", message: error.localizedDescription)
+        }
+    }
+
+    func handleShapeAnswer(node: SKNode) {
+        let name = (node.name ?? "")
+        let arrOfTargets = targets[name.components(separatedBy: "_")[1]]
+        for target in arrOfTargets ?? [] where target.node.frame.contains(node.position) {
+            node.position = target.node.position
+            node.zPosition = target.node.zPosition
+            AudioPlayerImpl.sharedInstance.play(effect: Audio.EffectFiles.correctAnswer)
+            solvedShapes.insert(node.name ?? "")
+            handleShapeBehavior(node: node, name: node.name ?? "")
+            return
+
+        }
+
+        var isAnswerWrong = false
+
+        for shapes in targets where shapes.key != name {
+            for shape in shapes.value where shape.node.frame.contains(node.position) {
+                wrongClick()
+                node.run(
+                    SKAction.sequence([
+                        SKAction.scale(by: 0.5, duration: 0.15),
+                        SKAction.wait(forDuration: 0.01),
+                        SKAction.scale(by: 2, duration: 0.15)
+                    ])
+                )
+                node.position = CGPoint(
+                    x: frame.midX,
+                    y: frame.midY - 200)
+                node.zPosition = 10
+                solvedShapes.remove(node.name ?? "")
+                isAnswerWrong = true
+                break
+            }
+        }
+
+        if !isAnswerWrong {
+            node.zPosition = 10
+            solvedShapes.remove(node.name ?? "")
+        }
+    }
+
     public override func didMove(to view: SKView) {
-        print("scene size: \(size)")
-        
         entityManager = EntityManager(scene: self)
         getAllShapeAssets()
+        getCharacterAssets()
+        makeCharacterGame(imageName: self.characters?.characterAtlas, sound: nil)
         setBackground()
         setupShapes()
         setupTargets()
     }
-    
+
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         if let touch = touches.first {
             let location = touch.location(in: self)
-            
             let touchedNodes = self.nodes(at: location)
-            for node in touchedNodes.reversed() {
-                if !(node.name?.contains("target") ?? true) {
-                    if node.name?.contains("triangle") ?? false || node.name?.contains("square") ?? false || node.name?.contains("circle") ?? false
-                    {
-                        node.run(SoundManager.sharedInstance.soundClickedButton)
-                        self.currentNode = node
-                    }
+
+            for node in touchedNodes.reversed() where !(node.name?.contains("target") ?? true) {
+                if node.name?.contains("triangle") ?? false ||
+                    node.name?.contains("square") ?? false ||
+                    node.name?.contains("circle") ?? false {
+                    AudioPlayerImpl.sharedInstance.play(effect: Audio.EffectFiles.clickedButton)
+                    self.currentNode = node
+                    self.currentNode?.zPosition = 20
                 }
             }
         }
     }
-    
+
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first, let node = self.currentNode {
             let touchLocation = touch.location(in: self)
             node.position = touchLocation
         }
     }
-    
+
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.currentNode = nil
     }
-    
-    
+
     public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let node = self.currentNode,
-           let triangleBin = shapeTargets["triangle"]?.component(ofType: SpriteComponent.self),
-           let squareBin = shapeTargets["square"]?.component(ofType: SpriteComponent.self),
-           let circleBin = shapeTargets["circle"]?.component(ofType: SpriteComponent.self),
-           let name = node.name {
-            if name.contains("triangle") {
-                if triangleBin.node.frame.contains(node.position){
-                    node.position = triangleBin.node.position
-                    node.run(SoundManager.sharedInstance.soundClickedButton)
-                    solvedShapes.insert(name)
-                    handleShapeBehavior(node:node, name:name)
-                }
-                else if squareBin.node.frame.contains(node.position) || circleBin.node.frame.contains(node.position){
-                    wrongClick()
-                    node.run(
-                        SKAction.sequence([
-                            SKAction.scale(by: 0.5, duration: 0.15),
-                            SKAction.wait(forDuration: 0.01),
-                            SKAction.scale(by: 2, duration: 0.15)
-                        ])
-                    )
-                    node.position = CGPoint(x: frame.midX, y: frame.midY - 200)
-                    solvedShapes.remove(name)
-                } else {
-                    solvedShapes.remove(name)
-                }
-            }
-            else if name.contains("square") {
-                if squareBin.node.frame.contains(node.position){
-                    node.position = squareBin.node.position
-                    node.run(SoundManager.sharedInstance.soundClickedButton)
-                    solvedShapes.insert(name)
-                    handleShapeBehavior(node:node, name:name)
-                }
-                else if triangleBin.node.frame.contains(node.position) || circleBin.node.frame.contains(node.position){
-                    node.run(
-                        SKAction.sequence([
-                            SKAction.scale(by: 0.5, duration: 0.15),
-                            SKAction.wait(forDuration: 0.02),
-                            SKAction.scale(by: 2, duration: 0.15)
-                        ])
-                    )
-                    wrongClick()
-                    node.position = CGPoint(x: frame.midX-500, y: frame.midY - 200)
-                    solvedShapes.remove(name)
-                }
-                else {
-                    solvedShapes.remove(name)
-                }
-            }
-            else if name.contains("circle") {
-                if circleBin.node.frame.contains(node.position){
-                    node.position = circleBin.node.position
-                    node.run(SoundManager.sharedInstance.soundClickedButton)
-                    solvedShapes.insert(name)
-                    handleShapeBehavior(node:node, name:name)
-                }
-                else if triangleBin.node.frame.contains(node.position) || squareBin.node.frame.contains(node.position){
-                    node.run(
-                        SKAction.sequence([
-                            SKAction.scale(by: 0.5, duration: 0.15),
-                            SKAction.wait(forDuration: 0.02),
-                            SKAction.scale(by: 2, duration: 0.15)
-                        ])
-                    )
-                    wrongClick()
-                    node.position = CGPoint(x: frame.midX-250, y: frame.midY - 200)
-                    solvedShapes.remove(name)
-                } else {
-                    solvedShapes.remove(name)
-                }
-            }
+        if let node = self.currentNode {
+            self.handleShapeAnswer(node: node)
         }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            if self.solvedShapes.count == self.shapes?.count {
+        if self.solvedShapes.count == self.shapes?.count {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                 for shape in self.activeShapes {
                     self.entityManager.remove(shape)
                 }
                 self.solvedShapes.removeAll()
-                
                 if Int(self.shapeOrder ?? 0) + 1 < self.totalGames ?? 0 {
-                    let scene = SKScene(fileNamed: "ShapeGameScene") as! ShapeGameScene
-                    scene.challengeName = self.challengeName
-                    scene.theme = self.theme
-                    scene.shapeOrder = (self.shapeOrder ?? 0) + 1
-                    scene.totalGames = self.totalGames
-                    scene.level = self.level
-                    self.goToScene(scene: scene, transition: SKTransition.fade(withDuration: 1.3))
+                    let scene = SKScene(fileNamed: "ShapeGameScene") as? ShapeGameScene
+                    scene?.challengeName = self.challengeName
+                    scene?.theme = self.theme
+                    scene?.shapeOrder = (self.shapeOrder ?? 0) + 1
+                    scene?.totalGames = self.totalGames
+                    scene?.level = self.level
+                    self.goToScene(scene: scene ?? SKScene(), transition: SKTransition.fade(withDuration: 1.3))
                 } else {
-                    NotificationCenter.default.post(name: Notification.Name(rawValue: "StopBackgroundSound"), object: self, userInfo:nil)
-                    let scene = SKScene(fileNamed: "AppreciationPage") as! AppreciationPage
-                    scene.challengeName = self.challengeName
-                    scene.theme = self.theme
-                    scene.nextChallenge = self.nextChallenge
-                    self.goToScene(scene: scene, transition: SKTransition.fade(withDuration: 1.3))
+                    AudioPlayerImpl.sharedInstance.stop()
+                    let scene = SKScene(fileNamed: "AppreciationPage") as? AppreciationPage
+                    Mixpanel.mainInstance().track(
+                        event: "Finished Challenge",
+                        properties: ["story_name": self.challengeName ?? ""]
+                    )
+                    scene?.challengeName = self.challengeName
+                    scene?.theme = self.theme
+                    scene?.nextChallenge = self.nextChallenge
+                    self.goToScene(scene: scene ?? SKScene(), transition: SKTransition.fade(withDuration: 1.3))
                 }
             }
-            self.currentNode = nil
         }
+        self.currentNode = nil
     }
-    
+
     override func exitScene() -> SKScene? {
-        NotificationCenter.default.post(name: Notification.Name(rawValue: "StopBackgroundSound"), object: self, userInfo:nil)
-        let scene = SKScene(fileNamed: "MapViewPageScene") as! MapViewPageScene
-        scene.theme = self.theme
+        AudioPlayerImpl.sharedInstance.stop()
+        let scene = SKScene(fileNamed: "MapViewPageScene") as? MapViewPageScene
+        scene?.theme = self.theme
         return scene
+    }
+
+    override func willMove(from view: SKView) {
+        if let background = backgroundScene {
+            entityManager.remove(background)
+        }
+
+        for shape in self.activeShapes {
+            entityManager.remove(shape)
+        }
     }
 }

@@ -2,13 +2,12 @@
 //  Challenges+CoreDataProperties.swift
 //  Storybook
 //
-//  Created by Adam Ibnu fiadi on 31/10/22.
+//  Created by Adam Ibnu fiadi on 10/11/22.
 //
 //
 
 import Foundation
 import CoreData
-
 
 extension Challenges {
 
@@ -20,14 +19,14 @@ extension Challenges {
     @NSManaged public var challengeName: String?
     @NSManaged public var gameBackground: String?
     @NSManaged public var isActive: Bool
+    @NSManaged public var level: String?
+    @NSManaged public var nextChallenge: String?
     @NSManaged public var xCoordinate: Double
     @NSManaged public var yCoordinate: Double
     @NSManaged public var zPosition: Double
-    @NSManaged public var level: String?
-    @NSManaged public var nextChallenge: String?
 
 }
 
-extension Challenges : Identifiable {
+extension Challenges: Identifiable {
 
 }

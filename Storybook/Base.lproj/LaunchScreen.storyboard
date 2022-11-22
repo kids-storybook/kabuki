@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="ipad12_9" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -15,16 +16,37 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="taf-T8-Bl7">
+                                <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Kabuki Logo" translatesAutoresizingMaskIntoConstraints="NO" id="AfE-tv-StN">
+                                <rect key="frame" x="324" y="236" width="718" height="572"/>
+                            </imageView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="taf-T8-Bl7" secondAttribute="bottom" id="0Ev-4T-HHZ"/>
+                            <constraint firstItem="AfE-tv-StN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="324" id="266-qI-IgP"/>
+                            <constraint firstAttribute="bottom" secondItem="taf-T8-Bl7" secondAttribute="bottom" id="DmQ-I1-0e4"/>
+                            <constraint firstItem="taf-T8-Bl7" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="Iu4-NN-4In"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="taf-T8-Bl7" secondAttribute="trailing" id="L82-HA-rCf"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="AfE-tv-StN" secondAttribute="bottom" constant="216" id="OFI-kc-Ny7"/>
+                            <constraint firstItem="taf-T8-Bl7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Zq3-vu-9xp"/>
+                            <constraint firstItem="AfE-tv-StN" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" constant="236" id="aWW-oh-HX1"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="AfE-tv-StN" secondAttribute="trailing" constant="324" id="fVQ-0B-CAA"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52.708638360175691" y="375"/>
         </scene>
     </scenes>
     <resources>
+        <image name="Kabuki Logo" width="361" height="467"/>
+        <image name="background" width="2388" height="1668"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

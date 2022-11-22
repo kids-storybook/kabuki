@@ -2,13 +2,12 @@
 //  Shapes+CoreDataProperties.swift
 //  Storybook
 //
-//  Created by Adam Ibnu fiadi on 31/10/22.
+//  Created by Adam Ibnu fiadi on 10/11/22.
 //
 //
 
 import Foundation
 import CoreData
-
 
 extension Shapes {
 
@@ -19,9 +18,11 @@ extension Shapes {
     @NSManaged public var background: String?
     @NSManaged public var challengeName: String?
     @NSManaged public var order: Int32
+    @NSManaged public var xCoordinate: Double
+    @NSManaged public var yCoordinate: Double
 
 }
 
-extension Shapes : Identifiable {
+extension Shapes: Identifiable {
 
 }

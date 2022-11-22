@@ -25,49 +25,50 @@ import SpriteKit
 
 /**
  SwiftySKScrollView
- 
+
  A custom subclass of UIScrollView to add to your SpriteKit scenes.
  */
 public class SwiftySKScrollView: UIScrollView {
-    
+
     // MARK: - Types
-    
+
     public enum ScrollDirection {
         case vertical
         case horizontal
     }
-    
+
     // MARK: - Properties
-    
+
     public var isDisabled = false {
         didSet {
             isUserInteractionEnabled = !isDisabled
         }
     }
-    
+
     private unowned let moveableNode: SKNode
     private let direction: ScrollDirection
     private var touchedNodes = [AnyObject]()
-    
+
     // MARK: - Initialization
-    
+
     /// Initialization
     ///
     /// - parameter frame: The frame of the UIScrollView.
-    /// - parameter moveableNode: The moveable node that will contain all the sprites to be scrolled by the UIScrollView.
+    /// - parameter moveableNode: The moveable node that will contain
+    /// all the sprites to be scrolled by the UIScrollView.
     /// - parameter direction: The scroll direction of the UIScrollView.
+
     public init(frame: CGRect, moveableNode: SKNode, direction: ScrollDirection) {
         self.moveableNode = moveableNode
         self.direction = direction
         super.init(frame: frame)
-        
-        
+
         delegate = self
         indicatorStyle = .white
         showsVerticalScrollIndicator = false
         showsHorizontalScrollIndicator = false
-//        backgroundColor = .black
-        
+        //        backgroundColor = .black
+
         switch direction {
         case .vertical:
             break
@@ -75,13 +76,13 @@ public class SwiftySKScrollView: UIScrollView {
             transform = CGAffineTransform(scaleX: -1, y: 1)
         }
     }
-    
+
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - Touches
-    
+
     override public func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard !isDisabled else { return }
         super.touchesBegan(touches, with: event)
@@ -97,16 +98,16 @@ public class SwiftySKScrollView: UIScrollView {
             }
         }
     }
-    
+
     override public func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard !isDisabled else { return }
         super.touchesMoved(touches, with: event)
-        
+
         guard let scene = moveableNode.scene else { return }
-        
+
         for touch in touches {
             let location = touch.location(in: scene)
-            
+
             scene.touchesMoved(touches, with: event)
             touchedNodes = scene.nodes(at: location)
             for node in touchedNodes {
@@ -114,16 +115,16 @@ public class SwiftySKScrollView: UIScrollView {
             }
         }
     }
-    
+
     override public func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard !isDisabled else { return }
         super.touchesEnded(touches, with: event)
-        
+
         guard let scene = moveableNode.scene else { return }
-        
+
         for touch in touches {
             let location = touch.location(in: scene)
-            
+
             scene.touchesEnded(touches, with: event)
             touchedNodes = scene.nodes(at: location)
             for node in touchedNodes {
@@ -131,16 +132,16 @@ public class SwiftySKScrollView: UIScrollView {
             }
         }
     }
-    
+
     override public func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard !isDisabled else { return }
         super.touchesCancelled(touches, with: event)
-        
+
         guard let scene = moveableNode.scene else { return }
-        
+
         for touch in touches {
             let location = touch.location(in: scene)
-            
+
             scene.touchesCancelled(touches, with: event)
             touchedNodes = scene.nodes(at: location)
             for node in touchedNodes {

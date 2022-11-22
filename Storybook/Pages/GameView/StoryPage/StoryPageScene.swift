@@ -3,21 +3,25 @@ import SpriteKit
 import GameplayKit
 
 class StoryPageScene: GameScene {
-    
+
     var totalStories: Int?
-    var backgroundScene: SKSpriteNode!
-    
-    private func setupPlayer(){
-        makeCharacter(imageName: self.story?.character ?? "")
+    var backgroundScene: Background?
+    var activeLabels: [SKLabelNode]?
+
+    private func setupPlayer() {
+        makeCharacter(imageName: self.story?.characterAtlas, sound: Audio.EffectFiles.animal[self.challengeName ?? ""])
         entityManager = EntityManager(scene: self)
-        backgroundScene = SKSpriteNode(imageNamed: self.story?.background ?? "")
-        
-        backgroundScene.position = CGPoint(x: frame.midX, y: frame.midY)
-        backgroundScene.zPosition = -10
-        backgroundScene.size = self.frame.size
-        
+
+        // Add background
+        backgroundScene = Background(imageName: self.story?.background ?? "")
+        if let background = backgroundScene {
+            let spriteComponent = background.component(ofType: SpriteComponent.self)
+            spriteComponent?.node.size = self.frame.size
+            entityManager.add(background)
+        }
+
         let rawLabels = story?.labels as? [String]
-        
+
         if let labels = rawLabels {
             for (idx, label) in labels.enumerated() {
                 let textScene = SKLabelNode(fontNamed: "Poppins-Black")
@@ -28,13 +32,12 @@ class StoryPageScene: GameScene {
                 textScene.zPosition = 100
                 textScene.addStroke(color: UIColor(named: story?.labelColor ?? "") ?? textBorder, width: 7.0)
                 addChild(textScene)
+                activeLabels?.append(textScene)
             }
         }
-        
-        addChild(backgroundScene)
-        
+
     }
-    
+
     override func didMove(to view: SKView) {
         do {
             let fetchRequest = Stories.fetchRequest()
@@ -48,48 +51,58 @@ class StoryPageScene: GameScene {
             fetchRequest.predicate = NSPredicate(format: "challengeName == %@", challengeName ?? "")
             totalStories = try context.count(for: fetchRequest)
         } catch let error as NSError {
-            print(error)
-            print("error while fetching data in core data!")
+            showAlert(withTitle: "Oops, there is error while fetching data.", message: error.localizedDescription)
         }
-        
+
         self.setupPlayer()
     }
-    
+
     override func getNextScene() -> SKScene? {
         if Int(idxScene) < totalStories ?? 0 {
-            let scene = SKScene(fileNamed: "StoryPageScene") as! StoryPageScene
-            scene.idxScene = self.idxScene + 1
-            scene.challengeName = self.challengeName
-            scene.theme = self.theme
+            let scene = SKScene(fileNamed: "StoryPageScene") as? StoryPageScene
+            scene?.idxScene = self.idxScene + 1
+            scene?.challengeName = self.challengeName
+            scene?.theme = self.theme
             return scene
         }
-        
-        let scene = SKScene(fileNamed: "AnimationPageScene") as! AnimationPageScene
-        scene.challengeName = self.challengeName
-        scene.theme = self.theme
-        scene.idxScene = self.idxScene
+
+        let scene = SKScene(fileNamed: "AnimationPageScene") as? AnimationPageScene
+        scene?.challengeName = self.challengeName
+        scene?.theme = self.theme
+        scene?.idxScene = self.idxScene
         return scene
     }
-    
+
     override func getPreviousScene() -> SKScene? {
         if idxScene > 0 {
-            let scene = SKScene(fileNamed: "StoryPageScene") as! StoryPageScene
-            scene.idxScene = self.idxScene - 1
-            scene.challengeName = self.challengeName
-            scene.theme = self.theme
+            let scene = SKScene(fileNamed: "StoryPageScene") as? StoryPageScene
+            scene?.idxScene = self.idxScene - 1
+            scene?.challengeName = self.challengeName
+            scene?.theme = self.theme
             return scene
         }
-        
-        let scene = SKScene(fileNamed: "StartPageScene") as! StartPageScene
-        scene.challengeName = self.challengeName
-        scene.theme = self.theme
+
+        let scene = SKScene(fileNamed: "StartPageScene") as? StartPageScene
+        scene?.challengeName = self.challengeName
+        scene?.theme = self.theme
         return scene
     }
-    
+
     override func exitScene() -> SKScene? {
-        NotificationCenter.default.post(name: Notification.Name(rawValue: "StopBackgroundSound"), object: self, userInfo:nil)
-        let scene = SKScene(fileNamed: "MapViewPageScene") as! MapViewPageScene
-        scene.theme = self.theme
+        AudioPlayerImpl.sharedInstance.stop()
+        let scene = SKScene(fileNamed: "MapViewPageScene") as? MapViewPageScene
+        scene?.theme = self.theme
         return scene
+    }
+
+    override func willMove(from view: SKView) {
+        if let background = backgroundScene {
+            entityManager.remove(background)
+        }
+
+        for label in (self.activeLabels ?? []) as [SKLabelNode] {
+            label.removeFromParent()
+            label.removeAllChildren()
+        }
     }
 }

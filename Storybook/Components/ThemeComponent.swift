@@ -17,14 +17,13 @@ enum ThemeEnum: String {
 
 class ThemeComponent: GKComponent {
     let theme: ThemeEnum
-    
+
     init(theme: ThemeEnum) {
         self.theme = theme
         super.init()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
-
