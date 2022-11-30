@@ -12,8 +12,8 @@ import Mixpanel
 class HomepageScene: SKScene, Alertable {
     var scrollView: SwiftySKScrollView?
     let moveableNode = SKNode()
-    let background = SKSpriteNode(imageNamed: "background")
     var themes: [Themes?] = []
+    var backgroundScene: Background?
 
     // Entity-component system
     var entityManager: EntityManager!
@@ -41,10 +41,12 @@ class HomepageScene: SKScene, Alertable {
         AudioPlayerImpl.sharedInstance.play(music: Audio.MusicFiles.homepage)
 
         // Add background
-        background.position = CGPoint(x: 0, y: 0)
-        background.size = CGSize(width: size.width, height: size.height)
-        background.zPosition = -1
-        addChild(background)
+        backgroundScene = Background(imageName: "background")
+        if let background = backgroundScene {
+            let spriteComponent = background.component(ofType: SpriteComponent.self)
+            spriteComponent?.node.size = self.frame.size
+            entityManager.add(background)
+        }
 
         addChild(moveableNode)
         prepareHorizontalScrolling()
@@ -58,8 +60,9 @@ class HomepageScene: SKScene, Alertable {
         moveableNode.removeFromParent()
         moveableNode.removeAllChildren()
 
-        background.removeFromParent()
-        background.removeAllChildren()
+        if let background = backgroundScene {
+            entityManager.remove(background)
+        }
     }
 
     // MARK: - Touches
